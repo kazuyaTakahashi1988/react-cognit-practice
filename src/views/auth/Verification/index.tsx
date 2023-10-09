@@ -1,7 +1,7 @@
 import React from 'react'
 import '../../../App.css'
 
-import { verifyHelper } from '../../../auth'
+import { verifyHelper } from '../../../utils/auth'
 
 const Verification: React.FC = () => {
   const [email, setEmail] = React.useState<string>('')

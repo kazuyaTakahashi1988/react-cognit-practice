@@ -1,7 +1,7 @@
 import React from 'react'
 import '../../../App.css'
 
-import { signUpHelper } from '../../../auth'
+import { signUpHelper } from '../../../utils/auth'
 
 const SignUp: React.FC = () => {
   const [email, setEmail] = React.useState<string>('')

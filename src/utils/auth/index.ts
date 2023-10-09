@@ -4,11 +4,10 @@ import {
   CognitoUserPool,
   CognitoUserAttribute,
 } from "amazon-cognito-identity-js"
-import awsConfiguration from '../awsConfiguration'
 
 const userPool = new CognitoUserPool({
-  UserPoolId: awsConfiguration.UserPoolId,
-  ClientId: awsConfiguration.ClientId,
+  UserPoolId: `${process.env.REACT_APP_AWS_COGNITO_USER_POOL_ID}`,
+  ClientId: `${process.env.REACT_APP_AWS_COGNITO_CLIENT_ID}`,
 })
 
 /* -----------------------------------

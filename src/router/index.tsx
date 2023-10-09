@@ -3,12 +3,12 @@ import { Routes, Route, Navigate } from 'react-router-dom';
 /* -----------------------------------
  * サインインフラグ - 済 or 未 - 
  * -------------------------------- */
-import { getSignInFlag } from '../auth'
+import { getSignInFlag } from '../utils/auth'
 
 /* -----------------------------------
  * VIEWS コンポーネント
  * -------------------------------- */
-import Home from '../views/Home';
+import Home from '../views';
 import SignUp from '../views/auth/SignUp'
 import Verification from '../views/auth/Verification'
 import SignIn from '../views/auth/SignIn'
@@ -22,8 +22,7 @@ export function Router() {
      * -------------------------------- */
     return (
       <Routes>
-        <Route path="/" element={<Navigate to="/home" replace />} />
-        <Route path="/home" element={<Home />} />
+        <Route path="/" element={<Home />} />
         <Route path="/auth/signout" element={<SignOut />} />
         <Route path="/*" element={<Navigate to="/" replace />} />
       </Routes>
