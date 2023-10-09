@@ -1,7 +1,7 @@
 import React from 'react'
-import '../App.css'
+import '../../App.css'
 
-import { verifyHelper } from './'
+import { verifyHelper } from '../../auth'
 
 const Verification: React.FC = () => {
   const [email, setEmail] = React.useState<string>('')
@@ -13,10 +13,10 @@ const Verification: React.FC = () => {
   const verify = () => verifyHelper(email, verificationCode)
   
   return (
-    <div className="VerificationCode">
-      <h1>アクティベートコード</h1>
-      <input type="text" placeholder="verification code" onChange={changedVerificationCode} />
-      <input type="text" placeholder='email' onChange={changedEmail} />
+    <div className="verification">
+      <h1>ベリフィケーション</h1>
+      <input type="password" placeholder="verification code" onChange={changedVerificationCode} />
+      <input type="email" placeholder='email' onChange={changedEmail} />
       <button onClick={verify}>Authenticate</button>
     </div>
   )

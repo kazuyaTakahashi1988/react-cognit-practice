@@ -1,7 +1,7 @@
 import React from 'react'
-import '../App.css'
+import '../../App.css'
 
-import { signInHelper } from './'
+import { signInHelper } from '../../auth'
 
 const SignIn: React.FC = () => {
   const [email, setEmail] = React.useState<string>('')
@@ -13,8 +13,8 @@ const SignIn: React.FC = () => {
   const signIn = () => signInHelper(email, password)
 
   return (
-    <div className="SignIn">
-      <h1>ログイン</h1>
+    <div className="sign-in">
+      <h1>サインイン</h1>
       <input type="email" placeholder='email' onChange={changedEmail} />
       <input type="password" placeholder='password' onChange={changedPassword} />
       <button onClick={signIn}>Sign In</button>

@@ -1,7 +1,7 @@
 import React from 'react'
-import '../App.css'
+import '../../App.css'
 
-import { signUpHelper } from './'
+import { signUpHelper } from '../../auth'
 
 const SignUp: React.FC = () => {
   const [email, setEmail] = React.useState<string>('')
@@ -13,8 +13,8 @@ const SignUp: React.FC = () => {
   const signUp = () => signUpHelper(email, password)
 
   return (
-    <div className="SignUp">
-      <h1>ユーザー作成</h1>
+    <div className="sign-up">
+      <h1>サインアップ（ユーザー作成）</h1>
       <input type="email" placeholder="email" onChange={changedEmail} />
       <input type="password" placeholder="password" onChange={changedPassword} />
       <button onClick={signUp}>SignUp</button>

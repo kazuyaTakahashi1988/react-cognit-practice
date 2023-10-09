@@ -12,13 +12,19 @@ const userPool = new CognitoUserPool({
 })
 
 /* -----------------------------------
- * サインイン
+ * サインイン 未 or 済 フラグ 処理
  * -------------------------------- */
-export const signInHelper = (email: string, password: string) => {
+export const getSignInBool = () => userPool.getCurrentUser()
+
+/* -----------------------------------
+ * サインイン 処理
+ * -------------------------------- */
+export const signInHelper = async(email: string, password: string) => {
   const authenticationDetails = new AuthenticationDetails({
     Username: email,
     Password: password
   })
+
   const cognitoUser = new CognitoUser({
     Username: email,
     Pool: userPool
@@ -37,7 +43,7 @@ export const signInHelper = (email: string, password: string) => {
 }
 
 /* -----------------------------------
- * サインアップ
+ * サインアップ 処理
  * -------------------------------- */
 export const signUpHelper = (email: string, password: string) => {
   const attributeList = [
@@ -46,38 +52,36 @@ export const signUpHelper = (email: string, password: string) => {
       Value: email
     })
   ]
+
   userPool.signUp(email, password, attributeList, [], (err, result) => {
     if (err) {
       console.error(err)
       return
     }
     console.log('SignUp succeeded')
-    // setEmail('')
-    // setVerificationCode('')
   })
 }
 
 /* -----------------------------------
- * アクティベート
+ * アクティベート 処理
  * -------------------------------- */
 export const verifyHelper = (email: string, verificationCode: string) => {
   const cognitoUser = new CognitoUser({
     Username: email,
     Pool: userPool
   })
+  
   cognitoUser.confirmRegistration(verificationCode, true, (err: any) => {
     if (err) {
       console.log(err)
       return
     }
     console.log('verification succeeded')
-    // setEmail('')
-    // setVerificationCode('')
   })
 }
 
 /* -----------------------------------
- * サインアウト
+ * サインアウト 処理
  * -------------------------------- */
 export const signOutHelper = () => {
   const cognitoUser = userPool.getCurrentUser()
