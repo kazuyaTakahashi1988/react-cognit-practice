@@ -1,7 +1,7 @@
 import { Routes, Route, Navigate } from 'react-router-dom';
 
 /* -----------------------------------
- * サインイン 未 or 済 フラグ 
+ * サインイン 済 or 未 フラグ 
  * -------------------------------- */
 import { getSignInFlag } from '../utils/auth'
 
