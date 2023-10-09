@@ -15,30 +15,33 @@ import SignIn from '../views/auth/SignIn'
 import SignOut from '../views/auth/SignOut'
 
 export function Router() {
-
-  if (getSignInFlag()) {
-    /* -----------------------------------
-     * ルーター設定（サインイン 済）
-     * -------------------------------- */
-    return (
-      <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/auth/signout" element={<SignOut />} />
-        <Route path="/*" element={<Navigate to="/" replace />} />
-      </Routes>
-    );
-  } else {
-    /* -----------------------------------
-     * ルーター設定（サインイン 未）
-     * -------------------------------- */
-    return (
-      <Routes>
-        <Route path="/" element={<Navigate to="/auth/signin" replace />} />
-        <Route path="/auth/signin" element={<SignIn />} />
-        <Route path="/auth/signup" element={<SignUp />} />
-        <Route path="/auth/verification" element={<Verification />} />
-        <Route path="/*" element={<Navigate to="/" replace />} />
-      </Routes>
-    );
-  }
+  return (
+    <Routes>
+      { getSignInFlag() ?
+        <>
+          {
+            /* -----------------------------------
+             * ルーター設定（サインイン 済）
+             * -------------------------------- */
+          }
+          <Route path="/" element={<Home />} />
+          <Route path="/auth/signout" element={<SignOut />} />
+          <Route path="/*" element={<Navigate to="/" replace />} />
+        </>
+        :
+        <>
+          {
+            /* -----------------------------------
+             * ルーター設定（サインイン 未）
+             * -------------------------------- */
+          }
+          <Route path="/" element={<Navigate to="/auth/signin" replace />} />
+          <Route path="/auth/signin" element={<SignIn />} />
+          <Route path="/auth/signup" element={<SignUp />} />
+          <Route path="/auth/verification" element={<Verification />} />
+          <Route path="/*" element={<Navigate to="/" replace />} />
+        </>
+      }
+    </Routes>
+  );
 }
