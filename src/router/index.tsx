@@ -3,7 +3,7 @@ import { Routes, Route, Navigate } from 'react-router-dom';
 /* -----------------------------------
  * サインインフラグ - 済 or 未 - 
  * -------------------------------- */
-import { getSignInBool } from '../auth'
+import { getSignInFlag } from '../auth'
 
 /* -----------------------------------
  * VIEWS コンポーネント
@@ -16,7 +16,7 @@ import SignOut from '../views/auth/SignOut'
 
 export function Router() {
 
-  if (getSignInBool()) {
+  if (getSignInFlag()) {
     /* -----------------------------------
      * ルーター設定（サインイン - 済）
      * -------------------------------- */
