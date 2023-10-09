@@ -11,7 +11,7 @@ const userPool = new CognitoUserPool({
 })
 
 /* -----------------------------------
- * サインイン 未 or 済 フラグ 処理
+ * サインイン 未 or 済 フラグ 
  * -------------------------------- */
 export const getSignInFlag = () => userPool.getCurrentUser()
 
