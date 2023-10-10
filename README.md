@@ -1,6 +1,9 @@
-必要なローカルでの設定は以下
+事前に必要なローカル設定は以下
+
 ・AWS CLI のインストール
+
 ・IAMクレデンシャルの設定
+
 ・Node ver 18.x
 
 # AWS CDKでcognito環境を用意する
@@ -28,7 +31,7 @@ REACT_APP_AWS_COGNITO_CLIENT_ID='40oec5o56lukbe6ch1s9al1qh'
 ```
 
 　　　　　↓↓↓↓
-# ルートに戻って $ npm　 i & $ npm run start (Node ver 18.x)
+# ルートに戻ってnpm i & npm run start (Node ver 18.x)
 ```
 $ npm i
 $ npm run start
