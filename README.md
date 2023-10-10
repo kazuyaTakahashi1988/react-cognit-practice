@@ -1,3 +1,8 @@
+必要なローカルでの設定は以下
+・AWS CLI のインストール
+・IAMクレデンシャルの設定
+・Node ver 18.x
+
 # AWS CDKでcognito環境を用意する
 ```
 $ cd cdk
@@ -7,7 +12,7 @@ $ npx cdk deploy
 ```
 
 # .env.local ファイルを編集する（cognito環境変数を設定する）
-※exsample 
+※ exsample 
 ```
 REACT_APP_AWS_COGNITO_REGION='************'
 REACT_APP_AWS_COGNITO_IDENTITY_POOL_ID='************'
@@ -23,7 +28,7 @@ REACT_APP_AWS_COGNITO_CLIENT_ID='40oec5o56lukbe6ch1s9al1qh'
 ```
 
 　　　　　↓↓↓↓
-# npm run start (Node ver 18.x)
+# ルートに戻って $ npm　 i & $ npm run start (Node ver 18.x)
 ```
 $ npm i
 $ npm run start
