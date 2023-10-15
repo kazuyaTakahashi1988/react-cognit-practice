@@ -5,6 +5,8 @@ import {
   CognitoUserAttribute,
 } from "amazon-cognito-identity-js"
 
+import { PropsSignIn, PropsSignUp, PropsVerify } from "../../lib/props";
+
 const userPool = new CognitoUserPool({
   UserPoolId: `${process.env.REACT_APP_AWS_COGNITO_USER_POOL_ID}`,
   ClientId: `${process.env.REACT_APP_AWS_COGNITO_CLIENT_ID}`,
@@ -13,19 +15,19 @@ const userPool = new CognitoUserPool({
 /* -----------------------------------
  * サインイン 済 or 未 フラグ 
  * -------------------------------- */
-export const getSignInFlag = () => userPool.getCurrentUser()
+export const GetSignInFlag = () => userPool.getCurrentUser()
 
 /* -----------------------------------
  * サインイン 処理
  * -------------------------------- */
-export const signInHelper = async(email: string, password: string) => {
+export const SignInHelper = async(data: PropsSignIn) => {
   const authenticationDetails = new AuthenticationDetails({
-    Username: email,
-    Password: password
+    Username: data.email,
+    Password: data.password
   })
 
   const cognitoUser = new CognitoUser({
-    Username: email,
+    Username: data.email,
     Pool: userPool
   })
 
@@ -44,15 +46,15 @@ export const signInHelper = async(email: string, password: string) => {
 /* -----------------------------------
  * サインアップ 処理
  * -------------------------------- */
-export const signUpHelper = (email: string, password: string) => {
+export const SignUpHelper = (data: PropsSignUp) => {
   const attributeList = [
     new CognitoUserAttribute({
       Name: 'email',
-      Value: email
+      Value: data.email
     })
   ]
 
-  userPool.signUp(email, password, attributeList, [], (err, result) => {
+  userPool.signUp(data.email, data.password, attributeList, [], (err, result) => {
     if (err) {
       console.error(err)
       return
@@ -64,13 +66,13 @@ export const signUpHelper = (email: string, password: string) => {
 /* -----------------------------------
  * アクティベート 処理
  * -------------------------------- */
-export const verifyHelper = (email: string, verificationCode: string) => {
+export const VerifyHelper = (data: PropsVerify) => {
   const cognitoUser = new CognitoUser({
-    Username: email,
+    Username: data.email,
     Pool: userPool
   })
   
-  cognitoUser.confirmRegistration(verificationCode, true, (err: any) => {
+  cognitoUser.confirmRegistration(data.verificationCode, true, (err: any) => {
     if (err) {
       console.log(err)
       return
@@ -82,7 +84,7 @@ export const verifyHelper = (email: string, verificationCode: string) => {
 /* -----------------------------------
  * サインアウト 処理
  * -------------------------------- */
-export const signOutHelper = () => {
+export const SignOutHelper = () => {
   const cognitoUser = userPool.getCurrentUser()
   if (cognitoUser) {
     cognitoUser.signOut()

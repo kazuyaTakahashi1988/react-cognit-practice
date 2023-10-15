@@ -1,10 +1,10 @@
 import React from 'react'
 import '../../../App.css'
 
-import { signOutHelper } from '../../../utils/auth'
+import { SignOutHelper } from '../../../utils/auth'
 
 const SignOut: React.FC = () => {
-  const signOut = () => signOutHelper()
+  const signOut = () => SignOutHelper()
 
   return (
     <div className="sign-out">

@@ -3,7 +3,7 @@ import { Routes, Route, Navigate } from 'react-router-dom';
 /* -----------------------------------
  * サインイン 済 or 未 フラグ 
  * -------------------------------- */
-import { getSignInFlag } from '../utils/auth'
+import { GetSignInFlag } from '../utils/auth'
 
 /* -----------------------------------
  * VIEWS コンポーネント
@@ -17,7 +17,7 @@ import SignOut from '../views/auth/SignOut'
 export function Router() {
   return (
     <Routes>
-      { getSignInFlag() ?
+      { GetSignInFlag() ?
         <>
           {
             /* -----------------------------------
