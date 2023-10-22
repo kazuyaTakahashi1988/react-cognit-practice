@@ -3,6 +3,9 @@
 ---------------------------------------------------------- */
 // サインアップ
 export type PropsSignIn = {
+  selectId: Number,
+  content: string;
+  checked: string[],
   email: string;
   password: string;
 };
@@ -24,6 +27,39 @@ export type PropsVerify = {
 ---------------------------------------------------------- */
 // Input
 export type PropsInput = {
+  type: string;
+  placeholder: string;
+  disabled: boolean;
+};
+
+// Select
+export type PropsSelect = {
+  options: Array<{
+    value: number,
+    label: string,
+  }>,
+  placeholder: string;
+  disabled: boolean;
+};
+
+// TextArea
+export type PropsTextArea = {
+  placeholder: string;
+  disabled: boolean;
+};
+
+// CheckBox
+export type PropsCheckBox = {
+  options: Array<{
+    id: string,
+    label: string,
+    checked: boolean,
+    disabled: boolean,
+  }>,
+};
+
+// RadioButton
+export type PropsRadioButton = {
   type: string;
   placeholder: string;
   disabled: boolean;

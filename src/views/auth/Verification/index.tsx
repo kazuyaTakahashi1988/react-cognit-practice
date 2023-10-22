@@ -5,7 +5,7 @@ import { SubmitHandler, useForm } from 'react-hook-form';
 import { PropsVerify } from "../../../lib/props";
 import { VerifyHelper } from '../../../utils/auth'
 
-import Input from '../../../components/form/input'
+import Input from '../../../components/form/Input'
 
 const Verification: React.FC = () => {
   const { handleSubmit, control, reset } = useForm<PropsVerify>({

@@ -5,7 +5,7 @@ import { SubmitHandler, useForm } from 'react-hook-form';
 import { PropsSignUp } from "../../../lib/props";
 import { SignUpHelper } from '../../../utils/auth'
 
-import Input from '../../../components/form/input'
+import Input from '../../../components/form/Input'
 
 const SignUp: React.FC = () => {
   const { handleSubmit, control, reset } = useForm<PropsSignUp>({
