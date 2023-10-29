@@ -13,6 +13,7 @@ import SignUp from '../views/auth/SignUp'
 import Verification from '../views/auth/Verification'
 import SignIn from '../views/auth/SignIn'
 import SignOut from '../views/auth/SignOut'
+import About from '../views/auth/About'
 
 export function Router() {
   return (
@@ -39,6 +40,7 @@ export function Router() {
           <Route path="/auth/signin" element={<SignIn />} />
           <Route path="/auth/signup" element={<SignUp />} />
           <Route path="/auth/verification" element={<Verification />} />
+          <Route path="/auth/about" element={<About />} />
           <Route path="/*" element={<Navigate to="/" replace />} />
         </>
       }
