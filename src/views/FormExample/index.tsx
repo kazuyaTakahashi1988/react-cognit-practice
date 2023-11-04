@@ -9,7 +9,7 @@ import Select from '../../components/form/Select';
 import TextArea from '../../components/form/TextArea';
 
 const FormExample: React.FC = () => {
-  const onSubmit = (data: Object) => console.log(data);
+  const onSubmit = (data: object) => console.log(data);
 
   return (
     <>
@@ -18,14 +18,18 @@ const FormExample: React.FC = () => {
         <Input
           type={''}
           name="inputNameExample"
-          register={undefined}
-          errors={undefined}
+          placeholder={'入力してください'}
           validations={{
             required: { value: true, message: '必須項目です。' },
             maxLength: { value: 50, message: '最大50文字です' },
             minLength: { value: 2, message: `2文字以上にしてね` },
-            pattern: /^[A-Za-z0-9]{1}[A-Za-z0-9_.-]*@{1}[A-Za-z0-9_.-]+.[A-Za-z0-9]+$/,
+            pattern: {
+              value: /^[A-Za-z0-9]{1}[A-Za-z0-9_.-]*@{1}[A-Za-z0-9_.-]+.[A-Za-z0-9]+$/,
+              message: `英数文字のみにしてね`
+            },
           }}
+          register={undefined}
+          errors={undefined}
         />
 
         <CheckBox
@@ -35,11 +39,11 @@ const FormExample: React.FC = () => {
             {value: 'Check_Value_B', label: 'Check_Label_B'},
             {value: 'Check_Value_C', label: 'Check_Label_C'}
           ]}
-          register={undefined}
-          errors={undefined}
           validations={{
             required: { value: true, message: '必須項目です。' },
           }}
+          register={undefined}
+          errors={undefined}
         />
 
         <RadioButton
@@ -49,11 +53,11 @@ const FormExample: React.FC = () => {
             {value: 'Radio_Value_B', label: 'Radio_Label_B'},
             {value: 'Radio_Value_C', label: 'Radio_Label_C'}
           ]}
-          register={undefined}
-          errors={undefined}
           validations={{
             required: { value: true, message: '必須項目です。' },
           }}
+          register={undefined}
+          errors={undefined}
         />
 
         <Select
@@ -64,20 +68,21 @@ const FormExample: React.FC = () => {
             {value: 'Select_Value_C', label: 'Select_Label_C'}
           ]}
           placeholder={'選択してください'}
-          register={undefined}
-          errors={undefined}
           validations={{
             required: { value: true, message: '必須項目です。' },
           }}
+          register={undefined}
+          errors={undefined}
         />
 
         <TextArea
           name="textAreaNameExample"
-          register={undefined}
-          errors={undefined}
+          placeholder={'入力してください'}
           validations={{
             required: { value: true, message: '必須項目です。' },
           }}
+          register={undefined}
+          errors={undefined}
         />
         <button>Submit</button>
       </Form>

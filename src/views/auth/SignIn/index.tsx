@@ -7,7 +7,7 @@ import Input from '../../../components/form/Input';
 import { SignInHelper } from '../../../utils/auth'
 
 const SignIn: React.FC = () => {
-  const onSubmit = (data: any) => {
+  const onSubmit = (data: object) => {
     console.log(data);
     SignInHelper(data);
   }
@@ -19,16 +19,18 @@ const SignIn: React.FC = () => {
         <Input
           type='email'
           name='email'
+          placeholder='emailを入力してください'
+          validations={undefined}
           register={undefined}
           errors={undefined}
-          validations={undefined}
         />
         <Input
           type='password'
           name='password'
+          placeholder='passwordを入力してください'
+          validations={undefined}
           register={undefined}
           errors={undefined}
-          validations={undefined}
         />
         <button>Submit</button>
       </Form>

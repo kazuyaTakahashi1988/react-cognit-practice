@@ -2,10 +2,11 @@ import { PropsTextArea } from "../../lib/props";
 
 type Props = PropsTextArea;
 
-const TextArea = ({ register, name, validations, errors, ...rest }: Props) => {
+const TextArea = ({ register, name, placeholder, validations, errors, ...rest }: Props) => {
   return (
     <>
       <textarea
+        placeholder={placeholder}
         {...register(name, validations)}
         {...rest}
       >

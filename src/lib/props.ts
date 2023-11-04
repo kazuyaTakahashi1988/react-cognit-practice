@@ -12,6 +12,7 @@ export type PropsInput = {
   register: any;
   type: string;
   name: string;
+  placeholder: string;
   errors: any;
   validations: any;
 };
@@ -33,6 +34,7 @@ export type PropsSelect = {
 export type PropsTextArea = {
   register: any;
   name: string;
+  placeholder: string;
   errors: any;
   validations: any;
 };
