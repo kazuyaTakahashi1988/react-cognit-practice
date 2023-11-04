@@ -1,23 +1,20 @@
-import { FieldValues, useController, UseControllerProps } from 'react-hook-form';
 import { PropsTextArea } from "../../lib/props";
 
-type Props<T extends FieldValues> = UseControllerProps<T> & PropsTextArea;
+type Props = PropsTextArea;
 
-const TextArea = <T extends FieldValues>(props: Props<T>) => {
-  const { name, placeholder, control, rules, disabled } = props;
-  const { field, fieldState } = useController<T>({ name, control, rules });
-  const { error } = fieldState;
-
+const TextArea = ({ register, name, errors, ...rest }: Props) => {
   return (
     <>
-      <p>{error ? error.message : ''}</p>
       <textarea
-        placeholder={placeholder}
-        {...field}
-        disabled={disabled}
-        ></textarea>
+        {...register(name,{
+          required: { value: true, message: '必須項目です。' },
+        })}
+        {...rest}
+      >
+      </textarea>
+      <p>◇◇◇{errors[name] && errors[name].message}◇◇◇</p>
     </>
   );
-};
+}
 
-export default TextArea
+export default TextArea;

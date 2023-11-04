@@ -1,57 +1,37 @@
 import React from 'react'
 import '../../../App.css'
-import { SubmitHandler, useForm } from 'react-hook-form';
 
-import { PropsSignUp } from "../../../lib/props";
+import Form from "../../../components/form/Form";
+import Input from "../../../components/form/Input";
+
 import { SignUpHelper } from '../../../utils/auth'
 
-import Input from '../../../components/form/Input'
-
 const SignUp: React.FC = () => {
-  const { handleSubmit, control, reset } = useForm<PropsSignUp>({
-    defaultValues: {
-      email: '',
-      password: '',
-    },
-  });
-
-  const onSignUp: SubmitHandler<PropsSignUp> = (data: PropsSignUp) => {
-    SignUpHelper(data)
-    reset();
-  };
+  const onSubmit = (data: any) => {
+    console.log(data);
+    SignUpHelper(data);
+  }
 
   return (
-    <div className="sign-up">
-      <h1>サインアップ（ユーザー作成）</h1>
-      <form onSubmit={handleSubmit(onSignUp)} >
+    <>
+      <h1>SignUp</h1>
+      <Form onSubmit={onSubmit}>
         <Input
-          name={'email'}
-          type={'email'}
-          placeholder={`emailを入力してください。`}
-          control={control}
-          rules={{
-            required: { value: true, message: '必須項目です。' },
-            // maxLength: { value: 20, message: '文字数は20文字以内です。' },
-          }}
-          disabled={false}
+          type='email'
+          name='email'
+          register={undefined}
+          errors={undefined}
         />
         <Input
-          name={'password'}
-          type={'password'}
-          placeholder={`passwordを入力してください。`}
-          control={control}
-          rules={{
-            required: { value: true, message: '必須項目です。' },
-            // maxLength: { value: 20, message: '文字数は10文字以内です。' },
-          }}
-          disabled={false}
+          type='password'
+          name="password"
+          register={undefined}
+          errors={undefined}
         />
-        <button type={'submit'} >
-          投稿
-        </button>
-      </form>
-    </div>
-  )
+        <button>Submit</button>
+      </Form>
+    </>
+  );
 }
 
 export default SignUp

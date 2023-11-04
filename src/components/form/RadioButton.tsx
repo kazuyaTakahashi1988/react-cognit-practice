@@ -1,24 +1,27 @@
-import { FieldValues, useController, UseControllerProps } from 'react-hook-form';
 import { PropsRadioButton } from "../../lib/props";
 
-type Props<T extends FieldValues> = UseControllerProps<T> & PropsRadioButton;
+type Props = PropsRadioButton;
 
-const RadioButton = <T extends FieldValues>(props: Props<T>) => {
-  const { name, type, placeholder, control, rules, disabled } = props;
-  const { field, fieldState } = useController<T>({ name, control, rules });
-  const { error } = fieldState;
-
+const RadioButton = ({ register, name, errors, options, ...rest }: Props) => {
   return (
     <>
-      <p>{error ? error.message : ''}</p>
-      <input
-        type={type}
-        placeholder={placeholder}
-        {...field}
-        disabled={disabled}
-        />
+      {options.map((option, index) => (
+        <div key={index}>
+          <input
+            type="radio"
+            {...register(name, {
+              required: { value: true, message: '必須項目です。' },
+            })}
+            {...rest}
+            id={option.value}
+            value={option.value}
+          />
+          <label htmlFor={option.value}>{option.label}</label>
+        </div>
+      ))}
+      <p>◇◇◇{errors[name] && errors[name].message}◇◇◇</p>
     </>
   );
-};
+}
 
-export default RadioButton
+export default RadioButton;

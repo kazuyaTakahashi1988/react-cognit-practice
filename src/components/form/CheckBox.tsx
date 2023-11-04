@@ -1,30 +1,27 @@
-import { FieldValues, useController, UseControllerProps } from 'react-hook-form';
 import { PropsCheckBox } from "../../lib/props";
 
-type Props<T extends FieldValues> = UseControllerProps<T> & PropsCheckBox;
+type Props = PropsCheckBox;
 
-const CheckBox = <T extends FieldValues>(props: Props<T>) => {
-  const { name, options, control, rules } = props;
-  const { field, fieldState } = useController<T>({ name, control, rules });
-  const { error } = fieldState;
-
+const CheckBox = ({ register, name, errors, options, ...rest }: Props) => {
   return (
     <>
-      <p>{error ? error.message : ''}</p>
       {options.map((option, index) => (
-        <div key={option.id}>
+        <div key={index}>
           <input
-            id={option.id}
             type="checkbox"
-            disabled={option.disabled}
-            {...field}
-            value={option.id}
+            {...register(name, {
+              required: { value: true, message: '必須項目です。' },
+            })}
+            {...rest}
+            id={option.value}
+            value={option.value}
           />
-          <label htmlFor={option.id}>{option.label}</label>
+          <label htmlFor={option.value}>{option.label}</label>
         </div>
       ))}
+      <p>◇◇◇{errors[name] && errors[name].message}◇◇◇</p>
     </>
   );
-};
+}
 
-export default CheckBox
+export default CheckBox;

@@ -1,24 +1,20 @@
-import { FieldValues, useController, UseControllerProps } from 'react-hook-form';
 import { PropsInput } from "../../lib/props";
 
-type Props<T extends FieldValues> = UseControllerProps<T> & PropsInput;
+type Props = PropsInput;
 
-const Input = <T extends FieldValues>(props: Props<T>) => {
-  const { name, type, placeholder, control, rules, disabled } = props;
-  const { field, fieldState } = useController<T>({ name, control, rules });
-  const { error } = fieldState;
-
+const Input = ({ register, type, name, errors, ...rest }: Props) => {
   return (
     <>
-      <p>{error ? error.message : ''}</p>
       <input
-        type={type}
-        placeholder={placeholder}
-        {...field}
-        disabled={disabled}
-        />
+        type={type || 'text'}
+        {...register(name,{
+          required: { value: true, message: '必須項目です。' },
+        })}
+        {...rest}
+      />
+      <p>◇◇◇{errors[name] && errors[name].message}◇◇◇</p>
     </>
   );
-};
+}
 
-export default Input
+export default Input;

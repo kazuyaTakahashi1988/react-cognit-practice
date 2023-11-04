@@ -13,7 +13,7 @@ import SignUp from '../views/auth/SignUp'
 import Verification from '../views/auth/Verification'
 import SignIn from '../views/auth/SignIn'
 import SignOut from '../views/auth/SignOut'
-import About from '../views/auth/About'
+import FormExample from '../views/auth/FormExample'
 
 export function Router() {
   return (
@@ -36,11 +36,11 @@ export function Router() {
              * ルーター設定（サインイン 未）
              * -------------------------------- */
           }
-          <Route path="/" element={<Navigate to="/auth/signin" replace />} />
+          <Route path="/" element={<Navigate to="/auth/form_example" replace />} />
           <Route path="/auth/signin" element={<SignIn />} />
           <Route path="/auth/signup" element={<SignUp />} />
           <Route path="/auth/verification" element={<Verification />} />
-          <Route path="/auth/about" element={<About />} />
+          <Route path="/auth/form_example" element={<FormExample />} />
           <Route path="/*" element={<Navigate to="/" replace />} />
         </>
       }
