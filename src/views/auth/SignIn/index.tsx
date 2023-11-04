@@ -1,8 +1,8 @@
 import React from 'react'
 import '../../../App.css'
 
-import Form from "../../../components/form/Form";
-import Input from "../../../components/form/Input";
+import Form from '../../../components/form/Form';
+import Input from '../../../components/form/Input';
 
 import { SignInHelper } from '../../../utils/auth'
 
@@ -24,7 +24,7 @@ const SignIn: React.FC = () => {
         />
         <Input
           type='password'
-          name="password"
+          name='password'
           register={undefined}
           errors={undefined}
         />

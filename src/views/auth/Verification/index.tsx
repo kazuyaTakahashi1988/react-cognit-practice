@@ -1,8 +1,8 @@
 import React from 'react'
 import '../../../App.css'
 
-import Form from "../../../components/form/Form";
-import Input from "../../../components/form/Input";
+import Form from '../../../components/form/Form';
+import Input from '../../../components/form/Input';
 
 import { VerifyHelper } from '../../../utils/auth'
 
@@ -18,7 +18,7 @@ const Verification: React.FC = () => {
       <Form onSubmit={onSubmit}>
         <Input
           type='password'
-          name="verificationCode"
+          name='verificationCode'
           register={undefined}
           errors={undefined}
         />

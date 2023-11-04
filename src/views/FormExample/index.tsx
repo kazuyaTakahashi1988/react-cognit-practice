@@ -1,12 +1,12 @@
 import React from 'react'
-import '../../../App.css'
+import '../../App.css'
 
-import Form from "../../../components/form/Form";
-import Input from "../../../components/form/Input";
-import CheckBox from "../../../components/form/CheckBox";
-import RadioButton from "../../../components/form/RadioButton";
-import Select from "../../../components/form/Select";
-import TextArea from "../../../components/form/TextArea";
+import Form from '../../components/form/Form';
+import Input from '../../components/form/Input';
+import CheckBox from '../../components/form/CheckBox';
+import RadioButton from '../../components/form/RadioButton';
+import Select from '../../components/form/Select';
+import TextArea from '../../components/form/TextArea';
 
 const FormExample: React.FC = () => {
   const onSubmit = (data: Object) => console.log(data);
