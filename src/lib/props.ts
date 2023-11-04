@@ -13,6 +13,7 @@ export type PropsInput = {
   type: string;
   name: string;
   errors: any;
+  validations: any;
 };
 
 // Select
@@ -25,6 +26,7 @@ export type PropsSelect = {
   name: string;
   placeholder: string;
   errors: any;
+  validations: any;
 };
 
 // TextArea
@@ -32,6 +34,7 @@ export type PropsTextArea = {
   register: any;
   name: string;
   errors: any;
+  validations: any;
 };
 
 // CheckBox
@@ -43,6 +46,7 @@ export type PropsCheckBox = {
   register: any;
   name: string;
   errors: any;
+  validations: any;
 };
 
 // RadioButton
@@ -54,4 +58,5 @@ export type PropsRadioButton = {
   register: any;
   name: string;
   errors: any;
+  validations: any;
 };

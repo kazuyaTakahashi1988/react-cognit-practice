@@ -21,12 +21,14 @@ const Verification: React.FC = () => {
           name='verificationCode'
           register={undefined}
           errors={undefined}
+          validations={undefined}
         />
         <Input
           type='email'
           name='email'
           register={undefined}
           errors={undefined}
+          validations={undefined}
         />
         <button>Submit</button>
       </Form>

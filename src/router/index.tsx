@@ -40,7 +40,7 @@ export function Router() {
           <Route path="/auth/signin" element={<SignIn />} />
           <Route path="/auth/signup" element={<SignUp />} />
           <Route path="/auth/verification" element={<Verification />} />
-          <Route path="/auth/form_example" element={<FormExample />} />
+          <Route path="/form_example" element={<FormExample />} />
           <Route path="/*" element={<Navigate to="/" replace />} />
         </>
       }

@@ -2,14 +2,12 @@ import { PropsInput } from "../../lib/props";
 
 type Props = PropsInput;
 
-const Input = ({ register, type, name, errors, ...rest }: Props) => {
+const Input = ({ register, type, name, validations, errors, ...rest }: Props) => {
   return (
     <>
       <input
         type={type || 'text'}
-        {...register(name,{
-          required: { value: true, message: '必須項目です。' },
-        })}
+        {...register(name, validations)}
         {...rest}
       />
       <p>◇◇◇{errors[name] && errors[name].message}◇◇◇</p>

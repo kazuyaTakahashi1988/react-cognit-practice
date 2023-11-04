@@ -21,12 +21,14 @@ const SignUp: React.FC = () => {
           name='email'
           register={undefined}
           errors={undefined}
+          validations={undefined}
         />
         <Input
           type='password'
           name='password'
           register={undefined}
           errors={undefined}
+          validations={undefined}
         />
         <button>Submit</button>
       </Form>

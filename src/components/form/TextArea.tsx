@@ -2,13 +2,11 @@ import { PropsTextArea } from "../../lib/props";
 
 type Props = PropsTextArea;
 
-const TextArea = ({ register, name, errors, ...rest }: Props) => {
+const TextArea = ({ register, name, validations, errors, ...rest }: Props) => {
   return (
     <>
       <textarea
-        {...register(name,{
-          required: { value: true, message: '必須項目です。' },
-        })}
+        {...register(name, validations)}
         {...rest}
       >
       </textarea>

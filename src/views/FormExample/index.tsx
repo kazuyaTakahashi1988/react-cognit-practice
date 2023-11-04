@@ -20,6 +20,12 @@ const FormExample: React.FC = () => {
           name="inputNameExample"
           register={undefined}
           errors={undefined}
+          validations={{
+            required: { value: true, message: '必須項目です。' },
+            maxLength: { value: 50, message: '最大50文字です' },
+            minLength: { value: 2, message: `2文字以上にしてね` },
+            pattern: /^[A-Za-z0-9]{1}[A-Za-z0-9_.-]*@{1}[A-Za-z0-9_.-]+.[A-Za-z0-9]+$/,
+          }}
         />
 
         <CheckBox
@@ -31,6 +37,9 @@ const FormExample: React.FC = () => {
           ]}
           register={undefined}
           errors={undefined}
+          validations={{
+            required: { value: true, message: '必須項目です。' },
+          }}
         />
 
         <RadioButton
@@ -42,6 +51,9 @@ const FormExample: React.FC = () => {
           ]}
           register={undefined}
           errors={undefined}
+          validations={{
+            required: { value: true, message: '必須項目です。' },
+          }}
         />
 
         <Select
@@ -54,12 +66,18 @@ const FormExample: React.FC = () => {
           placeholder={'選択してください'}
           register={undefined}
           errors={undefined}
+          validations={{
+            required: { value: true, message: '必須項目です。' },
+          }}
         />
 
         <TextArea
           name="textAreaNameExample"
           register={undefined}
           errors={undefined}
+          validations={{
+            required: { value: true, message: '必須項目です。' },
+          }}
         />
         <button>Submit</button>
       </Form>
