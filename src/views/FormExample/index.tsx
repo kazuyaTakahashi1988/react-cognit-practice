@@ -14,7 +14,16 @@ const FormExample: React.FC = () => {
   return (
     <>
       <h1>FormExample：Smart Form Component</h1>
-      <Form onSubmit={onSubmit}>
+      <Form
+        onSubmit={onSubmit}
+        defaultValues={{
+          inputNameExample: '',
+          checkBoxNameExample: ['', '', ''],
+          radioButtonNameExample: '',
+          selectNameExample: '',
+          textAreaNameExample: '',
+        }}
+      >
         <Input
           type={''}
           name="inputNameExample"
