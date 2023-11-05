@@ -3,6 +3,7 @@ import { PropsInput } from "../../lib/props";
 type Props = PropsInput;
 
 const Input = ({ register, type, name, placeholder, validations, errors, ...rest }: Props) => {
+
   return (
     <>
       <input

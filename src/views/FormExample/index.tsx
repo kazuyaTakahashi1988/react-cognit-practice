@@ -13,32 +13,38 @@ const FormExample: React.FC = () => {
 
   return (
     <>
-      <h1>FormExample：Smart Form Component</h1>
       <Form
         onSubmit={onSubmit}
-        defaultValues={{
-          inputNameExample: '',
-          checkBoxNameExample: ['', '', ''],
-          radioButtonNameExample: '',
-          selectNameExample: '',
-          textAreaNameExample: '',
+        options={{
+          mode: 'onSubmit', // 'onChange' or 'onBlur' or 'onSubmit' or 'onTouched' or 'all'
+          reValidateMode: 'onChange', // 'onChange' or 'onBlur' or 'onSubmit'
+          criteriaMode: 'all', // 'firstError' or 'all'
+          defaultValues: {
+            inputNameExample: '',
+            checkBoxNameExample: [''],
+            radioButtonNameExample: '',
+            selectNameExample: '',
+            textAreaNameExample: '',
+          },
         }}
       >
+        <h1><span>FormExample：Smart Form Component</span></h1>
         <Input
           type={''}
           name="inputNameExample"
           placeholder={'入力してください'}
           validations={{
-            required: { value: true, message: '必須項目です。' },
-            maxLength: { value: 50, message: '最大50文字です' },
+            required: { value: true, message: '必須項目だよ。' },
             minLength: { value: 2, message: `2文字以上にしてね` },
-            pattern: {
-              value: /^[A-Za-z0-9]{1}[A-Za-z0-9_.-]*@{1}[A-Za-z0-9_.-]+.[A-Za-z0-9]+$/,
-              message: `英数文字のみにしてね`
-            },
+            maxLength: { value: 50, message: '最大50文字だよ' },
+            // pattern: {
+            //   value: /^[A-Za-z0-9]{1}[A-Za-z0-9_.-]*@{1}[A-Za-z0-9_.-]+.[A-Za-z0-9]+$/,
+            //   message: `英数文字のみにしてね`
+            // },
           }}
           register={undefined}
           errors={undefined}
+          data-title="react-hook-form"
         />
 
         <CheckBox
@@ -49,7 +55,10 @@ const FormExample: React.FC = () => {
             {value: 'Check_Value_C', label: 'Check_Label_C'}
           ]}
           validations={{
-            required: { value: true, message: '必須項目です。' },
+            required: { value: true, message: '必須項目だよ。' },
+            validate: (e: Array<[]>) => {
+              return e.length < 2 && '２つ以上選択してください。';
+            },
           }}
           register={undefined}
           errors={undefined}
@@ -63,7 +72,7 @@ const FormExample: React.FC = () => {
             {value: 'Radio_Value_C', label: 'Radio_Label_C'}
           ]}
           validations={{
-            required: { value: true, message: '必須項目です。' },
+            required: { value: true, message: '必須項目だよ。' },
           }}
           register={undefined}
           errors={undefined}
@@ -78,7 +87,7 @@ const FormExample: React.FC = () => {
           ]}
           placeholder={'選択してください'}
           validations={{
-            required: { value: true, message: '必須項目です。' },
+            required: { value: true, message: '必須項目だよ。' },
           }}
           register={undefined}
           errors={undefined}
@@ -88,7 +97,7 @@ const FormExample: React.FC = () => {
           name="textAreaNameExample"
           placeholder={'入力してください'}
           validations={{
-            required: { value: true, message: '必須項目です。' },
+            required: { value: true, message: '必須項目だよ。' },
           }}
           register={undefined}
           errors={undefined}

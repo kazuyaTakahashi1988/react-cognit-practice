@@ -1,13 +1,13 @@
 import React from "react";
 import { useForm } from "react-hook-form";
 
-const Form = ({ defaultValues, children, onSubmit }: any) => {
+const Form = ({ options, children, onSubmit }: any) => {
   const {
     handleSubmit,
     register,
     formState: { errors }
-  } = useForm({ defaultValues });
-  console.log(errors);
+  } = useForm(options);
+
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
       {Array.isArray(children)
