@@ -39,7 +39,7 @@ const Verification: React.FC = () => {
           {...register('verificationCode', {
             required: { value: true, message: '必須項目だよ。' },
           },)}
-          errorMessage={errors.email?.message}
+          errorMessage={errors.verificationCode?.message}
         />
 
         <br /><br />

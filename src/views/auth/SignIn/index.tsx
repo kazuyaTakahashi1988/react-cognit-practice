@@ -50,7 +50,7 @@ const SignIn: React.FC = () => {
           {...register('password', {
             required: { value: true, message: '必須項目だよ。' },
           },)}
-          errorMessage={errors.email?.message}
+          errorMessage={errors.password?.message}
         />
 
         <br /><br />
