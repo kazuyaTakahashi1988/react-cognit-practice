@@ -1,20 +1,25 @@
-import { PropsInput } from "../../lib/props";
+import React, { forwardRef } from 'react';
+import { PropsInput } from '../../lib/props';
 
-type Props = PropsInput;
+type Props = React.InputHTMLAttributes<HTMLInputElement> & PropsInput;
 
-const Input = ({ register, type, name, placeholder, validations, errors, ...rest }: Props) => {
+export const InputField: React.ForwardRefRenderFunction<
+  HTMLInputElement,
+  Props
+> = (props, ref): any => {
+  const { type, placeholder, errorMessage, ...rest } = props;
 
   return (
     <>
       <input
         type={type || 'text'}
-        placeholder={placeholder}
-        {...register(name, validations)}
+        ref={ref}
         {...rest}
+        placeholder={placeholder}
       />
-      <p>◇◇◇{errors[name] && errors[name].message}◇◇◇</p>
+      {errorMessage && <span>{errorMessage}</span>}
     </>
-  );
+  )
 }
 
-export default Input;
+export const Input = forwardRef(InputField);

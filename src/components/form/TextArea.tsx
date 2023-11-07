@@ -1,19 +1,24 @@
-import { PropsTextArea } from "../../lib/props";
+import React, { forwardRef } from 'react';
+import { PropsTextArea } from '../../lib/props';
 
-type Props = PropsTextArea;
+type Props = React.InputHTMLAttributes<HTMLTextAreaElement> & PropsTextArea;
 
-const TextArea = ({ register, name, placeholder, validations, errors, ...rest }: Props) => {
+export const TextAreaField: React.ForwardRefRenderFunction<
+  HTMLTextAreaElement,
+  Props
+> = (props, ref): any => {
+  const { placeholder, errorMessage, ...rest } = props;
+
   return (
     <>
       <textarea
-        placeholder={placeholder}
-        {...register(name, validations)}
+        ref={ref}
         {...rest}
-      >
-      </textarea>
-      <p>◇◇◇{errors[name] && errors[name].message}◇◇◇</p>
+        placeholder={placeholder}
+      ></textarea>
+      {errorMessage && <span>{errorMessage}</span>}
     </>
-  );
-}
+  )
+};
 
-export default TextArea;
+export const TextArea = forwardRef(TextAreaField);

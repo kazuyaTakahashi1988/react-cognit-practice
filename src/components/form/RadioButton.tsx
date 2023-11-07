@@ -1,25 +1,31 @@
-import { PropsRadioButton } from "../../lib/props";
+import React, { forwardRef } from 'react';
+import { PropsRadioButton } from '../../lib/props';
 
-type Props = PropsRadioButton;
+type Props = React.InputHTMLAttributes<HTMLInputElement> & PropsRadioButton;
 
-const RadioButton = ({ register, name, validations, errors, options, ...rest }: Props) => {
+export const RadioButtonField: React.ForwardRefRenderFunction<
+  HTMLInputElement,
+  Props
+> = (props, ref): any => {
+  const { options, errorMessage, ...rest } = props;
+
   return (
     <>
       {options.map((option, index) => (
         <div key={index}>
           <input
             type="radio"
-            {...register(name, validations)}
-            {...rest}
             id={option.value}
             value={option.value}
+            ref={ref}
+            {...rest}
           />
           <label htmlFor={option.value}>{option.label}</label>
         </div>
       ))}
-      <p>◇◇◇{errors[name] && errors[name].message}◇◇◇</p>
+      {errorMessage && <span>{errorMessage}</span>}
     </>
-  );
+  )
 }
 
-export default RadioButton;
+export const RadioButton = forwardRef(RadioButtonField);

@@ -1,41 +1,67 @@
-import React from 'react'
-import '../../../App.css'
+import React from 'react';
+import '../../../App.css';
+import { useForm } from 'react-hook-form';
+import { PropsVerification } from '../../../lib/props';
 
-import Form from '../../../components/form/Form';
-import Input from '../../../components/form/Input';
+import { Input } from '../../../components/form/Input';
 
-import { VerifyHelper } from '../../../utils/auth'
+import { VerifyHelper } from '../../../utils/auth';
 
 const Verification: React.FC = () => {
-  const onSubmit = (data: object) => {
+  const {
+    register,
+    handleSubmit,
+    reset,
+    formState: { errors }
+  } = useForm<PropsVerification>({
+    mode: 'onSubmit',
+    reValidateMode: 'onChange',
+    criteriaMode: 'all',
+    defaultValues: {
+      verificationCode: '',
+      email: '',
+    },
+  });
+
+
+  const onSubmit = handleSubmit((data) => {
     console.log(data);
     VerifyHelper(data);
-  }
+  });
 
   return (
     <>
-      <h1>Verification</h1>
-      <Form onSubmit={onSubmit}>
+      <form onSubmit={onSubmit}>
+        <h1>Verification</h1>
         <Input
-          type='password'
-          name='verificationCode'
-          placeholder='verificationCodeを入力してください'
-          validations={undefined}
-          register={undefined}
-          errors={undefined}
+          type="password"
+          placeholder="verificationCodeを入力してください"
+          {...register('verificationCode', {
+            required: { value: true, message: '必須項目だよ。' },
+          },)}
+          errorMessage={errors.email?.message}
         />
+
+        <br /><br />
+
         <Input
-          type='email'
-          name='email'
-          placeholder='emailを入力してください'
-          validations={undefined}
-          register={undefined}
-          errors={undefined}
+          type="email"
+          placeholder="emailを入力してください"
+          {...register('email', {
+            required: { value: true, message: '必須項目だよ。' },
+          },)}
+          errorMessage={errors.email?.message}
         />
-        <button>Submit</button>
-      </Form>
+
+        <br /><br />
+
+        <button type="button" onClick={() => reset()}>
+          リセット
+        </button>
+        <button>送信</button>
+      </form>
     </>
   );
-}
+};
 
-export default Verification
+export default Verification;

@@ -1,10 +1,10 @@
-import React from 'react'
-import '../../../App.css'
+import React from 'react';
+import '../../../App.css';
 
-import { SignOutHelper } from '../../../utils/auth'
+import { SignOutHelper } from '../../../utils/auth';
 
 const SignOut: React.FC = () => {
-  const signOut = () => SignOutHelper()
+  const signOut = () => SignOutHelper();
 
   return (
     <div className="sign-out">
@@ -14,4 +14,4 @@ const SignOut: React.FC = () => {
   )
 }
 
-export default SignOut
+export default SignOut;

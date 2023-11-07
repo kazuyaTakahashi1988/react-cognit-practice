@@ -1,41 +1,67 @@
-import React from 'react'
-import '../../../App.css'
+import React from 'react';
+import '../../../App.css';
+import { useForm } from 'react-hook-form';
+import { PropsSignIn } from '../../../lib/props';
 
-import Form from '../../../components/form/Form';
-import Input from '../../../components/form/Input';
+import { Input } from '../../../components/form/Input';
 
-import { SignInHelper } from '../../../utils/auth'
+import { SignInHelper } from '../../../utils/auth';
 
 const SignIn: React.FC = () => {
-  const onSubmit = (data: object) => {
+  const {
+    register,
+    handleSubmit,
+    reset,
+    formState: { errors }
+  } = useForm<PropsSignIn>({
+    mode: 'onSubmit',
+    reValidateMode: 'onChange',
+    criteriaMode: 'all',
+    defaultValues: {
+      email: '',
+      password: '',
+    },
+  });
+
+
+  const onSubmit = handleSubmit((data) => {
     console.log(data);
     SignInHelper(data);
-  }
+  });
 
   return (
     <>
-      <h1>SignIn</h1>
-      <Form onSubmit={onSubmit}>
+      <form onSubmit={onSubmit}>
+        <h1>SignIn</h1>
         <Input
-          type='email'
-          name='email'
-          placeholder='emailを入力してください'
-          validations={undefined}
-          register={undefined}
-          errors={undefined}
+          type="email"
+          placeholder="emailを入力してください"
+          {...register('email', {
+            required: { value: true, message: '必須項目だよ。' },
+          },)}
+          errorMessage={errors.email?.message}
         />
+
+        <br /><br />
+
         <Input
-          type='password'
-          name='password'
-          placeholder='passwordを入力してください'
-          validations={undefined}
-          register={undefined}
-          errors={undefined}
+          type="password"
+          placeholder="passwordを入力してください"
+          {...register('password', {
+            required: { value: true, message: '必須項目だよ。' },
+          },)}
+          errorMessage={errors.email?.message}
         />
-        <button>Submit</button>
-      </Form>
+
+        <br /><br />
+
+        <button type="button" onClick={() => reset()}>
+          リセット
+        </button>
+        <button>送信</button>
+      </form>
     </>
   );
-}
+};
 
-export default SignIn
+export default SignIn;

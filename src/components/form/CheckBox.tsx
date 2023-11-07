@@ -1,25 +1,31 @@
-import { PropsCheckBox } from "../../lib/props";
+import React, { forwardRef } from 'react';
+import { PropsCheckBox } from '../../lib/props';
 
-type Props = PropsCheckBox;
+type Props = React.InputHTMLAttributes<HTMLInputElement> & PropsCheckBox;
 
-const CheckBox = ({ register, name, validations, errors, options, ...rest }: Props) => {
+export const CheckBoxField: React.ForwardRefRenderFunction<
+  HTMLInputElement,
+  Props
+> = (props, ref): any => {
+  const { options, errorMessage, ...rest } = props;
+
   return (
     <>
       {options.map((option, index) => (
         <div key={index}>
           <input
             type="checkbox"
-            {...register(name, validations)}
-            {...rest}
             id={option.value}
             value={option.value}
+            ref={ref}
+            {...rest}
           />
           <label htmlFor={option.value}>{option.label}</label>
         </div>
       ))}
-      <p>◇◇◇{errors[name] && errors[name].message}◇◇◇</p>
+      {errorMessage && <span>{errorMessage}</span>}
     </>
-  );
+  )
 }
 
-export default CheckBox;
+export const CheckBox = forwardRef(CheckBoxField);

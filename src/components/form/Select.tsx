@@ -1,12 +1,18 @@
-import { PropsSelect } from "../../lib/props";
+import React, { forwardRef } from 'react';
+import { PropsSelect } from '../../lib/props';
 
-type Props = PropsSelect;
+type Props = React.InputHTMLAttributes<HTMLSelectElement> & PropsSelect;
 
-const Select = ({ register, options, errors, name, validations, placeholder, ...rest }: Props) => {
+export const SelectField: React.ForwardRefRenderFunction<
+  HTMLSelectElement,
+  Props
+> = (props, ref): any => {
+  const { options, placeholder, errorMessage, ...rest } = props;
+
   return (
     <>
       <select
-        {...register(name, validations)}
+        ref={ref}
         {...rest}
       >
         { placeholder && <option value='' hidden>{ placeholder }</option>}
@@ -19,9 +25,9 @@ const Select = ({ register, options, errors, name, validations, placeholder, ...
           </option>
         ))}
       </select>
-      <p>◇◇◇{errors[name] && errors[name].message}◇◇◇</p>
+      {errorMessage && <span>{errorMessage}</span>}
     </>
-  );
-}
+  )
+};
 
-export default Select;
+export const Select = forwardRef(SelectField);
