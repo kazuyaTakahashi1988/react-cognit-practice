@@ -3,16 +3,16 @@ import { Routes, Route, Navigate } from 'react-router-dom';
 /* -----------------------------------
  * サインイン 済 or 未 フラグ 
  * -------------------------------- */
-import { GetSignInFlag } from '../utils/auth'
+import { GetSignInFlag } from '../utils/Auth'
 
 /* -----------------------------------
  * VIEWS コンポーネント
  * -------------------------------- */
 import Home from '../views';
-import SignUp from '../views/auth/SignUp'
-import Verification from '../views/auth/Verification'
-import SignIn from '../views/auth/SignIn'
-import SignOut from '../views/auth/SignOut'
+import SignUp from '../views/Auth/SignUp'
+import Verification from '../views/Auth/Verification'
+import SignIn from '../views/Auth/SignIn'
+import SignOut from '../views/Auth/SignOut'
 import FormExample from '../views/FormExample'
 
 export function Router() {

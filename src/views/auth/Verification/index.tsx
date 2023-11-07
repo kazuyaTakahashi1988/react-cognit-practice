@@ -3,9 +3,9 @@ import '../../../App.css';
 import { useForm } from 'react-hook-form';
 import { PropsVerification } from '../../../lib/props';
 
-import { Input } from '../../../components/form/Input';
+import { Input } from '../../../components/Form/Input';
 
-import { VerifyHelper } from '../../../utils/auth';
+import { VerifyHelper } from '../../../utils/Auth';
 
 const Verification: React.FC = () => {
   const {

@@ -1,7 +1,7 @@
 import React from 'react';
 import '../../../App.css';
 
-import { SignOutHelper } from '../../../utils/auth';
+import { SignOutHelper } from '../../../utils/Auth';
 
 const SignOut: React.FC = () => {
   const signOut = () => SignOutHelper();

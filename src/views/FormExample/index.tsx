@@ -3,11 +3,11 @@ import '../../App.css';
 import { useForm } from 'react-hook-form';
 import { PropsFormExample } from '../../lib/props';
 
-import { Input } from '../../components/form/Input';
-import { CheckBox } from '../../components/form/CheckBox';
-import { RadioButton } from '../../components/form/RadioButton';
-import { Select } from '../../components/form/Select';
-import { TextArea } from '../../components/form/TextArea';
+import { Input } from '../../components/Form/Input';
+import { CheckBox } from '../../components/Form/CheckBox';
+import { RadioButton } from '../../components/Form/RadioButton';
+import { Select } from '../../components/Form/Select';
+import { TextArea } from '../../components/Form/TextArea';
 
 const FormExample: React.FC = () => {
   const {

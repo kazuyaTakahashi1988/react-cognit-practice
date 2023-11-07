@@ -3,9 +3,9 @@ import '../../../App.css';
 import { useForm } from 'react-hook-form';
 import { PropsSignUp } from '../../../lib/props';
 
-import { Input } from '../../../components/form/Input';
+import { Input } from '../../../components/Form/Input';
 
-import { SignUpHelper } from '../../../utils/auth';
+import { SignUpHelper } from '../../../utils/Auth';
 
 const SignUp: React.FC = () => {
   const {
