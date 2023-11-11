@@ -1,9 +1,9 @@
 import React from 'react';
-import '../../../App.css';
 import styled from 'styled-components'
 import { useForm } from 'react-hook-form';
 import { PropsSignIn } from '../../../lib/props';
 
+import { Button } from '../../../components/Form/Button';
 import { Input } from '../../../components/Form/Input';
 
 import { SignInHelper } from '../../../utils/Auth';
@@ -33,6 +33,8 @@ const SignIn: React.FC = () => {
     <Styled>
       <form onSubmit={onSubmit}>
         <h1>SignIn</h1>
+        
+        <div className='clm'>
         <Input
           type="email"
           placeholder="emailを入力してください"
@@ -41,9 +43,9 @@ const SignIn: React.FC = () => {
           },)}
           errorMessage={errors.email?.message}
         />
+        </div>
 
-        <br /><br />
-
+        <div className='clm'>
         <Input
           type="password"
           placeholder="passwordを入力してください"
@@ -52,20 +54,26 @@ const SignIn: React.FC = () => {
           },)}
           errorMessage={errors.password?.message}
         />
+        </div>
 
-        <br /><br />
-
-        <button type="button" onClick={() => reset()}>
-          リセット
-        </button>
-        <button>送信</button>
+        <div className='clm'>
+          <Button><>送信</></Button>
+          <p className='reset' onClick={() => reset()}>▷ リセット</p>
+        </div>
       </form>
     </Styled>
   );
 };
 
 const Styled = styled.div`
-  
+  padding: 30px;
+  .clm{
+    margin-top: 30px;
+    .reset {
+      cursor: pointer;
+      text-align: center;
+    }
+  }
 `;
 
 export default SignIn;

@@ -32,6 +32,11 @@ export type PropsVerification = {
     ▽ Props の型定義 (コンポーネント編) ▽
 ---------------------------------------------------------- */
 
+// Button
+export type PropsButton = {
+  children?: object;
+};
+
 // Input
 export type PropsInput = {
   type: string;

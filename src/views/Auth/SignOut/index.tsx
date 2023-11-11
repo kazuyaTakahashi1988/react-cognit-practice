@@ -1,5 +1,4 @@
 import React from 'react';
-import '../../../App.css';
 import styled from 'styled-components'
 
 import { SignOutHelper } from '../../../utils/Auth';
@@ -16,7 +15,10 @@ const SignOut: React.FC = () => {
 };
 
 const Styled = styled.div`
-  
+  padding: 30px;
+  .clm{
+    margin-top: 30px;
+  }
 `;
 
 export default SignOut;
