@@ -23,7 +23,6 @@ const SignUp: React.FC = () => {
     },
   });
 
-
   const onSubmit = handleSubmit((data) => {
     console.log(data);
     SignUpHelper(data);

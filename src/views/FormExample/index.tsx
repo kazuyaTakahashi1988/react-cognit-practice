@@ -120,6 +120,13 @@ const FormExample: React.FC = () => {
         </button>
         <button>送信</button>
       </form>
+      <style jsx>{`
+        button {
+          border: solid 2px green;
+          background: red;
+          display: block;
+        }
+      `}</style>
     </>
   );
 };

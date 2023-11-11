@@ -1,3 +1,11 @@
+// Styled-JSX 用の型定義
+declare module 'react' {
+	interface StyleHTMLAttributes<T> extends React.HTMLAttributes<T> {
+		jsx?: boolean;
+		global?: boolean;
+	}
+}
+
 /* -------------------------------------------------------
     ▽ Props の型定義 (ビュー編) ▽
 ---------------------------------------------------------- */
