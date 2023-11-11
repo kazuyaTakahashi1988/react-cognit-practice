@@ -6,7 +6,7 @@
 
 ・Node ver 18.x
 
-・CSSは[ Styled-JSX ]を使っているので vs-code にプラグイン[ vscode-styled-jsx ][ styled-jsx Language Server ]をそれぞれインストールすると便利
+・CSSは[ styled-components ]を使っているので vs-code にプラグイン[ vscode-styled-components ][ styled-components-snippets ]をそれぞれインストールすると便利
 
 # AWS CDKでcognito環境を用意する
 ```

@@ -1,4 +1,5 @@
 import React, { forwardRef } from 'react';
+import styled from 'styled-components'
 import { PropsCheckBox } from '../../lib/props';
 
 type Props = React.InputHTMLAttributes<HTMLInputElement> & PropsCheckBox;
@@ -10,7 +11,7 @@ export const CheckBoxField: React.ForwardRefRenderFunction<
   const { options, errorMessage, ...rest } = props;
 
   return (
-    <>
+    <Styled>
       {options.map((option, index) => (
         <div key={index}>
           <input
@@ -24,8 +25,12 @@ export const CheckBoxField: React.ForwardRefRenderFunction<
         </div>
       ))}
       {errorMessage && <span>{errorMessage}</span>}
-    </>
+    </Styled>
   )
-}
+};
+
+const Styled = styled.div`
+  
+`;
 
 export const CheckBox = forwardRef(CheckBoxField);

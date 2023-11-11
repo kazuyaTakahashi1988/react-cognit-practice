@@ -1,4 +1,5 @@
 import React, { forwardRef } from 'react';
+import styled from 'styled-components'
 import { PropsSelect } from '../../lib/props';
 
 type Props = React.InputHTMLAttributes<HTMLSelectElement> & PropsSelect;
@@ -10,7 +11,7 @@ export const SelectField: React.ForwardRefRenderFunction<
   const { options, placeholder, errorMessage, ...rest } = props;
 
   return (
-    <>
+    <Styled>
       <select
         ref={ref}
         {...rest}
@@ -26,8 +27,12 @@ export const SelectField: React.ForwardRefRenderFunction<
         ))}
       </select>
       {errorMessage && <span>{errorMessage}</span>}
-    </>
+    </Styled>
   )
 };
+
+const Styled = styled.div`
+  
+`;
 
 export const Select = forwardRef(SelectField);

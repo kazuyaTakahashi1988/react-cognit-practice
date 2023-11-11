@@ -1,5 +1,6 @@
 import React from 'react';
 import '../../App.css';
+import styled from 'styled-components'
 import { useForm } from 'react-hook-form';
 import { PropsFormExample } from '../../lib/props';
 
@@ -33,7 +34,7 @@ const FormExample: React.FC = () => {
   });
 
   return (
-    <>
+    <Styled>
       <form onSubmit={onSubmit}>
         <h1><span>FormExample：react-hook-form</span></h1>
         <Input
@@ -120,15 +121,12 @@ const FormExample: React.FC = () => {
         </button>
         <button>送信</button>
       </form>
-      <style jsx>{`
-        button {
-          border: solid 2px green;
-          background: red;
-          display: block;
-        }
-      `}</style>
-    </>
+    </Styled>
   );
 };
+
+const Styled = styled.div`
+
+`;
 
 export default FormExample;

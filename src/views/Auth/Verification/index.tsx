@@ -1,5 +1,6 @@
 import React from 'react';
 import '../../../App.css';
+import styled from 'styled-components'
 import { useForm } from 'react-hook-form';
 import { PropsVerification } from '../../../lib/props';
 
@@ -29,7 +30,7 @@ const Verification: React.FC = () => {
   });
 
   return (
-    <>
+    <Styled>
       <form onSubmit={onSubmit}>
         <h1>Verification</h1>
         <Input
@@ -59,8 +60,12 @@ const Verification: React.FC = () => {
         </button>
         <button>送信</button>
       </form>
-    </>
+    </Styled>
   );
 };
+
+const Styled = styled.div`
+
+`;
 
 export default Verification;
