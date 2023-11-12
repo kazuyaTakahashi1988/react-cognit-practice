@@ -3,11 +3,11 @@
 ---------------------------------------------------------- */
 // FormExample
 export type PropsFormExample = {
-  inputValue: string;
-  checkBoxValue: Array<[]>;
-  radioButtonValue: string;
-  selectValue: string;
-  textAreaValue: string;
+  inputName: string;
+  checkBoxName: object;
+  radioButtonName: string;
+  selectName: string;
+  textAreaName: string;
 };
 
 // PropsSignIn
@@ -32,48 +32,81 @@ export type PropsVerification = {
     ▽ Props の型定義 (コンポーネント編) ▽
 ---------------------------------------------------------- */
 
-// Button
-export type PropsButton = {
-  children?: object;
+// SubmitButton
+export type PropsSubmitButton = {
+  children?: any;
+};
+
+// Label
+export type PropsLabel = {
+  label: {
+    text: string | undefined,
+    required: boolean
+  } | undefined;
+};
+
+// ErrorMessage
+export type PropsErrorMessage = {
+  errorMessage: string | undefined;
 };
 
 // Input
 export type PropsInput = {
-  type: string;
-  placeholder: string;
-  errorMessage?: string;
+  label: {
+    text: string | undefined,
+    required: boolean
+  } | undefined;
+  type: string | undefined;
+  placeholder: string | undefined;
+  errorMessage?: string | undefined;
 };
 
 // CheckBox
 export type PropsCheckBox = {
+  label: {
+    text: string | undefined,
+    required: boolean
+  } | undefined;
   options: Array<{
     value: string,
     label: string,
   }>;
-  errorMessage?: string;
+  errorMessage?: string | undefined;
 };
 
 // RadioButton
 export type PropsRadioButton = {
+  label: {
+    text: string | undefined,
+    required: boolean
+  } | undefined;
   options: Array<{
     value: string,
     label: string,
   }>;
-  errorMessage?: string;
+  errorMessage?: string | undefined;
 };
 
 // Select
 export type PropsSelect = {
+  label: {
+    text: string | undefined,
+    required: boolean
+  } | undefined;
   options: Array<{
     value: string,
     label: string,
   }>;
-  placeholder: string;
-  errorMessage?: string;
+  placeholder: string | undefined;
+  errorMessage?: string | undefined;
 };
 
 // TextArea
 export type PropsTextArea = {
-  placeholder: string;
-  errorMessage: any;
+  label: {
+    text: string | undefined,
+    required: boolean
+  } | undefined;
+  placeholder: string | undefined;
+  errorMessage?: string | undefined;
 };

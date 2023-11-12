@@ -3,12 +3,12 @@ import styled from 'styled-components'
 import { useForm } from 'react-hook-form';
 import { PropsFormExample } from '../../lib/props';
 
-import { Button } from '../../components/Form/Button';
-import { Input } from '../../components/Form/Input';
-import { CheckBox } from '../../components/Form/CheckBox';
-import { RadioButton } from '../../components/Form/RadioButton';
-import { Select } from '../../components/Form/Select';
-import { TextArea } from '../../components/Form/TextArea';
+import SubmitButton from '../../components/Form/SubmitButton';
+import Input from '../../components/Form/Input';
+import CheckBox from '../../components/Form/CheckBox';
+import RadioButton from '../../components/Form/RadioButton';
+import Select from '../../components/Form/Select';
+import TextArea from '../../components/Form/TextArea';
 
 const FormExample: React.FC = () => {
   const {
@@ -21,11 +21,11 @@ const FormExample: React.FC = () => {
     reValidateMode: 'onChange', // 'onChange' or 'onBlur' or 'onSubmit'
     criteriaMode: 'all', // 'firstError' or 'all'
     defaultValues: {
-      inputValue: '',
-      checkBoxValue: [],
-      radioButtonValue: '',
-      selectValue: '',
-      textAreaValue: '',
+      inputName: '',
+      checkBoxName: [],
+      radioButtonName: '',
+      selectName: '',
+      textAreaName: '',
     },
   });
 
@@ -40,9 +40,10 @@ const FormExample: React.FC = () => {
 
         <div className='clm'>
           <Input
-            type=""
+            type={undefined}
+            label={{text: 'Inputラベルテキスト', required: true}}
             placeholder="入力をお願いします。"
-            {...register('inputValue', {
+            {...register('inputName', {
               required: { value: true, message: '必須項目だよ。' },
               minLength: { value: 2, message: `2文字以上にしてね` },
               maxLength: { value: 50, message: '最大50文字だよ' },
@@ -51,60 +52,64 @@ const FormExample: React.FC = () => {
               //   message: `英数文字のみにしてね`
               // },
             },)}
-            errorMessage={errors.inputValue?.message}
+            errorMessage={errors.inputName?.message}
           />
         </div>
 
         <div className='clm'>
           <CheckBox
+            label={{text: 'CheckBoxラベルテキスト', required: true}}
             options={[
               {value: 'Check_Value_A', label: 'Check_Label_A'},
               {value: 'Check_Value_B', label: 'Check_Label_B'},
               {value: 'Check_Value_C', label: 'Check_Label_C'}
             ]}
-            {...register('checkBoxValue', {
+            {...register('checkBoxName', {
               required: { value: true, message: '必須項目だよ。' },
-              validate: (e: Array<[]>) => {
+              validate: (e: any) => {
                 if(e.length < 2 ) return '２つ以上選択してください。';
               },
             },)}
-            errorMessage={errors.checkBoxValue?.message}
+            errorMessage={errors.checkBoxName?.message}
           />
         </div>
         
         <div className='clm'>
           <RadioButton
+            label={{text: 'RadioButtonラベルテキスト', required: true}}
             options={[
               {value: 'Radio_Value_A', label: 'Radio_Label_A'},
               {value: 'Radio_Value_B', label: 'Radio_Label_B'},
               {value: 'Radio_Value_C', label: 'Radio_Label_C'}
             ]}
-            {...register('radioButtonValue', {
+            {...register('radioButtonName', {
               required: { value: true, message: '必須項目だよ。' },
             },)}
-            errorMessage={errors.radioButtonValue?.message}
+            errorMessage={errors.radioButtonName?.message}
           />
         </div>
 
         <div className='clm'>
           <Select
+            label={{text: 'Selectラベルテキスト', required: true}}
+            placeholder={'選択してください'}
             options={[
               {value: 'Select_Value_A', label: 'Select_Label_A'},
               {value: 'Select_Value_B', label: 'Select_Label_B'},
               {value: 'Select_Value_C', label: 'Select_Label_C'}
             ]}
-            placeholder={'選択してください'}
-            {...register('selectValue', {
+            {...register('selectName', {
               required: { value: true, message: '必須項目だよ。' },
             },)}
-            errorMessage={errors.selectValue?.message}
+            errorMessage={errors.selectName?.message}
           />
         </div>
 
         <div className='clm'>
           <TextArea
+            label={{text: 'TextAreaラベルテキスト', required: true}}
             placeholder="入力をお願いします。"
-            {...register('textAreaValue', {
+            {...register('textAreaName', {
               required: { value: true, message: '必須項目だよ。' },
               minLength: { value: 2, message: `2文字以上にしてね` },
               maxLength: { value: 50, message: '最大50文字だよ' },
@@ -113,12 +118,12 @@ const FormExample: React.FC = () => {
               //   message: `英数文字のみにしてね`
               // },
             },)}
-            errorMessage={errors.textAreaValue?.message}
+            errorMessage={errors.textAreaName?.message}
           />
         </div>
 
         <div className='clm'>
-          <Button><>送信</></Button>
+          <SubmitButton>送信</SubmitButton>
           <p className='reset' onClick={() => reset()}>▷ リセット</p>
         </div>
       </form>

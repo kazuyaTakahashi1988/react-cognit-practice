@@ -3,8 +3,8 @@ import styled from 'styled-components'
 import { useForm } from 'react-hook-form';
 import { PropsVerification } from '../../../lib/props';
 
-import { Button } from '../../../components/Form/Button';
-import { Input } from '../../../components/Form/Input';
+import SubmitButton from '../../../components/Form/SubmitButton';
+import Input from '../../../components/Form/Input';
 
 import { VerifyHelper } from '../../../utils/Auth';
 
@@ -15,9 +15,6 @@ const Verification: React.FC = () => {
     reset,
     formState: { errors }
   } = useForm<PropsVerification>({
-    mode: 'onSubmit',
-    reValidateMode: 'onChange',
-    criteriaMode: 'all',
     defaultValues: {
       verificationCode: '',
       email: '',
@@ -37,10 +34,9 @@ const Verification: React.FC = () => {
         <div className='clm'>
           <Input
             type="password"
-            placeholder="verificationCodeを入力してください"
-            {...register('verificationCode', {
-              required: { value: true, message: '必須項目だよ。' },
-            },)}
+            label={{text: 'verificationCodeを入力してください', required: true}}
+            placeholder="○○○○○○○○"
+            {...register('verificationCode', {required: '必須項目だよ。'})}
             errorMessage={errors.verificationCode?.message}
           />
         </div>
@@ -48,16 +44,15 @@ const Verification: React.FC = () => {
         <div className='clm'>
           <Input
             type="email"
-            placeholder="emailを入力してください"
-            {...register('email', {
-              required: { value: true, message: '必須項目だよ。' },
-            },)}
+            label={{text: 'emailを入力してください', required: true}}
+            placeholder="○○○○＠○○○○.com"
+            {...register('email', {required: '必須項目だよ。'})}
             errorMessage={errors.email?.message}
           />
         </div>
 
         <div className='clm'>
-          <Button><>送信</></Button>
+          <SubmitButton>送信</SubmitButton>
           <p className='reset' onClick={() => reset()}>▷ リセット</p>
         </div>
       </form>

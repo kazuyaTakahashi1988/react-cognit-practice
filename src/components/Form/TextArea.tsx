@@ -1,23 +1,28 @@
 import React, { forwardRef } from 'react';
 import styled from 'styled-components'
 import { PropsTextArea } from '../../lib/props';
+import { Label } from './Label';
+import { ErrorMessage } from './ErrorMessage';
 
-type Props = React.InputHTMLAttributes<HTMLTextAreaElement> & PropsTextArea;
+type Props = React.TextareaHTMLAttributes<HTMLTextAreaElement> & PropsTextArea;
 
 export const TextAreaField: React.ForwardRefRenderFunction<
   HTMLTextAreaElement,
   Props
 > = (props, ref): any => {
-  const { placeholder, errorMessage, ...rest } = props;
+  const { label, placeholder, errorMessage, ...rest } = props;
 
   return (
     <Styled>
+      {label && <Label label={label} />}
+
       <textarea
+        placeholder={placeholder}
         ref={ref}
         {...rest}
-        placeholder={placeholder}
       ></textarea>
-      {errorMessage && <p className='error'>{errorMessage}</p>}
+
+      {errorMessage && <ErrorMessage errorMessage={errorMessage} />}
     </Styled>
   )
 };
@@ -40,12 +45,7 @@ const Styled = styled.div`
     }
     &::placeholder { color: #666; }
   }
-  .error{
-    color: red;
-    font-size: 12px;
-    line-height: 28px;
-    margin-top: 5px;
-  }
 `;
 
 export const TextArea = forwardRef(TextAreaField);
+export default TextArea;

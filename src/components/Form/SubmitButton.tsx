@@ -1,17 +1,12 @@
-import React, { forwardRef } from 'react';
+import React from 'react';
 import styled from 'styled-components'
-import { PropsButton } from '../../lib/props';
+import { PropsSubmitButton } from '../../lib/props';
 
-type Props = React.InputHTMLAttributes<HTMLButtonElement> & PropsButton;
-
-export const ButtonField: React.ForwardRefRenderFunction<
-  HTMLButtonElement,
-  Props
-> = (props, ref): any => {
+export const SubmitButton: React.FC<PropsSubmitButton> = (props): any => {
   const { children } = props;
   return (
     <Styled>
-      <button ref={ref}>{children}</button>
+      <button>{children}</button>
     </Styled>
   )
 };
@@ -29,6 +24,7 @@ const Styled = styled.div`
     -moz-appearance: none;
     cursor: pointer;
     color: #fff;
+    font-size: 16px;
     &:hover {
       background: rgba(33, 150, 243, 0.8);
     }
@@ -36,4 +32,4 @@ const Styled = styled.div`
   }
 `;
 
-export const Button = forwardRef(ButtonField);
+export default SubmitButton;
