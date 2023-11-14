@@ -10,7 +10,7 @@ export const TextAreaField: React.ForwardRefRenderFunction<
   HTMLTextAreaElement,
   Props
 > = (props, ref): any => {
-  const { label, placeholder, errorMessage, ...rest } = props;
+  const { label, placeholder, errors, ...rest } = props;
 
   return (
     <Styled>
@@ -22,7 +22,9 @@ export const TextAreaField: React.ForwardRefRenderFunction<
         {...rest}
       ></textarea>
 
-      {errorMessage && <ErrorMessage errorMessage={errorMessage} />}
+      {errors && Object.values(errors).map(error => {
+        return error.ref.name === rest.name && <ErrorMessage errorMessage={error.message} />
+      })}
     </Styled>
   )
 };

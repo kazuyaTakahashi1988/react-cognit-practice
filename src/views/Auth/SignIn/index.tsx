@@ -37,7 +37,7 @@ const SignIn: React.FC = () => {
           label={{text: 'emailを入力してください', required: true}}
           placeholder="○○○○＠○○○○.com"
           {...register('email', {required: '必須項目だよ。'})}
-          errorMessage={errors.email?.message}
+          errors={errors}
         />
         </div>
 
@@ -47,7 +47,7 @@ const SignIn: React.FC = () => {
           label={{text: 'passwordを入力してください', required: true}}
           placeholder="○○○○○○○○"
           {...register('password', {required: '必須項目だよ。'})}
-          errorMessage={errors.password?.message}
+          errors={errors}
         />
         </div>
 

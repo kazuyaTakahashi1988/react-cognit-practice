@@ -37,7 +37,7 @@ const Verification: React.FC = () => {
             label={{text: 'verificationCodeを入力してください', required: true}}
             placeholder="○○○○○○○○"
             {...register('verificationCode', {required: '必須項目だよ。'})}
-            errorMessage={errors.verificationCode?.message}
+            errors={errors}
           />
         </div>
         
@@ -47,7 +47,7 @@ const Verification: React.FC = () => {
             label={{text: 'emailを入力してください', required: true}}
             placeholder="○○○○＠○○○○.com"
             {...register('email', {required: '必須項目だよ。'})}
-            errorMessage={errors.email?.message}
+            errors={errors}
           />
         </div>
 

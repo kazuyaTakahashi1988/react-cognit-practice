@@ -52,7 +52,7 @@ const FormExample: React.FC = () => {
               //   message: `英数文字のみにしてね`
               // },
             },)}
-            errorMessage={errors.inputName?.message}
+            errors={errors}
           />
         </div>
 
@@ -70,7 +70,7 @@ const FormExample: React.FC = () => {
                 if(e.length < 2 ) return '２つ以上選択してください。';
               },
             },)}
-            errorMessage={errors.checkBoxName?.message}
+            errors={errors}
           />
         </div>
         
@@ -85,7 +85,7 @@ const FormExample: React.FC = () => {
             {...register('radioButtonName', {
               required: { value: true, message: '必須項目だよ。' },
             },)}
-            errorMessage={errors.radioButtonName?.message}
+            errors={errors}
           />
         </div>
 
@@ -101,7 +101,7 @@ const FormExample: React.FC = () => {
             {...register('selectName', {
               required: { value: true, message: '必須項目だよ。' },
             },)}
-            errorMessage={errors.selectName?.message}
+            errors={errors}
           />
         </div>
 
@@ -118,7 +118,7 @@ const FormExample: React.FC = () => {
               //   message: `英数文字のみにしてね`
               // },
             },)}
-            errorMessage={errors.textAreaName?.message}
+            errors={errors}
           />
         </div>
 

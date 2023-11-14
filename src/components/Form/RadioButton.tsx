@@ -10,7 +10,7 @@ export const RadioButtonField: React.ForwardRefRenderFunction<
   HTMLInputElement,
   Props
 > = (props, ref): any => {
-  const { label, options, errorMessage, ...rest } = props;
+  const { label, options, errors, ...rest } = props;
 
   return (
     <Styled>
@@ -35,7 +35,9 @@ export const RadioButtonField: React.ForwardRefRenderFunction<
         </label>
       ))}
 
-      {errorMessage && <ErrorMessage errorMessage={errorMessage} />}
+      {errors && Object.values(errors).map(error => {
+        return error.ref.name === rest.name && <ErrorMessage errorMessage={error.message} />
+      })}
     </Styled>
   )
 };

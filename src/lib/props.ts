@@ -58,7 +58,7 @@ export type PropsInput = {
   } | undefined;
   type: string | undefined;
   placeholder: string | undefined;
-  errorMessage?: string | undefined;
+  errors?: object | undefined;
 };
 
 // CheckBox
@@ -71,7 +71,7 @@ export type PropsCheckBox = {
     value: string,
     label: string,
   }>;
-  errorMessage?: string | undefined;
+  errors?: object | undefined;
 };
 
 // RadioButton
@@ -84,7 +84,7 @@ export type PropsRadioButton = {
     value: string,
     label: string,
   }>;
-  errorMessage?: string | undefined;
+  errors?: object | undefined;
 };
 
 // Select
@@ -98,7 +98,7 @@ export type PropsSelect = {
     label: string,
   }>;
   placeholder: string | undefined;
-  errorMessage?: string | undefined;
+  errors?: object | undefined;
 };
 
 // TextArea
@@ -108,5 +108,5 @@ export type PropsTextArea = {
     required: boolean
   } | undefined;
   placeholder: string | undefined;
-  errorMessage?: string | undefined;
+  errors?: object | undefined;
 };

@@ -7,18 +7,18 @@ export const Label: React.FC<PropsLabel> = (props): any => {
 
   return (
     <Styled>
-      {label && <>
-        <label className='label'>
+      {label && 
+        <label className='label-text'>
           {label.text}
           {label.required && <span>*</span>}
         </label>
-      </>}
+      }
     </Styled>
   )
 };
 
 const Styled = styled.div`
-  .label{
+  .label-text{
     display: block;
     font-size: 14px;
     font-weight: 500;
