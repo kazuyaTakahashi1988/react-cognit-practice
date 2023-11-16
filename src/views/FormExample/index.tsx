@@ -8,6 +8,7 @@ import Input from '../../components/Form/Input';
 import CheckBox from '../../components/Form/CheckBox';
 import RadioButton from '../../components/Form/RadioButton';
 import Select from '../../components/Form/Select';
+import SelectCustom from '../../components/Form/SelectCustom';
 import TextArea from '../../components/Form/TextArea';
 
 const FormExample: React.FC = () => {
@@ -25,6 +26,7 @@ const FormExample: React.FC = () => {
       checkBoxName: [],
       radioButtonName: '',
       selectName: '',
+      selectCustomName: '',
       textAreaName: '',
     },
   });
@@ -36,7 +38,7 @@ const FormExample: React.FC = () => {
   return (
     <Styled>
       <form onSubmit={onSubmit}>
-        <h1><span>FormExample：react-hook-form</span></h1>
+        <h1><span>FormExample<br /><small>：react-hook-form</small></span></h1>
 
         <div className='clm'>
           <Input
@@ -106,6 +108,26 @@ const FormExample: React.FC = () => {
         </div>
 
         <div className='clm'>
+          <SelectCustom
+            label={{text: 'SelectCustomラベルテキスト', required: true}}
+            placeholder={'選択してください'}
+            options={[
+              {value: 'Select_Value_A', label: 'Select_Label_A'},
+              {value: 'Select_Value_B', label: 'Select_Label_B'},
+              {value: 'Select_Value_C', label: 'Select_Label_C'},
+              {value: 'Select_Value_D', label: 'Select_Label_D'},
+              {value: 'Select_Value_E', label: 'Select_Label_E'},
+              {value: 'Select_Value_F', label: 'Select_Label_F'},
+              {value: 'Select_Value_G', label: 'Select_Label_G'}
+            ]}
+            {...register('selectCustomName', {
+              required: { value: true, message: '必須項目だよ。' },
+            },)}
+            errors={errors}
+          />
+        </div>
+
+        <div className='clm'>
           <TextArea
             label={{text: 'TextAreaラベルテキスト', required: true}}
             placeholder="入力をお願いします。"
@@ -133,6 +155,8 @@ const FormExample: React.FC = () => {
 
 const Styled = styled.div`
   padding: 30px;
+  max-width: 480px;
+  margin: 0 auto;
   .clm{
     margin-top: 30px;
     .reset {

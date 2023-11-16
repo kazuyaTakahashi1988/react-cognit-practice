@@ -7,6 +7,7 @@ export type PropsFormExample = {
   checkBoxName: object;
   radioButtonName: string;
   selectName: string;
+  selectCustomName: string;
   textAreaName: string;
 };
 
@@ -89,6 +90,20 @@ export type PropsRadioButton = {
 
 // Select
 export type PropsSelect = {
+  label: {
+    text: string | undefined,
+    required: boolean
+  } | undefined;
+  options: Array<{
+    value: string,
+    label: string,
+  }>;
+  placeholder: string | undefined;
+  errors?: object | undefined;
+};
+
+// SelectCustom
+export type PropsSelectCustom = {
   label: {
     text: string | undefined,
     required: boolean

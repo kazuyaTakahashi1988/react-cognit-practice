@@ -96,9 +96,6 @@ const Styled = styled.div`
         height: 0.65em;
         transform: translateY(-1px) rotate(45deg);
       }
-      &:focus-visible + .label__text span {
-        background: linear-gradient(transparent 90%, rgba(33, 150, 243, 0.3) 90%);
-      }
     }
   }
 `;
