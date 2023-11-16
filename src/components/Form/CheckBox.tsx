@@ -18,13 +18,13 @@ export const CheckBoxField: React.ForwardRefRenderFunction<
 
       {options.map((option, index) => (
         <label
-          htmlFor={option.value}
+          htmlFor={rest.name + option.value}
           key={index}
           className="label"
         >
           <input
             type="checkbox"
-            id={option.value}
+            id={rest.name + option.value}
             value={option.value}
             ref={ref}
             {...rest}

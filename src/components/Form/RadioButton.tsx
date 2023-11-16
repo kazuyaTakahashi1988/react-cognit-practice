@@ -18,13 +18,13 @@ export const RadioButtonField: React.ForwardRefRenderFunction<
 
       {options.map((option, index) => (
         <label
-          htmlFor={option.value}
+          htmlFor={rest.name + option.value}
           key={index}
           className="label"
         >
           <input
             type="radio"
-            id={option.value}
+            id={rest.name + option.value}
             value={option.value}
             ref={ref}
             {...rest}
@@ -78,9 +78,6 @@ const Styled = styled.div`
       }
       &:checked + .label__text:before {
         border: 0.35em solid rgb(33, 150, 243);
-      }
-      &:focus-visible + .label__text span {
-        background: linear-gradient(transparent 90%, rgba(33, 150, 243, 0.3) 90%);
       }
     }
   }
