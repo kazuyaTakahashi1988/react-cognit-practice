@@ -30,13 +30,13 @@ export const RadioButtonField: React.ForwardRefRenderFunction<
             {...rest}
           />
           <span className="label__text">
-            <span>{option.label}</span>
+            {option.label}
           </span>
         </label>
       ))}
 
-      {errors && Object.values(errors).map(error => {
-        return error.ref.name === rest.name && <ErrorMessage errorMessage={error.message} />
+      {errors && Object.values(errors).map((error, index) => {
+        return error.ref.name === rest.name && <ErrorMessage key={index} errorMessage={error.message} />
       })}
     </Styled>
   )
@@ -44,25 +44,24 @@ export const RadioButtonField: React.ForwardRefRenderFunction<
 
 const Styled = styled.div`
   .label {
-    display: block;
-    cursor: pointer;
     &__text {
       cursor: pointer;
-      display: inline-flex;
+      display: flex;
       align-items: center;
       color: #666;
       &:before {
-      content: "";
+        content: "";
         display: inline-block;
         width: 1.2em;
         height: 1.2em;
-        border: 1px solid #ccc;
+        border: none;
+        box-shadow: 0 0 0 1px #ccc;
         border-radius: 50%;
         margin-right: 6px;
         flex-shrink: 0;
       }
     }
-    input {
+    > input {
       position: absolute;
       white-space: nowrap;
       width: 1px;
@@ -77,6 +76,7 @@ const Styled = styled.div`
         color: rgb(33, 150, 243);
       }
       &:checked + .label__text:before {
+        box-shadow: 0 0 0 1px rgb(33, 150, 243);
         border: 0.35em solid rgb(33, 150, 243);
       }
     }

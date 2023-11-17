@@ -24,7 +24,7 @@ const Styled = styled.div`
     font-weight: 500;
     line-height: 28px;
     margin-bottom: 10px;
-    span {
+    > span {
       color: red;
       transform: translateY(-3px);
       display: inline-block;

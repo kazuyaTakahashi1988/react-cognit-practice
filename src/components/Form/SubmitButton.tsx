@@ -17,16 +17,18 @@ const Styled = styled.div`
     width: 100%;
     padding: 0 16px;
     border-radius: 4px;
-    border: 1px solid #ccc;
+    border: none;
+    box-shadow: 0 0 0 1px rgb(33, 150, 243);
     background: rgb(33, 150, 243);
     appearance: none;
     -webkit-appearance: none;
     -moz-appearance: none;
+    transition: 0.1s;
     cursor: pointer;
     color: #fff;
     font-size: 16px;
     &:hover {
-      background: rgba(33, 150, 243, 0.8);
+      background: rgba(33, 150, 243, 0.6);
     }
     &::placeholder { color: #666; }
   }

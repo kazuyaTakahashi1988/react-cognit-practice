@@ -30,13 +30,13 @@ export const CheckBoxField: React.ForwardRefRenderFunction<
             {...rest}
           />
           <span className="label__text">
-            <span>{option.label}</span>
+            {option.label}
           </span>
         </label>
       ))}
 
-      {errors && Object.values(errors).map(error => {
-        return error.ref.name === rest.name && <ErrorMessage errorMessage={error.message} />
+      {errors && Object.values(errors).map((error, index) => {
+        return error.ref.name === rest.name && <ErrorMessage key={index} errorMessage={error.message} />
       })}
     </Styled>
   )
@@ -44,28 +44,7 @@ export const CheckBoxField: React.ForwardRefRenderFunction<
 
 const Styled = styled.div`
   .label {
-    display: block;
-    cursor: pointer;
-    &__text {
-      cursor: pointer;
-      display: inline-flex;
-      align-items: center;
-      color: #666;
-      position: relative;
-      display: flex;
-      align-items: center;
-      &::before {
-        content: "";
-        display: inline-block;
-        width: 1.2em;
-        height: 1.2em;
-        border: 1px solid #ccc;
-        border-radius: 3px;
-        margin-right: 6px;
-        flex-shrink: 0;
-      }
-    }
-    input {
+    > input {
       position: absolute;
       white-space: nowrap;
       width: 1px;
@@ -80,7 +59,7 @@ const Styled = styled.div`
         color: rgb(33, 150, 243);
       }
       &:checked + .label__text:before {
-        border: 1px solid rgb(33, 150, 243);
+        box-shadow: 0 0 0 1px rgb(33, 150, 243);
         background-color: rgb(33, 150, 243);
       }
       &:checked + .label__text:after {
@@ -95,6 +74,24 @@ const Styled = styled.div`
         width: 0.4em;
         height: 0.65em;
         transform: translateY(-1px) rotate(45deg);
+      }
+    }
+    &__text {
+      cursor: pointer;
+      color: #666;
+      position: relative;
+      display: flex;
+      align-items: center;
+      &::before {
+        content: "";
+        display: inline-block;
+        width: 1.2em;
+        height: 1.2em;
+        border: none;
+        box-shadow: 0 0 0 1px #ccc;
+        border-radius: 3px;
+        margin-right: 6px;
+        flex-shrink: 0;
       }
     }
   }

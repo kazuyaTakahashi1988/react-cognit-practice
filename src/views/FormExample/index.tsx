@@ -94,7 +94,7 @@ const FormExample: React.FC = () => {
         <div className='clm'>
           <Select
             label={{text: 'Selectラベルテキスト', required: true}}
-            placeholder={'選択してください'}
+            placeholder={'選択してください。'}
             options={[
               {value: 'Select_Value_A', label: 'Select_Label_A'},
               {value: 'Select_Value_B', label: 'Select_Label_B'},
@@ -110,7 +110,7 @@ const FormExample: React.FC = () => {
         <div className='clm'>
           <SelectCustom
             label={{text: 'SelectCustomラベルテキスト', required: true}}
-            placeholder={'選択してください'}
+            placeholder={'選択してください。'}
             options={[
               {value: 'Select_Value_A', label: 'Select_Label_A'},
               {value: 'Select_Value_B', label: 'Select_Label_B'},
