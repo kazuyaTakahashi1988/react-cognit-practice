@@ -1,11 +1,11 @@
 import React, { useState, useEffect, useCallback } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
 import styled from 'styled-components'
 import { PropsModal } from '../../lib/props';
 import Button from '../../components/Button/Button';
 
-
-export const Modal:React.FC<PropsModal> = (props): any => {
-  const {children, title, text, button} = props;
+export const Modal: React.FC<PropsModal> = (props): any => {
+  const { children, title, text, button } = props;
   const [isOpen, setIsOpen] = useState(false)
 
   function onOpen(e: any) {
@@ -25,44 +25,68 @@ export const Modal:React.FC<PropsModal> = (props): any => {
     }
   }, [onClose])
 
-  return (
-    <Styled isOpen={isOpen}>
-      <span className='open-button' onClick={(e) => {!isOpen ? onOpen(e) : onClose()}}>{children}</span>
-
-      {isOpen && 
-        <div className="modal" onClick={(e) => {e.stopPropagation()}}>
-          <div className="modal__header">
-            <p className="title">{title}</p>
-            <span className='close' onClick={() => {onClose()}}></span>
-          </div>
-          <div className="modal__container">
-            {text}
-          </div>
-          <div className="modal__footer">
-            <Button
-              type={'secondary'}
-              onClick={onClose}
-              isDisable={false}
-            >
-              閉じる
-              </Button>
-            {button && 
-              <Button
-                type={undefined}
-                onClick={button.onClick}
-                isDisable={false}
-              >
-                {button.text}
-              </Button>
-            }
-          </div>
-        </div>
-      }
+  return <>
+    <Styled onClick={(e) => { !isOpen ? onOpen(e) : onClose() }}>
+      {children}
     </Styled>
-  )
+
+    <AnimatePresence>
+      {isOpen &&
+        <StyledModal>
+          <motion.div
+            className="modal"
+            initial={{ opacity: 0, y: -40 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -40 }}
+            transition={{ duration: 0.2, ease: 'easeInOut' }}
+          >
+            <div className='modal__inner' onClick={(e) => { e.stopPropagation() }}>
+              <div className="modal__header">
+                <p className="title">{title}</p>
+                <span className='close' onClick={onClose}></span>
+              </div>
+              <div className="modal__container">
+                {text}
+              </div>
+              <div className="modal__footer">
+                <Button
+                  type={'secondary'}
+                  onClick={onClose}
+                  isDisable={false}
+                >
+                  閉じる
+                </Button>
+                {button &&
+                  <Button
+                    type={undefined}
+                    onClick={button.onClick}
+                    isDisable={false}
+                  >
+                    {button.text}
+                  </Button>
+                }
+              </div>
+            </div>
+          </motion.div>
+        </StyledModal>
+      }
+    </AnimatePresence>
+  </>
 };
-const Styled = styled.span<{ isOpen: Boolean }>`
-  ${({ isOpen }) => isOpen && `
+const Styled = styled.span`
+  cursor: pointer;
+  display: inline-block;
+`;
+
+const StyledModal = styled.span`
+  .modal {
+    position: fixed;
+    z-index: 999;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    margin: auto;
     &::before {
       content: "";
       position: fixed;
@@ -70,27 +94,25 @@ const Styled = styled.span<{ isOpen: Boolean }>`
       top: 0;
       left: 0;
       width: 100%;
-      height: 100%;
+      height: calc(100vh + 40px);
       background: rgba(0,0,0,0.3);
     }
-  `}
-  .open-button {
-    cursor: pointer;
-  }
-  .modal {
-    position: fixed;
-    z-index: 99999;
-    top: 50%;
-    left: 50%;
-    transform: translateY(-50%) translateX(-50%);
-    width: 500px;
-    background: #fff;
-    box-shadow: 0 0 0 1px #ccc;
-    border-radius: 10px 10px 5px 5px;
-    text-align: left;
-    > * {
-      padding-left: 20px;
-      padding-right: 20px;
+    &__inner {
+      position: fixed;
+      z-index: 9999;
+      top: 50%;
+      left: 50%;
+      transform: translateY(-50%) translateX(-50%);
+      max-width: 500px;
+      width: calc(100% - 40px);
+      background: #fff;
+      box-shadow: 0 0 0 1px #ccc;
+      border-radius: 10px 10px 5px 5px;
+      text-align: left;
+      > * {
+        padding-left: 20px;
+        padding-right: 20px;
+      }
     }
     &__header {
       display: flex;

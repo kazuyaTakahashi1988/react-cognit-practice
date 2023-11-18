@@ -1,5 +1,6 @@
 import React, { forwardRef, useState, useEffect, useRef, createRef, RefObject } from 'react';
 import styled from 'styled-components'
+import { motion, AnimatePresence } from 'framer-motion';
 import { PropsSelectCustom } from '../../lib/props';
 import { Label } from './Label';
 import { ErrorMessage } from './ErrorMessage';
@@ -34,7 +35,7 @@ export const SelectCustomField: React.ForwardRefRenderFunction<
     setIsOpen(!isOpen);
   }
   useEffect(() => {
-    if(selectedIndex !== null) {
+    if (selectedIndex !== null) {
       labelRefs.current[selectedIndex].current?.classList.add('current');
     }
   }, [selectedIndex, isOpen]);
@@ -65,20 +66,28 @@ export const SelectCustomField: React.ForwardRefRenderFunction<
           ))}
         </div>
 
-        {isOpen &&
-          <div className='select-box'>
-            {options.map((option, index) => (
-              <label
-                htmlFor={rest.name + option.value}
-                key={index}
-                className="select-box__label"
-                ref={labelRefs.current[index]}
-              >
-                {option.label}
-              </label>
-            ))}
-          </div>
-        }
+        <AnimatePresence>
+          {isOpen &&
+            <motion.div
+              className="select-box"
+              initial={{ height: 0 }}
+              animate={{ height: '150px' }}
+              exit={{ height: 0 }}
+              transition={{ duration: 0.2, ease: 'easeOut' }}
+            >
+              {options.map((option, index) => (
+                <label
+                  htmlFor={rest.name + option.value}
+                  key={index}
+                  className="select-box__label"
+                  ref={labelRefs.current[index]}
+                >
+                  {option.label}
+                </label>
+              ))}
+            </motion.div>
+          }
+        </AnimatePresence>
       </div>
 
       {errors && Object.values(errors).map((error, index) => {
@@ -179,8 +188,6 @@ const Styled = styled.div`
       border: none;
       box-shadow: 0 1px 0 0 #ccc, 1px 0 0 0 #ccc, -1px 0 0 0 #ccc;
       width: 100%;
-      height: 0;
-      animation: slideOpen 0.2s ease-in-out forwards;
       background: #fff;
       overflow-y: auto;
       -webkit-overflow-scrolling: touch;
@@ -197,17 +204,6 @@ const Styled = styled.div`
           background: rgb(33, 150, 243);
         }
       }
-    }
-  }
-  @keyframes slideOpen {
-    0% {
-      height: 0;
-    }
-    60% {
-      height: 155px;
-    }
-    100% {
-      height: 150px;
     }
   }
 `;
