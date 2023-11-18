@@ -33,11 +33,6 @@ export type PropsVerification = {
     ▽ Props の型定義 (コンポーネント編) ▽
 ---------------------------------------------------------- */
 
-// SubmitButton
-export type PropsSubmitButton = {
-  children?: any;
-};
-
 // Label
 export type PropsLabel = {
   label: {
@@ -124,4 +119,23 @@ export type PropsTextArea = {
   } | undefined;
   placeholder: string | undefined;
   errors?: object | undefined;
+};
+
+// Modal
+export type PropsModal = {
+  text: string | undefined;
+  title: string | undefined;
+  button: {
+    text: string | undefined,
+    onClick?: any,
+  } | undefined;
+  children?: any;
+};
+
+// Button
+export type PropsButton = {
+  type: string | undefined,
+  children?: any;
+  onClick?: any;
+  isDisable: boolean;
 };

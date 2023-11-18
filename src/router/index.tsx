@@ -14,6 +14,7 @@ import Verification from '../views/Auth/Verification'
 import SignIn from '../views/Auth/SignIn'
 import SignOut from '../views/Auth/SignOut'
 import FormExample from '../views/FormExample'
+import ModalExample from '../views/ModalExample'
 
 export function Router() {
   return (
@@ -41,6 +42,7 @@ export function Router() {
           <Route path="/auth/signup" element={<SignUp />} />
           <Route path="/auth/verification" element={<Verification />} />
           <Route path="/form_example" element={<FormExample />} />
+          <Route path="/modal_example" element={<ModalExample />} />
           <Route path="/*" element={<Navigate to="/" replace />} />
         </>
       }
