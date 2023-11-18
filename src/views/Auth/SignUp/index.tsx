@@ -3,7 +3,7 @@ import styled from 'styled-components'
 import { useForm } from 'react-hook-form';
 import { PropsSignUp } from '../../../lib/props';
 
-import SubmitButton from '../../../components/Form/SubmitButton';
+import Button from '../../../components/Button/Button';
 import Input from '../../../components/Form/Input';
 
 import { SignUpHelper } from '../../../utils/Auth';
@@ -28,7 +28,7 @@ const SignUp: React.FC = () => {
 
   return (
     <Styled>
-      <form onSubmit={onSubmit}>
+      <form>
         <h1>SignUp</h1>
 
         <div className='clm'>
@@ -51,9 +51,21 @@ const SignUp: React.FC = () => {
           />
         </div>
 
-        <div className='clm'>
-          <SubmitButton>送信</SubmitButton>
-          <p className='reset' onClick={() => reset()}>▷ リセット</p>
+        <div className='clm button-clm'>
+          <Button
+            type={'secondary'}
+            onClick={() => reset()}
+            isDisable={false}
+          >
+            リセット
+          </Button>
+          <Button
+            type={undefined}
+            onClick={() => onSubmit()}
+            isDisable={false}
+          >
+            送信する
+          </Button>
         </div>
       </form>
     </Styled>
@@ -64,9 +76,16 @@ const Styled = styled.div`
   padding: 30px;
   .clm{
     margin-top: 30px;
-    .reset {
-      cursor: pointer;
-      text-align: center;
+    &.button-clm {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      > * {
+        margin-right: 20px;
+        &:last-child {
+          margin-right: 0;
+        }
+      }
     }
   }
 `;

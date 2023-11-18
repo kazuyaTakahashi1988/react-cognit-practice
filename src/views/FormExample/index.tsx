@@ -3,7 +3,7 @@ import styled from 'styled-components'
 import { useForm } from 'react-hook-form';
 import { PropsFormExample } from '../../lib/props';
 
-import SubmitButton from '../../components/Form/SubmitButton';
+import Button from '../../components/Button/Button';
 import Input from '../../components/Form/Input';
 import CheckBox from '../../components/Form/CheckBox';
 import RadioButton from '../../components/Form/RadioButton';
@@ -37,7 +37,6 @@ const FormExample: React.FC = () => {
 
   return (
     <Styled>
-      <form onSubmit={onSubmit}>
         <h1><span>FormExample<br /><small>：react-hook-form</small></span></h1>
 
         <div className='clm'>
@@ -144,11 +143,22 @@ const FormExample: React.FC = () => {
           />
         </div>
 
-        <div className='clm'>
-          <SubmitButton>送信</SubmitButton>
-          <p className='reset' onClick={() => reset()}>▷ リセット</p>
+        <div className='clm button-clm'>
+          <Button
+            type={'secondary'}
+            onClick={() => reset()}
+            isDisable={false}
+          >
+            リセット
+          </Button>
+          <Button
+            type={undefined}
+            onClick={() => onSubmit()}
+            isDisable={false}
+          >
+            送信する
+          </Button>
         </div>
-      </form>
     </Styled>
   );
 };
@@ -159,9 +169,17 @@ const Styled = styled.div`
   margin: 0 auto;
   .clm{
     margin-top: 30px;
-    .reset {
-      cursor: pointer;
-      text-align: center;
+    &.button-clm {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      align-items: center;
+      > * {
+        margin-right: 20px;
+        &:last-child {
+          margin-right: 0;
+        }
+      }
     }
   }
 `;
