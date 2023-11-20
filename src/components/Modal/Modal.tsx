@@ -8,7 +8,7 @@ export const Modal: React.FC<PropsModal> = (props): any => {
   const { children, title, text, button } = props;
   const [isOpen, setIsOpen] = useState(false)
 
-  function onOpen(e: any) {
+  const onOpen = (e: any) => {
     setIsOpen(true)
     document.addEventListener('click', onClose)
     e.stopPropagation()

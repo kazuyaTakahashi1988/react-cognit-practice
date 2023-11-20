@@ -116,7 +116,7 @@ const Styled = styled.div`
       &.is-open {
         border-radius: 4px 4px 0 0;
         box-shadow: 0 0 0 1px rgb(33, 150, 243);
-        &:before {
+        &::before {
           transform: rotate(-45deg);
         }
       }
