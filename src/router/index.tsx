@@ -15,6 +15,7 @@ import SignIn from '../views/Auth/SignIn'
 import SignOut from '../views/Auth/SignOut'
 import FormExample from '../views/FormExample'
 import ModalExample from '../views/ModalExample'
+import AccordionExample from '../views/AccordionExample'
 
 export function Router() {
   return (
@@ -43,6 +44,7 @@ export function Router() {
           <Route path="/auth/verification" element={<Verification />} />
           <Route path="/form_example" element={<FormExample />} />
           <Route path="/modal_example" element={<ModalExample />} />
+          <Route path="/accordion_example" element={<AccordionExample />} />
           <Route path="/*" element={<Navigate to="/" replace />} />
         </>
       }

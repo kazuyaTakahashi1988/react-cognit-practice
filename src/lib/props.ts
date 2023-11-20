@@ -121,6 +121,14 @@ export type PropsTextArea = {
   errors?: object | undefined;
 };
 
+// Button
+export type PropsButton = {
+  type: string | undefined,
+  children?: any;
+  onClick?: any;
+  isDisable: boolean;
+};
+
 // Modal
 export type PropsModal = {
   text: string | undefined;
@@ -132,10 +140,9 @@ export type PropsModal = {
   children?: any;
 };
 
-// Button
-export type PropsButton = {
-  type: string | undefined,
+// Accordion
+export type PropsAccordion = {
+  title: string | undefined;
   children?: any;
-  onClick?: any;
-  isDisable: boolean;
+  initOpen: boolean;
 };
