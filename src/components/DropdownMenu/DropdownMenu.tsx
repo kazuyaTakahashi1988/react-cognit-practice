@@ -59,7 +59,7 @@ export const DropdownMenu: React.FC<PropsDropdownMenu> = (props): any => {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            transition={{ duration: 0.1, ease: 'ease' }}
+            transition={{ duration: 0.1, ease: 'easeInOut'}}
             onClick={(e) => { e.stopPropagation() }}
           >
             {menuList.map((menu, index) => (
