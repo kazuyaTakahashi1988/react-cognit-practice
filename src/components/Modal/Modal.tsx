@@ -73,6 +73,7 @@ export const Modal: React.FC<PropsModal> = (props): any => {
     </AnimatePresence>
   </>
 };
+
 const Styled = styled.span`
   cursor: pointer;
   display: inline-block;
