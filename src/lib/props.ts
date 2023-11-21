@@ -146,3 +146,12 @@ export type PropsAccordion = {
   children?: any;
   initOpen: boolean;
 };
+
+// DropdownMenu
+export type PropsDropdownMenu = {
+  menuList: Array<{
+    text: string | undefined,
+    onClick?: any,
+  }>;
+  children?: any;
+};

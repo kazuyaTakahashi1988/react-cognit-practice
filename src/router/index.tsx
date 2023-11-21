@@ -16,6 +16,7 @@ import SignOut from '../views/Auth/SignOut'
 import FormExample from '../views/FormExample'
 import ModalExample from '../views/ModalExample'
 import AccordionExample from '../views/AccordionExample'
+import DropdownMenuExample from '../views/DropdownMenuExample'
 
 export function Router() {
   return (
@@ -45,6 +46,7 @@ export function Router() {
           <Route path="/form_example" element={<FormExample />} />
           <Route path="/modal_example" element={<ModalExample />} />
           <Route path="/accordion_example" element={<AccordionExample />} />
+          <Route path="/dropdownmenu_example" element={<DropdownMenuExample />} />
           <Route path="/*" element={<Navigate to="/" replace />} />
         </>
       }
