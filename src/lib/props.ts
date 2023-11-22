@@ -6,6 +6,7 @@ export type PropsFormExample = {
   inputName: string;
   checkBoxName: object;
   radioButtonName: string;
+  switchButtonName: string;
   selectName: string;
   selectCustomName: string;
   textAreaName: string;
@@ -79,6 +80,21 @@ export type PropsRadioButton = {
   options: Array<{
     value: string,
     label: string,
+  }>;
+  errors?: object | undefined;
+};
+
+// SwitchButton
+export type PropsSwitchButton = {
+  type: string | undefined,
+  label: {
+    text: string | undefined,
+    required: boolean
+  } | undefined;
+  options: Array<{
+    value: string,
+    label: string,
+    labelActived: string | undefined,
   }>;
   errors?: object | undefined;
 };

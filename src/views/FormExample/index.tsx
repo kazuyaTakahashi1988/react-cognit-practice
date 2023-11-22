@@ -7,6 +7,7 @@ import Button from '../../components/Button/Button';
 import Input from '../../components/Form/Input';
 import CheckBox from '../../components/Form/CheckBox';
 import RadioButton from '../../components/Form/RadioButton';
+import SwitchButton from '../../components/Form/SwitchButton';
 import Select from '../../components/Form/Select';
 import SelectCustom from '../../components/Form/SelectCustom';
 import TextArea from '../../components/Form/TextArea';
@@ -25,6 +26,7 @@ const FormExample: React.FC = () => {
       inputName: '',
       checkBoxName: [],
       radioButtonName: '',
+      switchButtonName: '',
       selectName: '',
       selectCustomName: '',
       textAreaName: '',
@@ -84,6 +86,22 @@ const FormExample: React.FC = () => {
               {value: 'Radio_Value_C', label: 'Radio_Label_C'}
             ]}
             {...register('radioButtonName', {
+              required: { value: true, message: '必須項目だよ。' },
+            },)}
+            errors={errors}
+          />
+        </div>
+        
+        <div className='clm'>
+          <SwitchButton
+            type={undefined}
+            label={{text: 'SwitchButtonラベルテキスト', required: true}}
+            options={[
+              {value: 'Switch_Value_A', label: 'noActive_A', labelActived: 'Actived_A'},
+              {value: 'Switch_Value_B', label: 'noActive_B', labelActived: 'Actived_B'},
+              {value: 'Switch_Value_C', label: '----------', labelActived: undefined}
+            ]}
+            {...register('switchButtonName', {
               required: { value: true, message: '必須項目だよ。' },
             },)}
             errors={errors}
