@@ -36,7 +36,9 @@ const Styled = styled.div`
   width: 100vw;
   > .layout {
     flex: 1;
-    overflow-y: scroll;
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
+    overscroll-behavior-y: contain;
     padding: 30px;
     > .container {
       max-width: 600px;

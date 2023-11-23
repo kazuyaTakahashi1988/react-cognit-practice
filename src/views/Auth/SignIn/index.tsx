@@ -74,7 +74,6 @@ const SignIn: React.FC = () => {
 };
 
 const Styled = styled.div`
-  padding: 30px;
   .clm{
     margin-top: 30px;
     &.button-clm {

@@ -91,7 +91,7 @@ const StyledModal = styled.span`
     &::before {
       content: "";
       position: fixed;
-      z-index: 0;
+      z-index: 999;
       top: 0;
       left: 0;
       width: 100%;

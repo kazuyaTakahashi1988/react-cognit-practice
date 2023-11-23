@@ -61,7 +61,7 @@ const Styled = styled.div`
         border-right: 2px solid #333;
         transform: rotate(135deg);
         pointer-events: none;
-        z-index: 11;
+        z-index: 1;
         transition: 0.2s ease-out;
       }
       &.is-open::before {

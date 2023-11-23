@@ -65,6 +65,7 @@ const Styled = styled.div`
       appearance: none;
       -webkit-appearance: none;
       -moz-appearance: none;
+      color: #000;
       cursor: pointer;
       &::-ms-expand {
         display: none;

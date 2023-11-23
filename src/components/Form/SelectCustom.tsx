@@ -133,7 +133,7 @@ const Styled = styled.div`
         border-right: 2px solid #333;
         transform: rotate(135deg);
         pointer-events: none;
-        z-index: 11;
+        z-index: 2;
         transition: 0.2s ease-out;
       }
       > .placeholder {
@@ -164,7 +164,7 @@ const Styled = styled.div`
           padding: 0 25px 0 8px;
           border-radius: 4px;
           position: absolute;
-          z-index: 10;
+          z-index: 1;
           top: 50%;
           left: 50%;
           transform: translateY(-50%) translateX(-50%);
@@ -179,7 +179,7 @@ const Styled = styled.div`
     }
     .select-box {
       position: absolute;
-      z-index: 10;
+      z-index: 1;
       top: calc(100% + 1px);
       left: 0;
       right: 0;
