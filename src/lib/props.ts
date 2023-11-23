@@ -33,6 +33,15 @@ export type PropsVerification = {
 /* -------------------------------------------------------
     ▽ Props の型定義 (コンポーネント編) ▽
 ---------------------------------------------------------- */
+// Layout
+export type PropsLayout = {
+  type: string | undefined;
+  children?: any;
+};
+// PropsHeader
+export type PropsHeader = {
+  type: string | undefined;
+};
 
 // Label
 export type PropsLabel = {

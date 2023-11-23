@@ -1,16 +1,17 @@
 import React from 'react';
 import styled from 'styled-components'
 import { useForm } from 'react-hook-form';
-import { PropsFormExample } from '../../lib/props';
+import { PropsFormExample } from '../../../lib/props';
 
-import Button from '../../components/Button/Button';
-import Input from '../../components/Form/Input';
-import CheckBox from '../../components/Form/CheckBox';
-import RadioButton from '../../components/Form/RadioButton';
-import SwitchButton from '../../components/Form/SwitchButton';
-import Select from '../../components/Form/Select';
-import SelectCustom from '../../components/Form/SelectCustom';
-import TextArea from '../../components/Form/TextArea';
+import Layout from '../../../components/Layout/Layout';
+import Button from '../../../components/Button/Button';
+import Input from '../../../components/Form/Input';
+import CheckBox from '../../../components/Form/CheckBox';
+import RadioButton from '../../../components/Form/RadioButton';
+import SwitchButton from '../../../components/Form/SwitchButton';
+import Select from '../../../components/Form/Select';
+import SelectCustom from '../../../components/Form/SelectCustom';
+import TextArea from '../../../components/Form/TextArea';
 
 const FormExample: React.FC = () => {
   const {
@@ -38,7 +39,8 @@ const FormExample: React.FC = () => {
   });
 
   return (
-    <Styled>
+    <Layout type='example'>
+      <Styled>
         <h1><span>FormExample<br /><small>：react-hook-form</small></span></h1>
 
         <div className='clm'>
@@ -177,14 +179,12 @@ const FormExample: React.FC = () => {
             送信する
           </Button>
         </div>
-    </Styled>
+      </Styled>
+    </Layout>
   );
 };
 
 const Styled = styled.div`
-  padding: 30px;
-  max-width: 480px;
-  margin: 0 auto;
   .clm{
     margin-top: 30px;
     &.button-clm {
