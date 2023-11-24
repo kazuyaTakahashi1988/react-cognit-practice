@@ -7,8 +7,8 @@ export const Button: React.FC<PropsButton> = (props): any => {
 
   return (
     <Styled
-      type='button'
-      className={type ? type : "primary"}
+      type="button"
+      className={[`${type ? type : 'primary'}`].join(' ')}
       onClick={onClick}
       disabled={isDisable}
     >

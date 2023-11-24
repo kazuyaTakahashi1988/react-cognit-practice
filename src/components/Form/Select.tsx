@@ -16,9 +16,9 @@ export const SelectField: React.ForwardRefRenderFunction<
     <Styled>
       {label && <Label label={label} />}
 
-      <div className='select'>
+      <div className="select">
         <select ref={ref} {...rest}>
-          {placeholder && <option value='' hidden>{ placeholder }</option>}
+          {placeholder && <option value="" hidden>{ placeholder }</option>}
           {options.map((option, index) => (
             <option
               value={option.value}

@@ -28,11 +28,11 @@ const Verification: React.FC = () => {
   });
 
   return (
-    <Layout type='auth'>
+    <Layout type="auth">
       <Styled>
         <h1>Verification</h1>
 
-        <div className='clm'>
+        <div className="clm">
           <Input
             type="password"
             label={{text: 'verificationCodeを入力してください', required: true}}
@@ -42,7 +42,7 @@ const Verification: React.FC = () => {
           />
         </div>
         
-        <div className='clm'>
+        <div className="clm">
           <Input
             type="email"
             label={{text: 'emailを入力してください', required: true}}
@@ -52,9 +52,9 @@ const Verification: React.FC = () => {
           />
         </div>
 
-        <div className='clm button-clm'>
+        <div className="clm button-clm">
           <Button
-            type={'secondary'}
+            type="secondary"
             onClick={() => reset()}
             isDisable={false}
           >

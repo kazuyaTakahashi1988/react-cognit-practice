@@ -40,17 +40,17 @@ export const Modal: React.FC<PropsModal> = (props): any => {
             exit={{ opacity: 0, y: -40 }}
             transition={{ duration: 0.2, ease: 'easeInOut' }}
           >
-            <div className='modal__inner' onClick={(e) => { e.stopPropagation() }}>
+            <div className="modal__inner" onClick={(e) => { e.stopPropagation() }}>
               <div className="modal__header">
                 <p className="title">{title}</p>
-                <span className='close' onClick={onClose}></span>
+                <span className="close" onClick={onClose}></span>
               </div>
               <div className="modal__container">
                 {text}
               </div>
               <div className="modal__footer">
                 <Button
-                  type={'secondary'}
+                  type="secondary"
                   onClick={onClose}
                   isDisable={false}
                 >

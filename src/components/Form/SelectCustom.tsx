@@ -44,12 +44,12 @@ export const SelectCustomField: React.ForwardRefRenderFunction<
     <Styled>
       {label && <Label label={label} />}
 
-      <div className='select' ref={selectRef}>
+      <div className="select" ref={selectRef}>
         <div
-          className={`selected ${isOpen ? "is-open" : ""}`}
+          className={[`selected` ,`${isOpen ? "is-open" : ""}`].join(' ')}
           onClick={(e) => onOpenToggle(e)}
         >
-          {placeholder && <span className='placeholder'>{placeholder}</span>}
+          {placeholder && <span className="placeholder">{placeholder}</span>}
           {options.map((option, index) => (
             <div className="selected__label" key={index}>
               <input

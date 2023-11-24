@@ -8,7 +8,7 @@ const SignOut: React.FC = () => {
   const signOut = () => SignOutHelper();
 
   return (
-    <Layout type='auth'>
+    <Layout type="auth">
       <Styled>
         <h1>サインアウト</h1>
         <button onClick={signOut}>Sign Out</button>

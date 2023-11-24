@@ -23,16 +23,16 @@ export const SwitchButtonField: React.ForwardRefRenderFunction<
           className="label"
         >
           <input
-            type={type ? type : "checkbox"}
+            type={type ? type : 'checkbox'}
             id={rest.name + option.value}
             value={option.value}
             ref={ref}
             {...rest}
           />
           <span className="label__text">
-            <span className='circle'></span>
-            <span className='no-active'>{option.label}</span>
-            <span className='actived'>{option.labelActived ? option.labelActived : option.label}</span>
+            <span className="circle"></span>
+            <span className="no-active">{option.label}</span>
+            <span className="actived">{option.labelActived ? option.labelActived : option.label}</span>
           </span>
         </label>
       ))}

@@ -39,11 +39,11 @@ const FormExample: React.FC = () => {
   });
 
   return (
-    <Layout type='example'>
+    <Layout type="example">
       <Styled>
         <h1><span>FormExample<br /><small>：react-hook-form</small></span></h1>
 
-        <div className='clm'>
+        <div className="clm">
           <Input
             type={undefined}
             label={{text: 'Inputラベルテキスト', required: true}}
@@ -61,7 +61,7 @@ const FormExample: React.FC = () => {
           />
         </div>
 
-        <div className='clm'>
+        <div className="clm">
           <CheckBox
             label={{text: 'CheckBoxラベルテキスト', required: true}}
             options={[
@@ -79,7 +79,7 @@ const FormExample: React.FC = () => {
           />
         </div>
         
-        <div className='clm'>
+        <div className="clm">
           <RadioButton
             label={{text: 'RadioButtonラベルテキスト', required: true}}
             options={[
@@ -94,7 +94,7 @@ const FormExample: React.FC = () => {
           />
         </div>
         
-        <div className='clm'>
+        <div className="clm">
           <SwitchButton
             type={undefined}
             label={{text: 'SwitchButtonラベルテキスト', required: true}}
@@ -110,7 +110,7 @@ const FormExample: React.FC = () => {
           />
         </div>
 
-        <div className='clm'>
+        <div className="clm">
           <Select
             label={{text: 'Selectラベルテキスト', required: true}}
             placeholder={'選択してください。'}
@@ -126,7 +126,7 @@ const FormExample: React.FC = () => {
           />
         </div>
 
-        <div className='clm'>
+        <div className="clm">
           <SelectCustom
             label={{text: 'SelectCustomラベルテキスト', required: true}}
             placeholder={'選択してください。'}
@@ -146,7 +146,7 @@ const FormExample: React.FC = () => {
           />
         </div>
 
-        <div className='clm'>
+        <div className="clm">
           <TextArea
             label={{text: 'TextAreaラベルテキスト', required: true}}
             placeholder="入力をお願いします。"
@@ -163,9 +163,9 @@ const FormExample: React.FC = () => {
           />
         </div>
 
-        <div className='clm button-clm'>
+        <div className="clm button-clm">
           <Button
-            type={'secondary'}
+            type="secondary"
             onClick={() => reset()}
             isDisable={false}
           >

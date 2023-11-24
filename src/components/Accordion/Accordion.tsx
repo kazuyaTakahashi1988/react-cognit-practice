@@ -9,9 +9,9 @@ export const Accordion: React.FC<PropsAccordion> = (props): any => {
 
   return (
     <Styled>
-      <div className='accordion'>
+      <div className="accordion">
         <div
-          className={`accordion__title ${isOpen ? "is-open" : ""}`}
+          className={['accordion__title', `${isOpen ? 'is-open' : ''}`].join(' ')}
           onClick={() => setIsOpen(!isOpen)}
         >
           {title}

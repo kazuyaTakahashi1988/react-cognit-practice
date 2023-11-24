@@ -13,11 +13,11 @@ export const Header: React.FC<PropsHeader> = (props): any => {
 
   return (
     <Styled>
-      <h1 className='logo'>
+      <h1 className="logo">
         LOGO
       </h1>
-      <nav className='nav'>
-        <ul className='pc-only'>
+      <nav className="nav">
+        <ul className="pc-only">
           {type === 'example' && <>
             <li>
               <NavLink end to="/example/form_example">
@@ -66,7 +66,7 @@ export const Header: React.FC<PropsHeader> = (props): any => {
           </>}
         </ul>
 
-        <ul className='sp-only'>
+        <ul className="sp-only">
           {type === 'example' && <>
             <li>
               <DropdownMenu

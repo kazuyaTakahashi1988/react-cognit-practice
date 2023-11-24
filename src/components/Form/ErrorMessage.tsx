@@ -7,7 +7,7 @@ export const ErrorMessage: React.FC<PropsErrorMessage> = (props): any => {
 
   return (
     <Styled>
-      {errorMessage && <label className='error'>{errorMessage}</label>}
+      {errorMessage && <label className="error">{errorMessage}</label>}
     </Styled>
   )
 };

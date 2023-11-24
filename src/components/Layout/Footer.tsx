@@ -6,7 +6,7 @@ export const Footer: React.FC = (): any => {
 
   return (
     <Styled>
-      <ul className='nav'>
+      <ul className="nav">
         <li>
           <NavLink to="/example">
             Example

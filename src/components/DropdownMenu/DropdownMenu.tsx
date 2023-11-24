@@ -41,7 +41,7 @@ export const DropdownMenu: React.FC<PropsDropdownMenu> = (props): any => {
 
   return (
     <Styled
-      className='dropdown-menu'
+      className="dropdown-menu"
       ref={dropdownMenuRef}
       onClick={() => setIsOpen(!isOpen)}
     >
@@ -50,11 +50,11 @@ export const DropdownMenu: React.FC<PropsDropdownMenu> = (props): any => {
       <AnimatePresence>
         {isOpen && (
           <motion.ul
-            className={`
-              dropdown-menu__inner
-              ${isClientBottom ? "bottom" : ""}
-              ${isClientLeft ? "left" : ""}
-            `}
+            className={[
+              `dropdown-menu__inner`,
+              `${isClientBottom ? 'bottom' : ''}`,
+              `${isClientLeft ? 'left' : ''}`
+            ].join(' ')}
             ref={dropdownMenuInnerRef}
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}

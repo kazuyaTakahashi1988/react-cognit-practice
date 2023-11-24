@@ -8,7 +8,7 @@ export const Label: React.FC<PropsLabel> = (props): any => {
   return (
     <Styled>
       {label && 
-        <label className='label-text'>
+        <label className="label-text">
           {label.text}
           {label.required && <span>*</span>}
         </label>

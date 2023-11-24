@@ -7,11 +7,11 @@ import DropdownMenu from '../../../components/DropdownMenu/DropdownMenu';
 const DropdownMenuExample: React.FC = () => {
 
   return (
-    <Layout type='example'>
+    <Layout type="example">
       <Styled>
         <h1><span>DropdownMenuExample</span></h1>
 
-        <div className='clm'>
+        <div className="clm">
           <DropdownMenu
             menuList={[
               {text: 'Menu_A_01Menu_A_01Menu_A_01Menu_A_01Menu_A_01Menu_A_01Menu_A_01Menu_A_01', onClick: () => alert('01 onClicked !!')},
@@ -23,7 +23,7 @@ const DropdownMenuExample: React.FC = () => {
           </DropdownMenu>
         </div>
 
-        <div className='clm right'>
+        <div className="clm right">
           <DropdownMenu
             menuList={[
               {text: 'Menu_B_01', onClick: () => alert('01 onClicked !!')},
@@ -35,7 +35,7 @@ const DropdownMenuExample: React.FC = () => {
           </DropdownMenu>
         </div>
 
-        <div className='clm'>
+        <div className="clm">
           <DropdownMenu
             menuList={[
               {text: 'Menu_C_01', onClick: () => alert('01 onClicked !!')},
@@ -47,7 +47,7 @@ const DropdownMenuExample: React.FC = () => {
           </DropdownMenu>
         </div>
 
-        <div className='clm right'>
+        <div className="clm right">
           <DropdownMenu
             menuList={[
               {text: 'Menu_D_01', onClick: () => alert('01 onClicked !!')},
