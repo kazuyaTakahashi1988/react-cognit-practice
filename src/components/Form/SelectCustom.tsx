@@ -146,15 +146,21 @@ const Styled = styled.div`
         height: 0px;
         > input {
           position: absolute;
+          top: 0;
+          left: 0;
+          width: 0px;
+          height: 0px;
           white-space: nowrap;
-          width: 1px;
-          height: 1px;
+          width: 0px;
+          height: 0px;
           overflow: hidden;
           border: 0;
           padding: 0;
           clip: rect(0 0 0 0);
           clip-path: inset(50%);
           margin: -1px;
+          pointer-events: none;
+          opacity: 0;
           &:checked + span {
             display: block;
           }
