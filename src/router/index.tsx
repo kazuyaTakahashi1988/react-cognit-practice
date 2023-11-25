@@ -1,6 +1,11 @@
 import { Routes, Route, Navigate } from 'react-router-dom';
 
 /* -----------------------------------
+ * サインイン 済 or 未 フラグ 
+ * -------------------------------- */
+import { GetSignInFlag } from '../utils/Auth'
+
+/* -----------------------------------
  * VIEWS コンポーネント
  * -------------------------------- */
 import SignUp from '../views/Auth/SignUp'
@@ -15,12 +20,31 @@ import DropdownMenuExample from '../views/Example/DropdownMenuExample'
 export function Router() {
   return (
     <Routes>
-      <Route path="/" element={<Navigate to="/example/form_example" replace />} />
-      <Route path="/auth" element={<Navigate to="/auth/signin" replace />} />
-      <Route path="/auth/signin" element={<SignIn />} />
-      <Route path="/auth/signup" element={<SignUp />} />
-      <Route path="/auth/signout" element={<SignOut />} />
-      <Route path="/auth/verification" element={<Verification />} />
+      { GetSignInFlag() ?
+        <>
+          {
+            /* -----------------------------------
+             * ルーター設定（サインイン 済）
+             * -------------------------------- */
+          }
+          <Route path="/" element={<Navigate to="/auth/signout" replace />} />
+          <Route path="/auth" element={<Navigate to="/auth/signout" replace />} />
+          <Route path="/auth/signout" element={<SignOut />} />
+        </>
+        :
+        <>
+          {
+            /* -----------------------------------
+             * ルーター設定（サインイン 未）
+             * -------------------------------- */
+          }
+          <Route path="/" element={<Navigate to="/example/form_example" replace />} />
+          <Route path="/auth" element={<Navigate to="/auth/signin" replace />} />
+          <Route path="/auth/signin" element={<SignIn />} />
+          <Route path="/auth/signup" element={<SignUp />} />
+          <Route path="/auth/verification" element={<Verification />} />
+      </>
+      }
       <Route path="/example" element={<Navigate to="/example/form_example" replace />} />
       <Route path="/example/form_example" element={<FormExample />} />
       <Route path="/example/modal_example" element={<ModalExample />} />
