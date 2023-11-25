@@ -1,5 +1,4 @@
 import type { Meta, StoryObj } from '@storybook/react';
-import "../../App.css";
 import "../assets/storybook.css";
 
 import { TextArea } from '../../components/Form/TextArea';
@@ -37,7 +36,7 @@ export const Default: Story = {
   args: {
     label: {text: 'TextAreaラベルテキスト', required: false},
     placeholder: '入力をお願いします。',
-    errors: undefined,
+    errors: [],
   },
 };
 
@@ -45,6 +44,6 @@ export const Required: Story = {
   args: {
     label: {text: 'TextAreaラベルテキスト', required: true},
     placeholder: '入力をお願いします。',
-    errors: undefined,
+    errors: [],
   },
 };

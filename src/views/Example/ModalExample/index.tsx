@@ -53,7 +53,7 @@ const ModalExample: React.FC = () => {
             <Button
               type={undefined}
               onClick={undefined}
-              isDisable={true}
+              isDisable
             >
               モーダルを開く03
             </Button>

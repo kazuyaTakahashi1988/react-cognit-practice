@@ -1,5 +1,4 @@
 import type { Meta, StoryObj } from '@storybook/react';
-import "../../App.css";
 import "../assets/storybook.css";
 
 import { Label } from '../../components/Form/Label';

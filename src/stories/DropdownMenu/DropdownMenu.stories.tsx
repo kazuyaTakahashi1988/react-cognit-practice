@@ -1,5 +1,4 @@
 import type { Meta, StoryObj } from '@storybook/react';
-import "../../App.css";
 import "../assets/storybook.css";
 
 import { DropdownMenu } from '../../components/DropdownMenu/DropdownMenu';
@@ -22,7 +21,7 @@ const meta = {
   decorators: [
     (Story) => (
       <div style={{
-        width: '100%',
+        width: '700px',
         height: '170px',
         textAlign: 'center',
       }}>
@@ -54,7 +53,7 @@ export const ButtonClick: Story = {
       {text: 'Menu_03', onClick: () => alert('03 onClicked !!')}
     ],
     children: 
-      <Button type={undefined} onClick={undefined} isDisable={false}>
+      <Button type="" onClick={[]} isDisable={false}>
         メニューを開くよ！
       </Button>,
   },
@@ -68,7 +67,7 @@ export const Left: Story = {
       {text: 'Menu_03', onClick: () => alert('03 onClicked !!')}
     ],
     children: 
-      <Button type={undefined} onClick={undefined} isDisable={false}>
+      <Button type="" onClick={[]} isDisable={false}>
         メニューを開くよ！
       </Button>,
   },
@@ -91,7 +90,7 @@ export const Right: Story = {
       {text: 'Menu_03', onClick: () => alert('03 onClicked !!')}
     ],
     children: 
-      <Button type={undefined} onClick={undefined} isDisable={false}>
+      <Button type="" onClick={[]} isDisable={false}>
         メニューを開くよ！
       </Button>,
   },
@@ -106,7 +105,7 @@ export const Right: Story = {
   ],
 };
 
-export const LeftBottom: Story = {
+export const Bottom: Story = {
   args: {
     menuList: [
       {text: 'Menu_01', onClick: () => alert('01 onClicked !!')},
@@ -114,7 +113,7 @@ export const LeftBottom: Story = {
       {text: 'Menu_03', onClick: () => alert('03 onClicked !!')}
     ],
     children: 
-      <Button type={undefined} onClick={undefined} isDisable={false}>
+      <Button type="" onClick={[]} isDisable={false}>
         メニューを開くよ！
       </Button>,
   },
@@ -122,33 +121,7 @@ export const LeftBottom: Story = {
     (Story) => (
       <div style={{
         display: 'flex',
-        justifyContent: 'left',
-        alignItems: 'flex-end',
-        height: '100%',
-      }}>
-        <Story />
-      </div>
-    ),
-  ],
-};
-
-export const RightBottom: Story = {
-  args: {
-    menuList: [
-      {text: 'Menu_01', onClick: () => alert('01 onClicked !!')},
-      {text: 'Menu_02', onClick: () => alert('02 onClicked !!')},
-      {text: 'Menu_03', onClick: () => alert('03 onClicked !!')}
-    ],
-    children: 
-      <Button type={undefined} onClick={undefined} isDisable={false}>
-        メニューを開くよ！
-      </Button>,
-  },
-  decorators: [
-    (Story) => (
-      <div style={{
-        display: 'flex',
-        justifyContent: 'right',
+        justifyContent: 'center',
         alignItems: 'flex-end',
         height: '100%',
       }}>

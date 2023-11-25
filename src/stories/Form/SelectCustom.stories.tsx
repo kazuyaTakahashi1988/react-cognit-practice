@@ -1,5 +1,4 @@
 import type { Meta, StoryObj } from '@storybook/react';
-import "../../App.css";
 import "../assets/storybook.css";
 
 import { SelectCustom } from '../../components/Form/SelectCustom';
@@ -51,7 +50,7 @@ export const Default: Story = {
       {value: 'Select_Value_G', label: 'Select_Label_G'}
     ],
     placeholder: '選択してください。',
-    errors: undefined,
+    errors: [],
   },
 };
 
@@ -68,6 +67,6 @@ export const Required: Story = {
       {value: 'Select_Value_G', label: 'Select_Label_G'}
     ],
     placeholder: '選択してください。',
-    errors: undefined,
+    errors: [],
   },
 };

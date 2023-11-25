@@ -1,5 +1,4 @@
 import type { Meta, StoryObj } from '@storybook/react';
-import "../../App.css";
 import "../assets/storybook.css";
 
 import { CheckBox } from '../../components/Form/CheckBox';
@@ -35,7 +34,7 @@ export const Default: Story = {
       {value: 'Check_Value_B', label: 'Check_Label_B'},
       {value: 'Check_Value_C', label: 'Check_Label_C'}
     ],
-    errors: undefined,
+    errors: [],
   },
 };
 
@@ -47,6 +46,6 @@ export const Required: Story = {
       {value: 'Check_Value_B', label: 'Check_Label_B'},
       {value: 'Check_Value_C', label: 'Check_Label_C'}
     ],
-    errors: undefined,
+    errors: [],
   },
 };

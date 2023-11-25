@@ -1,5 +1,4 @@
 import type { Meta, StoryObj } from '@storybook/react';
-import "../../App.css";
 import "../assets/storybook.css";
 
 import { SwitchButton } from '../../components/Form/SwitchButton';
@@ -31,26 +30,26 @@ type Story = StoryObj<typeof meta>;
 
 export const Default: Story = {
   args: {
-    type: undefined,
+    type: '',
     label: {text: 'SwitchButtonラベルテキスト', required: false},
     options: [
       {value: 'Switch_Value_A', label: 'noActive_A', labelActived: 'Actived_A'},
       {value: 'Switch_Value_B', label: 'noActive_B', labelActived: 'Actived_B'},
       {value: 'Switch_Value_C', label: '----------', labelActived: undefined}
     ],
-    errors: undefined,
+    errors: [],
   },
 };
 
 export const Required: Story = {
   args: {
-    type: undefined,
+    type: '',
     label: {text: 'SwitchButtonラベルテキスト', required: true},
     options: [
       {value: 'Switch_Value_A', label: 'noActive_A', labelActived: 'Actived_A'},
       {value: 'Switch_Value_B', label: 'noActive_B', labelActived: 'Actived_B'},
       {value: 'Switch_Value_C', label: '----------', labelActived: undefined}
     ],
-    errors: undefined,
+    errors: [],
   },
 };

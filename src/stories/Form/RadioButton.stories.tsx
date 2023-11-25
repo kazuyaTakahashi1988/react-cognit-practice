@@ -1,5 +1,4 @@
 import type { Meta, StoryObj } from '@storybook/react';
-import "../../App.css";
 import "../assets/storybook.css";
 
 import { RadioButton } from '../../components/Form/RadioButton';
@@ -35,7 +34,7 @@ export const Default: Story = {
       {value: 'Radio_Value_B', label: 'Radio_Label_B'},
       {value: 'Radio_Value_C', label: 'Radio_Label_C'}
     ],
-    errors: undefined,
+    errors: [],
   },
 };
 
@@ -47,6 +46,6 @@ export const Required: Story = {
       {value: 'Radio_Value_B', label: 'Radio_Label_B'},
       {value: 'Radio_Value_C', label: 'Radio_Label_C'}
     ],
-    errors: undefined,
+    errors: [],
   },
 };

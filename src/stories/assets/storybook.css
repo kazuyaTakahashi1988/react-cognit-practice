@@ -1,5 +1,19 @@
-.sbdocs-wrapper {
-  height: calc(100vh);
-  padding-bottom: 50px;
-  overflow: scroll;
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;900&display=swap');
+body {
+  letter-spacing: 1px;
+  word-break: break-all;
+  line-break: strict;
+  overflow-wrap: break-word;
+  word-wrap: break-word;
+  font-size: 16px;
+  line-height: 200%;
+  font-family: 'Noto Sans JP', serif;
+}
+
+/* List_group */
+ul,ol,li { list-style: none;}
+
+*, *:before, *:after {
+  outline: none!important;
+  box-sizing: border-box;
 }
