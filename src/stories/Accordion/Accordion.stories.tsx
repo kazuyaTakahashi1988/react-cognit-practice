@@ -1,4 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/react';
+import "../../App.css";
+import "../assets/storybook.css";
 
 import { Accordion } from '../../components/Accordion/Accordion';
 import { Button } from '../../components/Button/Button';

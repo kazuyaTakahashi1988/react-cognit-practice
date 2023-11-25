@@ -1,5 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/react';
 import "../../App.css";
+import "../assets/storybook.css";
 
 import { TextArea } from '../../components/Form/TextArea';
 
