@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react';
-import "../assets/storybook.css";
+import "../../../.storybook/storybook.css";
 
 import { CheckBox } from '../../components/Form/CheckBox';
 

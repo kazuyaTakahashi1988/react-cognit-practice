@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react';
-import "../assets/storybook.css";
+import "../../../.storybook/storybook.css";
 
 import { DropdownMenu } from '../../components/DropdownMenu/DropdownMenu';
 import { Button } from '../../components/Button/Button';
@@ -53,7 +53,7 @@ export const ButtonClick: Story = {
       {text: 'Menu_03', onClick: () => alert('03 onClicked !!')}
     ],
     children: 
-      <Button type="" onClick={[]} isDisable={false}>
+      <Button type="" onClick={() => {}} isDisable={false}>
         メニューを開くよ！
       </Button>,
   },
@@ -67,7 +67,7 @@ export const Left: Story = {
       {text: 'Menu_03', onClick: () => alert('03 onClicked !!')}
     ],
     children: 
-      <Button type="" onClick={[]} isDisable={false}>
+      <Button type="" onClick={() => {}} isDisable={false}>
         メニューを開くよ！
       </Button>,
   },
@@ -90,7 +90,7 @@ export const Right: Story = {
       {text: 'Menu_03', onClick: () => alert('03 onClicked !!')}
     ],
     children: 
-      <Button type="" onClick={[]} isDisable={false}>
+      <Button type="" onClick={() => {}} isDisable={false}>
         メニューを開くよ！
       </Button>,
   },
@@ -113,7 +113,7 @@ export const Bottom: Story = {
       {text: 'Menu_03', onClick: () => alert('03 onClicked !!')}
     ],
     children: 
-      <Button type="" onClick={[]} isDisable={false}>
+      <Button type="" onClick={() => {}} isDisable={false}>
         メニューを開くよ！
       </Button>,
   },

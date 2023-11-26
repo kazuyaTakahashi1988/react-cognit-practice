@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react';
-import "../assets/storybook.css";
+import "../../../.storybook/storybook.css";
 
 import { Modal } from '../../components/Modal/Modal';
 import { Button } from '../../components/Button/Button';
@@ -59,7 +59,7 @@ export const ButtonClick: Story = {
       onClick: () => alert('onClicked !!')
     },
     children: 
-      <Button type="" onClick={[]} isDisable={false}>
+      <Button type="" onClick={() => {}} isDisable={false}>
         モーダルを開くよ！
       </Button>,
   },
@@ -74,7 +74,7 @@ export const LongText: Story = {
       onClick: () => alert('onClicked !!')
     },
     children: 
-      <Button type="secondary" onClick={[]} isDisable={false}>
+      <Button type="secondary" onClick={() => {}} isDisable={false}>
         モーダルを開くよ！
       </Button>,
   },
