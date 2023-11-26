@@ -1,5 +1,4 @@
 import type { Meta, StoryObj } from '@storybook/react';
-import "../../../.storybook/storybook.css";
 
 import { RadioButton } from '../../components/Form/RadioButton';
 

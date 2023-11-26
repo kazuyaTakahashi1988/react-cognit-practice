@@ -1,5 +1,4 @@
 import type { Meta, StoryObj } from '@storybook/react';
-import "../../../.storybook/storybook.css";
 
 import { DropdownMenu } from '../../components/DropdownMenu/DropdownMenu';
 import { Button } from '../../components/Button/Button';

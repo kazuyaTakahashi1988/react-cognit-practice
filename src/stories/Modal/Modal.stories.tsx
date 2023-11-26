@@ -1,5 +1,4 @@
 import type { Meta, StoryObj } from '@storybook/react';
-import "../../../.storybook/storybook.css";
 
 import { Modal } from '../../components/Modal/Modal';
 import { Button } from '../../components/Button/Button';
