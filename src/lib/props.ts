@@ -163,6 +163,7 @@ export type PropsModal = {
     onClick?: any,
   } | undefined;
   children?: any;
+  initOpen: boolean;
 };
 
 // Accordion

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import styled from 'styled-components'
 import { PropsAccordion } from '../../lib/props';
@@ -7,6 +7,10 @@ export const Accordion: React.FC<PropsAccordion> = (props): any => {
   const { title, initOpen, children } = props;
   const [isOpen, setIsOpen] = useState(initOpen);
 
+  useEffect(() => {
+    setIsOpen(initOpen)
+  }, [initOpen])
+  
   return (
     <Styled>
       <div className="accordion">

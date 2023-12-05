@@ -18,6 +18,7 @@ const meta = {
       onClick?: any,
     }>,
     children: Object,
+    initOpen: Boolean,
   },
   decorators: [
     (Story) => (
@@ -46,6 +47,7 @@ export const Default: Story = {
       onClick: () => alert('onClicked !!')
     },
     children: 'モーダルを開くよ！',
+    initOpen: false,
   },
 };
 
@@ -61,6 +63,7 @@ export const ButtonClick: Story = {
       <Button type="" onClick={() => {}} isDisable={false}>
         モーダルを開くよ！
       </Button>,
+    initOpen: false,
   },
 };
 
@@ -76,5 +79,6 @@ export const LongText: Story = {
       <Button type="secondary" onClick={() => {}} isDisable={false}>
         モーダルを開くよ！
       </Button>,
+    initOpen: false,
   },
 };

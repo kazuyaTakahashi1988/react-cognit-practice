@@ -1,32 +1,27 @@
-import React, { useState, useEffect, useCallback } from 'react';
+import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import styled from 'styled-components'
 import { PropsModal } from '../../lib/props';
 import Button from '../../components/Button/Button';
 
 export const Modal: React.FC<PropsModal> = (props): any => {
-  const { children, title, text, button } = props;
-  const [isOpen, setIsOpen] = useState(false)
+  const { children, title, text, button, initOpen } = props;
+  const [isOpen, setIsOpen] = useState(initOpen);
 
-  const onOpen = (e: any) => {
+  const onOpen = () => {
     setIsOpen(true)
-    document.addEventListener('click', onClose)
-    e.stopPropagation()
   }
 
-  const onClose = useCallback(() => {
+  const onClose = () => {
     setIsOpen(false)
-    document.removeEventListener('click', onClose)
-  }, [])
+  }
 
   useEffect(() => {
-    return () => {
-      document.removeEventListener('click', onClose)
-    }
-  }, [onClose])
+    setIsOpen(initOpen)
+  }, [initOpen])
 
   return <>
-    <Styled onClick={(e) => { !isOpen ? onOpen(e) : onClose() }}>
+    <Styled onClick={() => { !isOpen ? onOpen() : onClose() }}>
       {children}
     </Styled>
 
@@ -39,6 +34,7 @@ export const Modal: React.FC<PropsModal> = (props): any => {
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -40 }}
             transition={{ duration: 0.2, ease: 'easeInOut' }}
+            onClick={onClose}
           >
             <div className="modal__inner" onClick={(e) => { e.stopPropagation() }}>
               <div className="modal__header">
