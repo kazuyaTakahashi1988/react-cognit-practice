@@ -1,14 +1,14 @@
-import type { Meta, StoryObj } from '@storybook/react';
+import type { Meta, StoryObj } from "@storybook/react";
 
-import { ErrorMessage } from '../../components/Form/ErrorMessage';
+import { ErrorMessage } from "../../components/Form/ErrorMessage";
 
 const meta = {
-  title: 'Form/ErrorMessage',
+  title: "Form/ErrorMessage",
   component: ErrorMessage,
   parameters: {
-    layout: 'centered',
+    layout: "centered",
   },
-  tags: ['autodocs'],
+  tags: ["autodocs"],
   argTypes: {
     errorMessage: String,
   },
@@ -19,6 +19,6 @@ type Story = StoryObj<typeof meta>;
 
 export const Default: Story = {
   args: {
-    errorMessage: 'エラーメッセージ'
+    errorMessage: "エラーメッセージ",
   },
 };

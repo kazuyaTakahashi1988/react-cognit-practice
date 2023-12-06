@@ -1,15 +1,15 @@
-import React, { forwardRef } from 'react';
-import styled from 'styled-components'
-import { PropsCheckBox } from '../../lib/props';
-import { Label } from './Label';
-import { ErrorMessage } from './ErrorMessage';
+import React, { forwardRef } from "react";
+import styled from "styled-components";
+import { PropsCheckBox } from "../../lib/props";
+import { Label } from "./Label";
+import { ErrorMessage } from "./ErrorMessage";
 
 type Props = React.InputHTMLAttributes<HTMLInputElement> & PropsCheckBox;
 
 export const CheckBoxField: React.ForwardRefRenderFunction<
   HTMLInputElement,
   Props
-> = (props, ref): any => {
+> = (props, ref) => {
   const { label, options, errors, ...rest } = props;
 
   return (
@@ -17,11 +17,7 @@ export const CheckBoxField: React.ForwardRefRenderFunction<
       {label && <Label label={label} />}
 
       {options.map((option, index) => (
-        <label
-          htmlFor={rest.name + option.value}
-          key={index}
-          className="label"
-        >
+        <label htmlFor={rest.name + option.value} key={index} className="label">
           <input
             type="checkbox"
             id={rest.name + option.value}
@@ -29,17 +25,20 @@ export const CheckBoxField: React.ForwardRefRenderFunction<
             ref={ref}
             {...rest}
           />
-          <span className="label__text">
-            {option.label}
-          </span>
+          <span className="label__text">{option.label}</span>
         </label>
       ))}
 
-      {errors && Object.values(errors).map((error, index) => {
-        return error.ref.name === rest.name && <ErrorMessage key={index} errorMessage={error.message} />
-      })}
+      {errors &&
+        Object.values(errors).map((error, index) => {
+          return (
+            error.ref.name === rest.name && (
+              <ErrorMessage key={index} errorMessage={error.message} />
+            )
+          );
+        })}
     </Styled>
-  )
+  );
 };
 
 const Styled = styled.div`

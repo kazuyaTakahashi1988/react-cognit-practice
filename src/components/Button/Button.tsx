@@ -1,20 +1,20 @@
-import React from 'react';
-import styled from 'styled-components'
-import { PropsButton } from '../../lib/props';
+import React from "react";
+import styled from "styled-components";
+import { PropsButton } from "../../lib/props";
 
-export const Button: React.FC<PropsButton> = (props): any => {
-  const { type, onClick, isDisable, children  } = props;
+export const Button: React.FC<PropsButton> = (props) => {
+  const { type, onClick, isDisable, children } = props;
 
   return (
     <Styled
       type="button"
-      className={[`${type ? type : 'primary'}`].join(' ')}
+      className={[`${type ? type : "primary"}`].join(" ")}
       onClick={onClick}
       disabled={isDisable}
     >
       {children}
     </Styled>
-  )
+  );
 };
 
 const Styled = styled.button`
@@ -40,8 +40,8 @@ const Styled = styled.button`
     background: #fff;
     box-shadow: 0 0 0 1px #ccc;
   }
-  &:disabled{
-    cursor:not-allowed;
+  &:disabled {
+    cursor: not-allowed;
     background: #ccc;
     color: #666;
     &:hover {

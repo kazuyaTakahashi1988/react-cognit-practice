@@ -1,32 +1,33 @@
-import React, { forwardRef } from 'react';
-import styled from 'styled-components'
-import { PropsTextArea } from '../../lib/props';
-import { Label } from './Label';
-import { ErrorMessage } from './ErrorMessage';
+import React, { forwardRef } from "react";
+import styled from "styled-components";
+import { PropsTextArea } from "../../lib/props";
+import { Label } from "./Label";
+import { ErrorMessage } from "./ErrorMessage";
 
 type Props = React.TextareaHTMLAttributes<HTMLTextAreaElement> & PropsTextArea;
 
 export const TextAreaField: React.ForwardRefRenderFunction<
   HTMLTextAreaElement,
   Props
-> = (props, ref): any => {
+> = (props, ref) => {
   const { label, placeholder, errors, ...rest } = props;
 
   return (
     <Styled>
       {label && <Label label={label} />}
 
-      <textarea
-        placeholder={placeholder}
-        ref={ref}
-        {...rest}
-      ></textarea>
+      <textarea placeholder={placeholder} ref={ref} {...rest}></textarea>
 
-      {errors && Object.values(errors).map((error, index) => {
-        return error.ref.name === rest.name && <ErrorMessage key={index} errorMessage={error.message} />
-      })}
+      {errors &&
+        Object.values(errors).map((error, index) => {
+          return (
+            error.ref.name === rest.name && (
+              <ErrorMessage key={index} errorMessage={error.message} />
+            )
+          );
+        })}
     </Styled>
-  )
+  );
 };
 
 const Styled = styled.div`
@@ -46,7 +47,9 @@ const Styled = styled.div`
       outline: 0;
       box-shadow: 0 0 0 1px rgb(33, 150, 243);
     }
-    &::placeholder { color: #666; }
+    &::placeholder {
+      color: #666;
+    }
   }
 `;
 

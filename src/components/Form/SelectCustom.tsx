@@ -1,20 +1,28 @@
-import React, { forwardRef, useState, useEffect, useRef, createRef, RefObject } from 'react';
-import styled from 'styled-components'
-import { motion, AnimatePresence } from 'framer-motion';
-import { PropsSelectCustom } from '../../lib/props';
-import { Label } from './Label';
-import { ErrorMessage } from './ErrorMessage';
+import React, {
+  forwardRef,
+  useState,
+  useEffect,
+  useRef,
+  createRef,
+  RefObject,
+} from "react";
+import styled from "styled-components";
+import { motion, AnimatePresence } from "framer-motion";
+import { PropsSelectCustom } from "../../lib/props";
+import { Label } from "./Label";
+import { ErrorMessage } from "./ErrorMessage";
 
 type Props = React.InputHTMLAttributes<HTMLInputElement> & PropsSelectCustom;
 
 export const SelectCustomField: React.ForwardRefRenderFunction<
   HTMLInputElement,
   Props
-> = (props, ref): any => {
+> = (props, ref) => {
   const { label, options, placeholder, errors, ...rest } = props;
 
   const [isOpen, setIsOpen] = useState(false);
   const selectRef = useRef<HTMLDivElement>(null);
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const handleOutsideClick = (e: any) => {
     if (selectRef?.current && !selectRef?.current.contains(e.target)) {
       setIsOpen(false);
@@ -30,13 +38,14 @@ export const SelectCustomField: React.ForwardRefRenderFunction<
   options.forEach((_, index) => {
     labelRefs.current[index] = createRef<HTMLLabelElement>();
   });
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const onOpenToggle = (e: any) => {
-    setSelectedIndex(e.target.getAttribute('data-selected-index'));
+    setSelectedIndex(e.target.getAttribute("data-selected-index"));
     setIsOpen(!isOpen);
-  }
+  };
   useEffect(() => {
     if (selectedIndex !== null) {
-      labelRefs.current[selectedIndex].current?.classList.add('current');
+      labelRefs.current[selectedIndex].current?.classList.add("current");
     }
   }, [selectedIndex, isOpen]);
 
@@ -46,7 +55,7 @@ export const SelectCustomField: React.ForwardRefRenderFunction<
 
       <div className="select" ref={selectRef}>
         <div
-          className={[`selected` ,`${isOpen ? "is-open" : ""}`].join(' ')}
+          className={[`selected`, `${isOpen ? "is-open" : ""}`].join(" ")}
           onClick={(e) => onOpenToggle(e)}
         >
           {placeholder && <span className="placeholder">{placeholder}</span>}
@@ -59,21 +68,19 @@ export const SelectCustomField: React.ForwardRefRenderFunction<
                 ref={ref}
                 {...rest}
               />
-              <span data-selected-index={index}>
-                {option.label}
-              </span>
+              <span data-selected-index={index}>{option.label}</span>
             </div>
           ))}
         </div>
 
         <AnimatePresence>
-          {isOpen &&
+          {isOpen && (
             <motion.div
               className="select-box"
               initial={{ height: 0 }}
-              animate={{ height: '150px' }}
+              animate={{ height: "150px" }}
               exit={{ height: 0 }}
-              transition={{ duration: 0.2, ease: 'easeOut' }}
+              transition={{ duration: 0.2, ease: "easeOut" }}
             >
               {options.map((option, index) => (
                 <label
@@ -86,15 +93,20 @@ export const SelectCustomField: React.ForwardRefRenderFunction<
                 </label>
               ))}
             </motion.div>
-          }
+          )}
         </AnimatePresence>
       </div>
 
-      {errors && Object.values(errors).map((error, index) => {
-        return error.ref.name === rest.name && <ErrorMessage key={index} errorMessage={error.message} />
-      })}
+      {errors &&
+        Object.values(errors).map((error, index) => {
+          return (
+            error.ref.name === rest.name && (
+              <ErrorMessage key={index} errorMessage={error.message} />
+            )
+          );
+        })}
     </Styled>
-  )
+  );
 };
 
 const Styled = styled.div`
@@ -192,7 +204,10 @@ const Styled = styled.div`
       margin: auto;
       border-radius: 0 0 4px 4px;
       border: none;
-      box-shadow: 0 1px 0 0 #ccc, 1px 0 0 0 #ccc, -1px 0 0 0 #ccc;
+      box-shadow:
+        0 1px 0 0 #ccc,
+        1px 0 0 0 #ccc,
+        -1px 0 0 0 #ccc;
       width: 100%;
       background: #fff;
       overflow-y: auto;

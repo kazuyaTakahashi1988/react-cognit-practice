@@ -1,73 +1,78 @@
-import React, { useState, useEffect } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
-import styled from 'styled-components'
-import { PropsModal } from '../../lib/props';
-import Button from '../../components/Button/Button';
+import React, { useState, useEffect } from "react";
+import { motion, AnimatePresence } from "framer-motion";
+import styled from "styled-components";
+import { PropsModal } from "../../lib/props";
+import Button from "../../components/Button/Button";
 
-export const Modal: React.FC<PropsModal> = (props): any => {
+export const Modal: React.FC<PropsModal> = (props) => {
   const { children, title, text, button, initOpen } = props;
   const [isOpen, setIsOpen] = useState(initOpen);
 
   const onOpen = () => {
-    setIsOpen(true)
-  }
+    setIsOpen(true);
+  };
 
   const onClose = () => {
-    setIsOpen(false)
-  }
+    setIsOpen(false);
+  };
 
   useEffect(() => {
-    setIsOpen(initOpen)
-  }, [initOpen])
+    setIsOpen(initOpen);
+  }, [initOpen]);
 
-  return <>
-    <Styled onClick={() => { !isOpen ? onOpen() : onClose() }}>
-      {children}
-    </Styled>
+  return (
+    <>
+      <Styled
+        onClick={() => {
+          !isOpen ? onOpen() : onClose();
+        }}
+      >
+        {children}
+      </Styled>
 
-    <AnimatePresence>
-      {isOpen &&
-        <StyledModal>
-          <motion.div
-            className="modal"
-            initial={{ opacity: 0, y: -40 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -40 }}
-            transition={{ duration: 0.2, ease: 'easeInOut' }}
-            onClick={onClose}
-          >
-            <div className="modal__inner" onClick={(e) => { e.stopPropagation() }}>
-              <div className="modal__header">
-                <p className="title">{title}</p>
-                <span className="close" onClick={onClose}></span>
-              </div>
-              <div className="modal__container">
-                {text}
-              </div>
-              <div className="modal__footer">
-                <Button
-                  type="secondary"
-                  onClick={onClose}
-                  isDisable={false}
-                >
-                  閉じる
-                </Button>
-                {button &&
-                  <Button
-                    type={undefined}
-                    onClick={button.onClick}
-                    isDisable={false}
-                  >
-                    {button.text}
+      <AnimatePresence>
+        {isOpen && (
+          <StyledModal>
+            <motion.div
+              className="modal"
+              initial={{ opacity: 0, y: -40 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -40 }}
+              transition={{ duration: 0.2, ease: "easeInOut" }}
+              onClick={onClose}
+            >
+              <div
+                className="modal__inner"
+                onClick={(e) => {
+                  e.stopPropagation();
+                }}
+              >
+                <div className="modal__header">
+                  <p className="title">{title}</p>
+                  <span className="close" onClick={onClose}></span>
+                </div>
+                <div className="modal__container">{text}</div>
+                <div className="modal__footer">
+                  <Button type="secondary" onClick={onClose} isDisable={false}>
+                    閉じる
                   </Button>
-                }
+                  {button && (
+                    <Button
+                      type={undefined}
+                      onClick={button.onClick}
+                      isDisable={false}
+                    >
+                      {button.text}
+                    </Button>
+                  )}
+                </div>
               </div>
-            </div>
-          </motion.div>
-        </StyledModal>
-      }
-    </AnimatePresence>
-  </>
+            </motion.div>
+          </StyledModal>
+        )}
+      </AnimatePresence>
+    </>
+  );
 };
 
 const Styled = styled.span`
@@ -92,7 +97,7 @@ const StyledModal = styled.span`
       left: 0;
       width: 100%;
       height: calc(100vh + 40px);
-      background: rgba(0,0,0,0.3);
+      background: rgba(0, 0, 0, 0.3);
     }
     &__inner {
       position: fixed;
@@ -135,7 +140,8 @@ const StyledModal = styled.span`
         height: 20px;
         display: block;
         cursor: pointer;
-        &:before, &:after {
+        &:before,
+        &:after {
           content: "";
           display: block;
           width: 2px;

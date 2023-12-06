@@ -1,24 +1,24 @@
-import React from 'react';
-import styled from 'styled-components'
-import { useForm } from 'react-hook-form';
-import { PropsVerification } from '../../../lib/props';
+import React from "react";
+import styled from "styled-components";
+import { useForm } from "react-hook-form";
+import { PropsVerification } from "../../../lib/props";
 
-import Layout from '../../../components/Layout/Layout';
-import Button from '../../../components/Button/Button';
-import Input from '../../../components/Form/Input';
+import Layout from "../../../components/Layout/Layout";
+import Button from "../../../components/Button/Button";
+import Input from "../../../components/Form/Input";
 
-import { VerifyHelper } from '../../../utils/Auth';
+import { VerifyHelper } from "../../../utils/Auth";
 
 const Verification: React.FC = () => {
   const {
     register,
     handleSubmit,
     reset,
-    formState: { errors }
+    formState: { errors },
   } = useForm<PropsVerification>({
     defaultValues: {
-      verificationCode: '',
-      email: '',
+      verificationCode: "",
+      email: "",
     },
   });
 
@@ -35,36 +35,31 @@ const Verification: React.FC = () => {
         <div className="clm">
           <Input
             type="password"
-            label={{text: 'verificationCodeを入力してください', required: true}}
+            label={{
+              text: "verificationCodeを入力してください",
+              required: true,
+            }}
             placeholder="○○○○○○○○"
-            {...register('verificationCode', {required: '必須項目だよ。'})}
+            {...register("verificationCode", { required: "必須項目だよ。" })}
             errors={errors}
           />
         </div>
-        
+
         <div className="clm">
           <Input
             type="email"
-            label={{text: 'emailを入力してください', required: true}}
+            label={{ text: "emailを入力してください", required: true }}
             placeholder="○○○○＠○○○○.com"
-            {...register('email', {required: '必須項目だよ。'})}
+            {...register("email", { required: "必須項目だよ。" })}
             errors={errors}
           />
         </div>
 
         <div className="clm button-clm">
-          <Button
-            type="secondary"
-            onClick={() => reset()}
-            isDisable={false}
-          >
+          <Button type="secondary" onClick={() => reset()} isDisable={false}>
             リセット
           </Button>
-          <Button
-            type={undefined}
-            onClick={() => onSubmit()}
-            isDisable={false}
-          >
+          <Button type={undefined} onClick={() => onSubmit()} isDisable={false}>
             送信する
           </Button>
         </div>
@@ -74,7 +69,7 @@ const Verification: React.FC = () => {
 };
 
 const Styled = styled.div`
-  .clm{
+  .clm {
     margin-top: 30px;
     &.button-clm {
       display: flex;

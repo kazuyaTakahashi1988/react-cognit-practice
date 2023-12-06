@@ -1,9 +1,9 @@
-import React, { useState, useEffect, useRef } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
-import styled from 'styled-components'
-import { PropsDropdownMenu } from '../../lib/props';
+import React, { useState, useEffect, useRef } from "react";
+import { motion, AnimatePresence } from "framer-motion";
+import styled from "styled-components";
+import { PropsDropdownMenu } from "../../lib/props";
 
-export const DropdownMenu: React.FC<PropsDropdownMenu> = (props): any => {
+export const DropdownMenu: React.FC<PropsDropdownMenu> = (props) => {
   const { menuList, children } = props;
 
   const [isOpen, setIsOpen] = useState(false);
@@ -18,21 +18,27 @@ export const DropdownMenu: React.FC<PropsDropdownMenu> = (props): any => {
     return () => document.removeEventListener("click", handleOutsideClick);
   }, []);
 
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const handleOutsideClick = (e: any) => {
-    if (dropdownMenuRef?.current && !dropdownMenuRef?.current.contains(e.target)) {
+    if (
+      dropdownMenuRef?.current &&
+      !dropdownMenuRef?.current.contains(e.target)
+    ) {
       setIsOpen(false);
     }
     e.stopPropagation();
   };
 
   useEffect(() => {
-    if(isOpen) {
+    if (isOpen) {
       const refCurrent = dropdownMenuInnerRef?.current;
       const clientRect = refCurrent?.getBoundingClientRect();
-      const clientBottom = Number(clientRect?.top) + Number(refCurrent?.clientHeight);
-      const clientCenter = Number(clientRect?.left) + (Number(refCurrent?.clientWidth) / 2);
+      const clientBottom =
+        Number(clientRect?.top) + Number(refCurrent?.clientHeight);
+      const clientCenter =
+        Number(clientRect?.left) + Number(refCurrent?.clientWidth) / 2;
       setIsClientBottom(window.innerHeight < clientBottom);
-      setIsClientLeft((window.innerWidth / 2) > clientCenter);
+      setIsClientLeft(window.innerWidth / 2 > clientCenter);
     } else {
       setIsClientBottom(false);
       setIsClientLeft(false);
@@ -52,15 +58,17 @@ export const DropdownMenu: React.FC<PropsDropdownMenu> = (props): any => {
           <motion.ul
             className={[
               `dropdown-menu__inner`,
-              `${isClientBottom ? 'bottom' : ''}`,
-              `${isClientLeft ? 'left' : ''}`
-            ].join(' ')}
+              `${isClientBottom ? "bottom" : ""}`,
+              `${isClientLeft ? "left" : ""}`,
+            ].join(" ")}
             ref={dropdownMenuInnerRef}
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            transition={{ duration: 0.1, ease: 'easeInOut'}}
-            onClick={(e) => { e.stopPropagation() }}
+            transition={{ duration: 0.1, ease: "easeInOut" }}
+            onClick={(e) => {
+              e.stopPropagation();
+            }}
           >
             {menuList.map((menu, index) => (
               <li onClick={menu.onClick} key={index}>
@@ -71,7 +79,7 @@ export const DropdownMenu: React.FC<PropsDropdownMenu> = (props): any => {
         )}
       </AnimatePresence>
     </Styled>
-  )
+  );
 };
 
 const Styled = styled.span`
@@ -92,7 +100,7 @@ const Styled = styled.span`
       filter: drop-shadow(0px 0px 5px #ccc);
       cursor: initial;
       &::before {
-        content: '';
+        content: "";
         position: absolute;
         width: 16px;
         height: 14px;

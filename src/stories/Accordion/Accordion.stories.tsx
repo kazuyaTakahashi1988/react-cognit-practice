@@ -1,14 +1,14 @@
-import type { Meta, StoryObj } from '@storybook/react';
+import type { Meta, StoryObj } from "@storybook/react";
 
-import { Accordion } from '../../components/Accordion/Accordion';
+import { Accordion } from "../../components/Accordion/Accordion";
 
 const meta = {
-  title: 'Accordion/Accordion',
+  title: "Accordion/Accordion",
   component: Accordion,
   parameters: {
-    layout: 'centered',
+    layout: "centered",
   },
-  tags: ['autodocs'],
+  tags: ["autodocs"],
   argTypes: {
     title: String,
     children: Object,
@@ -16,9 +16,11 @@ const meta = {
   },
   decorators: [
     (Story) => (
-      <div style={{
-        width: '500px',
-      }}>
+      <div
+        style={{
+          width: "500px",
+        }}
+      >
         <Story />
       </div>
     ),
@@ -30,16 +32,18 @@ type Story = StoryObj<typeof meta>;
 
 export const Default: Story = {
   args: {
-    title: 'アコーディオンを開くよ！',
-    children: 'ダミーテキスト・ダミーテキスト・ダミーテキスト・ダミーテキスト・ダミーテキスト・ダミーテキスト・ダミーテキスト・ダミーテキスト・ダミーテキスト・ダミーテキスト・ダミーテキスト・ダミーテキスト・ダミーテキスト・ダミーテキスト・ダミーテキスト・ダミーテキスト・ダミーテキスト・ダミーテキスト・ダミーテキスト・ダミーテキスト',
+    title: "アコーディオンを開くよ！",
+    children:
+      "ダミーテキスト・ダミーテキスト・ダミーテキスト・ダミーテキスト・ダミーテキスト・ダミーテキスト・ダミーテキスト・ダミーテキスト・ダミーテキスト・ダミーテキスト・ダミーテキスト・ダミーテキスト・ダミーテキスト・ダミーテキスト・ダミーテキスト・ダミーテキスト・ダミーテキスト・ダミーテキスト・ダミーテキスト・ダミーテキスト",
     initOpen: false,
   },
 };
 
 export const DefaultOpen: Story = {
   args: {
-    title: 'アコーディオンを開くよ！',
-    children: 'ダミーテキスト・ダミーテキスト・ダミーテキスト・ダミーテキスト・ダミーテキスト・ダミーテキスト・ダミーテキスト・ダミーテキスト・ダミーテキスト・ダミーテキスト・ダミーテキスト・ダミーテキスト・ダミーテキスト・ダミーテキスト・ダミーテキスト・ダミーテキスト・ダミーテキスト・ダミーテキスト・ダミーテキスト・ダミーテキスト',
+    title: "アコーディオンを開くよ！",
+    children:
+      "ダミーテキスト・ダミーテキスト・ダミーテキスト・ダミーテキスト・ダミーテキスト・ダミーテキスト・ダミーテキスト・ダミーテキスト・ダミーテキスト・ダミーテキスト・ダミーテキスト・ダミーテキスト・ダミーテキスト・ダミーテキスト・ダミーテキスト・ダミーテキスト・ダミーテキスト・ダミーテキスト・ダミーテキスト・ダミーテキスト",
     initOpen: true,
   },
 };

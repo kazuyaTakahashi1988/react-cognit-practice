@@ -1,44 +1,50 @@
-import React, { forwardRef } from 'react';
-import styled from 'styled-components'
-import { PropsSelect } from '../../lib/props';
-import { Label } from './Label';
-import { ErrorMessage } from './ErrorMessage';
+import React, { forwardRef } from "react";
+import styled from "styled-components";
+import { PropsSelect } from "../../lib/props";
+import { Label } from "./Label";
+import { ErrorMessage } from "./ErrorMessage";
 
 type Props = React.SelectHTMLAttributes<HTMLSelectElement> & PropsSelect;
 
 export const SelectField: React.ForwardRefRenderFunction<
   HTMLSelectElement,
   Props
-> = (props, ref): any => {
+> = (props, ref) => {
   const { label, options, placeholder, errors, ...rest } = props;
-  
+
   return (
     <Styled>
       {label && <Label label={label} />}
 
       <div className="select">
         <select ref={ref} {...rest}>
-          {placeholder && <option value="" hidden>{ placeholder }</option>}
+          {placeholder && (
+            <option value="" hidden>
+              {placeholder}
+            </option>
+          )}
           {options.map((option, index) => (
-            <option
-              value={option.value}
-              key={index}
-            >
+            <option value={option.value} key={index}>
               {option.label}
             </option>
           ))}
         </select>
       </div>
 
-      {errors && Object.values(errors).map((error, index) => {
-        return error.ref.name === rest.name && <ErrorMessage key={index} errorMessage={error.message} />
-      })}
+      {errors &&
+        Object.values(errors).map((error, index) => {
+          return (
+            error.ref.name === rest.name && (
+              <ErrorMessage key={index} errorMessage={error.message} />
+            )
+          );
+        })}
     </Styled>
-  )
+  );
 };
 
 const Styled = styled.div`
-  .select{
+  .select {
     position: relative;
     &:before {
       content: "";

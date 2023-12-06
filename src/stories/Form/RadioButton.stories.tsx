@@ -1,22 +1,22 @@
-import type { Meta, StoryObj } from '@storybook/react';
+import type { Meta, StoryObj } from "@storybook/react";
 
-import { RadioButton } from '../../components/Form/RadioButton';
+import { RadioButton } from "../../components/Form/RadioButton";
 
 const meta = {
-  title: 'Form/RadioButton',
+  title: "Form/RadioButton",
   component: RadioButton,
   parameters: {
-    layout: 'centered',
+    layout: "centered",
   },
-  tags: ['autodocs'],
+  tags: ["autodocs"],
   argTypes: {
     label: {
       text: String,
-      required: Boolean
+      required: Boolean,
     },
     options: Array<{
-      value: String,
-      label: String,
+      value: string;
+      label: string;
     }>,
     errors: Object,
   },
@@ -27,11 +27,11 @@ type Story = StoryObj<typeof meta>;
 
 export const Default: Story = {
   args: {
-    label: {text: 'RadioButtonラベルテキスト', required: false},
+    label: { text: "RadioButtonラベルテキスト", required: false },
     options: [
-      {value: 'Radio_Value_A', label: 'Radio_Label_A'},
-      {value: 'Radio_Value_B', label: 'Radio_Label_B'},
-      {value: 'Radio_Value_C', label: 'Radio_Label_C'}
+      { value: "Radio_Value_A", label: "Radio_Label_A" },
+      { value: "Radio_Value_B", label: "Radio_Label_B" },
+      { value: "Radio_Value_C", label: "Radio_Label_C" },
     ],
     errors: [],
   },
@@ -39,11 +39,11 @@ export const Default: Story = {
 
 export const Required: Story = {
   args: {
-    label: {text: 'RadioButtonラベルテキスト', required: true},
+    label: { text: "RadioButtonラベルテキスト", required: true },
     options: [
-      {value: 'Radio_Value_A', label: 'Radio_Label_A'},
-      {value: 'Radio_Value_B', label: 'Radio_Label_B'},
-      {value: 'Radio_Value_C', label: 'Radio_Label_C'}
+      { value: "Radio_Value_A", label: "Radio_Label_A" },
+      { value: "Radio_Value_B", label: "Radio_Label_B" },
+      { value: "Radio_Value_C", label: "Radio_Label_C" },
     ],
     errors: [],
   },

@@ -1,15 +1,15 @@
-import React, { forwardRef } from 'react';
-import styled from 'styled-components'
-import { PropsInput } from '../../lib/props';
-import { Label } from './Label';
-import { ErrorMessage } from './ErrorMessage';
+import React, { forwardRef } from "react";
+import styled from "styled-components";
+import { PropsInput } from "../../lib/props";
+import { Label } from "./Label";
+import { ErrorMessage } from "./ErrorMessage";
 
 type Props = React.InputHTMLAttributes<HTMLInputElement> & PropsInput;
 
 export const InputField: React.ForwardRefRenderFunction<
   HTMLInputElement,
   Props
-> = (props, ref): any => {
+> = (props, ref) => {
   const { label, type, placeholder, errors, ...rest } = props;
 
   return (
@@ -17,17 +17,22 @@ export const InputField: React.ForwardRefRenderFunction<
       {label && <Label label={label} />}
 
       <input
-        type={type || 'text'}
+        type={type || "text"}
         placeholder={placeholder}
         ref={ref}
         {...rest}
       />
 
-      {errors && Object.values(errors).map((error, index) => {
-        return error.ref.name === rest.name && <ErrorMessage key={index} errorMessage={error.message} />
-      })}
+      {errors &&
+        Object.values(errors).map((error, index) => {
+          return (
+            error.ref.name === rest.name && (
+              <ErrorMessage key={index} errorMessage={error.message} />
+            )
+          );
+        })}
     </Styled>
-  )
+  );
 };
 
 const Styled = styled.div`
@@ -45,7 +50,9 @@ const Styled = styled.div`
       outline: 0;
       box-shadow: 0 0 0 1px rgb(33, 150, 243);
     }
-    &::placeholder { color: #666; }
+    &::placeholder {
+      color: #666;
+    }
   }
 `;
 

@@ -1,13 +1,13 @@
-import React from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
-import styled from 'styled-components'
-import { PropsLayout } from '../../lib/props';
+import React from "react";
+import { motion, AnimatePresence } from "framer-motion";
+import styled from "styled-components";
+import { PropsLayout } from "../../lib/props";
 
-import Header from '../../components/Layout/Header';
-import Footer from '../../components/Layout/Footer';
+import Header from "../../components/Layout/Header";
+import Footer from "../../components/Layout/Footer";
 
-export const Layout: React.FC<PropsLayout> = (props): any => {
-  const { type, children  } = props;
+export const Layout: React.FC<PropsLayout> = (props) => {
+  const { type, children } = props;
 
   return (
     <Styled>
@@ -17,16 +17,14 @@ export const Layout: React.FC<PropsLayout> = (props): any => {
           className="layout"
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
-          transition={{ duration: 0.2, ease: 'easeOut' }}
+          transition={{ duration: 0.2, ease: "easeOut" }}
         >
-          <div className="container">
-            {children}
-          </div>
+          <div className="container">{children}</div>
         </motion.div>
       </AnimatePresence>
       <Footer />
     </Styled>
-  )
+  );
 };
 
 const Styled = styled.div`

@@ -1,15 +1,15 @@
-import React, { forwardRef } from 'react';
-import styled from 'styled-components'
-import { PropsSwitchButton } from '../../lib/props';
-import { Label } from './Label';
-import { ErrorMessage } from './ErrorMessage';
+import React, { forwardRef } from "react";
+import styled from "styled-components";
+import { PropsSwitchButton } from "../../lib/props";
+import { Label } from "./Label";
+import { ErrorMessage } from "./ErrorMessage";
 
 type Props = React.InputHTMLAttributes<HTMLInputElement> & PropsSwitchButton;
 
 export const SwitchButtonField: React.ForwardRefRenderFunction<
   HTMLInputElement,
   Props
-> = (props, ref): any => {
+> = (props, ref) => {
   const { type, label, options, errors, ...rest } = props;
 
   return (
@@ -17,13 +17,9 @@ export const SwitchButtonField: React.ForwardRefRenderFunction<
       {label && <Label label={label} />}
 
       {options.map((option, index) => (
-        <label
-          htmlFor={rest.name + option.value}
-          key={index}
-          className="label"
-        >
+        <label htmlFor={rest.name + option.value} key={index} className="label">
           <input
-            type={type ? type : 'checkbox'}
+            type={type ? type : "checkbox"}
             id={rest.name + option.value}
             value={option.value}
             ref={ref}
@@ -32,16 +28,23 @@ export const SwitchButtonField: React.ForwardRefRenderFunction<
           <span className="label__text">
             <span className="circle"></span>
             <span className="no-active">{option.label}</span>
-            <span className="actived">{option.labelActived ? option.labelActived : option.label}</span>
+            <span className="actived">
+              {option.labelActived ? option.labelActived : option.label}
+            </span>
           </span>
         </label>
       ))}
 
-      {errors && Object.values(errors).map((error, index) => {
-        return error.ref.name === rest.name && <ErrorMessage key={index} errorMessage={error.message} />
-      })}
+      {errors &&
+        Object.values(errors).map((error, index) => {
+          return (
+            error.ref.name === rest.name && (
+              <ErrorMessage key={index} errorMessage={error.message} />
+            )
+          );
+        })}
     </Styled>
-  )
+  );
 };
 
 const Styled = styled.div`
@@ -59,7 +62,7 @@ const Styled = styled.div`
         height: 25px;
         width: 50px;
         margin-right: 6px;
-        box-shadow:0px 0px 1px 1px #ccc inset;
+        box-shadow: 0px 0px 1px 1px #ccc inset;
         padding: 3px;
         transition: 0.2s;
         &:before {

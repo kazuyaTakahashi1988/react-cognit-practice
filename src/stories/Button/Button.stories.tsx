@@ -1,14 +1,14 @@
-import type { Meta, StoryObj } from '@storybook/react';
+import type { Meta, StoryObj } from "@storybook/react";
 
-import { Button } from '../../components/Button/Button';
+import { Button } from "../../components/Button/Button";
 
 const meta = {
-  title: 'Button/Button',
+  title: "Button/Button",
   component: Button,
   parameters: {
-    layout: 'centered',
+    layout: "centered",
   },
-  tags: ['autodocs'],
+  tags: ["autodocs"],
   argTypes: {
     type: String,
     onClick: Object,
@@ -22,27 +22,27 @@ type Story = StoryObj<typeof meta>;
 
 export const Default: Story = {
   args: {
-    type: '',
-    onClick: () => alert('onClicked !!'),
-    children: 'ボタンクリック！',
+    type: "",
+    onClick: () => alert("onClicked !!"),
+    children: "ボタンクリック！",
     isDisable: false,
   },
 };
 
 export const Secondary: Story = {
   args: {
-    type: 'secondary',
-    onClick: () => alert('onClicked !!'),
-    children: 'ボタンクリック！',
+    type: "secondary",
+    onClick: () => alert("onClicked !!"),
+    children: "ボタンクリック！",
     isDisable: false,
   },
 };
 
 export const Disabled: Story = {
   args: {
-    type: '',
-    onClick: () => alert('onClicked !!'),
-    children: 'ボタンクリック！',
+    type: "",
+    onClick: () => alert("onClicked !!"),
+    children: "ボタンクリック！",
     isDisable: true,
   },
 };

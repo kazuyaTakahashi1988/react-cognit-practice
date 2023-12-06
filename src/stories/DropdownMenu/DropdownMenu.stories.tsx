@@ -1,29 +1,31 @@
-import type { Meta, StoryObj } from '@storybook/react';
+import type { Meta, StoryObj } from "@storybook/react";
 
-import { DropdownMenu } from '../../components/DropdownMenu/DropdownMenu';
-import { Button } from '../../components/Button/Button';
+import { DropdownMenu } from "../../components/DropdownMenu/DropdownMenu";
+import { Button } from "../../components/Button/Button";
 
 const meta = {
-  title: 'DropdownMenu/DropdownMenu',
+  title: "DropdownMenu/DropdownMenu",
   component: DropdownMenu,
   parameters: {
-    layout: 'centered',
+    layout: "centered",
   },
-  tags: ['autodocs'],
+  tags: ["autodocs"],
   argTypes: {
     menuList: Array<{
-      text: String,
-      onClick?: any,
+      text: string;
+      onClick?: object;
     }>,
     children: Object,
   },
   decorators: [
     (Story) => (
-      <div style={{
-        width: '700px',
-        height: '170px',
-        textAlign: 'center',
-      }}>
+      <div
+        style={{
+          width: "700px",
+          height: "170px",
+          textAlign: "center",
+        }}
+      >
         <Story />
       </div>
     ),
@@ -36,45 +38,49 @@ type Story = StoryObj<typeof meta>;
 export const Default: Story = {
   args: {
     menuList: [
-      {text: 'Menu_01', onClick: () => alert('01 onClicked !!')},
-      {text: 'Menu_02', onClick: () => alert('02 onClicked !!')},
-      {text: 'Menu_03', onClick: () => alert('03 onClicked !!')}
+      { text: "Menu_01", onClick: () => alert("01 onClicked !!") },
+      { text: "Menu_02", onClick: () => alert("02 onClicked !!") },
+      { text: "Menu_03", onClick: () => alert("03 onClicked !!") },
     ],
-    children: 'メニューを開くよ！',
+    children: "メニューを開くよ！",
   },
 };
 
 export const ButtonClick: Story = {
   args: {
     menuList: [
-      {text: 'Menu_01', onClick: () => alert('01 onClicked !!')},
-      {text: 'Menu_02', onClick: () => alert('02 onClicked !!')},
-      {text: 'Menu_03', onClick: () => alert('03 onClicked !!')}
+      { text: "Menu_01", onClick: () => alert("01 onClicked !!") },
+      { text: "Menu_02", onClick: () => alert("02 onClicked !!") },
+      { text: "Menu_03", onClick: () => alert("03 onClicked !!") },
     ],
-    children: 
+    children: (
       <Button type="" onClick={() => {}} isDisable={false}>
         メニューを開くよ！
-      </Button>,
+      </Button>
+    ),
   },
 };
 
 export const Left: Story = {
   args: {
     menuList: [
-      {text: 'Menu_01', onClick: () => alert('01 onClicked !!')},
-      {text: 'Menu_02', onClick: () => alert('02 onClicked !!')},
-      {text: 'Menu_03', onClick: () => alert('03 onClicked !!')}
+      { text: "Menu_01", onClick: () => alert("01 onClicked !!") },
+      { text: "Menu_02", onClick: () => alert("02 onClicked !!") },
+      { text: "Menu_03", onClick: () => alert("03 onClicked !!") },
     ],
-    children: 
+    children: (
       <Button type="" onClick={() => {}} isDisable={false}>
         メニューを開くよ！
-      </Button>,
+      </Button>
+    ),
   },
   decorators: [
     (Story) => (
-      <div style={{
-        textAlign: 'left',
-      }}>
+      <div
+        style={{
+          textAlign: "left",
+        }}
+      >
         <Story />
       </div>
     ),
@@ -84,20 +90,23 @@ export const Left: Story = {
 export const Right: Story = {
   args: {
     menuList: [
-      {text: 'Menu_01', onClick: () => alert('01 onClicked !!')},
-      {text: 'Menu_02', onClick: () => alert('02 onClicked !!')},
-      {text: 'Menu_03', onClick: () => alert('03 onClicked !!')}
+      { text: "Menu_01", onClick: () => alert("01 onClicked !!") },
+      { text: "Menu_02", onClick: () => alert("02 onClicked !!") },
+      { text: "Menu_03", onClick: () => alert("03 onClicked !!") },
     ],
-    children: 
+    children: (
       <Button type="" onClick={() => {}} isDisable={false}>
         メニューを開くよ！
-      </Button>,
+      </Button>
+    ),
   },
   decorators: [
     (Story) => (
-      <div style={{
-        textAlign: 'right',
-      }}>
+      <div
+        style={{
+          textAlign: "right",
+        }}
+      >
         <Story />
       </div>
     ),
@@ -107,23 +116,26 @@ export const Right: Story = {
 export const Bottom: Story = {
   args: {
     menuList: [
-      {text: 'Menu_01', onClick: () => alert('01 onClicked !!')},
-      {text: 'Menu_02', onClick: () => alert('02 onClicked !!')},
-      {text: 'Menu_03', onClick: () => alert('03 onClicked !!')}
+      { text: "Menu_01", onClick: () => alert("01 onClicked !!") },
+      { text: "Menu_02", onClick: () => alert("02 onClicked !!") },
+      { text: "Menu_03", onClick: () => alert("03 onClicked !!") },
     ],
-    children: 
+    children: (
       <Button type="" onClick={() => {}} isDisable={false}>
         メニューを開くよ！
-      </Button>,
+      </Button>
+    ),
   },
   decorators: [
     (Story) => (
-      <div style={{
-        display: 'flex',
-        justifyContent: 'center',
-        alignItems: 'flex-end',
-        height: '100%',
-      }}>
+      <div
+        style={{
+          display: "flex",
+          justifyContent: "center",
+          alignItems: "flex-end",
+          height: "100%",
+        }}
+      >
         <Story />
       </div>
     ),

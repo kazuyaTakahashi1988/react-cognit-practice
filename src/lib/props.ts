@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 /* -------------------------------------------------------
     ▽ Props の型定義 (ビュー編) ▽
 ---------------------------------------------------------- */
@@ -45,10 +46,12 @@ export type PropsHeader = {
 
 // Label
 export type PropsLabel = {
-  label: {
-    text: string | undefined,
-    required: boolean
-  } | undefined;
+  label:
+    | {
+        text: string | undefined;
+        required: boolean;
+      }
+    | undefined;
 };
 
 // ErrorMessage
@@ -58,10 +61,12 @@ export type PropsErrorMessage = {
 
 // Input
 export type PropsInput = {
-  label: {
-    text: string | undefined,
-    required: boolean
-  } | undefined;
+  label:
+    | {
+        text: string | undefined;
+        required: boolean;
+      }
+    | undefined;
   type: string | undefined;
   placeholder: string | undefined;
   errors?: object | undefined;
@@ -69,54 +74,62 @@ export type PropsInput = {
 
 // CheckBox
 export type PropsCheckBox = {
-  label: {
-    text: string | undefined,
-    required: boolean
-  } | undefined;
+  label:
+    | {
+        text: string | undefined;
+        required: boolean;
+      }
+    | undefined;
   options: Array<{
-    value: string,
-    label: string,
+    value: string;
+    label: string;
   }>;
   errors?: object | undefined;
 };
 
 // RadioButton
 export type PropsRadioButton = {
-  label: {
-    text: string | undefined,
-    required: boolean
-  } | undefined;
+  label:
+    | {
+        text: string | undefined;
+        required: boolean;
+      }
+    | undefined;
   options: Array<{
-    value: string,
-    label: string,
+    value: string;
+    label: string;
   }>;
   errors?: object | undefined;
 };
 
 // SwitchButton
 export type PropsSwitchButton = {
-  type: string | undefined,
-  label: {
-    text: string | undefined,
-    required: boolean
-  } | undefined;
+  type: string | undefined;
+  label:
+    | {
+        text: string | undefined;
+        required: boolean;
+      }
+    | undefined;
   options: Array<{
-    value: string,
-    label: string,
-    labelActived: string | undefined,
+    value: string;
+    label: string;
+    labelActived: string | undefined;
   }>;
   errors?: object | undefined;
 };
 
 // Select
 export type PropsSelect = {
-  label: {
-    text: string | undefined,
-    required: boolean
-  } | undefined;
+  label:
+    | {
+        text: string | undefined;
+        required: boolean;
+      }
+    | undefined;
   options: Array<{
-    value: string,
-    label: string,
+    value: string;
+    label: string;
   }>;
   placeholder: string | undefined;
   errors?: object | undefined;
@@ -124,13 +137,15 @@ export type PropsSelect = {
 
 // SelectCustom
 export type PropsSelectCustom = {
-  label: {
-    text: string | undefined,
-    required: boolean
-  } | undefined;
+  label:
+    | {
+        text: string | undefined;
+        required: boolean;
+      }
+    | undefined;
   options: Array<{
-    value: string,
-    label: string,
+    value: string;
+    label: string;
   }>;
   placeholder: string | undefined;
   errors?: object | undefined;
@@ -138,17 +153,19 @@ export type PropsSelectCustom = {
 
 // TextArea
 export type PropsTextArea = {
-  label: {
-    text: string | undefined,
-    required: boolean
-  } | undefined;
+  label:
+    | {
+        text: string | undefined;
+        required: boolean;
+      }
+    | undefined;
   placeholder: string | undefined;
   errors?: object | undefined;
 };
 
 // Button
 export type PropsButton = {
-  type: string | undefined,
+  type: string | undefined;
   children?: any;
   onClick?: any;
   isDisable: boolean;
@@ -158,10 +175,12 @@ export type PropsButton = {
 export type PropsModal = {
   text: string | undefined;
   title: string | undefined;
-  button: {
-    text: string | undefined,
-    onClick?: any,
-  } | undefined;
+  button:
+    | {
+        text: string | undefined;
+        onClick?: any;
+      }
+    | undefined;
   children?: any;
   initOpen: boolean;
 };
@@ -176,8 +195,8 @@ export type PropsAccordion = {
 // DropdownMenu
 export type PropsDropdownMenu = {
   menuList: Array<{
-    text: string | undefined,
-    onClick?: any,
+    text: string | undefined;
+    onClick?: any;
   }>;
   children?: any;
 };

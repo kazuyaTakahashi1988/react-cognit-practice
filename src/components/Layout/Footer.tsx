@@ -1,25 +1,20 @@
-import React from 'react';
+import React from "react";
 import { NavLink } from "react-router-dom";
-import styled from 'styled-components'
+import styled from "styled-components";
 
-export const Footer: React.FC = (): any => {
-
+export const Footer: React.FC = () => {
   return (
     <Styled>
       <ul className="nav">
         <li>
-          <NavLink to="/example">
-            Example
-          </NavLink>
+          <NavLink to="/example">Example</NavLink>
         </li>
         <li>
-          <NavLink to="/auth">
-            Auth
-          </NavLink>
+          <NavLink to="/auth">Auth</NavLink>
         </li>
       </ul>
     </Styled>
-  )
+  );
 };
 
 const Styled = styled.footer`

@@ -1,24 +1,24 @@
-import React from 'react';
-import styled from 'styled-components'
-import { PropsLabel } from '../../lib/props';
+import React from "react";
+import styled from "styled-components";
+import { PropsLabel } from "../../lib/props";
 
-export const Label: React.FC<PropsLabel> = (props): any => {
+export const Label: React.FC<PropsLabel> = (props) => {
   const { label } = props;
 
   return (
     <Styled>
-      {label && 
+      {label && (
         <label className="label-text">
           {label.text}
           {label.required && <span>*</span>}
         </label>
-      }
+      )}
     </Styled>
-  )
+  );
 };
 
 const Styled = styled.div`
-  .label-text{
+  .label-text {
     display: block;
     font-size: 14px;
     font-weight: 500;

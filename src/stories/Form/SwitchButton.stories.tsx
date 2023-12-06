@@ -1,24 +1,24 @@
-import type { Meta, StoryObj } from '@storybook/react';
+import type { Meta, StoryObj } from "@storybook/react";
 
-import { SwitchButton } from '../../components/Form/SwitchButton';
+import { SwitchButton } from "../../components/Form/SwitchButton";
 
 const meta = {
-  title: 'Form/SwitchButton',
+  title: "Form/SwitchButton",
   component: SwitchButton,
   parameters: {
-    layout: 'centered',
+    layout: "centered",
   },
-  tags: ['autodocs'],
+  tags: ["autodocs"],
   argTypes: {
     type: String,
     label: {
       text: String,
-      required: Boolean
+      required: Boolean,
     },
     options: Array<{
-      value: String,
-      label: String,
-      labelActived: String,
+      value: string;
+      label: string;
+      labelActived: string;
     }>,
     errors: Object,
   },
@@ -29,12 +29,20 @@ type Story = StoryObj<typeof meta>;
 
 export const Default: Story = {
   args: {
-    type: '',
-    label: {text: 'SwitchButtonラベルテキスト', required: false},
+    type: "",
+    label: { text: "SwitchButtonラベルテキスト", required: false },
     options: [
-      {value: 'Switch_Value_A', label: 'noActive_A', labelActived: 'Actived_A'},
-      {value: 'Switch_Value_B', label: 'noActive_B', labelActived: 'Actived_B'},
-      {value: 'Switch_Value_C', label: '----------', labelActived: undefined}
+      {
+        value: "Switch_Value_A",
+        label: "noActive_A",
+        labelActived: "Actived_A",
+      },
+      {
+        value: "Switch_Value_B",
+        label: "noActive_B",
+        labelActived: "Actived_B",
+      },
+      { value: "Switch_Value_C", label: "----------", labelActived: undefined },
     ],
     errors: [],
   },
@@ -42,12 +50,20 @@ export const Default: Story = {
 
 export const Required: Story = {
   args: {
-    type: '',
-    label: {text: 'SwitchButtonラベルテキスト', required: true},
+    type: "",
+    label: { text: "SwitchButtonラベルテキスト", required: true },
     options: [
-      {value: 'Switch_Value_A', label: 'noActive_A', labelActived: 'Actived_A'},
-      {value: 'Switch_Value_B', label: 'noActive_B', labelActived: 'Actived_B'},
-      {value: 'Switch_Value_C', label: '----------', labelActived: undefined}
+      {
+        value: "Switch_Value_A",
+        label: "noActive_A",
+        labelActived: "Actived_A",
+      },
+      {
+        value: "Switch_Value_B",
+        label: "noActive_B",
+        labelActived: "Actived_B",
+      },
+      { value: "Switch_Value_C", label: "----------", labelActived: undefined },
     ],
     errors: [],
   },

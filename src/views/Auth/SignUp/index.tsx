@@ -1,24 +1,24 @@
-import React from 'react';
-import styled from 'styled-components'
-import { useForm } from 'react-hook-form';
-import { PropsSignUp } from '../../../lib/props';
+import React from "react";
+import styled from "styled-components";
+import { useForm } from "react-hook-form";
+import { PropsSignUp } from "../../../lib/props";
 
-import Layout from '../../../components/Layout/Layout';
-import Button from '../../../components/Button/Button';
-import Input from '../../../components/Form/Input';
+import Layout from "../../../components/Layout/Layout";
+import Button from "../../../components/Button/Button";
+import Input from "../../../components/Form/Input";
 
-import { SignUpHelper } from '../../../utils/Auth';
+import { SignUpHelper } from "../../../utils/Auth";
 
 const SignUp: React.FC = () => {
   const {
     register,
     handleSubmit,
     reset,
-    formState: { errors }
+    formState: { errors },
   } = useForm<PropsSignUp>({
     defaultValues: {
-      email: '',
-      password: '',
+      email: "",
+      password: "",
     },
   });
 
@@ -36,9 +36,9 @@ const SignUp: React.FC = () => {
           <div className="clm">
             <Input
               type="email"
-              label={{text: 'emailを入力してください', required: true}}
+              label={{ text: "emailを入力してください", required: true }}
               placeholder="○○○○＠○○○○.com"
-              {...register('email', {required: '必須項目だよ。'})}
+              {...register("email", { required: "必須項目だよ。" })}
               errors={errors}
             />
           </div>
@@ -46,19 +46,15 @@ const SignUp: React.FC = () => {
           <div className="clm">
             <Input
               type="password"
-              label={{text: 'passwordを入力してください', required: true}}
+              label={{ text: "passwordを入力してください", required: true }}
               placeholder="○○○○○○○○"
-              {...register('password', {required: '必須項目だよ。'})}
+              {...register("password", { required: "必須項目だよ。" })}
               errors={errors}
             />
           </div>
 
           <div className="clm button-clm">
-            <Button
-              type="secondary"
-              onClick={() => reset()}
-              isDisable={false}
-            >
+            <Button type="secondary" onClick={() => reset()} isDisable={false}>
               リセット
             </Button>
             <Button
@@ -76,7 +72,7 @@ const SignUp: React.FC = () => {
 };
 
 const Styled = styled.div`
-  .clm{
+  .clm {
     margin-top: 30px;
     &.button-clm {
       display: flex;

@@ -1,18 +1,18 @@
-import type { Meta, StoryObj } from '@storybook/react';
+import type { Meta, StoryObj } from "@storybook/react";
 
-import { Label } from '../../components/Form/Label';
+import { Label } from "../../components/Form/Label";
 
 const meta = {
-  title: 'Form/Label',
+  title: "Form/Label",
   component: Label,
   parameters: {
-    layout: 'centered',
+    layout: "centered",
   },
-  tags: ['autodocs'],
+  tags: ["autodocs"],
   argTypes: {
     label: {
       text: String,
-      required: Boolean
+      required: Boolean,
     },
   },
 } satisfies Meta<typeof Label>;
@@ -23,8 +23,8 @@ type Story = StoryObj<typeof meta>;
 export const Default: Story = {
   args: {
     label: {
-      text: 'ラベルテキスト',
-      required: false
+      text: "ラベルテキスト",
+      required: false,
     },
   },
 };
@@ -32,8 +32,8 @@ export const Default: Story = {
 export const Required: Story = {
   args: {
     label: {
-      text: 'ラベルテキスト',
-      required: true
+      text: "ラベルテキスト",
+      required: true,
     },
   },
 };

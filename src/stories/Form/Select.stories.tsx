@@ -1,31 +1,33 @@
-import type { Meta, StoryObj } from '@storybook/react';
+import type { Meta, StoryObj } from "@storybook/react";
 
-import { Select } from '../../components/Form/Select';
+import { Select } from "../../components/Form/Select";
 
 const meta = {
-  title: 'Form/Select',
+  title: "Form/Select",
   component: Select,
   parameters: {
-    layout: 'centered',
+    layout: "centered",
   },
-  tags: ['autodocs'],
+  tags: ["autodocs"],
   argTypes: {
     label: {
       text: String,
-      required: Boolean
+      required: Boolean,
     },
     options: Array<{
-      value: String,
-      label: String,
+      value: string;
+      label: string;
     }>,
     placeholder: String,
     errors: Object,
   },
   decorators: [
     (Story) => (
-      <div style={{
-        width: '100vh',
-      }}>
+      <div
+        style={{
+          width: "100vh",
+        }}
+      >
         <Story />
       </div>
     ),
@@ -37,26 +39,26 @@ type Story = StoryObj<typeof meta>;
 
 export const Default: Story = {
   args: {
-    label: {text: 'Selectラベルテキスト', required: false},
+    label: { text: "Selectラベルテキスト", required: false },
     options: [
-      {value: 'Select_Value_A', label: 'Select_Label_A'},
-      {value: 'Select_Value_B', label: 'Select_Label_B'},
-      {value: 'Select_Value_C', label: 'Select_Label_C'}
+      { value: "Select_Value_A", label: "Select_Label_A" },
+      { value: "Select_Value_B", label: "Select_Label_B" },
+      { value: "Select_Value_C", label: "Select_Label_C" },
     ],
-    placeholder: '選択してください。',
+    placeholder: "選択してください。",
     errors: [],
   },
 };
 
 export const Required: Story = {
   args: {
-    label: {text: 'Selectラベルテキスト', required: true},
+    label: { text: "Selectラベルテキスト", required: true },
     options: [
-      {value: 'Select_Value_A', label: 'Select_Label_A'},
-      {value: 'Select_Value_B', label: 'Select_Label_B'},
-      {value: 'Select_Value_C', label: 'Select_Label_C'}
+      { value: "Select_Value_A", label: "Select_Label_A" },
+      { value: "Select_Value_B", label: "Select_Label_B" },
+      { value: "Select_Value_C", label: "Select_Label_C" },
     ],
-    placeholder: '選択してください。',
+    placeholder: "選択してください。",
     errors: [],
   },
 };
