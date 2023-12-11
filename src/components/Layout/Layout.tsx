@@ -30,8 +30,8 @@ export const Layout: React.FC<PropsLayout> = (props) => {
 const Styled = styled.div`
   display: flex;
   flex-direction: column;
-  height: 100vh;
-  width: 100vw;
+  height: 100%;
+  width: 100%;
   > .layout {
     flex: 1;
     overflow-y: auto;
