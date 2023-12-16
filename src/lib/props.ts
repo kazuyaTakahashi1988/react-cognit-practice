@@ -12,6 +12,14 @@ export type PropsFormExample = {
   selectCustomName: string;
   textAreaName: string;
 };
+// TodoExample
+export type PropsTodoExample = {
+  inputItemsName: {
+    name: string;
+    price: number;
+    quantity: number;
+  }[];
+};
 
 // PropsSignIn
 export type PropsSignIn = {
@@ -61,6 +69,19 @@ export type PropsErrorMessage = {
 
 // Input
 export type PropsInput = {
+  label:
+    | {
+        text: string | undefined;
+        required: boolean;
+      }
+    | undefined;
+  type: string | undefined;
+  placeholder: string | undefined;
+  errors?: object | undefined;
+};
+
+// InputItems
+export type PropsInputItems = {
   label:
     | {
         text: string | undefined;

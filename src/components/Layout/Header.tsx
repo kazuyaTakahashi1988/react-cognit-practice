@@ -24,6 +24,11 @@ export const Header: React.FC<PropsHeader> = (props) => {
                 </NavLink>
               </li>
               <li>
+                <NavLink end to="/example/todo_example">
+                  Todo
+                </NavLink>
+              </li>
+              <li>
                 <NavLink end to="/example/modal_example">
                   Modal
                 </NavLink>
@@ -80,6 +85,11 @@ export const Header: React.FC<PropsHeader> = (props) => {
                       text: "Form",
                       onClick: () =>
                         navigate("/example/form_example", { replace: true }),
+                    },
+                    {
+                      text: "Todo",
+                      onClick: () =>
+                        navigate("/example/todo_example", { replace: true }),
                     },
                     {
                       text: "Modal",
