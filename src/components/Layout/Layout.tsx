@@ -1,5 +1,4 @@
 import React from "react";
-import { motion, AnimatePresence } from "framer-motion";
 import styled from "styled-components";
 import { PropsLayout } from "../../lib/props";
 
@@ -12,16 +11,9 @@ export const Layout: React.FC<PropsLayout> = (props) => {
   return (
     <Styled>
       <Header type={type} />
-      <AnimatePresence mode="wait">
-        <motion.div
-          className="layout"
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ duration: 0.2, ease: "easeOut" }}
-        >
-          <div className="container">{children}</div>
-        </motion.div>
-      </AnimatePresence>
+      <div className="container">
+        <div className="container__inner">{children}</div>
+      </div>
       <Footer />
     </Styled>
   );
@@ -32,16 +24,26 @@ const Styled = styled.div`
   flex-direction: column;
   height: 100%;
   width: 100%;
-  > .layout {
+  > .container {
     flex: 1;
     overflow-y: auto;
     -webkit-overflow-scrolling: touch;
     overscroll-behavior-y: contain;
-    padding: 30px;
-    > .container {
+    animation: fadeIn 0.2s linear forwards;
+    > .container__inner {
+      padding: 30px;
       max-width: 600px;
       width: 100%;
       margin: 0 auto;
+      display: block;
+    }
+  }
+  @keyframes fadeIn {
+    0% {
+      opacity: 0;
+    }
+    100% {
+      opacity: 1;
     }
   }
 `;

@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from "react";
-import { motion, AnimatePresence } from "framer-motion";
 import styled from "styled-components";
 import { PropsAccordion } from "../../lib/props";
 
@@ -13,29 +12,12 @@ export const Accordion: React.FC<PropsAccordion> = (props) => {
 
   return (
     <Styled>
-      <div className="accordion">
-        <div
-          className={["accordion__title", `${isOpen ? "is-open" : ""}`].join(
-            " ",
-          )}
-          onClick={() => setIsOpen(!isOpen)}
-        >
+      <div className={["accordion", `${isOpen ? "is-open" : ""}`].join(" ")}>
+        <div className="accordion__title" onClick={() => setIsOpen(!isOpen)}>
           {title}
         </div>
 
-        <AnimatePresence>
-          {isOpen && (
-            <motion.div
-              className="accordion__inner"
-              initial={{ height: 0, opacity: 0 }}
-              animate={{ height: "auto", opacity: 1 }}
-              exit={{ height: 0, opacity: 0 }}
-              transition={{ duration: 0.25, ease: "easeInOut" }}
-            >
-              <div className="accordion__container">{children}</div>
-            </motion.div>
-          )}
-        </AnimatePresence>
+        {isOpen && <div className="accordion__container">{children}</div>}
       </div>
     </Styled>
   );
@@ -68,18 +50,26 @@ const Styled = styled.div`
         z-index: 1;
         transition: 0.2s ease-out;
       }
-      &.is-open::before {
-        transform: rotate(-45deg);
-      }
     }
-    &__inner {
-      display: block;
-      overflow: hidden;
+    &.is-open > .accordion__title:before {
+      transform: rotate(-45deg);
     }
     &__container {
+      display: block;
+      overflow: hidden;
       font-size: 16px;
       line-height: 28px;
       padding: 10px 10px 20px;
+      transition: 0.2s ease-out;
+      animation: fadeIn 0.2s linear forwards;
+    }
+  }
+  @keyframes fadeIn {
+    0% {
+      opacity: 0;
+    }
+    100% {
+      opacity: 1;
     }
   }
 `;

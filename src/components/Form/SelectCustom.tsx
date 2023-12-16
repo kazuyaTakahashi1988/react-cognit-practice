@@ -7,7 +7,6 @@ import React, {
   RefObject,
 } from "react";
 import styled from "styled-components";
-import { motion, AnimatePresence } from "framer-motion";
 import { PropsSelectCustom } from "../../lib/props";
 import { Label } from "./Label";
 import { ErrorMessage } from "./ErrorMessage";
@@ -73,28 +72,20 @@ export const SelectCustomField: React.ForwardRefRenderFunction<
           ))}
         </div>
 
-        <AnimatePresence>
-          {isOpen && (
-            <motion.div
-              className="select-box"
-              initial={{ height: 0 }}
-              animate={{ height: "150px" }}
-              exit={{ height: 0 }}
-              transition={{ duration: 0.2, ease: "easeOut" }}
-            >
-              {options.map((option, index) => (
-                <label
-                  htmlFor={rest.name + option.value}
-                  key={index}
-                  className="select-box__label"
-                  ref={labelRefs.current[index]}
-                >
-                  {option.label}
-                </label>
-              ))}
-            </motion.div>
-          )}
-        </AnimatePresence>
+        {isOpen && (
+          <div className="select-box">
+            {options.map((option, index) => (
+              <label
+                htmlFor={rest.name + option.value}
+                key={index}
+                className="select-box__label"
+                ref={labelRefs.current[index]}
+              >
+                {option.label}
+              </label>
+            ))}
+          </div>
+        )}
       </div>
 
       {errors &&
@@ -213,6 +204,8 @@ const Styled = styled.div`
       overflow-y: auto;
       -webkit-overflow-scrolling: touch;
       overscroll-behavior-y: contain;
+      height: 150px;
+      animation: fadeIn 0.1s ease forwards;
       &__label {
         display: block;
         padding: 0 10px;
@@ -225,6 +218,14 @@ const Styled = styled.div`
           background: rgb(33, 150, 243);
         }
       }
+    }
+  }
+  @keyframes fadeIn {
+    0% {
+      opacity: 0;
+    }
+    100% {
+      opacity: 1;
     }
   }
 `;

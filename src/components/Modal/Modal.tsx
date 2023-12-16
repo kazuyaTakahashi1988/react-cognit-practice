@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from "react";
-import { motion, AnimatePresence } from "framer-motion";
 import styled from "styled-components";
 import { PropsModal } from "../../lib/props";
 import Button from "../../components/Button/Button";
@@ -30,47 +29,38 @@ export const Modal: React.FC<PropsModal> = (props) => {
         {children}
       </Styled>
 
-      <AnimatePresence>
-        {isOpen && (
-          <StyledModal>
-            <motion.div
-              className="modal"
-              initial={{ opacity: 0, y: -40 }}
-              animate={{ opacity: 1, y: 0 }}
-              exit={{ opacity: 0, y: -40 }}
-              transition={{ duration: 0.2, ease: "easeInOut" }}
-              onClick={onClose}
+      {isOpen && (
+        <StyledModal>
+          <div className="modal" onClick={onClose}>
+            <div
+              className="modal__inner"
+              onClick={(e) => {
+                e.stopPropagation();
+              }}
             >
-              <div
-                className="modal__inner"
-                onClick={(e) => {
-                  e.stopPropagation();
-                }}
-              >
-                <div className="modal__header">
-                  <p className="title">{title}</p>
-                  <span className="close" onClick={onClose}></span>
-                </div>
-                <div className="modal__container">{text}</div>
-                <div className="modal__footer">
-                  <Button type="secondary" onClick={onClose} isDisable={false}>
-                    閉じる
-                  </Button>
-                  {button && (
-                    <Button
-                      type={undefined}
-                      onClick={button.onClick}
-                      isDisable={false}
-                    >
-                      {button.text}
-                    </Button>
-                  )}
-                </div>
+              <div className="modal__header">
+                <p className="title">{title}</p>
+                <span className="close" onClick={onClose}></span>
               </div>
-            </motion.div>
-          </StyledModal>
-        )}
-      </AnimatePresence>
+              <div className="modal__container">{text}</div>
+              <div className="modal__footer">
+                <Button type="secondary" onClick={onClose} isDisable={false}>
+                  閉じる
+                </Button>
+                {button && (
+                  <Button
+                    type={undefined}
+                    onClick={button.onClick}
+                    isDisable={false}
+                  >
+                    {button.text}
+                  </Button>
+                )}
+              </div>
+            </div>
+          </div>
+        </StyledModal>
+      )}
     </>
   );
 };
@@ -96,7 +86,7 @@ const StyledModal = styled.span`
       top: 0;
       left: 0;
       width: 100%;
-      height: calc(100vh + 40px);
+      height: calc(100vh);
       background: rgba(0, 0, 0, 0.3);
     }
     &__inner {
@@ -104,13 +94,13 @@ const StyledModal = styled.span`
       z-index: 9999;
       top: 50%;
       left: 50%;
-      transform: translateY(-50%) translateX(-50%);
       max-width: 500px;
       width: calc(100% - 40px);
       background: #fff;
       box-shadow: 0 0 0 1px #ccc;
       border-radius: 10px 10px 5px 5px;
       text-align: left;
+      animation: fadeTranslate 0.2s ease-out forwards;
       > * {
         padding-left: 20px;
         padding-right: 20px;
@@ -185,6 +175,16 @@ const StyledModal = styled.span`
           margin-right: 0;
         }
       }
+    }
+  }
+  @keyframes fadeTranslate {
+    0% {
+      opacity: 0;
+      transform: translateY(calc(-50% - 30px)) translateX(-50%);
+    }
+    100% {
+      opacity: 1;
+      transform: translateY(-50%) translateX(-50%);
     }
   }
 `;
