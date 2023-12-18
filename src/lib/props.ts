@@ -88,6 +88,7 @@ export type PropsTodoItems = {
   }
   | undefined;
   type: string | undefined;
+  onClick?: any;
   placeholder: string | undefined;
   errors?: object | undefined;
 };

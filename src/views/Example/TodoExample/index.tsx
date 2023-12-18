@@ -45,47 +45,37 @@ const TodoExample: React.FC = () => {
         <div className="clm button-clm">
           <Button
             type="secondary"
-            onClick={() =>
-              append({
-                task: "",
-                flag: "",
-              })
-            }
-            isDisable={false}
-          >
+            onClick={() => append({ task: "", flag: "" })}
+            isDisable={false}>
             追加
           </Button>
         </div>
 
-        {fields.map((field, index) => {
-          return (
-            <div className="clm" key={field.id}>
-              <TodoItems
-                type={undefined}
-                label={undefined}
-                placeholder="タスク"
-                {...register(`todoItemsName.${index}.task` as const)}
-                errors={errors}
-              />
-              <SwitchButton
-                type={undefined}
-                label={undefined}
-                options={[
-                  {
-                    value: "complate",
-                    label: "未完了",
-                    labelActived: "完了済",
-                  }
-                ]}
-                {...register(`todoItemsName.${index}.flag` as const)}
-                errors={errors}
-              />
-              {fields?.length > 1 && <>
-                <small onClick={() => remove(index)}>削除</small>
-              </>}
-            </div>
-          );
-        })}
+        {fields.map((field, index) =>
+          <div className="clm todo-clm" key={field.id}>
+            <TodoItems
+              type={undefined}
+              onClick={() => remove(index)}
+              label={undefined}
+              placeholder="タスク"
+              {...register(`todoItemsName.${index}.task` as const)}
+              errors={errors}
+            />
+            <SwitchButton
+              type={undefined}
+              label={undefined}
+              options={[
+                {
+                  value: "complate",
+                  label: "未完了",
+                  labelActived: "完了済",
+                }
+              ]}
+              {...register(`todoItemsName.${index}.flag` as const)}
+              errors={errors}
+            />
+          </div>
+        )}
 
         <div className="clm button-clm">
           <Button type="secondary" onClick={() => reset()} isDisable={false}>
@@ -103,6 +93,9 @@ const TodoExample: React.FC = () => {
 const Styled = styled.div`
   .clm {
     margin-top: 30px;
+    &.todo-clm {
+      animation: fadeIn 0.6s ease forwards;
+    }
     &.button-clm {
       display: flex;
       flex-wrap: wrap;
@@ -114,6 +107,17 @@ const Styled = styled.div`
           margin-right: 0;
         }
       }
+    }
+    .todo-items {
+      margin-bottom: 10px;
+    }
+  }
+  @keyframes fadeIn {
+    0% {
+      opacity: 0;
+    }
+    100% {
+      opacity: 1;
     }
   }
 `;
