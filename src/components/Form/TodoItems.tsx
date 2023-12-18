@@ -1,11 +1,11 @@
 import React, { forwardRef } from "react";
 import styled from "styled-components";
-import { PropsInputItems } from "../../lib/props";
+import { PropsTodoItems } from "../../lib/props";
 import Input from "./Input";
 
-type Props = React.InputHTMLAttributes<HTMLInputElement> & PropsInputItems;
+type Props = React.InputHTMLAttributes<HTMLInputElement> & PropsTodoItems;
 
-export const InputItemsField: React.ForwardRefRenderFunction<
+export const TodoItemsField: React.ForwardRefRenderFunction<
   HTMLInputElement,
   Props
 > = (props, ref) => {
@@ -27,5 +27,5 @@ export const InputItemsField: React.ForwardRefRenderFunction<
 
 const Styled = styled.div``;
 
-export const InputItems = forwardRef(InputItemsField);
-export default InputItems;
+export const TodoItems = forwardRef(TodoItemsField);
+export default TodoItems;

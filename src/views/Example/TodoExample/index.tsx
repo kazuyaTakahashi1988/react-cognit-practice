@@ -1,23 +1,12 @@
 import React from "react";
 import styled from "styled-components";
-import { useForm, useFieldArray, useWatch, Control } from "react-hook-form";
+import { useForm, useFieldArray } from "react-hook-form";
 import { PropsTodoExample } from "../../../lib/props";
 
 import Layout from "../../../components/Layout/Layout";
-// import InputItems from "../../../components/Form/InputItems";
+import TodoItems from "../../../components/Form/TodoItems";
+import SwitchButton from "../../../components/Form/SwitchButton";
 import Button from "../../../components/Button/Button";
-
-const Total = ({ control }: { control: Control<PropsTodoExample> }) => {
-  const formValues = useWatch({
-    name: "inputItemsName",
-    control,
-  });
-  const total = formValues.reduce(
-    (acc, current) => acc + (current.price || 0) * (current.quantity || 0),
-    0,
-  );
-  return <p>合計: {total}</p>;
-};
 
 const TodoExample: React.FC = () => {
   const {
@@ -27,16 +16,14 @@ const TodoExample: React.FC = () => {
     control,
     formState: { errors },
   } = useForm<PropsTodoExample>({
-    mode: "onSubmit", // 'onChange' or 'onBlur' or 'onSubmit' or 'onTouched' or 'all'
-    reValidateMode: "onChange", // 'onChange' or 'onBlur' or 'onSubmit'
-    criteriaMode: "all", // 'firstError' or 'all'
+    mode: "onSubmit",
     defaultValues: {
-      inputItemsName: [{ name: "test", quantity: 1, price: 23 }],
+      todoItemsName: [{ task: "test", flag: "" }],
     },
   });
 
   const { fields, append, remove } = useFieldArray({
-    name: "inputItemsName",
+    name: "todoItemsName",
     control,
   });
 
@@ -56,14 +43,12 @@ const TodoExample: React.FC = () => {
         </h1>
 
         <div className="clm button-clm">
-          <Total control={control} />
           <Button
             type="secondary"
             onClick={() =>
               append({
-                name: "",
-                quantity: 0,
-                price: 0,
+                task: "",
+                flag: "",
               })
             }
             isDisable={false}
@@ -72,48 +57,35 @@ const TodoExample: React.FC = () => {
           </Button>
         </div>
 
-        <div className="clm">
-          {fields.map((field, index) => {
-            return (
-              <div key={field.id}>
-                <section className={"section"} key={field.id}>
-                  <input
-                    placeholder="name"
-                    {...register(`inputItemsName.${index}.name` as const, {
-                      required: true,
-                    })}
-                    className={
-                      errors?.inputItemsName?.[index]?.name ? "error" : ""
-                    }
-                  />
-                  <input
-                    placeholder="quantity"
-                    type="number"
-                    {...register(`inputItemsName.${index}.quantity` as const, {
-                      valueAsNumber: true,
-                      required: true,
-                    })}
-                    className={
-                      errors?.inputItemsName?.[index]?.quantity ? "error" : ""
-                    }
-                  />
-                  <input
-                    placeholder="value"
-                    type="number"
-                    {...register(`inputItemsName.${index}.price` as const, {
-                      valueAsNumber: true,
-                      required: true,
-                    })}
-                    className={
-                      errors?.inputItemsName?.[index]?.price ? "error" : ""
-                    }
-                  />
-                  <small onClick={() => remove(index)}>削除</small>
-                </section>
-              </div>
-            );
-          })}
-        </div>
+        {fields.map((field, index) => {
+          return (
+            <div className="clm" key={field.id}>
+              <TodoItems
+                type={undefined}
+                label={undefined}
+                placeholder="タスク"
+                {...register(`todoItemsName.${index}.task` as const)}
+                errors={errors}
+              />
+              <SwitchButton
+                type={undefined}
+                label={undefined}
+                options={[
+                  {
+                    value: "complate",
+                    label: "未完了",
+                    labelActived: "完了済",
+                  }
+                ]}
+                {...register(`todoItemsName.${index}.flag` as const)}
+                errors={errors}
+              />
+              {fields?.length > 1 && <>
+                <small onClick={() => remove(index)}>削除</small>
+              </>}
+            </div>
+          );
+        })}
 
         <div className="clm button-clm">
           <Button type="secondary" onClick={() => reset()} isDisable={false}>
@@ -147,10 +119,3 @@ const Styled = styled.div`
 `;
 
 export default TodoExample;
-
-// import { useForm } from "react-hook-form";
-// import { PropsTodoExample } from "../../../lib/props";
-
-// import Layout from "../../../components/Layout/Layout";
-// import InputItems from "../../../components/Form/InputItems";
-// import Button from "../../../components/Button/Button";
