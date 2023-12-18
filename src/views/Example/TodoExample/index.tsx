@@ -14,7 +14,7 @@ const TodoExample: React.FC = () => {
     handleSubmit,
     reset,
     control,
-    formState: { errors },
+    // formState: { errors },
   } = useForm<PropsTodoExample>({
     mode: "onSubmit",
     defaultValues: {
@@ -42,9 +42,9 @@ const TodoExample: React.FC = () => {
           </span>
         </h1>
 
-        <div className="clm button-clm">
+        <div className="clm button-clm left">
           <Button
-            type="secondary"
+            type={undefined}
             onClick={() => append({ task: "", flag: "" })}
             isDisable={false}>
             追加
@@ -55,24 +55,18 @@ const TodoExample: React.FC = () => {
           <div className="clm todo-clm" key={field.id}>
             <TodoItems
               type={undefined}
-              onClick={() => remove(index)}
               label={undefined}
-              placeholder="タスク"
+              onClick={() => remove(index)}
+              placeholder="Todo タスク"
               {...register(`todoItemsName.${index}.task` as const)}
-              errors={errors}
+              errors={undefined}
             />
             <SwitchButton
               type={undefined}
               label={undefined}
-              options={[
-                {
-                  value: "complate",
-                  label: "未完了",
-                  labelActived: "完了済",
-                }
-              ]}
+              options={[{ value: "complate", label: "未完", labelActived: "完了" }]}
               {...register(`todoItemsName.${index}.flag` as const)}
-              errors={errors}
+              errors={undefined}
             />
           </div>
         )}
@@ -106,6 +100,9 @@ const Styled = styled.div`
         &:last-child {
           margin-right: 0;
         }
+      }
+      &.left {
+        justify-content: left;
       }
     }
     .todo-items {
