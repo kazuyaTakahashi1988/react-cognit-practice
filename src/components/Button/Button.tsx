@@ -1,16 +1,20 @@
-import React from "react";
+import React, { forwardRef } from "react";
 import styled from "styled-components";
 import { PropsButton } from "../../lib/props";
 
-export const Button: React.FC<PropsButton> = (props) => {
-  const { type, onClick, isDisable, children } = props;
+type Props = React.ButtonHTMLAttributes<HTMLButtonElement> & PropsButton;
+
+export const ButtonField: React.ForwardRefRenderFunction<
+  HTMLButtonElement,
+  Props
+> = (props, ref) => {
+  const { children, ...rest } = props;
 
   return (
     <Styled
+      ref={ref}
+      {...rest}
       type="button"
-      className={[`${type ? type : "primary"}`].join(" ")}
-      onClick={onClick}
-      disabled={isDisable}
     >
       {children}
     </Styled>
@@ -28,17 +32,17 @@ const Styled = styled.button`
   transition: 0.1s;
   cursor: pointer;
   font-size: 16px;
-  color: #000;
+  background: rgb(33, 150, 243);
+  color: #fff;
   &:hover {
     opacity: 0.6;
   }
   &.primary {
-    background: rgb(33, 150, 243);
-    color: #fff;
   }
   &.secondary {
     background: #fff;
     box-shadow: 0 0 0 1px #ccc;
+    color: #000;
   }
   &:disabled {
     cursor: not-allowed;
@@ -50,4 +54,5 @@ const Styled = styled.button`
   }
 `;
 
+export const Button = forwardRef(ButtonField);
 export default Button;

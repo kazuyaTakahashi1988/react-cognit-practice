@@ -74,8 +74,6 @@ export type PropsInput = {
     required: boolean;
   }
   | undefined;
-  type: string | undefined;
-  placeholder: string | undefined;
   errors?: object | undefined;
 };
 
@@ -87,9 +85,7 @@ export type PropsTodoItems = {
     required: boolean;
   }
   | undefined;
-  type: string | undefined;
   onClick?: any;
-  placeholder: string | undefined;
   errors?: object | undefined;
 };
 
@@ -125,7 +121,6 @@ export type PropsRadioButton = {
 
 // SwitchButton
 export type PropsSwitchButton = {
-  type: string | undefined;
   label:
   | {
     text: string | undefined;
@@ -152,7 +147,6 @@ export type PropsSelect = {
     value: string;
     label: string;
   }>;
-  placeholder: string | undefined;
   errors?: object | undefined;
 };
 
@@ -168,7 +162,6 @@ export type PropsSelectCustom = {
     value: string;
     label: string;
   }>;
-  placeholder: string | undefined;
   errors?: object | undefined;
 };
 
@@ -180,16 +173,12 @@ export type PropsTextArea = {
     required: boolean;
   }
   | undefined;
-  placeholder: string | undefined;
   errors?: object | undefined;
 };
 
 // Button
 export type PropsButton = {
-  type: string | undefined;
   children?: any;
-  onClick?: any;
-  isDisable: boolean;
 };
 
 // Modal

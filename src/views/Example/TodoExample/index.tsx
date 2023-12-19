@@ -9,13 +9,7 @@ import SwitchButton from "../../../components/Form/SwitchButton";
 import Button from "../../../components/Button/Button";
 
 const TodoExample: React.FC = () => {
-  const {
-    register,
-    handleSubmit,
-    reset,
-    control,
-    // formState: { errors },
-  } = useForm<PropsTodoExample>({
+  const { register, handleSubmit, reset, control } = useForm<PropsTodoExample>({
     mode: "onSubmit",
     defaultValues: {
       todoItemsName: [{ task: "test", flag: "" }],
@@ -42,42 +36,36 @@ const TodoExample: React.FC = () => {
           </span>
         </h1>
 
-        <div className="clm button-clm left">
-          <Button
-            type={undefined}
-            onClick={() => append({ task: "", flag: "" })}
-            isDisable={false}>
-            追加
-          </Button>
-        </div>
+        <Button
+          className="clm button-clm left"
+          onClick={() => append({ task: "", flag: "" })}
+        >
+          追加
+        </Button>
 
-        {fields.map((field, index) =>
+        {fields.map((field, index) => (
           <div className="clm todo-clm" key={field.id}>
             <TodoItems
-              type={undefined}
+              placeholder="Todo タスク"
               label={undefined}
               onClick={() => remove(index)}
-              placeholder="Todo タスク"
               {...register(`todoItemsName.${index}.task` as const)}
-              errors={undefined}
             />
             <SwitchButton
-              type={undefined}
               label={undefined}
-              options={[{ value: "complate", label: "未完", labelActived: "完了" }]}
+              options={[
+                { value: "complate", label: "未対応", labelActived: "対応済" },
+              ]}
               {...register(`todoItemsName.${index}.flag` as const)}
-              errors={undefined}
             />
           </div>
-        )}
+        ))}
 
         <div className="clm button-clm">
-          <Button type="secondary" onClick={() => reset()} isDisable={false}>
+          <Button className="secondary" onClick={() => reset()}>
             リセット
           </Button>
-          <Button type={undefined} onClick={() => onSubmit()} isDisable={false}>
-            送信する
-          </Button>
+          <Button onClick={() => onSubmit()}>送信する</Button>
         </div>
       </Styled>
     </Layout>

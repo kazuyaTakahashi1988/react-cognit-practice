@@ -12,56 +12,52 @@ const DropdownMenuExample: React.FC = () => {
           <span>DropdownMenuExample</span>
         </h1>
 
-        <div className="clm">
-          <DropdownMenu
-            menuList={[
-              {
-                text: "Menu_A_01Menu_A_01Menu_A_01Menu_A_01Menu_A_01Menu_A_01Menu_A_01Menu_A_01",
-                onClick: () => alert("01 onClicked !!"),
-              },
-              { text: "Menu_A_02", onClick: () => alert("02 onClicked !!") },
-              { text: "Menu_A_03", onClick: () => alert("03 onClicked !!") },
-            ]}
-          >
-            ドロップダウンメニュー_A
-          </DropdownMenu>
-        </div>
+        <DropdownMenu
+          className="clm"
+          menuList={[
+            {
+              text: "Menu_A_01Menu_A_01Menu_A_01Menu_A_01Menu_A_01Menu_A_01Menu_A_01Menu_A_01",
+              onClick: () => alert("01 onClicked !!"),
+            },
+            { text: "Menu_A_02", onClick: () => alert("02 onClicked !!") },
+            { text: "Menu_A_03", onClick: () => alert("03 onClicked !!") },
+          ]}
+        >
+          ドロップダウンメニュー_A
+        </DropdownMenu>
 
-        <div className="clm right">
-          <DropdownMenu
-            menuList={[
-              { text: "Menu_B_01", onClick: () => alert("01 onClicked !!") },
-              { text: "Menu_B_02", onClick: () => alert("02 onClicked !!") },
-              { text: "Menu_B_03", onClick: () => alert("03 onClicked !!") },
-            ]}
-          >
-            ドロップダウンメニュー_B
-          </DropdownMenu>
-        </div>
+        <DropdownMenu
+          className="clm right"
+          menuList={[
+            { text: "Menu_B_01", onClick: () => alert("01 onClicked !!") },
+            { text: "Menu_B_02", onClick: () => alert("02 onClicked !!") },
+            { text: "Menu_B_03", onClick: () => alert("03 onClicked !!") },
+          ]}
+        >
+          ドロップダウンメニュー_B
+        </DropdownMenu>
 
-        <div className="clm">
-          <DropdownMenu
-            menuList={[
-              { text: "Menu_C_01", onClick: () => alert("01 onClicked !!") },
-              { text: "Menu_C_02", onClick: () => alert("02 onClicked !!") },
-              { text: "Menu_C_03", onClick: () => alert("03 onClicked !!") },
-            ]}
-          >
-            ドロップダウンメニュー_c
-          </DropdownMenu>
-        </div>
+        <DropdownMenu
+          className="clm"
+          menuList={[
+            { text: "Menu_C_01", onClick: () => alert("01 onClicked !!") },
+            { text: "Menu_C_02", onClick: () => alert("02 onClicked !!") },
+            { text: "Menu_C_03", onClick: () => alert("03 onClicked !!") },
+          ]}
+        >
+          ドロップダウンメニュー_c
+        </DropdownMenu>
 
-        <div className="clm right">
-          <DropdownMenu
-            menuList={[
-              { text: "Menu_D_01", onClick: () => alert("01 onClicked !!") },
-              { text: "Menu_D_02", onClick: () => alert("02 onClicked !!") },
-              { text: "Menu_D_03", onClick: () => alert("03 onClicked !!") },
-            ]}
-          >
-            ドロップダウンメニュー_D
-          </DropdownMenu>
-        </div>
+        <DropdownMenu
+          className="clm right"
+          menuList={[
+            { text: "Menu_D_01", onClick: () => alert("01 onClicked !!") },
+            { text: "Menu_D_02", onClick: () => alert("02 onClicked !!") },
+            { text: "Menu_D_03", onClick: () => alert("03 onClicked !!") },
+          ]}
+        >
+          ドロップダウンメニュー_D
+        </DropdownMenu>
       </Styled>
     </Layout>
   );
@@ -72,6 +68,7 @@ const Styled = styled.div`
   padding: 30px;
   .clm {
     margin: 30px 0 300px 0;
+    display: block;
     &:last-of-type {
       margin-bottom: 0;
     }

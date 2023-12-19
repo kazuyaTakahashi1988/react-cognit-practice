@@ -1,10 +1,15 @@
-import React, { useState, useEffect } from "react";
+import React, { forwardRef, useState, useEffect } from "react";
 import styled from "styled-components";
 import { PropsModal } from "../../lib/props";
 import Button from "../../components/Button/Button";
 
-export const Modal: React.FC<PropsModal> = (props) => {
-  const { children, title, text, button, initOpen } = props;
+type Props = React.HTMLAttributes<HTMLSpanElement> & PropsModal;
+
+export const ModalField: React.ForwardRefRenderFunction<
+  HTMLSpanElement,
+  Props
+> = (props, ref) => {
+  const { children, title, text, button, initOpen, ...rest } = props;
   const [isOpen, setIsOpen] = useState(initOpen);
 
   const onOpen = () => {
@@ -22,6 +27,8 @@ export const Modal: React.FC<PropsModal> = (props) => {
   return (
     <>
       <Styled
+        ref={ref}
+        {...rest}
         onClick={() => {
           !isOpen ? onOpen() : onClose();
         }}
@@ -44,17 +51,11 @@ export const Modal: React.FC<PropsModal> = (props) => {
               </div>
               <div className="modal__container">{text}</div>
               <div className="modal__footer">
-                <Button type="secondary" onClick={onClose} isDisable={false}>
+                <Button className="secondary" onClick={onClose}>
                   閉じる
                 </Button>
                 {button && (
-                  <Button
-                    type={undefined}
-                    onClick={button.onClick}
-                    isDisable={false}
-                  >
-                    {button.text}
-                  </Button>
+                  <Button onClick={button.onClick}>{button.text}</Button>
                 )}
               </div>
             </div>
@@ -189,4 +190,5 @@ const StyledModal = styled.span`
   }
 `;
 
+export const Modal = forwardRef(ModalField);
 export default Modal;

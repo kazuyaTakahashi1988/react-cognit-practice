@@ -1,14 +1,19 @@
-import React from "react";
+import React, { forwardRef } from "react";
 import styled from "styled-components";
 import { PropsLabel } from "../../lib/props";
 
-export const Label: React.FC<PropsLabel> = (props) => {
-  const { label } = props;
+type Props = React.LabelHTMLAttributes<HTMLLabelElement> & PropsLabel;
+
+export const LabelField: React.ForwardRefRenderFunction<
+  HTMLLabelElement,
+  Props
+> = (props, ref) => {
+  const { label, ...rest } = props;
 
   return (
-    <Styled>
+    <Styled className={rest.className}>
       {label && (
-        <label className="label-text">
+        <label ref={ref} {...rest} className="label-text">
           {label.text}
           {label.required && <span>*</span>}
         </label>
@@ -32,4 +37,5 @@ const Styled = styled.div`
   }
 `;
 
+export const Label = forwardRef(LabelField);
 export default Label;

@@ -10,7 +10,6 @@ const meta = {
   },
   tags: ["autodocs"],
   argTypes: {
-    type: String,
     label: {
       text: String,
       required: Boolean,
@@ -29,7 +28,6 @@ type Story = StoryObj<typeof meta>;
 
 export const Default: Story = {
   args: {
-    type: "",
     label: { text: "SwitchButtonラベルテキスト", required: false },
     options: [
       {
@@ -50,7 +48,6 @@ export const Default: Story = {
 
 export const Required: Story = {
   args: {
-    type: "",
     label: { text: "SwitchButtonラベルテキスト", required: true },
     options: [
       {

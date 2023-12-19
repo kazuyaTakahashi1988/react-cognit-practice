@@ -1,9 +1,14 @@
-import React, { useState, useEffect, useRef } from "react";
+import React, { forwardRef, useState, useEffect, useRef } from "react";
 import styled from "styled-components";
 import { PropsDropdownMenu } from "../../lib/props";
 
-export const DropdownMenu: React.FC<PropsDropdownMenu> = (props) => {
-  const { menuList, children } = props;
+type Props = React.HTMLAttributes<HTMLSpanElement> & PropsDropdownMenu;
+
+export const DropdownMenuField: React.ForwardRefRenderFunction<
+  HTMLSpanElement,
+  Props
+> = (props, ref) => {
+  const { menuList, children, ...rest } = props;
 
   const [isOpen, setIsOpen] = useState(false);
   const [isClientBottom, setIsClientBottom] = useState(false);
@@ -45,41 +50,43 @@ export const DropdownMenu: React.FC<PropsDropdownMenu> = (props) => {
   }, [isOpen]);
 
   return (
-    <Styled
-      className="dropdown-menu"
-      ref={dropdownMenuRef}
-      onClick={() => setIsOpen(!isOpen)}
-    >
-      {children}
+    <Styled ref={ref} {...rest}>
+      <div
+        className="dropdown-menu"
+        ref={dropdownMenuRef}
+        onClick={() => setIsOpen(!isOpen)}
+      >
+        {children}
 
-      {isOpen && (
-        <ul
-          className={[
-            `dropdown-menu__inner`,
-            `${isClientBottom ? "bottom" : ""}`,
-            `${isClientLeft ? "left" : ""}`,
-          ].join(" ")}
-          ref={dropdownMenuInnerRef}
-          onClick={(e) => {
-            e.stopPropagation();
-          }}
-        >
-          {menuList.map((menu, index) => (
-            <li onClick={menu.onClick} key={index}>
-              {menu.text}
-            </li>
-          ))}
-        </ul>
-      )}
+        {isOpen && (
+          <ul
+            className={[
+              `dropdown-menu__inner`,
+              `${isClientBottom ? "bottom" : ""}`,
+              `${isClientLeft ? "left" : ""}`,
+            ].join(" ")}
+            ref={dropdownMenuInnerRef}
+            onClick={(e) => {
+              e.stopPropagation();
+            }}
+          >
+            {menuList.map((menu, index) => (
+              <li onClick={menu.onClick} key={index}>
+                {menu.text}
+              </li>
+            ))}
+          </ul>
+        )}
+      </div>
     </Styled>
   );
 };
 
 const Styled = styled.span`
-  display: inline-block;
-  position: relative;
-  cursor: pointer;
   .dropdown-menu {
+    display: inline-block;
+    position: relative;
+    cursor: pointer;
     &__inner {
       position: absolute;
       z-index: 10;
@@ -139,4 +146,5 @@ const Styled = styled.span`
   }
 `;
 
+export const DropdownMenu = forwardRef(DropdownMenuField);
 export default DropdownMenu;

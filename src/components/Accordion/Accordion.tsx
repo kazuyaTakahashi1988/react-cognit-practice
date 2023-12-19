@@ -1,9 +1,14 @@
-import React, { useState, useEffect } from "react";
+import React, { forwardRef, useState, useEffect } from "react";
 import styled from "styled-components";
 import { PropsAccordion } from "../../lib/props";
 
-export const Accordion: React.FC<PropsAccordion> = (props) => {
-  const { title, initOpen, children } = props;
+type Props = React.HTMLAttributes<HTMLDivElement> & PropsAccordion;
+
+export const AccordionField: React.ForwardRefRenderFunction<
+  HTMLDivElement,
+  Props
+> = (props, ref) => {
+  const { title, initOpen, children, ...rest } = props;
   const [isOpen, setIsOpen] = useState(initOpen);
 
   useEffect(() => {
@@ -11,7 +16,7 @@ export const Accordion: React.FC<PropsAccordion> = (props) => {
   }, [initOpen]);
 
   return (
-    <Styled>
+    <Styled ref={ref} {...rest}>
       <div className={["accordion", `${isOpen ? "is-open" : ""}`].join(" ")}>
         <div className="accordion__title" onClick={() => setIsOpen(!isOpen)}>
           {title}
@@ -74,4 +79,5 @@ const Styled = styled.div`
   }
 `;
 
+export const Accordion = forwardRef(AccordionField);
 export default Accordion;

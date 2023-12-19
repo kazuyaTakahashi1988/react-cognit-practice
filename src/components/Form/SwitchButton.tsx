@@ -10,20 +10,21 @@ export const SwitchButtonField: React.ForwardRefRenderFunction<
   HTMLInputElement,
   Props
 > = (props, ref) => {
-  const { type, label, options, errors, ...rest } = props;
+  const { label, options, errors, ...rest } = props;
 
   return (
-    <Styled>
+    <Styled className={rest.className}>
       {label && <Label label={label} />}
 
       {options.map((option, index) => (
         <label htmlFor={rest.name + option.value} key={index} className="label">
           <input
-            type={type ? type : "checkbox"}
             id={rest.name + option.value}
             value={option.value}
             ref={ref}
             {...rest}
+            type={rest.type ? rest.type : "checkbox"}
+            className=""
           />
           <span className="label__text">
             <span className="circle"></span>

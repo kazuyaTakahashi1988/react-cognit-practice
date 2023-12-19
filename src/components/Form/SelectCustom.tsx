@@ -17,7 +17,7 @@ export const SelectCustomField: React.ForwardRefRenderFunction<
   HTMLInputElement,
   Props
 > = (props, ref) => {
-  const { label, options, placeholder, errors, ...rest } = props;
+  const { label, options, errors, ...rest } = props;
 
   const [isOpen, setIsOpen] = useState(false);
   const selectRef = useRef<HTMLDivElement>(null);
@@ -49,7 +49,7 @@ export const SelectCustomField: React.ForwardRefRenderFunction<
   }, [selectedIndex, isOpen]);
 
   return (
-    <Styled>
+    <Styled className={rest.className}>
       {label && <Label label={label} />}
 
       <div className="select" ref={selectRef}>
@@ -57,15 +57,18 @@ export const SelectCustomField: React.ForwardRefRenderFunction<
           className={[`selected`, `${isOpen ? "is-open" : ""}`].join(" ")}
           onClick={(e) => onOpenToggle(e)}
         >
-          {placeholder && <span className="placeholder">{placeholder}</span>}
+          {rest.placeholder && (
+            <span className="placeholder">{rest.placeholder}</span>
+          )}
           {options.map((option, index) => (
             <div className="selected__label" key={index}>
               <input
-                type="radio"
                 id={rest.name + option.value}
                 value={option.value}
                 ref={ref}
                 {...rest}
+                type="radio"
+                className=""
               />
               <span data-selected-index={index}>{option.label}</span>
             </div>

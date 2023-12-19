@@ -61,11 +61,7 @@ export const ButtonClick: Story = {
       text: "モーダルイベントボタン",
       onClick: () => alert("onClicked !!"),
     },
-    children: (
-      <Button type="" onClick={() => {}} isDisable={false}>
-        モーダルを開くよ！
-      </Button>
-    ),
+    children: <Button>モーダルを開くよ！</Button>,
     initOpen: false,
   },
 };
@@ -78,11 +74,7 @@ export const LongText: Story = {
       text: "モーダルイベントボタン",
       onClick: () => alert("onClicked !!"),
     },
-    children: (
-      <Button type="secondary" onClick={() => {}} isDisable={false}>
-        モーダルを開くよ！
-      </Button>
-    ),
+    children: <Button className="secondary">モーダルを開くよ！</Button>,
     initOpen: false,
   },
 };

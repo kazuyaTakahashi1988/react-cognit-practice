@@ -32,33 +32,29 @@ const SignIn: React.FC = () => {
       <Styled>
         <h1>SignIn</h1>
 
-        <div className="clm">
-          <Input
-            type="email"
-            label={{ text: "emailを入力してください", required: true }}
-            placeholder="○○○○＠○○○○.com"
-            {...register("email", { required: "必須項目だよ。" })}
-            errors={errors}
-          />
-        </div>
+        <Input
+          type="email"
+          className="clm"
+          placeholder="○○○○＠○○○○.com"
+          label={{ text: "emailを入力してください", required: true }}
+          {...register("email", { required: "必須項目だよ。" })}
+          errors={errors}
+        />
 
-        <div className="clm">
-          <Input
-            type="password"
-            label={{ text: "passwordを入力してください", required: true }}
-            placeholder="○○○○○○○○"
-            {...register("password", { required: "必須項目だよ。" })}
-            errors={errors}
-          />
-        </div>
+        <Input
+          type="password"
+          className="clm"
+          placeholder="○○○○○○○○"
+          label={{ text: "passwordを入力してください", required: true }}
+          {...register("password", { required: "必須項目だよ。" })}
+          errors={errors}
+        />
 
         <div className="clm button-clm">
-          <Button type="secondary" onClick={() => reset()} isDisable={false}>
+          <Button className="secondary" onClick={() => reset()}>
             リセット
           </Button>
-          <Button type={undefined} onClick={() => onSubmit()} isDisable={false}>
-            送信する
-          </Button>
+          <Button onClick={() => onSubmit()}>送信する</Button>
         </div>
       </Styled>
     </Layout>

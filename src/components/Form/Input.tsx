@@ -10,17 +10,17 @@ export const InputField: React.ForwardRefRenderFunction<
   HTMLInputElement,
   Props
 > = (props, ref) => {
-  const { label, type, placeholder, errors, ...rest } = props;
+  const { label, errors, ...rest } = props;
 
   return (
-    <Styled>
+    <Styled className={rest.className}>
       {label && <Label label={label} />}
 
       <input
-        type={type || "text"}
-        placeholder={placeholder}
         ref={ref}
         {...rest}
+        type={rest.type || "text"}
+        className=""
       />
 
       {errors &&

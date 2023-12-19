@@ -13,17 +13,18 @@ export const RadioButtonField: React.ForwardRefRenderFunction<
   const { label, options, errors, ...rest } = props;
 
   return (
-    <Styled>
+    <Styled className={rest.className}>
       {label && <Label label={label} />}
 
       {options.map((option, index) => (
         <label htmlFor={rest.name + option.value} key={index} className="label">
           <input
-            type="radio"
             id={rest.name + option.value}
             value={option.value}
             ref={ref}
             {...rest}
+            type="radio"
+            className=""
           />
           <span className="label__text">{option.label}</span>
         </label>

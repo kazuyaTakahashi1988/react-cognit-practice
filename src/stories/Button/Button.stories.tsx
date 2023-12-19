@@ -10,10 +10,7 @@ const meta = {
   },
   tags: ["autodocs"],
   argTypes: {
-    type: String,
-    onClick: Object,
     children: Object,
-    isDisable: Boolean,
   },
 } satisfies Meta<typeof Button>;
 
@@ -22,27 +19,23 @@ type Story = StoryObj<typeof meta>;
 
 export const Default: Story = {
   args: {
-    type: "",
     onClick: () => alert("onClicked !!"),
     children: "ボタンクリック！",
-    isDisable: false,
   },
 };
 
 export const Secondary: Story = {
   args: {
-    type: "secondary",
+    className: "secondary",
     onClick: () => alert("onClicked !!"),
     children: "ボタンクリック！",
-    isDisable: false,
   },
 };
 
 export const Disabled: Story = {
   args: {
-    type: "",
     onClick: () => alert("onClicked !!"),
     children: "ボタンクリック！",
-    isDisable: true,
+    disabled: true,
   },
 };

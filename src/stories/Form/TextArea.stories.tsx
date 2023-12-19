@@ -14,7 +14,6 @@ const meta = {
       text: String,
       required: Boolean,
     },
-    placeholder: String,
     errors: Object,
   },
   decorators: [
@@ -35,16 +34,16 @@ type Story = StoryObj<typeof meta>;
 
 export const Default: Story = {
   args: {
-    label: { text: "TextAreaラベルテキスト", required: false },
     placeholder: "入力をお願いします。",
+    label: { text: "TextAreaラベルテキスト", required: false },
     errors: [],
   },
 };
 
 export const Required: Story = {
   args: {
-    label: { text: "TextAreaラベルテキスト", required: true },
     placeholder: "入力をお願いします。",
+    label: { text: "TextAreaラベルテキスト", required: true },
     errors: [],
   },
 };

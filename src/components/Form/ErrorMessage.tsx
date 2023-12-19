@@ -1,13 +1,22 @@
-import React from "react";
+import React, { forwardRef } from "react";
 import styled from "styled-components";
 import { PropsErrorMessage } from "../../lib/props";
 
-export const ErrorMessage: React.FC<PropsErrorMessage> = (props) => {
-  const { errorMessage } = props;
+type Props = React.LabelHTMLAttributes<HTMLLabelElement> & PropsErrorMessage;
+
+export const ErrorMessageField: React.ForwardRefRenderFunction<
+  HTMLLabelElement,
+  Props
+> = (props, ref) => {
+  const { errorMessage, ...rest } = props;
 
   return (
-    <Styled>
-      {errorMessage && <label className="error">{errorMessage}</label>}
+    <Styled className={rest.className}>
+      {errorMessage && (
+        <label ref={ref} {...rest} className="error">
+          {errorMessage}
+        </label>
+      )}
     </Styled>
   );
 };
@@ -21,4 +30,5 @@ const Styled = styled.div`
   }
 `;
 
+export const ErrorMessage = forwardRef(ErrorMessageField);
 export default ErrorMessage;

@@ -10,17 +10,17 @@ export const SelectField: React.ForwardRefRenderFunction<
   HTMLSelectElement,
   Props
 > = (props, ref) => {
-  const { label, options, placeholder, errors, ...rest } = props;
+  const { label, options, errors, ...rest } = props;
 
   return (
-    <Styled>
+    <Styled className={rest.className}>
       {label && <Label label={label} />}
 
       <div className="select">
-        <select ref={ref} {...rest}>
-          {placeholder && (
+        <select ref={ref} {...rest} className="">
+          {rest.placeholder && (
             <option value="" hidden>
-              {placeholder}
+              {rest.placeholder}
             </option>
           )}
           {options.map((option, index) => (

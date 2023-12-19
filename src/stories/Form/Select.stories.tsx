@@ -18,7 +18,6 @@ const meta = {
       value: string;
       label: string;
     }>,
-    placeholder: String,
     errors: Object,
   },
   decorators: [
@@ -39,26 +38,26 @@ type Story = StoryObj<typeof meta>;
 
 export const Default: Story = {
   args: {
+    placeholder: "選択してください。",
     label: { text: "Selectラベルテキスト", required: false },
     options: [
       { value: "Select_Value_A", label: "Select_Label_A" },
       { value: "Select_Value_B", label: "Select_Label_B" },
       { value: "Select_Value_C", label: "Select_Label_C" },
     ],
-    placeholder: "選択してください。",
     errors: [],
   },
 };
 
 export const Required: Story = {
   args: {
+    placeholder: "選択してください。",
     label: { text: "Selectラベルテキスト", required: true },
     options: [
       { value: "Select_Value_A", label: "Select_Label_A" },
       { value: "Select_Value_B", label: "Select_Label_B" },
       { value: "Select_Value_C", label: "Select_Label_C" },
     ],
-    placeholder: "選択してください。",
     errors: [],
   },
 };

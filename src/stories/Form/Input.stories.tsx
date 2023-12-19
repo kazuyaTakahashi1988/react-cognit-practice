@@ -10,12 +10,10 @@ const meta = {
   },
   tags: ["autodocs"],
   argTypes: {
-    type: String,
     label: {
       text: String,
       required: Boolean,
     },
-    placeholder: String,
     errors: Object,
   },
   decorators: [
@@ -36,18 +34,16 @@ type Story = StoryObj<typeof meta>;
 
 export const Default: Story = {
   args: {
-    type: "",
-    label: { text: "Inputラベルテキスト", required: false },
     placeholder: "入力をお願いします。",
+    label: { text: "Inputラベルテキスト", required: false },
     errors: [],
   },
 };
 
 export const Required: Story = {
   args: {
-    type: "",
-    label: { text: "Inputラベルテキスト", required: true },
     placeholder: "入力をお願いします。",
+    label: { text: "Inputラベルテキスト", required: true },
     errors: [],
   },
 };

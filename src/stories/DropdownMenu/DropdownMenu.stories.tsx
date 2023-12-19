@@ -53,11 +53,7 @@ export const ButtonClick: Story = {
       { text: "Menu_02", onClick: () => alert("02 onClicked !!") },
       { text: "Menu_03", onClick: () => alert("03 onClicked !!") },
     ],
-    children: (
-      <Button type="" onClick={() => {}} isDisable={false}>
-        メニューを開くよ！
-      </Button>
-    ),
+    children: <Button>メニューを開くよ！</Button>,
   },
 };
 
@@ -68,11 +64,7 @@ export const Left: Story = {
       { text: "Menu_02", onClick: () => alert("02 onClicked !!") },
       { text: "Menu_03", onClick: () => alert("03 onClicked !!") },
     ],
-    children: (
-      <Button type="" onClick={() => {}} isDisable={false}>
-        メニューを開くよ！
-      </Button>
-    ),
+    children: <Button>メニューを開くよ！</Button>,
   },
   decorators: [
     (Story) => (
@@ -94,11 +86,7 @@ export const Right: Story = {
       { text: "Menu_02", onClick: () => alert("02 onClicked !!") },
       { text: "Menu_03", onClick: () => alert("03 onClicked !!") },
     ],
-    children: (
-      <Button type="" onClick={() => {}} isDisable={false}>
-        メニューを開くよ！
-      </Button>
-    ),
+    children: <Button>メニューを開くよ！</Button>,
   },
   decorators: [
     (Story) => (
@@ -120,11 +108,7 @@ export const Bottom: Story = {
       { text: "Menu_02", onClick: () => alert("02 onClicked !!") },
       { text: "Menu_03", onClick: () => alert("03 onClicked !!") },
     ],
-    children: (
-      <Button type="" onClick={() => {}} isDisable={false}>
-        メニューを開くよ！
-      </Button>
-    ),
+    children: <Button>メニューを開くよ！</Button>,
   },
   decorators: [
     (Story) => (

@@ -9,18 +9,18 @@ export const TodoItemsField: React.ForwardRefRenderFunction<
   HTMLInputElement,
   Props
 > = (props, ref) => {
-  const { label, type, onClick, placeholder, errors, ...rest } = props;
+  const { label, onClick, errors, ...rest } = props;
 
   return (
-    <Styled className="todo-items">
+    <Styled className={rest.className}>
       <div className="input-wrap">
         <Input
-          type={type}
           label={label}
-          placeholder={placeholder}
           ref={ref}
           {...rest}
           errors={errors}
+          type={rest.type || "text"}
+          className=""
         />
       </div>
       <small onClick={onClick}>削除</small>
