@@ -21,12 +21,6 @@ const TodoExample: React.FC = () => {
     control,
   });
 
-  const onAppend = async () => {
-    await append({ check: false, task: "" });
-    const inputArr = document.querySelectorAll("input");
-    inputArr.forEach((elm) => elm.blur());
-  };
-
   const onSubmit = handleSubmit((data) => {
     console.log(data);
   });
@@ -38,7 +32,10 @@ const TodoExample: React.FC = () => {
           <span>TodoExample</span>
         </h1>
 
-        <Button className="mt-30" onClick={() => onAppend()}>
+        <Button
+          className="mt-30"
+          onClick={() => append({ check: false, task: "" })}
+        >
           追加
         </Button>
 
