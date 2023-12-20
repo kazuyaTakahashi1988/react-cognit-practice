@@ -11,11 +11,7 @@ export const ButtonField: React.ForwardRefRenderFunction<
   const { children, ...rest } = props;
 
   return (
-    <Styled
-      ref={ref}
-      {...rest}
-      type="button"
-    >
+    <Styled ref={ref} {...rest} type="button">
       {children}
     </Styled>
   );

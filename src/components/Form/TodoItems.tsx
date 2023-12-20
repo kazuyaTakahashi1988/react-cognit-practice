@@ -9,21 +9,19 @@ export const TodoItemsField: React.ForwardRefRenderFunction<
   HTMLInputElement,
   Props
 > = (props, ref) => {
-  const { label, onClick, errors, ...rest } = props;
+  const { label, onRemove, errors, ...rest } = props;
 
   return (
     <Styled className={rest.className}>
-      <div className="input-wrap">
-        <Input
-          label={label}
-          ref={ref}
-          {...rest}
-          errors={errors}
-          type={rest.type || "text"}
-          className=""
-        />
-      </div>
-      <small onClick={onClick}>削除</small>
+      <Input
+        label={label}
+        ref={ref}
+        {...rest}
+        errors={errors}
+        type={rest.type || "text"}
+        className="todo-input"
+      />
+      <small onClick={onRemove}>削除</small>
     </Styled>
   );
 };
@@ -34,7 +32,7 @@ const Styled = styled.div`
   width: 100%;
   text-align: left;
   align-items: center;
-  .input-wrap {
+  .todo-input {
     width: calc(100% - 50px);
   }
   small {
