@@ -13,7 +13,7 @@ const AccordionExample: React.FC = () => {
         </h1>
 
         <Accordion
-          className="clm"
+          className="mt-30"
           title="アコーディオンタイトル"
           initOpen={false}
         >
@@ -24,7 +24,7 @@ const AccordionExample: React.FC = () => {
         </Accordion>
 
         <Accordion
-          className="clm"
+          className="mt-30"
           title="アコーディオンタイトル（デフォルトオープン）"
           initOpen={true}
         >
@@ -43,7 +43,7 @@ const AccordionExample: React.FC = () => {
 };
 
 const Styled = styled.div`
-  .clm {
+  .mt-30 {
     margin-top: 30px;
   }
 `;

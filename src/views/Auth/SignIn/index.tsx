@@ -34,7 +34,7 @@ const SignIn: React.FC = () => {
 
         <Input
           type="email"
-          className="clm"
+          className="mt-30"
           placeholder="○○○○＠○○○○.com"
           label={{ text: "emailを入力してください", required: true }}
           {...register("email", { required: "必須項目だよ。" })}
@@ -43,14 +43,14 @@ const SignIn: React.FC = () => {
 
         <Input
           type="password"
-          className="clm"
+          className="mt-30"
           placeholder="○○○○○○○○"
           label={{ text: "passwordを入力してください", required: true }}
           {...register("password", { required: "必須項目だよ。" })}
           errors={errors}
         />
 
-        <div className="clm button-clm">
+        <div className="mt-30 button-clm">
           <Button className="secondary" onClick={() => reset()}>
             リセット
           </Button>
@@ -62,7 +62,7 @@ const SignIn: React.FC = () => {
 };
 
 const Styled = styled.div`
-  .clm {
+  .mt-30 {
     margin-top: 30px;
     &.button-clm {
       display: flex;

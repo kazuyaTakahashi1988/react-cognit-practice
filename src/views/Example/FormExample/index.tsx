@@ -50,7 +50,7 @@ const FormExample: React.FC = () => {
         </h1>
 
         <Input
-          className="clm"
+          className="mt-30"
           placeholder="入力をお願いします。"
           label={{ text: "Inputラベルテキスト", required: true }}
           {...register("inputName", {
@@ -66,7 +66,7 @@ const FormExample: React.FC = () => {
         />
 
         <CheckBox
-          className="clm"
+          className="mt-30"
           label={{ text: "CheckBoxラベルテキスト", required: true }}
           options={[
             { value: "Check_Value_A", label: "Check_Label_A" },
@@ -84,7 +84,7 @@ const FormExample: React.FC = () => {
         />
 
         <RadioButton
-          className="clm"
+          className="mt-30"
           label={{ text: "RadioButtonラベルテキスト", required: true }}
           options={[
             { value: "Radio_Value_A", label: "Radio_Label_A" },
@@ -98,7 +98,7 @@ const FormExample: React.FC = () => {
         />
 
         <SwitchButton
-          className="clm"
+          className="mt-30"
           label={{ text: "SwitchButtonラベルテキスト", required: true }}
           options={[
             {
@@ -124,7 +124,7 @@ const FormExample: React.FC = () => {
         />
 
         <Select
-          className="clm"
+          className="mt-30"
           placeholder="選択してください。"
           label={{ text: "Selectラベルテキスト", required: true }}
           options={[
@@ -139,7 +139,7 @@ const FormExample: React.FC = () => {
         />
 
         <SelectCustom
-          className="clm"
+          className="mt-30"
           placeholder="選択してください。"
           label={{ text: "SelectCustomラベルテキスト", required: true }}
           options={[
@@ -158,7 +158,7 @@ const FormExample: React.FC = () => {
         />
 
         <TextArea
-          className="clm"
+          className="mt-30"
           placeholder="入力をお願いします。"
           label={{ text: "TextAreaラベルテキスト", required: true }}
           {...register("textAreaName", {
@@ -173,7 +173,7 @@ const FormExample: React.FC = () => {
           errors={errors}
         />
 
-        <div className="clm button-clm">
+        <div className="mt-30 button-clm">
           <Button className="secondary" onClick={() => reset()}>
             リセット
           </Button>
@@ -185,7 +185,7 @@ const FormExample: React.FC = () => {
 };
 
 const Styled = styled.div`
-  .clm {
+  .mt-30 {
     margin-top: 30px;
     &.button-clm {
       display: flex;

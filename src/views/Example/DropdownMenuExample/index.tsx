@@ -13,7 +13,7 @@ const DropdownMenuExample: React.FC = () => {
         </h1>
 
         <DropdownMenu
-          className="clm"
+          className="mt-30"
           menuList={[
             {
               text: "Menu_A_01Menu_A_01Menu_A_01Menu_A_01Menu_A_01Menu_A_01Menu_A_01Menu_A_01",
@@ -27,7 +27,7 @@ const DropdownMenuExample: React.FC = () => {
         </DropdownMenu>
 
         <DropdownMenu
-          className="clm right"
+          className="mt-30 right"
           menuList={[
             { text: "Menu_B_01", onClick: () => alert("01 onClicked !!") },
             { text: "Menu_B_02", onClick: () => alert("02 onClicked !!") },
@@ -38,7 +38,7 @@ const DropdownMenuExample: React.FC = () => {
         </DropdownMenu>
 
         <DropdownMenu
-          className="clm"
+          className="mt-30"
           menuList={[
             { text: "Menu_C_01", onClick: () => alert("01 onClicked !!") },
             { text: "Menu_C_02", onClick: () => alert("02 onClicked !!") },
@@ -49,7 +49,7 @@ const DropdownMenuExample: React.FC = () => {
         </DropdownMenu>
 
         <DropdownMenu
-          className="clm right"
+          className="mt-30 right"
           menuList={[
             { text: "Menu_D_01", onClick: () => alert("01 onClicked !!") },
             { text: "Menu_D_02", onClick: () => alert("02 onClicked !!") },
@@ -66,7 +66,7 @@ const DropdownMenuExample: React.FC = () => {
 const Styled = styled.div`
   background: #f5f5f5;
   padding: 30px;
-  .clm {
+  .mt-30 {
     margin: 30px 0 300px 0;
     display: block;
     &:last-of-type {
