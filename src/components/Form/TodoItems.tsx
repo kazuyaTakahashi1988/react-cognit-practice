@@ -2,8 +2,8 @@ import React, { forwardRef } from "react";
 import styled from "styled-components";
 import { PropsTodoItems } from "../../lib/props";
 
-import Input from "./Input";
 import CheckBox from "./CheckBox";
+import Input from "./Input";
 import Button from "../Button/Button";
 
 type Props = React.InputHTMLAttributes<HTMLInputElement> & PropsTodoItems;
@@ -25,12 +25,12 @@ export const TodoItemsField: React.ForwardRefRenderFunction<
           <li key={field.id}>
             <CheckBox
               options={[{ value: "", label: "" }]}
-              {...register(`todoItemsName.${index}.check` as const)}
+              {...register(`${rest.name}.${index}.check` as const)}
               className="todo-check"
             />
             <Input
               {...rest}
-              {...register(`todoItemsName.${index}.task` as const)}
+              {...register(`${rest.name}.${index}.task` as const)}
               className="todo-task"
             />
             <Button className="secondary" onClick={() => remove(index)}>

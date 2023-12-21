@@ -33,6 +33,7 @@ const TodoExample: React.FC = () => {
 
         <TodoItems
           className="mt-30"
+          name="todoItemsName"
           placeholder="タスクを入力してください。"
           append={() => append({ check: false, task: "" })}
           remove={remove}

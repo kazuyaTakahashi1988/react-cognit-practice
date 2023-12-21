@@ -83,7 +83,6 @@ export type PropsTodoItems = {
   remove?: any;
   fields?: any,
   register?: any;
-  errors?: object | undefined;
 };
 
 // CheckBox
