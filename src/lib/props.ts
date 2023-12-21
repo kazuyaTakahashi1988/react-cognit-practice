@@ -54,11 +54,11 @@ export type PropsHeader = {
 // Label
 export type PropsLabel = {
   label:
-    | {
-        text: string | undefined;
-        required: boolean;
-      }
-    | undefined;
+  | {
+    text: string | undefined;
+    required: boolean;
+  }
+  | undefined;
 };
 
 // ErrorMessage
@@ -69,34 +69,31 @@ export type PropsErrorMessage = {
 // Input
 export type PropsInput = {
   label:
-    | {
-        text: string | undefined;
-        required: boolean;
-      }
-    | undefined;
+  | {
+    text: string | undefined;
+    required: boolean;
+  }
+  | undefined;
   errors?: object | undefined;
 };
 
 // TodoItems
 export type PropsTodoItems = {
-  label:
-    | {
-        text: string | undefined;
-        required: boolean;
-      }
-    | undefined;
-  onRemove?: any;
+  append?: any,
+  remove?: any;
+  fields?: any,
+  register?: any;
   errors?: object | undefined;
 };
 
 // CheckBox
 export type PropsCheckBox = {
   label:
-    | {
-        text: string | undefined;
-        required: boolean;
-      }
-    | undefined;
+  | {
+    text: string | undefined;
+    required: boolean;
+  }
+  | undefined;
   options: Array<{
     value: string;
     label: string;
@@ -107,11 +104,11 @@ export type PropsCheckBox = {
 // RadioButton
 export type PropsRadioButton = {
   label:
-    | {
-        text: string | undefined;
-        required: boolean;
-      }
-    | undefined;
+  | {
+    text: string | undefined;
+    required: boolean;
+  }
+  | undefined;
   options: Array<{
     value: string;
     label: string;
@@ -122,11 +119,11 @@ export type PropsRadioButton = {
 // SwitchButton
 export type PropsSwitchButton = {
   label:
-    | {
-        text: string | undefined;
-        required: boolean;
-      }
-    | undefined;
+  | {
+    text: string | undefined;
+    required: boolean;
+  }
+  | undefined;
   options: Array<{
     value: string;
     label: string;
@@ -138,11 +135,11 @@ export type PropsSwitchButton = {
 // Select
 export type PropsSelect = {
   label:
-    | {
-        text: string | undefined;
-        required: boolean;
-      }
-    | undefined;
+  | {
+    text: string | undefined;
+    required: boolean;
+  }
+  | undefined;
   options: Array<{
     value: string;
     label: string;
@@ -153,11 +150,11 @@ export type PropsSelect = {
 // SelectCustom
 export type PropsSelectCustom = {
   label:
-    | {
-        text: string | undefined;
-        required: boolean;
-      }
-    | undefined;
+  | {
+    text: string | undefined;
+    required: boolean;
+  }
+  | undefined;
   options: Array<{
     value: string;
     label: string;
@@ -168,11 +165,11 @@ export type PropsSelectCustom = {
 // TextArea
 export type PropsTextArea = {
   label:
-    | {
-        text: string | undefined;
-        required: boolean;
-      }
-    | undefined;
+  | {
+    text: string | undefined;
+    required: boolean;
+  }
+  | undefined;
   errors?: object | undefined;
 };
 
@@ -186,11 +183,11 @@ export type PropsModal = {
   text: string | undefined;
   title: string | undefined;
   button:
-    | {
-        text: string | undefined;
-        onClick?: any;
-      }
-    | undefined;
+  | {
+    text: string | undefined;
+    onClick?: any;
+  }
+  | undefined;
   children?: any;
   initOpen: boolean;
 };
