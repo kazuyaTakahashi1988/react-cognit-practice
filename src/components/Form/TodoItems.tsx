@@ -20,12 +20,14 @@ export const TodoItemsField: React.ForwardRefRenderFunction<
 
   return (
     <Styled className={rest.className} ref={ref}>
-      <Button onClick={() => append({ [checkBoxName]: false, [inputName]: "" })}>
+      <Button
+        onClick={() => append({ [checkBoxName]: false, [inputName]: "" })}
+      >
         追加
       </Button>
 
       <ul className="todo-list">
-        {fields.map((field: { id: React.Key | null | undefined; }, index: unknown) => (
+        {fields?.map((field, index) => (
           <li key={field.id}>
             <CheckBox
               options={[{ value: "", label: "" }]}

@@ -49,7 +49,7 @@ const TodoExample: React.FC = () => {
           <Button onClick={() => onSubmit()}>送信する</Button>
         </div>
       </Styled>
-    </Layout >
+    </Layout>
   );
 };
 
