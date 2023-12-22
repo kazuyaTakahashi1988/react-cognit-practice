@@ -34,8 +34,9 @@ const TodoExample: React.FC = () => {
         <TodoItems
           className="mt-30"
           name="todoItemsName"
+          itemsName={{ checkBox: "check", input: "task" }}
           placeholder="タスクを入力してください。"
-          append={() => append({ check: false, task: "" })}
+          append={append}
           remove={remove}
           fields={fields}
           register={register}

@@ -12,11 +12,15 @@ export const TodoItemsField: React.ForwardRefRenderFunction<
   HTMLInputElement,
   Props
 > = (props, ref) => {
-  const { append, remove, fields, register, ...rest } = props;
+  const { itemsName, append, remove, fields, register, ...rest } = props;
+
+  const name = `${rest.name}`;
+  const checkBoxName = `${itemsName.checkBox}`;
+  const inputName = `${itemsName.input}`;
 
   return (
     <Styled className={rest.className} ref={ref}>
-      <Button onClick={() => append()}>
+      <Button onClick={() => append({ [checkBoxName]: false, [inputName]: "" })}>
         追加
       </Button>
 
@@ -25,13 +29,13 @@ export const TodoItemsField: React.ForwardRefRenderFunction<
           <li key={field.id}>
             <CheckBox
               options={[{ value: "", label: "" }]}
-              {...register(`${rest.name}.${index}.check` as const)}
-              className="todo-check"
+              {...register(`${name}.${index}.${checkBoxName}` as const)}
+              className="checkbox"
             />
             <Input
               {...rest}
-              {...register(`${rest.name}.${index}.task` as const)}
-              className="todo-task"
+              {...register(`${name}.${index}.${inputName}` as const)}
+              className="input"
             />
             <Button className="secondary" onClick={() => remove(index)}>
               削除
@@ -51,16 +55,16 @@ const Styled = styled.div`
       justify-content: space-between;
       align-items: center;
       animation: fadeIn 0.4s ease forwards;
-      .todo-check {
+      > .checkbox {
         margin-right: 20px;
         .label__text::before {
           margin: 0;
         }
       }
-      .todo-task {
+      > .input {
         width: 100%;
       }
-      .secondary {
+      > .secondary {
         width: 80px;
         margin-left: 20px;
       }
