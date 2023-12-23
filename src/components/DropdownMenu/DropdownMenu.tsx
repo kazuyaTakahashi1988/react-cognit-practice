@@ -22,11 +22,10 @@ export const DropdownMenuField: React.ForwardRefRenderFunction<
     return () => document.removeEventListener("click", handleOutsideClick);
   }, []);
 
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  const handleOutsideClick = (e: any) => {
+  const handleOutsideClick = (e: Event) => {
     if (
-      dropdownMenuRef?.current &&
-      !dropdownMenuRef?.current.contains(e.target)
+      e.target instanceof HTMLElement &&
+      !dropdownMenuRef?.current?.contains(e.target)
     ) {
       setIsOpen(false);
     }

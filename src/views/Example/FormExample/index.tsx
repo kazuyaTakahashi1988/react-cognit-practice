@@ -75,9 +75,8 @@ const FormExample: React.FC = () => {
           ]}
           {...register("checkBoxName", {
             required: { value: true, message: "必須項目だよ。" },
-            // eslint-disable-next-line @typescript-eslint/no-explicit-any
-            validate: (e: any) => {
-              if (e.length < 2) return "２つ以上選択してください。";
+            validate: (e: object) => {
+              if (Object.keys(e).length < 2) return "２つ以上選択してください。";
             },
           })}
           errors={errors}

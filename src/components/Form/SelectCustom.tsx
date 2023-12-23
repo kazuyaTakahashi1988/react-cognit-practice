@@ -21,9 +21,11 @@ export const SelectCustomField: React.ForwardRefRenderFunction<
 
   const [isOpen, setIsOpen] = useState(false);
   const selectRef = useRef<HTMLDivElement>(null);
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  const handleOutsideClick = (e: any) => {
-    if (selectRef?.current && !selectRef?.current.contains(e.target)) {
+  const handleOutsideClick = (e: Event) => {
+    if (
+      e.target instanceof HTMLElement &&
+      !selectRef?.current?.contains(e.target)
+    ) {
       setIsOpen(false);
     }
   };

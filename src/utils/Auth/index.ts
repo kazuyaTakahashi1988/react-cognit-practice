@@ -5,6 +5,8 @@ import {
   CognitoUserAttribute,
 } from "amazon-cognito-identity-js";
 
+import { PropsSignIn, PropsSignUp, PropsVerification } from "../../lib/props";
+
 const userPool = new CognitoUserPool({
   UserPoolId: `${process.env.REACT_APP_AWS_COGNITO_USER_POOL_ID}`,
   ClientId: `${process.env.REACT_APP_AWS_COGNITO_CLIENT_ID}`,
@@ -18,8 +20,7 @@ export const GetSignInFlag = () => userPool.getCurrentUser();
 /* -----------------------------------
  * サインイン 処理
  * -------------------------------- */
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-export const SignInHelper = async (data: any) => {
+export const SignInHelper = async (data: PropsSignIn) => {
   const authenticationDetails = new AuthenticationDetails({
     Username: data.email,
     Password: data.password,
@@ -45,8 +46,7 @@ export const SignInHelper = async (data: any) => {
 /* -----------------------------------
  * サインアップ 処理
  * -------------------------------- */
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-export const SignUpHelper = (data: any) => {
+export const SignUpHelper = (data: PropsSignUp) => {
   const attributeList = [
     new CognitoUserAttribute({
       Name: "email",
@@ -73,8 +73,7 @@ export const SignUpHelper = (data: any) => {
 /* -----------------------------------
  * アクティベート 処理
  * -------------------------------- */
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-export const VerifyHelper = (data: any) => {
+export const VerifyHelper = (data: PropsVerification) => {
   const cognitoUser = new CognitoUser({
     Username: data.email,
     Pool: userPool,
