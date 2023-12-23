@@ -34,14 +34,13 @@ export const SelectCustomField: React.ForwardRefRenderFunction<
     return () => document.removeEventListener("click", handleOutsideClick);
   }, []);
 
-  const [selectedIndex, setSelectedIndex] = useState(null);
+  const [selectedIndex, setSelectedIndex] = useState<number | null>(null);
   const labelRefs = useRef<RefObject<HTMLLabelElement>[]>([]);
   options.forEach((_, index) => {
     labelRefs.current[index] = createRef<HTMLLabelElement>();
   });
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  const onOpenToggle = (e: any) => {
-    setSelectedIndex(e.target.getAttribute("data-selected-index"));
+  const onOpenToggle = (e: number | null) => {
+    setSelectedIndex(e);
     setIsOpen(!isOpen);
   };
   useEffect(() => {
@@ -55,15 +54,16 @@ export const SelectCustomField: React.ForwardRefRenderFunction<
       {label && <Label label={label} />}
 
       <div className="select" ref={selectRef}>
-        <div
-          className={[`selected`, `${isOpen ? "is-open" : ""}`].join(" ")}
-          onClick={(e) => onOpenToggle(e)}
-        >
-          {rest.placeholder && (
-            <span className="placeholder">{rest.placeholder}</span>
-          )}
+        <div className={[`selected`, `${isOpen ? "is-open" : ""}`].join(" ")}>
+          <span className="placeholder" onClick={() => onOpenToggle(null)}>
+            {rest.placeholder && rest.placeholder}
+          </span>
           {options.map((option, index) => (
-            <div className="selected__label" key={index}>
+            <div
+              className="selected__label"
+              key={index}
+              onClick={() => onOpenToggle(index)}
+            >
               <input
                 id={rest.name + option.value}
                 value={option.value}
@@ -141,13 +141,22 @@ const Styled = styled.div`
         border-right: 2px solid #333;
         transform: rotate(135deg);
         pointer-events: none;
-        z-index: 2;
+        z-index: 3;
         transition: 0.2s ease-out;
       }
       > .placeholder {
         overflow: hidden;
         text-overflow: ellipsis;
         white-space: nowrap;
+        display: block;
+        position: absolute;
+        z-index: 1;
+        top: 50%;
+        left: 50%;
+        transform: translateY(-50%) translateX(-50%);
+        width: 100%;
+        height: 2.4em;
+        padding: 0 10px;
       }
       &__label {
         width: 0px;
@@ -178,7 +187,7 @@ const Styled = styled.div`
           padding: 0 25px 0 8px;
           border-radius: 4px;
           position: absolute;
-          z-index: 1;
+          z-index: 2;
           top: 50%;
           left: 50%;
           transform: translateY(-50%) translateX(-50%);
@@ -193,7 +202,7 @@ const Styled = styled.div`
     }
     .select-box {
       position: absolute;
-      z-index: 1;
+      z-index: 10;
       top: calc(100% + 1px);
       left: 0;
       right: 0;

@@ -28,7 +28,7 @@ export const ModalField: React.ForwardRefRenderFunction<
           <div className="modal__footer">
             {onClose?.text && (
               <Button className="secondary" onClick={onClose?.onClick}>
-                {onClose?.text ? onClose?.text : '閉じる'}
+                {onClose?.text ? onClose?.text : "閉じる"}
               </Button>
             )}
             {onEvent && (
@@ -127,7 +127,7 @@ const Styled = styled.span`
       line-height: 28px;
       padding-top: 20px;
       padding-bottom: 20px;
-      max-height: calc(100vh - 160px);
+      max-height: calc(100svh - 160px);
       overflow-y: auto;
       -webkit-overflow-scrolling: touch;
       overscroll-behavior-y: contain;

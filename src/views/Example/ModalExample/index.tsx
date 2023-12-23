@@ -12,8 +12,8 @@ const ModalExample: React.FC = () => {
   });
 
   const onModal = (target: string, flag: boolean) => {
-    setIsModal({ ...isModal, [target]: flag })
-  }
+    setIsModal({ ...isModal, [target]: flag });
+  };
 
   return (
     <Layout type="example">
@@ -23,16 +23,16 @@ const ModalExample: React.FC = () => {
         </h1>
 
         <div className="button-clm">
-          <Button onClick={() => onModal('modal01', true)}>
+          <Button onClick={() => onModal("modal01", true)}>
             モーダルを開く01
           </Button>
 
-          <Button onClick={() => onModal('modal02', true)}>
+          <Button onClick={() => onModal("modal02", true)}>
             モーダルを開く02
           </Button>
         </div>
 
-        {isModal.modal01 &&
+        {isModal.modal01 && (
           <Modal
             title="タイトル01"
             onEvent={{
@@ -41,14 +41,14 @@ const ModalExample: React.FC = () => {
             }}
             onClose={{
               text: "閉じる",
-              onClick: () => onModal('modal01', false),
+              onClick: () => onModal("modal01", false),
             }}
           >
             ダミーテキスト・ダミーテキスト・ダミーテキスト
           </Modal>
-        }
+        )}
 
-        {isModal.modal02 &&
+        {isModal.modal02 && (
           <Modal
             title="タイトル02"
             onEvent={{
@@ -57,15 +57,14 @@ const ModalExample: React.FC = () => {
             }}
             onClose={{
               text: "閉じる",
-              onClick: () => onModal('modal02', false),
+              onClick: () => onModal("modal02", false),
             }}
           >
             ダミーテキスト・ダミーテキスト・ダミーテキスト・ダミーテキスト・ダミーテキスト・ダミーテキスト・ダミーテキスト・ダミーテキスト・ダミーテキスト・ダミーテキスト・ダミーテキスト・ダミーテキスト・ダミーテキスト・ダミーテキスト・ダミーテキスト・ダミーテキスト・ダミーテキスト・ダミーテキスト・ダミーテキスト・ダミーテキスト・ダミーテキスト・ダミーテキスト・ダミーテキスト・ダミーテキスト・ダミーテキスト・ダミーテキスト・ダミーテキスト・ダミーテキスト・ダミーテキスト・ダミーテキスト・ダミーテキスト・ダミーテキスト・ダミーテキスト・ダミーテキスト・ダミーテキスト・ダミーテキスト・ダミーテキスト・ダミーテキスト・ダミーテキスト・ダミーテキスト・ダミーテキスト・ダミーテキスト・ダミーテキスト・ダミーテキスト・ダミーテキスト・ダミーテキスト・ダミーテキスト・ダミーテキスト・ダミーテキスト・ダミーテキスト・ダミーテキスト・ダミーテキスト・ダミーテキスト・ダミーテキスト・ダミーテキスト・ダミーテキスト・ダミーテキスト・ダミーテキスト・ダミーテキスト・ダミーテキスト・ダミーテキスト・ダミーテキスト・ダミーテキスト・ダミーテキスト・ダミーテキスト・ダミーテキスト・ダミーテキスト・ダミーテキスト・ダミーテキスト・ダミーテキスト・ダミーテキスト・ダミーテキスト・ダミーテキスト・ダミーテキスト・ダミーテキスト・ダミーテキスト・ダミーテキスト・ダミーテキスト・ダミーテキスト・ダミーテキスト・ダミーテキスト・ダミーテキスト・ダミーテキスト・ダミーテキスト・ダミーテキスト・ダミーテキスト
           </Modal>
-        }
-
+        )}
       </Styled>
-    </Layout >
+    </Layout>
   );
 };
 
