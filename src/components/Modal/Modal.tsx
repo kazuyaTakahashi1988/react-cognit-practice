@@ -1,4 +1,4 @@
-import React, { forwardRef, useState, useEffect } from "react";
+import React, { forwardRef } from "react";
 import styled from "styled-components";
 import { PropsModal } from "../../lib/props";
 import Button from "../../components/Button/Button";
@@ -9,69 +9,39 @@ export const ModalField: React.ForwardRefRenderFunction<
   HTMLSpanElement,
   Props
 > = (props, ref) => {
-  const { children, title, text, button, initOpen, ...rest } = props;
-  const [isOpen, setIsOpen] = useState(initOpen);
-
-  const onOpen = () => {
-    setIsOpen(true);
-  };
-
-  const onClose = () => {
-    setIsOpen(false);
-  };
-
-  useEffect(() => {
-    setIsOpen(initOpen);
-  }, [initOpen]);
+  const { children, title, onEvent, onClose, ...rest } = props;
 
   return (
-    <>
-      <Styled
-        ref={ref}
-        {...rest}
-        onClick={() => {
-          !isOpen ? onOpen() : onClose();
-        }}
-      >
-        {children}
-      </Styled>
-
-      {isOpen && (
-        <StyledModal>
-          <div className="modal" onClick={onClose}>
-            <div
-              className="modal__inner"
-              onClick={(e) => {
-                e.stopPropagation();
-              }}
-            >
-              <div className="modal__header">
-                <p className="title">{title}</p>
-                <span className="close" onClick={onClose}></span>
-              </div>
-              <div className="modal__container">{text}</div>
-              <div className="modal__footer">
-                <Button className="secondary" onClick={onClose}>
-                  閉じる
-                </Button>
-                {button && (
-                  <Button onClick={button.onClick}>{button.text}</Button>
-                )}
-              </div>
-            </div>
+    <Styled ref={ref} {...rest}>
+      <div className="modal" onClick={onClose?.onClick}>
+        <div
+          className="modal__inner"
+          onClick={(e) => {
+            e.stopPropagation();
+          }}
+        >
+          <div className="modal__header">
+            <p className="title">{title}</p>
+            <span className="close" onClick={onClose?.onClick}></span>
           </div>
-        </StyledModal>
-      )}
-    </>
+          <div className="modal__container">{children}</div>
+          <div className="modal__footer">
+            {onClose?.text && (
+              <Button className="secondary" onClick={onClose?.onClick}>
+                {onClose?.text ? onClose?.text : '閉じる'}
+              </Button>
+            )}
+            {onEvent && (
+              <Button onClick={onEvent.onClick}>{onEvent.text}</Button>
+            )}
+          </div>
+        </div>
+      </div>
+    </Styled>
   );
 };
 
 const Styled = styled.span`
-  cursor: pointer;
-  display: inline-block;
-`;
-
-const StyledModal = styled.span`
   .modal {
     position: fixed;
     z-index: 999;

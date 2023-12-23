@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
 
 import Layout from "../../../components/Layout/Layout";
@@ -6,6 +6,15 @@ import Modal from "../../../components/Modal/Modal";
 import Button from "../../../components/Button/Button";
 
 const ModalExample: React.FC = () => {
+  const [isModal, setIsModal] = useState({
+    modal01: false,
+    modal02: false,
+  });
+
+  const onModal = (target: string, flag: boolean) => {
+    setIsModal({ ...isModal, [target]: flag })
+  }
+
   return (
     <Layout type="example">
       <Styled>
@@ -13,66 +22,66 @@ const ModalExample: React.FC = () => {
           <span>ModalExample</span>
         </h1>
 
-        <Modal
-          className="mt-30"
-          title="タイトル01"
-          text="モーダルテキスト01"
-          button={{
-            text: "イベント01",
-            onClick: () => alert("01 onClicked !!"),
-          }}
-          initOpen={false}
-        >
-          <Button>モーダルを開く01</Button>
-        </Modal>
+        <div className="button-clm">
+          <Button onClick={() => onModal('modal01', true)}>
+            モーダルを開く01
+          </Button>
 
-        <Modal
-          className="mt-30"
-          title="タイトル02"
-          text="モーダルテキスト02"
-          button={{
-            text: "イベント02",
-            onClick: () => alert("02 onClicked !!"),
-          }}
-          initOpen={false}
-        >
-          <Button className="secondary">モーダルを開く02</Button>
-        </Modal>
+          <Button onClick={() => onModal('modal02', true)}>
+            モーダルを開く02
+          </Button>
+        </div>
 
-        <Modal
-          className="mt-30"
-          title="タイトル03"
-          text="モーダルテキスト03"
-          button={{
-            text: "イベント03",
-            onClick: () => alert("03 onClicked !!"),
-          }}
-          initOpen={false}
-        >
-          <Button disabled>モーダルを開く03</Button>
-        </Modal>
+        {isModal.modal01 &&
+          <Modal
+            title="タイトル01"
+            onEvent={{
+              text: "イベント01",
+              onClick: () => alert("01 onEvent !!"),
+            }}
+            onClose={{
+              text: "閉じる",
+              onClick: () => onModal('modal01', false),
+            }}
+          >
+            ダミーテキスト・ダミーテキスト・ダミーテキスト
+          </Modal>
+        }
 
-        <Modal
-          className="mt-30"
-          title="タイトル04"
-          text="モーダルテキスト04・モーダルテキスト04・モーダルテキスト04・モーダルテキスト04・モーダルテキスト04・モーダルテキスト04・モーダルテキスト04・モーダルテキスト04・モーダルテキスト04・モーダルテキスト04・モーダルテキスト04・モーダルテキスト04・モーダルテキスト04・モーダルテキスト04・モーダルテキスト04・モーダルテキスト04・モーダルテキスト04・モーダルテキスト04・モーダルテキスト04・モーダルテキスト04・モーダルテキスト04・モーダルテキスト04・モーダルテキスト04・モーダルテキスト04・モーダルテキスト04・モーダルテキスト04・モーダルテキスト04・モーダルテキスト04・モーダルテキスト04・モーダルテキスト04・モーダルテキスト04・モーダルテキスト04・モーダルテキスト04・モーダルテキスト04・モーダルテキスト04・モーダルテキスト04・モーダルテキスト04・モーダルテキスト04・モーダルテキスト04・モーダルテキスト04・モーダルテキスト04・モーダルテキスト04・モーダルテキスト04・モーダルテキスト04・モーダルテキスト04モーダルテキスト04・モーダルテキスト04・モーダルテキスト04・モーダルテキスト04・モーダルテキスト04・モーダルテキスト04・モーダルテキスト04・モーダルテキスト04・モーダルテキスト04・モーダルテキスト04・モーダルテキスト04・モーダルテキスト04・モーダルテキスト04・モーダルテキスト04・モーダルテキスト04・モーダルテキスト04・モーダルテキスト04・モーダルテキスト04・モーダルテキスト04・モーダルテキスト04・モーダルテキスト04・モーダルテキスト04・モーダルテキスト04・モーダルテキスト04・モーダルテキスト04・モーダルテキスト04・モーダルテキスト04・モーダルテキスト04・モーダルテキスト04・モーダルテキスト04・モーダルテキスト04・モーダルテキスト04・モーダルテキスト04・モーダルテキスト04・モーダルテキスト04・モーダルテキスト04・モーダルテキスト04・モーダルテキスト04・モーダルテキスト04・モーダルテキスト04・モーダルテキスト04・モーダルテキスト04・モーダルテキスト04・モーダルテキスト04・モーダルテキスト04"
-          button={{
-            text: "イベント04",
-            onClick: () => alert("04 onClicked !!"),
-          }}
-          initOpen={false}
-        >
-          モーダルを開く04
-        </Modal>
+        {isModal.modal02 &&
+          <Modal
+            title="タイトル02"
+            onEvent={{
+              text: "イベント02",
+              onClick: () => alert("02 onEvent !!"),
+            }}
+            onClose={{
+              text: "閉じる",
+              onClick: () => onModal('modal02', false),
+            }}
+          >
+            ダミーテキスト・ダミーテキスト・ダミーテキスト・ダミーテキスト・ダミーテキスト・ダミーテキスト・ダミーテキスト・ダミーテキスト・ダミーテキスト・ダミーテキスト・ダミーテキスト・ダミーテキスト・ダミーテキスト・ダミーテキスト・ダミーテキスト・ダミーテキスト・ダミーテキスト・ダミーテキスト・ダミーテキスト・ダミーテキスト・ダミーテキスト・ダミーテキスト・ダミーテキスト・ダミーテキスト・ダミーテキスト・ダミーテキスト・ダミーテキスト・ダミーテキスト・ダミーテキスト・ダミーテキスト・ダミーテキスト・ダミーテキスト・ダミーテキスト・ダミーテキスト・ダミーテキスト・ダミーテキスト・ダミーテキスト・ダミーテキスト・ダミーテキスト・ダミーテキスト・ダミーテキスト・ダミーテキスト・ダミーテキスト・ダミーテキスト・ダミーテキスト・ダミーテキスト・ダミーテキスト・ダミーテキスト・ダミーテキスト・ダミーテキスト・ダミーテキスト・ダミーテキスト・ダミーテキスト・ダミーテキスト・ダミーテキスト・ダミーテキスト・ダミーテキスト・ダミーテキスト・ダミーテキスト・ダミーテキスト・ダミーテキスト・ダミーテキスト・ダミーテキスト・ダミーテキスト・ダミーテキスト・ダミーテキスト・ダミーテキスト・ダミーテキスト・ダミーテキスト・ダミーテキスト・ダミーテキスト・ダミーテキスト・ダミーテキスト・ダミーテキスト・ダミーテキスト・ダミーテキスト・ダミーテキスト・ダミーテキスト・ダミーテキスト・ダミーテキスト・ダミーテキスト・ダミーテキスト・ダミーテキスト・ダミーテキスト・ダミーテキスト・ダミーテキスト
+          </Modal>
+        }
+
       </Styled>
-    </Layout>
+    </Layout >
   );
 };
 
 const Styled = styled.div`
-  .mt-30 {
+  .button-clm {
     margin-top: 30px;
-    display: block;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    > * {
+      margin-right: 20px;
+      &:last-child {
+        margin-right: 0;
+      }
+    }
   }
 `;
 
