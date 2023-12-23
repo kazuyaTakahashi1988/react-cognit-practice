@@ -14,14 +14,16 @@ export const TodoItemsField: React.ForwardRefRenderFunction<
 > = (props, ref) => {
   const { itemsName, append, remove, fields, register, ...rest } = props;
 
-  const name = `${rest.name}`;
-  const checkBoxName = `${itemsName.checkBox}`;
-  const inputName = `${itemsName.input}`;
+  const name = rest.name;
+  const checkBoxName = itemsName.CheckBox;
+  const inputName = itemsName.Input;
 
   return (
     <Styled className={rest.className} ref={ref}>
       <Button
-        onClick={() => append({ [checkBoxName]: false, [inputName]: "" })}
+        onClick={() =>
+          append({ [`${checkBoxName}`]: false, [`${inputName}`]: "" })
+        }
       >
         追加
       </Button>

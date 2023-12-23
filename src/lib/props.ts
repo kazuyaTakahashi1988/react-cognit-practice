@@ -80,8 +80,8 @@ export type PropsInput = {
 // TodoItems
 export type PropsTodoItems = {
   itemsName: {
-    checkBox: string | undefined;
-    input: string | undefined;
+    CheckBox: string | undefined;
+    Input: string | undefined;
   };
   append?: any;
   remove?: any;
