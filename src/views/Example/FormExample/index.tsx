@@ -114,7 +114,6 @@ const FormExample: React.FC = () => {
             {
               value: "Switch_Value_C",
               label: "----------",
-              labelActived: undefined,
             },
           ]}
           {...register("switchButtonName", {
