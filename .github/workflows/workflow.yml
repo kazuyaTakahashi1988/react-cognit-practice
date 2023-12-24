@@ -1,0 +1,38 @@
+name: workflow
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  deploy: # ジョブ名(名前は任意)
+    runs-on: ubuntu-latest
+    timeout-minutes: 10 # デフォルトは360（6時間）のため短い時間で設定しておく
+    env:
+      NODE_ENV: production
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+
+      - name: Setup Node
+        uses: actions/setup-node@v1
+        with:
+          node-version: 18.x
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: React Building
+        run: npm run build
+
+      - name: FTP-Deploy-Action
+        uses: SamKirkland/FTP-Deploy-Action@4.1.0 # FTPを使ってサーバーにDeployするアクションを実行
+        with:
+          server: ${{ secrets.FTP_SERVER }} # FTPサーバーのURLを設定
+          username: ${{ secrets.FTP_USERNAME }} # FTPのユーザー名を設定
+          password: ${{ secrets.FTP_PASSWORD }} # FTPのパスワードを設定
+          local-dir: ./build/ # どのディレクトリのデータをアップロードするか
+          server-dir: /test02/ # リモートのどのディレクトリにアップロードするか
+
