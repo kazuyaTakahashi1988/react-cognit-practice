@@ -36,7 +36,6 @@ export const Default: Story = {
   args: {
     placeholder: "入力をお願いします。",
     label: { text: "TextAreaラベルテキスト", required: false },
-    errors: [],
   },
 };
 
@@ -44,6 +43,5 @@ export const Required: Story = {
   args: {
     placeholder: "入力をお願いします。",
     label: { text: "TextAreaラベルテキスト", required: true },
-    errors: [],
   },
 };

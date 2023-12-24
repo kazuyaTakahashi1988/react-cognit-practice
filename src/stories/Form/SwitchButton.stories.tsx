@@ -40,9 +40,8 @@ export const Default: Story = {
         label: "noActive_B",
         labelActived: "Actived_B",
       },
-      { value: "Switch_Value_C", label: "----------", labelActived: undefined },
+      { value: "Switch_Value_C", label: "----------" },
     ],
-    errors: [],
   },
 };
 
@@ -60,8 +59,7 @@ export const Required: Story = {
         label: "noActive_B",
         labelActived: "Actived_B",
       },
-      { value: "Switch_Value_C", label: "----------", labelActived: undefined },
+      { value: "Switch_Value_C", label: "----------" },
     ],
-    errors: [],
   },
 };

@@ -50,7 +50,6 @@ export const Default: Story = {
       { value: "Select_Value_F", label: "Select_Label_F" },
       { value: "Select_Value_G", label: "Select_Label_G" },
     ],
-    errors: [],
   },
 };
 
@@ -67,6 +66,5 @@ export const Required: Story = {
       { value: "Select_Value_F", label: "Select_Label_F" },
       { value: "Select_Value_G", label: "Select_Label_G" },
     ],
-    errors: [],
   },
 };
