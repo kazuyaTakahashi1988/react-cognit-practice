@@ -43,27 +43,25 @@ export type PropsVerification = {
 ---------------------------------------------------------- */
 // Layout
 export type PropsLayout = {
-  type: string | undefined;
+  type: string;
   children?: React.ReactNode;
 };
 // PropsHeader
 export type PropsHeader = {
-  type: string | undefined;
+  type: string;
 };
 
 // Label
 export type PropsLabel = {
-  label:
-    | {
-        text: string | undefined;
-        required: boolean;
-      }
-    | undefined;
+  label: {
+    text: string;
+    required: boolean;
+  };
 };
 
 // ErrorMessage
 export type PropsErrorMessage = {
-  errorMessage: string | undefined;
+  errorMessage: string;
 };
 
 // Input
@@ -78,8 +76,8 @@ export type PropsInput = {
 // TodoItems
 export type PropsTodoItems = {
   itemsName: {
-    CheckBox: string | undefined;
-    Input: string | undefined;
+    CheckBox: string;
+    Input: string;
   };
   append?: any;
   remove?: any;
@@ -169,9 +167,9 @@ export type PropsButton = {
 
 // Modal
 export type PropsModal = {
-  title: string | undefined;
+  title: string;
   onEvent?: {
-    text: string | undefined;
+    text: string;
     onClick?: (event: React.MouseEvent<HTMLElement, MouseEvent>) => void;
   };
   onClose: {
@@ -183,15 +181,15 @@ export type PropsModal = {
 
 // Accordion
 export type PropsAccordion = {
-  title: string | undefined;
+  title: string;
   children?: React.ReactNode;
-  initOpen?: boolean | undefined;
+  initOpen?: boolean;
 };
 
 // DropdownMenu
 export type PropsDropdownMenu = {
   menuList: Array<{
-    text: string | undefined;
+    text: string;
     onClick?: (event: React.MouseEvent<HTMLElement, MouseEvent>) => void;
   }>;
   children?: React.ReactNode;
