@@ -33,7 +33,6 @@ export const Default: Story = {
       { value: "Radio_Value_B", label: "Radio_Label_B" },
       { value: "Radio_Value_C", label: "Radio_Label_C" },
     ],
-    errors: [],
   },
 };
 
@@ -45,6 +44,5 @@ export const Required: Story = {
       { value: "Radio_Value_B", label: "Radio_Label_B" },
       { value: "Radio_Value_C", label: "Radio_Label_C" },
     ],
-    errors: [],
   },
 };

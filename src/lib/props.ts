@@ -54,11 +54,11 @@ export type PropsHeader = {
 // Label
 export type PropsLabel = {
   label:
-    | {
-        text: string | undefined;
-        required: boolean;
-      }
-    | undefined;
+  | {
+    text: string | undefined;
+    required: boolean;
+  }
+  | undefined;
 };
 
 // ErrorMessage
@@ -102,12 +102,10 @@ export type PropsCheckBox = {
 
 // RadioButton
 export type PropsRadioButton = {
-  label:
-    | {
-        text: string | undefined;
-        required: boolean;
-      }
-    | undefined;
+  label?: {
+    text: string;
+    required: boolean;
+  };
   options: Array<{
     value: string;
     label: string;
@@ -118,11 +116,11 @@ export type PropsRadioButton = {
 // SwitchButton
 export type PropsSwitchButton = {
   label:
-    | {
-        text: string | undefined;
-        required: boolean;
-      }
-    | undefined;
+  | {
+    text: string | undefined;
+    required: boolean;
+  }
+  | undefined;
   options: Array<{
     value: string;
     label: string;
@@ -134,11 +132,11 @@ export type PropsSwitchButton = {
 // Select
 export type PropsSelect = {
   label:
-    | {
-        text: string | undefined;
-        required: boolean;
-      }
-    | undefined;
+  | {
+    text: string | undefined;
+    required: boolean;
+  }
+  | undefined;
   options: Array<{
     value: string;
     label: string;
@@ -149,11 +147,11 @@ export type PropsSelect = {
 // SelectCustom
 export type PropsSelectCustom = {
   label:
-    | {
-        text: string | undefined;
-        required: boolean;
-      }
-    | undefined;
+  | {
+    text: string | undefined;
+    required: boolean;
+  }
+  | undefined;
   options: Array<{
     value: string;
     label: string;
@@ -164,11 +162,11 @@ export type PropsSelectCustom = {
 // TextArea
 export type PropsTextArea = {
   label:
-    | {
-        text: string | undefined;
-        required: boolean;
-      }
-    | undefined;
+  | {
+    text: string | undefined;
+    required: boolean;
+  }
+  | undefined;
   errors?: object | undefined;
 };
 
@@ -181,17 +179,17 @@ export type PropsButton = {
 export type PropsModal = {
   title: string | undefined;
   onEvent:
-    | {
-        text: string | undefined;
-        onClick?: (event: React.MouseEvent<HTMLElement, MouseEvent>) => void;
-      }
-    | undefined;
+  | {
+    text: string | undefined;
+    onClick?: (event: React.MouseEvent<HTMLElement, MouseEvent>) => void;
+  }
+  | undefined;
   onClose:
-    | {
-        text: string | undefined;
-        onClick?: (event: React.MouseEvent<HTMLElement, MouseEvent>) => void;
-      }
-    | undefined;
+  | {
+    text: string | undefined;
+    onClick?: (event: React.MouseEvent<HTMLElement, MouseEvent>) => void;
+  }
+  | undefined;
   children?: React.ReactNode;
 };
 
