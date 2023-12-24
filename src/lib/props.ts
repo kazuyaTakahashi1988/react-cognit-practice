@@ -170,18 +170,14 @@ export type PropsButton = {
 // Modal
 export type PropsModal = {
   title: string | undefined;
-  onEvent:
-    | {
-        text: string | undefined;
-        onClick?: (event: React.MouseEvent<HTMLElement, MouseEvent>) => void;
-      }
-    | undefined;
-  onClose:
-    | {
-        text: string | undefined;
-        onClick?: (event: React.MouseEvent<HTMLElement, MouseEvent>) => void;
-      }
-    | undefined;
+  onEvent?: {
+    text: string | undefined;
+    onClick?: (event: React.MouseEvent<HTMLElement, MouseEvent>) => void;
+  };
+  onClose: {
+    text?: string;
+    onClick?: (event: React.MouseEvent<HTMLElement, MouseEvent>) => void;
+  };
   children?: React.ReactNode;
 };
 
