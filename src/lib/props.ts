@@ -203,7 +203,7 @@ export type PropsModal = {
 export type PropsAccordion = {
   title: string | undefined;
   children?: React.ReactNode;
-  initOpen: boolean;
+  initOpen?: boolean | undefined;
 };
 
 // DropdownMenu
