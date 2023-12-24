@@ -129,12 +129,10 @@ export type PropsSwitchButton = {
 
 // Select
 export type PropsSelect = {
-  label:
-    | {
-        text: string | undefined;
-        required: boolean;
-      }
-    | undefined;
+  label?: {
+    text: string;
+    required: boolean;
+  };
   options: Array<{
     value: string;
     label: string;
@@ -144,12 +142,10 @@ export type PropsSelect = {
 
 // SelectCustom
 export type PropsSelectCustom = {
-  label:
-    | {
-        text: string | undefined;
-        required: boolean;
-      }
-    | undefined;
+  label?: {
+    text: string;
+    required: boolean;
+  };
   options: Array<{
     value: string;
     label: string;
@@ -159,12 +155,10 @@ export type PropsSelectCustom = {
 
 // TextArea
 export type PropsTextArea = {
-  label:
-    | {
-        text: string | undefined;
-        required: boolean;
-      }
-    | undefined;
+  label?: {
+    text: string;
+    required: boolean;
+  };
   errors?: object;
 };
 
