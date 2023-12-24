@@ -68,13 +68,11 @@ export type PropsErrorMessage = {
 
 // Input
 export type PropsInput = {
-  label:
-    | {
-        text: string | undefined;
-        required: boolean;
-      }
-    | undefined;
-  errors?: object | undefined;
+  label?: {
+    text: string;
+    required: boolean;
+  };
+  errors?: object;
 };
 
 // TodoItems
