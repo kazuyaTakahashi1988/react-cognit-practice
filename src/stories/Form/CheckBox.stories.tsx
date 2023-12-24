@@ -33,7 +33,6 @@ export const Default: Story = {
       { value: "Check_Value_B", label: "Check_Label_B" },
       { value: "Check_Value_C", label: "Check_Label_C" },
     ],
-    errors: [],
   },
 };
 
@@ -45,6 +44,5 @@ export const Required: Story = {
       { value: "Check_Value_B", label: "Check_Label_B" },
       { value: "Check_Value_C", label: "Check_Label_C" },
     ],
-    errors: [],
   },
 };

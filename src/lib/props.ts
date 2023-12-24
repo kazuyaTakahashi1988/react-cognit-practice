@@ -89,12 +89,10 @@ export type PropsTodoItems = {
 
 // CheckBox
 export type PropsCheckBox = {
-  label:
-    | {
-        text: string | undefined;
-        required: boolean;
-      }
-    | undefined;
+  label?: {
+    text: string;
+    required: boolean;
+  };
   options: Array<{
     value: string;
     label: string;
