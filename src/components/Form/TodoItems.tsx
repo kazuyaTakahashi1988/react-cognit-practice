@@ -17,16 +17,11 @@ export const TodoItemsField: React.ForwardRefRenderFunction<
   const name = rest.name;
   const checkBoxName = itemsName.CheckBox;
   const inputName = itemsName.Input;
+  const appendFormat = { [`${checkBoxName}`]: false, [`${inputName}`]: "" };
 
   return (
     <Styled className={rest.className} ref={ref}>
-      <Button
-        onClick={() =>
-          append({ [`${checkBoxName}`]: false, [`${inputName}`]: "" })
-        }
-      >
-        追加
-      </Button>
+      <Button onClick={() => append(appendFormat)}>追加</Button>
 
       <ul className="todo-list">
         {fields?.map((field, index) => (
@@ -41,7 +36,11 @@ export const TodoItemsField: React.ForwardRefRenderFunction<
               {...register(`${name}.${index}.${inputName}` as const)}
               className="input"
             />
-            <Button className="secondary" onClick={() => remove(index)}>
+            <Button
+              className="secondary"
+              onClick={() => remove(index)}
+              disabled={fields?.length < 2}
+            >
               削除
             </Button>
           </li>
