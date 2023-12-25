@@ -55,7 +55,7 @@ export type PropsHeader = {
 export type PropsLabel = {
   label: {
     text: string;
-    required: boolean;
+    required?: boolean;
   };
 };
 
@@ -68,7 +68,7 @@ export type PropsErrorMessage = {
 export type PropsInput = {
   label?: {
     text: string;
-    required: boolean;
+    required?: boolean;
   };
   errors?: object;
 };
@@ -89,7 +89,7 @@ export type PropsTodoItems = {
 export type PropsCheckBox = {
   label?: {
     text: string;
-    required: boolean;
+    required?: boolean;
   };
   options: Array<{
     value: string;
@@ -102,7 +102,7 @@ export type PropsCheckBox = {
 export type PropsRadioButton = {
   label?: {
     text: string;
-    required: boolean;
+    required?: boolean;
   };
   options: Array<{
     value: string;
@@ -115,7 +115,7 @@ export type PropsRadioButton = {
 export type PropsSwitchButton = {
   label?: {
     text: string;
-    required: boolean;
+    required?: boolean;
   };
   options: Array<{
     value: string;
@@ -129,7 +129,7 @@ export type PropsSwitchButton = {
 export type PropsSelect = {
   label?: {
     text: string;
-    required: boolean;
+    required?: boolean;
   };
   options: Array<{
     value: string;
@@ -142,7 +142,7 @@ export type PropsSelect = {
 export type PropsSelectCustom = {
   label?: {
     text: string;
-    required: boolean;
+    required?: boolean;
   };
   options: Array<{
     value: string;
@@ -155,7 +155,7 @@ export type PropsSelectCustom = {
 export type PropsTextArea = {
   label?: {
     text: string;
-    required: boolean;
+    required?: boolean;
   };
   errors?: object;
 };
