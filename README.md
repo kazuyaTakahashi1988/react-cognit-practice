@@ -20,9 +20,8 @@ Open <a href="http://localhost:3000" target="_blank">http://localhost:3000</a> i
 
 # ② storybook を利用する場合
 
-上述①の手順を終えた上で以下のコマンドで起動<br>
-
 ```
+$ npm i // ←上述①の手順を終えてるなら必要なし
 $ npm run storybook
 ```
 
