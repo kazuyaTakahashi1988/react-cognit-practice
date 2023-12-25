@@ -1,4 +1,9 @@
 module.exports = {
+  "settings": {
+    "react": {
+      "version": "detect",
+    },
+  },
   "env": {
     "browser": true,
     "es2021": true
@@ -36,6 +41,6 @@ module.exports = {
     ------------------------------------------------ */
     "react/react-in-jsx-scope": "off",
     "no-use-before-define": 0,
-    "react/jsx-filename-extension": [1, {"extensions": [".js", ".jsx", ".tsx"]}],
+    "react/jsx-filename-extension": [1, { "extensions": [".js", ".jsx", ".tsx"] }],
   }
 }
