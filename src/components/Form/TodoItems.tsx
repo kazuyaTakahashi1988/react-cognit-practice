@@ -15,9 +15,8 @@ export const TodoItemsField: React.ForwardRefRenderFunction<
   const { itemsName, append, remove, fields, register, ...rest } = props;
 
   const name = rest.name;
-  const checkBoxName = itemsName.CheckBox;
-  const inputName = itemsName.Input;
-  const appendFormat = { [`${checkBoxName}`]: false, [`${inputName}`]: "" };
+  const { checkBoxName, inputName } = itemsName;
+  const appendFormat = { [checkBoxName]: false, [inputName]: "" };
 
   return (
     <Styled className={rest.className} ref={ref}>

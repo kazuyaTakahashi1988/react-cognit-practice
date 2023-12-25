@@ -76,8 +76,8 @@ export type PropsInput = {
 // TodoItems
 export type PropsTodoItems = {
   itemsName: {
-    CheckBox: string;
-    Input: string;
+    checkBoxName: string;
+    inputName: string;
   };
   append?: any;
   remove?: any;
