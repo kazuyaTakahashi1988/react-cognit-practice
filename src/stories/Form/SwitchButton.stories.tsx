@@ -9,18 +9,6 @@ const meta = {
     layout: "centered",
   },
   tags: ["autodocs"],
-  argTypes: {
-    label: {
-      text: String,
-      required: Boolean,
-    },
-    options: Array<{
-      value: string;
-      label: string;
-      labelActived: string;
-    }>,
-    errors: Object,
-  },
 } satisfies Meta<typeof SwitchButton>;
 
 export default meta;
@@ -28,7 +16,7 @@ type Story = StoryObj<typeof meta>;
 
 export const Default: Story = {
   args: {
-    label: { text: "SwitchButtonラベルテキスト", required: false },
+    label: { text: "SwitchButtonラベルテキスト" },
     options: [
       {
         value: "Switch_Value_A",

@@ -10,13 +10,6 @@ const meta = {
     layout: "centered",
   },
   tags: ["autodocs"],
-  argTypes: {
-    menuList: Array<{
-      text: string;
-      onClick?: object;
-    }>,
-    children: Object,
-  },
   decorators: [
     (Story) => (
       <div

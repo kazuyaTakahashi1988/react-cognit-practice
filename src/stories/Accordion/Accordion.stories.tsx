@@ -9,11 +9,6 @@ const meta = {
     layout: "centered",
   },
   tags: ["autodocs"],
-  argTypes: {
-    title: String,
-    children: Object,
-    initOpen: Boolean,
-  },
   decorators: [
     (Story) => (
       <div

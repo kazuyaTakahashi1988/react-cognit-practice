@@ -9,12 +9,6 @@ const meta = {
     layout: "centered",
   },
   tags: ["autodocs"],
-  argTypes: {
-    label: {
-      text: String,
-      required: Boolean,
-    },
-  },
 } satisfies Meta<typeof Label>;
 
 export default meta;

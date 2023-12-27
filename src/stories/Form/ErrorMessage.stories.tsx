@@ -9,9 +9,6 @@ const meta = {
     layout: "centered",
   },
   tags: ["autodocs"],
-  argTypes: {
-    errorMessage: String,
-  },
 } satisfies Meta<typeof ErrorMessage>;
 
 export default meta;

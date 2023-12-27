@@ -9,17 +9,6 @@ const meta = {
     layout: "centered",
   },
   tags: ["autodocs"],
-  argTypes: {
-    label: {
-      text: String,
-      required: Boolean,
-    },
-    options: Array<{
-      value: string;
-      label: string;
-    }>,
-    errors: Object,
-  },
 } satisfies Meta<typeof CheckBox>;
 
 export default meta;
@@ -27,7 +16,7 @@ type Story = StoryObj<typeof meta>;
 
 export const Default: Story = {
   args: {
-    label: { text: "CheckBoxラベルテキスト", required: false },
+    label: { text: "CheckBoxラベルテキスト" },
     options: [
       { value: "Check_Value_A", label: "Check_Label_A" },
       { value: "Check_Value_B", label: "Check_Label_B" },

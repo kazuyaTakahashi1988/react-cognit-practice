@@ -79,10 +79,10 @@ export type PropsTodoItems = {
     checkBoxName: string;
     inputName: string;
   };
-  append?: any;
-  remove?: any;
-  fields?: Array<any>;
-  register?: any;
+  append: any;
+  remove: any;
+  fields: Array<any>;
+  register: any;
 };
 
 // CheckBox
@@ -170,11 +170,11 @@ export type PropsModal = {
   title: string;
   onEvent?: {
     text: string;
-    onClick?: (event: React.MouseEvent<HTMLElement, MouseEvent>) => void;
+    onClick: (event: React.MouseEvent<HTMLElement, MouseEvent>) => void;
   };
   onClose: {
     text?: string;
-    onClick?: (event: React.MouseEvent<HTMLElement, MouseEvent>) => void;
+    onClick: (event: React.MouseEvent<HTMLElement, MouseEvent>) => void;
   };
   children?: React.ReactNode;
 };

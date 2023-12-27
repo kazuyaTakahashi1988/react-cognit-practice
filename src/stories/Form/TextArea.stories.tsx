@@ -9,13 +9,6 @@ const meta = {
     layout: "centered",
   },
   tags: ["autodocs"],
-  argTypes: {
-    label: {
-      text: String,
-      required: Boolean,
-    },
-    errors: Object,
-  },
   decorators: [
     (Story) => (
       <div
@@ -35,7 +28,7 @@ type Story = StoryObj<typeof meta>;
 export const Default: Story = {
   args: {
     placeholder: "入力をお願いします。",
-    label: { text: "TextAreaラベルテキスト", required: false },
+    label: { text: "TextAreaラベルテキスト" },
   },
 };
 

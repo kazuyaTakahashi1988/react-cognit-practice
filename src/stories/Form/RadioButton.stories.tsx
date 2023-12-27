@@ -9,17 +9,6 @@ const meta = {
     layout: "centered",
   },
   tags: ["autodocs"],
-  argTypes: {
-    label: {
-      text: String,
-      required: Boolean,
-    },
-    options: Array<{
-      value: string;
-      label: string;
-    }>,
-    errors: Object,
-  },
 } satisfies Meta<typeof RadioButton>;
 
 export default meta;
@@ -27,7 +16,7 @@ type Story = StoryObj<typeof meta>;
 
 export const Default: Story = {
   args: {
-    label: { text: "RadioButtonラベルテキスト", required: false },
+    label: { text: "RadioButtonラベルテキスト" },
     options: [
       { value: "Radio_Value_A", label: "Radio_Label_A" },
       { value: "Radio_Value_B", label: "Radio_Label_B" },

@@ -9,17 +9,6 @@ const meta = {
     layout: "centered",
   },
   tags: ["autodocs"],
-  argTypes: {
-    label: {
-      text: String,
-      required: Boolean,
-    },
-    options: Array<{
-      value: string;
-      label: string;
-    }>,
-    errors: Object,
-  },
   decorators: [
     (Story) => (
       <div
@@ -40,7 +29,7 @@ type Story = StoryObj<typeof meta>;
 export const Default: Story = {
   args: {
     placeholder: "選択してください。",
-    label: { text: "SelectCustomラベルテキスト", required: false },
+    label: { text: "SelectCustomラベルテキスト" },
     options: [
       { value: "Select_Value_A", label: "Select_Label_A" },
       { value: "Select_Value_B", label: "Select_Label_B" },
