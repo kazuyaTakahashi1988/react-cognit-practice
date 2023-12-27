@@ -3,63 +3,60 @@ import styled from "styled-components";
 import { PropsModal } from "../../lib/props";
 import Button from "../../components/Button/Button";
 
-type Props = React.HTMLAttributes<HTMLSpanElement> & PropsModal;
+type Props = React.HTMLAttributes<HTMLDivElement> & PropsModal;
 
 export const ModalField: React.ForwardRefRenderFunction<
-  HTMLSpanElement,
+  HTMLDivElement,
   Props
 > = (props, ref) => {
   const { children, title, onEvent, onClose, ...rest } = props;
 
   return (
-    <Styled ref={ref} {...rest}>
-      <div className="modal" onClick={onClose?.onClick}>
-        <div
-          className="modal__inner"
-          onClick={(e) => {
-            e.stopPropagation();
-          }}
-        >
-          <div className="modal__header">
-            <p className="title">{title}</p>
-            <span className="close" onClick={onClose?.onClick}></span>
-          </div>
-          <div className="modal__container">{children}</div>
-          <div className="modal__footer">
-            {onClose?.text && (
-              <Button className="secondary" onClick={onClose?.onClick}>
-                {onClose?.text ? onClose?.text : "閉じる"}
-              </Button>
-            )}
-            {onEvent && (
-              <Button onClick={onEvent.onClick}>{onEvent.text}</Button>
-            )}
-          </div>
+    <Styled
+      ref={ref}
+      {...rest}
+      className={["modal", `${rest.className ? rest.className : ""}`].join(" ")}
+      onClick={onClose?.onClick}
+    >
+      <div className="modal__inner" onClick={(e) => e.stopPropagation()}>
+        <div className="modal__header">
+          <p className="title">{title}</p>
+          <span className="close" onClick={onClose.onClick}></span>
+        </div>
+        <div className="modal__container">{children}</div>
+        <div className="modal__footer">
+          {onClose.text && (
+            <Button className="secondary" onClick={onClose.onClick}>
+              {onClose.text}
+            </Button>
+          )}
+          {onEvent && <Button onClick={onEvent.onClick}>{onEvent.text}</Button>}
         </div>
       </div>
     </Styled>
   );
 };
 
-const Styled = styled.span`
-  .modal {
+const Styled = styled.div`
+  position: fixed;
+  z-index: 999;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  margin: auto;
+  animation: fadeIn 0.2s ease-out forwards;
+  &::before {
+    content: "";
     position: fixed;
     z-index: 999;
     top: 0;
-    bottom: 0;
     left: 0;
-    right: 0;
-    margin: auto;
-    &::before {
-      content: "";
-      position: fixed;
-      z-index: 999;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: calc(100vh);
-      background: rgba(0, 0, 0, 0.3);
-    }
+    width: 100%;
+    height: calc(100vh);
+    background: rgba(0, 0, 0, 0.3);
+  }
+  .modal {
     &__inner {
       position: fixed;
       z-index: 9999;
@@ -71,7 +68,7 @@ const Styled = styled.span`
       box-shadow: 0 0 0 1px #ccc;
       border-radius: 10px 10px 5px 5px;
       text-align: left;
-      animation: fadeTranslate 0.2s ease-out forwards;
+      animation: translateY 0.2s ease-out forwards;
       > * {
         padding-left: 20px;
         padding-right: 20px;
@@ -148,13 +145,19 @@ const Styled = styled.span`
       }
     }
   }
-  @keyframes fadeTranslate {
+  @keyframes fadeIn {
     0% {
       opacity: 0;
-      transform: translateY(calc(-50% - 30px)) translateX(-50%);
     }
     100% {
       opacity: 1;
+    }
+  }
+  @keyframes translateY {
+    0% {
+      transform: translateY(calc(-50% - 30px)) translateX(-50%);
+    }
+    100% {
       transform: translateY(-50%) translateX(-50%);
     }
   }

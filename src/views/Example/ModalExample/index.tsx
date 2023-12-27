@@ -75,10 +75,14 @@ const Styled = styled.div`
     flex-wrap: wrap;
     justify-content: center;
     align-items: center;
+    @media screen and (max-width: 600px) {
+      display: block;
+    }
     > * {
-      margin-right: 20px;
-      &:last-child {
-        margin-right: 0;
+      margin: 0 20px;
+      @media screen and (max-width: 600px) {
+        display: block;
+        margin: 0 auto 30px;
       }
     }
   }
