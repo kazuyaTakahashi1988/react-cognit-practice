@@ -30,8 +30,21 @@ export const AccordionField: React.ForwardRefRenderFunction<
 
 const Styled = styled.div`
   .accordion {
-    border-bottom: 1px solid #ccc;
     display: block;
+    position: relative;
+    &::after {
+      content: "";
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      display: block;
+      width: 100%;
+      height: 1px;
+      background: #ccc;
+    }
+    &.is-open::after {
+      animation: fadeTranslateY 0.2s linear forwards;
+    }
     &__title {
       font-size: 16px;
       line-height: 28px;
@@ -66,15 +79,17 @@ const Styled = styled.div`
       line-height: 28px;
       padding: 10px 10px 20px;
       transition: 0.2s ease-out;
-      animation: fadeIn 0.2s linear forwards;
+      animation: fadeTranslateY 0.2s linear forwards;
     }
   }
-  @keyframes fadeIn {
+  @keyframes fadeTranslateY {
     0% {
       opacity: 0;
+      transform: translateY(-7.5px);
     }
     100% {
       opacity: 1;
+      transform: translateY(0);
     }
   }
 `;
