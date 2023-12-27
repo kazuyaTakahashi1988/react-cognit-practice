@@ -65,9 +65,7 @@ export const DropdownMenuField: React.ForwardRefRenderFunction<
               `${isClientLeft ? "left" : ""}`,
             ].join(" ")}
             ref={dropdownMenuInnerRef}
-            onClick={(e) => {
-              e.stopPropagation();
-            }}
+            onClick={(e) => e.stopPropagation()}
           >
             {menuList.map((menu, index) => (
               <li onClick={menu.onClick} key={index}>
