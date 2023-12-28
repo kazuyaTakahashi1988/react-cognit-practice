@@ -1,6 +1,7 @@
 import React, { forwardRef } from "react";
 import styled from "styled-components";
 import { PropsModal } from "../../lib/props";
+
 import Button from "../../components/Button/Button";
 
 type Props = React.HTMLAttributes<HTMLDivElement> & PropsModal;

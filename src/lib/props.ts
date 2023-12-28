@@ -12,6 +12,7 @@ export type PropsFormExample = {
   selectCustomName: string;
   textAreaName: string;
 };
+
 // TodoExample
 export type PropsTodoExample = {
   todoItemsName: {
@@ -46,6 +47,7 @@ export type PropsLayout = {
   type: string;
   children?: React.ReactNode;
 };
+
 // PropsHeader
 export type PropsHeader = {
   type: string;
