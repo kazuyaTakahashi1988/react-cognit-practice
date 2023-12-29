@@ -1,6 +1,6 @@
 import React, { forwardRef } from "react";
 import styled from "styled-components";
-import { PropsSwitchButton } from "../../lib/props";
+import { params, PropsSwitchButton } from "../../lib/";
 
 import { Label } from "./Label";
 import { ErrorMessage } from "./ErrorMessage";
@@ -55,18 +55,18 @@ const Styled = styled.div`
       cursor: pointer;
       display: flex;
       align-items: center;
-      color: #666;
+      color: ${params.gray100};
       .circle {
         display: flex;
         align-items: center;
-        background: #fff;
         border-radius: 25px;
         height: 25px;
         width: 50px;
         margin-right: 6px;
-        box-shadow: 0px 0px 1px 1px #ccc inset;
         padding: 3px;
         transition: 0.2s;
+        background: ${params.white};
+        box-shadow: 0px 0px 1px 1px ${params.gray} inset;
         &:before {
           content: "";
           display: inline-block;
@@ -74,9 +74,9 @@ const Styled = styled.div`
           height: 19px;
           border: none;
           border-radius: 20px;
-          background: #ddd;
           z-index: 1;
           transition: 0.2s;
+          background: ${params.gray200};
         }
       }
       .no-active {
@@ -102,14 +102,10 @@ const Styled = styled.div`
       pointer-events: none;
       opacity: 0;
       &:checked + .label__text {
-        color: rgb(33, 150, 243);
-        .circle {
-          box-shadow: none;
-          background: rgba(33, 150, 243, 0.3);
-          &::before {
-            margin-left: calc(50% + 3px);
-            background: rgb(33, 150, 243);
-          }
+        color: ${params.primary};
+        .circle::before {
+          margin-left: calc(50% + 3px);
+          background: ${params.primary};
         }
         .no-active {
           display: none;

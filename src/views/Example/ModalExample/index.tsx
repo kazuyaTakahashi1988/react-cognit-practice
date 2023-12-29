@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import styled from "styled-components";
+import { media, params } from "../../../lib/";
 
 import Layout from "../../../components/Layout/Layout";
 import Modal from "../../../components/Modal/Modal";
@@ -75,16 +76,30 @@ const Styled = styled.div`
     flex-wrap: wrap;
     justify-content: center;
     align-items: center;
-    @media screen and (max-width: 600px) {
+    ${media.sp} {
       display: block;
     }
     > * {
       margin: 0 20px;
-      @media screen and (max-width: 600px) {
+      ${media.sp} {
         display: block;
         margin: 0 auto 30px;
       }
     }
+  }
+
+  /* ---------------------------------------------- 
+    mixinStyled 試し書き
+  ---------------------------------------------- */
+  color: ${params.black};
+  ${media.pc} {
+    /* @media (min-width: 769px){} の内容が記述できるよ */
+  }
+  ${media.sp} {
+    /* @media (max-width: 768px){} の内容が記述できるよ */
+  }
+  ${media.tab} {
+    /* @media (max-width: 1080px){} の内容が記述できるよ */
   }
 `;
 

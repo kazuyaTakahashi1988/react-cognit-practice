@@ -1,7 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 import { useForm } from "react-hook-form";
-import { PropsVerification } from "../../../lib/props";
+import { PropsVerification } from "../../../lib/";
 
 import Layout from "../../../components/Layout/Layout";
 import Button from "../../../components/Button/Button";

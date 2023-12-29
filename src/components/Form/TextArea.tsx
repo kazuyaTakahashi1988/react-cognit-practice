@@ -1,6 +1,6 @@
 import React, { forwardRef } from "react";
 import styled from "styled-components";
-import { PropsTextArea } from "../../lib/props";
+import { params, PropsTextArea } from "../../lib/";
 
 import { Label } from "./Label";
 import { ErrorMessage } from "./ErrorMessage";
@@ -39,17 +39,17 @@ const Styled = styled.div`
     padding: 10px;
     border-radius: 4px;
     border: none;
-    box-shadow: 0 0 0 1px #ccc;
     appearance: none;
     -webkit-appearance: none;
     -moz-appearance: none;
     resize: vertical;
+    box-shadow: 0 0 0 1px ${params.gray};
     &:focus {
       outline: 0;
-      box-shadow: 0 0 0 1px rgb(33, 150, 243);
+      box-shadow: 0 0 0 1px ${params.primary};
     }
     &::placeholder {
-      color: #666;
+      color: ${params.gray100};
     }
   }
 `;

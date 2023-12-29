@@ -1,6 +1,6 @@
 import React, { forwardRef } from "react";
 import styled from "styled-components";
-import { PropsModal } from "../../lib/props";
+import { params, PropsModal } from "../../lib/";
 
 import Button from "../../components/Button/Button";
 
@@ -55,7 +55,8 @@ const Styled = styled.div`
     left: 0;
     width: 100%;
     height: calc(100vh);
-    background: rgba(0, 0, 0, 0.3);
+    background: ${params.black};
+    opacity: 0.3;
   }
   .modal {
     &__inner {
@@ -65,11 +66,11 @@ const Styled = styled.div`
       left: 50%;
       max-width: 500px;
       width: calc(100% - 40px);
-      background: #fff;
-      box-shadow: 0 0 0 1px #ccc;
       border-radius: 10px 10px 5px 5px;
       text-align: left;
       animation: translateY 0.2s ease-out forwards;
+      background: ${params.white};
+      box-shadow: 0 0 0 1px ${params.gray};
       > * {
         padding-left: 20px;
         padding-right: 20px;
@@ -79,11 +80,11 @@ const Styled = styled.div`
       display: flex;
       justify-content: space-between;
       align-items: center;
-      background: rgb(33, 150, 243);
-      color: #fff;
       border-radius: 10px 10px 0 0;
       height: 50px;
       overflow: hidden;
+      background: ${params.primary};
+      color: ${params.white};
       .title {
         font-size: 16px;
         line-height: 28px;
@@ -112,8 +113,8 @@ const Styled = styled.div`
           bottom: 0;
           margin: auto;
           transform: rotate(135deg);
-          background: #fff;
           z-index: 1;
+          background: ${params.white};
         }
         &:after {
           transform: rotate(45deg);
@@ -132,12 +133,12 @@ const Styled = styled.div`
     }
     &__footer {
       border-radius: 0 0 5px 5px;
-      border-top: 1px solid #ccc;
       display: flex;
       justify-content: right;
       align-items: center;
       height: 70px;
       overflow: hidden;
+      border-top: 1px solid ${params.gray};
       > * {
         margin-right: 20px;
         &:last-child {

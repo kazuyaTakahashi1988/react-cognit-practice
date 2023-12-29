@@ -5,7 +5,7 @@ import {
   CognitoUserAttribute,
 } from "amazon-cognito-identity-js";
 
-import { PropsSignIn, PropsSignUp, PropsVerification } from "../../lib/props";
+import { PropsSignIn, PropsSignUp, PropsVerification } from "../../lib/";
 
 const userPool = new CognitoUserPool({
   UserPoolId: `${process.env.REACT_APP_AWS_COGNITO_USER_POOL_ID}`,

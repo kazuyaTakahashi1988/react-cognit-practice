@@ -1,6 +1,6 @@
 import React, { forwardRef } from "react";
 import styled from "styled-components";
-import { PropsLabel } from "../../lib/props";
+import { params, PropsLabel } from "../../lib/";
 
 type Props = React.LabelHTMLAttributes<HTMLLabelElement> & PropsLabel;
 
@@ -30,9 +30,9 @@ const Styled = styled.div`
     line-height: 28px;
     margin-bottom: 10px;
     > span {
-      color: red;
       transform: translateY(-3px);
       display: inline-block;
+      color: ${params.red};
     }
   }
 `;

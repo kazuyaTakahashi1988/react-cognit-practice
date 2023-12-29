@@ -1,5 +1,6 @@
 import React from "react";
 import styled from "styled-components";
+import { media, params } from "../../../lib/";
 
 import Layout from "../../../components/Layout/Layout";
 import DropdownMenu from "../../../components/DropdownMenu/DropdownMenu";
@@ -75,6 +76,20 @@ const Styled = styled.div`
     &.right {
       text-align: right;
     }
+  }
+
+  /* ---------------------------------------------- 
+    mixinStyled 試し書き
+  ---------------------------------------------- */
+  color: ${params.black};
+  ${media.pc} {
+    /* @media (min-width: 769px){} の内容が記述できるよ */
+  }
+  ${media.sp} {
+    /* @media (max-width: 768px){} の内容が記述できるよ */
+  }
+  ${media.tab} {
+    /* @media (max-width: 1080px){} の内容が記述できるよ */
   }
 `;
 

@@ -1,6 +1,6 @@
 import React from "react";
 import styled from "styled-components";
-import { PropsLayout } from "../../lib/props";
+import { PropsLayout } from "../../lib/";
 
 import Header from "../../components/Layout/Header";
 import Footer from "../../components/Layout/Footer";

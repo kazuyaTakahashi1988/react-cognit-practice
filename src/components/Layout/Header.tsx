@@ -3,7 +3,7 @@ import { NavLink } from "react-router-dom";
 import styled from "styled-components";
 import { useNavigate } from "react-router-dom";
 import { GetSignInFlag } from "../../utils/Auth";
-import { PropsHeader } from "../../lib/props";
+import { params, PropsHeader } from "../../lib/";
 
 import DropdownMenu from "../DropdownMenu/DropdownMenu";
 
@@ -171,14 +171,14 @@ const Styled = styled.header`
   display: flex;
   justify-content: space-between;
   align-items: center;
-  box-shadow: 0 0 10px #ccc;
+  box-shadow: 0 0 10px ${params.gray};
   > .logo {
     font-size: 24px;
     line-height: 26px;
-    background: #ccc;
     text-align: center;
     padding: 10px 20px;
-    border: 10px solid #fff;
+    border: 10px solid ${params.white};
+    background: ${params.gray};
   }
   > .nav {
     > ul {
@@ -186,24 +186,13 @@ const Styled = styled.header`
       justify-content: space-between;
       width: 100%;
       padding: 0 10px;
-      &.sp-only {
-        display: none;
-      }
-      @media screen and (max-width: 600px) {
-        &.pc-only {
-          display: none;
-        }
-        &.sp-only {
-          display: block;
-        }
-      }
       > li {
         a {
           display: block;
           padding: 10px;
           font-weight: bold;
           &.active {
-            color: rgb(33, 150, 243);
+            color: ${params.primary};
           }
         }
       }

@@ -1,7 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 import { useForm } from "react-hook-form";
-import { PropsFormExample } from "../../../lib/props";
+import { media, params, PropsFormExample } from "../../../lib/";
 
 import Layout from "../../../components/Layout/Layout";
 import Button from "../../../components/Button/Button";
@@ -198,6 +198,20 @@ const Styled = styled.div`
         }
       }
     }
+  }
+
+  /* ---------------------------------------------- 
+    mixinStyled 試し書き
+  ---------------------------------------------- */
+  color: ${params.black};
+  ${media.pc} {
+    /* @media (min-width: 769px){} の内容が記述できるよ */
+  }
+  ${media.sp} {
+    /* @media (max-width: 768px){} の内容が記述できるよ */
+  }
+  ${media.tab} {
+    /* @media (max-width: 1080px){} の内容が記述できるよ */
   }
 `;
 

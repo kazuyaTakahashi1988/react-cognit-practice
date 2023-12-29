@@ -1,6 +1,6 @@
 import React, { forwardRef } from "react";
 import styled from "styled-components";
-import { PropsRadioButton } from "../../lib/props";
+import { params, PropsRadioButton } from "../../lib/";
 
 import { Label } from "./Label";
 import { ErrorMessage } from "./ErrorMessage";
@@ -49,17 +49,17 @@ const Styled = styled.div`
       cursor: pointer;
       display: flex;
       align-items: center;
-      color: #666;
+      color: ${params.gray100};
       &:before {
         content: "";
         display: inline-block;
         width: 1.2em;
         height: 1.2em;
         border: none;
-        box-shadow: 0 0 0 1px #ccc;
         border-radius: 50%;
         margin-right: 6px;
         flex-shrink: 0;
+        box-shadow: 0 0 0 1px ${params.gray};
       }
     }
     > input {
@@ -78,11 +78,11 @@ const Styled = styled.div`
       pointer-events: none;
       opacity: 0;
       &:checked + .label__text {
-        color: rgb(33, 150, 243);
+        color: ${params.primary};
       }
       &:checked + .label__text:before {
-        box-shadow: 0 0 0 1px rgb(33, 150, 243);
-        border: 0.35em solid rgb(33, 150, 243);
+        box-shadow: 0 0 0 1px ${params.primary};
+        border: 0.35em solid ${params.primary};
       }
     }
   }

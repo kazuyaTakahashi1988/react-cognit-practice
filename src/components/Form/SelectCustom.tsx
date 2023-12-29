@@ -7,7 +7,7 @@ import React, {
   RefObject,
 } from "react";
 import styled from "styled-components";
-import { PropsSelectCustom } from "../../lib/props";
+import { params, PropsSelectCustom } from "../../lib/";
 
 import { Label } from "./Label";
 import { ErrorMessage } from "./ErrorMessage";
@@ -119,12 +119,12 @@ const Styled = styled.div`
       padding: 0 25px 0 8px;
       border-radius: 4px;
       border: none;
-      box-shadow: 0 0 0 1px #ccc;
-      background: #fff;
+      box-shadow: 0 0 0 1px ${params.gray};
+      background: ${params.white};
       cursor: pointer;
       &.is-open {
         border-radius: 4px 4px 0 0;
-        box-shadow: 0 0 0 1px rgb(33, 150, 243);
+        box-shadow: 0 0 0 1px ${params.primary};
         &::before {
           transform: rotate(-45deg);
         }
@@ -138,12 +138,12 @@ const Styled = styled.div`
         right: 12px;
         width: 8px;
         height: 8px;
-        border-top: 2px solid #333;
-        border-right: 2px solid #333;
         transform: rotate(135deg);
         pointer-events: none;
         z-index: 3;
         transition: 0.2s ease-out;
+        border-top: 2px solid ${params.gray50};
+        border-right: 2px solid ${params.gray50};
       }
       > .placeholder {
         overflow: hidden;
@@ -184,7 +184,6 @@ const Styled = styled.div`
           }
         }
         > span {
-          background: #fff;
           padding: 0 25px 0 8px;
           border-radius: 4px;
           position: absolute;
@@ -198,6 +197,7 @@ const Styled = styled.div`
           text-overflow: ellipsis;
           white-space: nowrap;
           display: none;
+          background: ${params.white};
         }
       }
     }
@@ -210,27 +210,27 @@ const Styled = styled.div`
       margin: auto;
       border-radius: 0 0 4px 4px;
       border: none;
-      box-shadow:
-        0 1px 0 0 #ccc,
-        1px 0 0 0 #ccc,
-        -1px 0 0 0 #ccc;
       width: 100%;
-      background: #fff;
       overflow-y: auto;
       -webkit-overflow-scrolling: touch;
       overscroll-behavior-y: contain;
       height: 150px;
       animation: fadeIn 0.1s ease forwards;
+      box-shadow:
+        0 1px 0 0 ${params.gray},
+        1px 0 0 0 ${params.gray},
+        -1px 0 0 0 ${params.gray};
+      background: ${params.white};
       &__label {
         display: block;
         padding: 0 10px;
-        cursor: pointer;
         font-size: 16px;
         line-height: 2.4em;
-        color: #666;
+        cursor: pointer;
+        color: ${params.gray100};
         &.current {
-          color: #fff;
-          background: rgb(33, 150, 243);
+          color: ${params.white};
+          background: ${params.primary};
         }
       }
     }

@@ -1,6 +1,6 @@
 import React, { forwardRef } from "react";
 import styled from "styled-components";
-import { PropsButton } from "../../lib/props";
+import { params, PropsButton } from "../../lib/";
 
 type Props = React.ButtonHTMLAttributes<HTMLButtonElement> & PropsButton;
 
@@ -28,22 +28,22 @@ const Styled = styled.button`
   transition: 0.1s;
   cursor: pointer;
   font-size: 16px;
-  background: rgb(33, 150, 243);
-  color: #fff;
+  background: ${params.primary};
+  color: ${params.white};
   &:hover {
     opacity: 0.6;
   }
   &.primary {
   }
   &.secondary {
-    background: #fff;
-    box-shadow: 0 0 0 1px #ccc;
-    color: #000;
+    background: ${params.white};
+    box-shadow: 0 0 0 1px ${params.gray};
+    color: ${params.black};
   }
   &:disabled {
     cursor: not-allowed;
-    background: #ccc;
-    color: #666;
+    background: ${params.gray};
+    color: ${params.gray100};
     &:hover {
       opacity: 1;
     }

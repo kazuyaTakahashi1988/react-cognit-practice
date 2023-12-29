@@ -1,6 +1,6 @@
 import React, { forwardRef } from "react";
 import styled from "styled-components";
-import { PropsErrorMessage } from "../../lib/props";
+import { params, PropsErrorMessage } from "../../lib/";
 
 type Props = React.LabelHTMLAttributes<HTMLLabelElement> & PropsErrorMessage;
 
@@ -23,10 +23,10 @@ export const ErrorMessageField: React.ForwardRefRenderFunction<
 
 const Styled = styled.div`
   .error {
-    color: red;
     font-size: 12px;
     line-height: 28px;
     display: block;
+    color: ${params.red};
   }
 `;
 

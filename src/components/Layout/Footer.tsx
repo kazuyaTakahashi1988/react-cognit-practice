@@ -1,6 +1,7 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
 import styled from "styled-components";
+import { params } from "../../lib/";
 
 export const Footer: React.FC = () => {
   return (
@@ -21,7 +22,7 @@ const Styled = styled.footer`
   display: flex;
   justify-content: center;
   align-items: center;
-  box-shadow: 0 0 10px #ccc;
+  box-shadow: 0 0 10px ${params.gray};
   > .nav {
     display: flex;
     justify-content: center;
@@ -32,7 +33,7 @@ const Styled = styled.footer`
         padding: 10px;
         font-weight: bold;
         &.active {
-          color: rgb(33, 150, 243);
+          color: ${params.primary};
         }
       }
     }

@@ -1,6 +1,6 @@
 import React, { forwardRef, useState, useEffect } from "react";
 import styled from "styled-components";
-import { PropsAccordion } from "../../lib/props";
+import { params, PropsAccordion } from "../../lib/";
 
 type Props = React.HTMLAttributes<HTMLDivElement> & PropsAccordion;
 
@@ -40,7 +40,7 @@ const Styled = styled.div`
       display: block;
       width: 100%;
       height: 1px;
-      background: #ccc;
+      background: ${params.gray};
     }
     &.is-open::after {
       animation: fadeTranslateY 0.2s linear forwards;
@@ -61,12 +61,12 @@ const Styled = styled.div`
         right: 12px;
         width: 8px;
         height: 8px;
-        border-top: 2px solid #333;
-        border-right: 2px solid #333;
         transform: rotate(135deg);
         pointer-events: none;
         z-index: 1;
         transition: 0.2s ease-out;
+        border-top: 2px solid ${params.gray50};
+        border-right: 2px solid ${params.gray50};
       }
     }
     &.is-open > .accordion__title:before {

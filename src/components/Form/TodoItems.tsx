@@ -1,6 +1,6 @@
 import React, { forwardRef } from "react";
 import styled from "styled-components";
-import { PropsTodoItems } from "../../lib/props";
+import { PropsTodoItems } from "../../lib/";
 
 import CheckBox from "./CheckBox";
 import Input from "./Input";

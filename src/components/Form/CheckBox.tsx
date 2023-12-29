@@ -1,6 +1,6 @@
 import React, { forwardRef } from "react";
 import styled from "styled-components";
-import { PropsCheckBox } from "../../lib/props";
+import { params, PropsCheckBox } from "../../lib/";
 
 import { Label } from "./Label";
 import { ErrorMessage } from "./ErrorMessage";
@@ -61,17 +61,15 @@ const Styled = styled.div`
       pointer-events: none;
       opacity: 0;
       &:checked + .label__text {
-        color: rgb(33, 150, 243);
+        color: ${params.primary};
       }
       &:checked + .label__text:before {
-        box-shadow: 0 0 0 1px rgb(33, 150, 243);
-        background-color: rgb(33, 150, 243);
+        box-shadow: 0 0 0 1px ${params.primary};
+        background-color: ${params.primary};
       }
       &:checked + .label__text:after {
         content: "";
         position: absolute;
-        border: solid #fff;
-        border-width: 0 2px 2px 0;
         left: 0.4em;
         top: 0;
         bottom: 0;
@@ -79,24 +77,27 @@ const Styled = styled.div`
         width: 0.4em;
         height: 0.65em;
         transform: translateY(-1px) rotate(45deg);
+        border: solid;
+        border-width: 0 2px 2px 0;
+        border-color: ${params.white};
       }
     }
     &__text {
       cursor: pointer;
-      color: #666;
       position: relative;
       display: flex;
       align-items: center;
+      color: ${params.gray100};
       &::before {
         content: "";
         display: inline-block;
         width: 1.2em;
         height: 1.2em;
         border: none;
-        box-shadow: 0 0 0 1px #ccc;
         border-radius: 3px;
         margin-right: 6px;
         flex-shrink: 0;
+        box-shadow: 0 0 0 1px ${params.gray};
       }
     }
   }

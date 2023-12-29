@@ -1,6 +1,6 @@
 import React, { forwardRef, useState, useEffect, useRef } from "react";
 import styled from "styled-components";
-import { PropsDropdownMenu } from "../../lib/props";
+import { params, PropsDropdownMenu } from "../../lib/";
 
 type Props = React.HTMLAttributes<HTMLSpanElement> & PropsDropdownMenu;
 
@@ -91,19 +91,19 @@ const Styled = styled.span`
       right: 0;
       border-radius: 6px;
       padding: 5px 10px;
-      background: #fff;
+      background: ${params.white};
       width: max-content;
       display: block;
-      filter: drop-shadow(0px 0px 5px #ccc);
       cursor: initial;
       animation: fadeIn 0.1s ease forwards;
+      filter: drop-shadow(0px 0px 5px ${params.gray});
       &::before {
         content: "";
         position: absolute;
         width: 16px;
         height: 14px;
         clip-path: polygon(50% 30%, 0% 100%, 100% 100%);
-        background-color: #fff;
+        background-color: ${params.white};
         top: -13px;
         right: 20px;
         z-index: 10;

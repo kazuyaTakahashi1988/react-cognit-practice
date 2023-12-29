@@ -1,6 +1,6 @@
 import React, { forwardRef } from "react";
 import styled from "styled-components";
-import { PropsSelect } from "../../lib/props";
+import { params, PropsSelect } from "../../lib/";
 
 import { Label } from "./Label";
 import { ErrorMessage } from "./ErrorMessage";
@@ -56,10 +56,10 @@ const Styled = styled.div`
       right: 12px;
       width: 8px;
       height: 8px;
-      border-top: 2px solid #333;
-      border-right: 2px solid #333;
       transform: rotate(135deg);
       pointer-events: none;
+      border-top: 2px solid ${params.gray50};
+      border-right: 2px solid ${params.gray50};
     }
     > select {
       height: 2.4em;
@@ -68,18 +68,18 @@ const Styled = styled.div`
       padding: 0 8px;
       border-radius: 4px;
       border: none;
-      box-shadow: 0 0 0 1px #ccc;
       appearance: none;
       -webkit-appearance: none;
       -moz-appearance: none;
-      color: #000;
       cursor: pointer;
+      color: ${params.black};
+      box-shadow: 0 0 0 1px ${params.gray};
       &::-ms-expand {
         display: none;
       }
       &:focus {
         outline: 0;
-        box-shadow: 0 0 0 1px rgb(33, 150, 243);
+        box-shadow: 0 0 0 1px ${params.primary};
       }
     }
   }
