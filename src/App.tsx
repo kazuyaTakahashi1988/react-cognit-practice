@@ -1,5 +1,5 @@
 import { Router } from "./router";
-import { GlobalStyle } from "./lib/";
+import { GlobalStyle } from "./lib/Style";
 import { BrowserRouter } from "react-router-dom";
 
 const App = () => {

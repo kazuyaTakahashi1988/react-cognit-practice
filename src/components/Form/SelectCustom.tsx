@@ -7,7 +7,8 @@ import React, {
   RefObject,
 } from "react";
 import styled from "styled-components";
-import { params, PropsSelectCustom } from "../../lib/";
+import { params } from "../../lib/Style";
+import { PropsSelectCustom } from "../../lib/Props";
 
 import { Label } from "./Label";
 import { ErrorMessage } from "./ErrorMessage";

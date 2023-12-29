@@ -1,6 +1,7 @@
 import React, { forwardRef } from "react";
 import styled from "styled-components";
-import { params, PropsErrorMessage } from "../../lib/";
+import { params } from "../../lib/Style";
+import { PropsErrorMessage } from "../../lib/Props";
 
 type Props = React.LabelHTMLAttributes<HTMLLabelElement> & PropsErrorMessage;
 

@@ -1,6 +1,7 @@
 import React, { forwardRef } from "react";
 import styled from "styled-components";
-import { params, PropsButton } from "../../lib/";
+import { params } from "../../lib/Style";
+import { PropsButton } from "../../lib/Props";
 
 type Props = React.ButtonHTMLAttributes<HTMLButtonElement> & PropsButton;
 

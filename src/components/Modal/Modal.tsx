@@ -1,6 +1,7 @@
 import React, { forwardRef } from "react";
 import styled from "styled-components";
-import { params, PropsModal } from "../../lib/";
+import { params } from "../../lib/Style";
+import { PropsModal } from "../../lib/Props";
 
 import Button from "../../components/Button/Button";
 

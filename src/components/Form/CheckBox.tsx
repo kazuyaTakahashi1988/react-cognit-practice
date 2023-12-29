@@ -1,6 +1,7 @@
 import React, { forwardRef } from "react";
 import styled from "styled-components";
-import { params, PropsCheckBox } from "../../lib/";
+import { params } from "../../lib/Style";
+import { PropsCheckBox } from "../../lib/Props";
 
 import { Label } from "./Label";
 import { ErrorMessage } from "./ErrorMessage";

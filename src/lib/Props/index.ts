@@ -1,11 +1,12 @@
-export { media, params, GlobalStyle } from "./_mixinStyled";
-
 export type {
   PropsFormExample,
   PropsTodoExample,
   PropsSignIn,
   PropsSignUp,
   PropsVerification,
+} from "./_viewsType";
+
+export type {
   PropsLayout,
   PropsHeader,
   PropsLabel,
@@ -22,4 +23,4 @@ export type {
   PropsModal,
   PropsAccordion,
   PropsDropdownMenu,
-} from "./_propsType";
+} from "./_componentsType";

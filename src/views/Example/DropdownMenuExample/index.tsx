@@ -1,6 +1,6 @@
 import React from "react";
 import styled from "styled-components";
-import { media, params } from "../../../lib/";
+import { media, params } from "../../../lib/Style";
 
 import Layout from "../../../components/Layout/Layout";
 import DropdownMenu from "../../../components/DropdownMenu/DropdownMenu";
@@ -79,7 +79,7 @@ const Styled = styled.div`
   }
 
   /* ---------------------------------------------- 
-    mixinStyled 試し書き
+    lib/Style/_mixin 試し書き
   ---------------------------------------------- */
   color: ${params.black};
   ${media.pc} {

@@ -1,7 +1,8 @@
 import React from "react";
 import styled from "styled-components";
+import { media, params } from "../../../lib/Style";
+import { PropsFormExample } from "../../../lib/Props";
 import { useForm } from "react-hook-form";
-import { media, params, PropsFormExample } from "../../../lib/";
 
 import Layout from "../../../components/Layout/Layout";
 import Button from "../../../components/Button/Button";
@@ -201,7 +202,7 @@ const Styled = styled.div`
   }
 
   /* ---------------------------------------------- 
-    mixinStyled 試し書き
+    lib/Style/_mixin 試し書き
   ---------------------------------------------- */
   color: ${params.black};
   ${media.pc} {

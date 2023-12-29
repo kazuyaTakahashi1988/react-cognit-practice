@@ -1,7 +1,7 @@
 import React from "react";
 import styled from "styled-components";
+import { PropsSignUp } from "../../../lib/Props";
 import { useForm } from "react-hook-form";
-import { PropsSignUp } from "../../../lib/";
 
 import Layout from "../../../components/Layout/Layout";
 import Button from "../../../components/Button/Button";

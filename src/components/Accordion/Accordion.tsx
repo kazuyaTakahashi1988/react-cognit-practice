@@ -1,6 +1,7 @@
 import React, { forwardRef, useState, useEffect } from "react";
 import styled from "styled-components";
-import { params, PropsAccordion } from "../../lib/";
+import { params } from "../../lib/Style";
+import { PropsAccordion } from "../../lib/Props";
 
 type Props = React.HTMLAttributes<HTMLDivElement> & PropsAccordion;
 

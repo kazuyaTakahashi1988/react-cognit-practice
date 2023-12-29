@@ -1,7 +1,8 @@
 import React from "react";
 import styled from "styled-components";
+import { media, params } from "../../../lib/Style";
+import { PropsTodoExample } from "../../../lib/Props";
 import { useForm, useFieldArray } from "react-hook-form";
-import { media, params, PropsTodoExample } from "../../../lib/";
 
 import Layout from "../../../components/Layout/Layout";
 import TodoItems from "../../../components/Form/TodoItems";
@@ -71,7 +72,7 @@ const Styled = styled.div`
   }
 
   /* ---------------------------------------------- 
-    mixinStyled 試し書き
+    lib/Style/_mixin 試し書き
   ---------------------------------------------- */
   color: ${params.black};
   ${media.pc} {

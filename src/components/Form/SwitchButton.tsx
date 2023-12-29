@@ -1,6 +1,7 @@
 import React, { forwardRef } from "react";
 import styled from "styled-components";
-import { params, PropsSwitchButton } from "../../lib/";
+import { params } from "../../lib/Style";
+import { PropsSwitchButton } from "../../lib/Props";
 
 import { Label } from "./Label";
 import { ErrorMessage } from "./ErrorMessage";

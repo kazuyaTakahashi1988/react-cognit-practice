@@ -1,11 +1,12 @@
 import React from "react";
-import { NavLink } from "react-router-dom";
 import styled from "styled-components";
-import { useNavigate } from "react-router-dom";
-import { GetSignInFlag } from "../../utils/Auth";
-import { params, PropsHeader } from "../../lib/";
+import { params } from "../../lib/Style";
+import { PropsHeader } from "../../lib/Props";
+import { NavLink, useNavigate } from "react-router-dom";
 
 import DropdownMenu from "../DropdownMenu/DropdownMenu";
+
+import { GetSignInFlag } from "../../utils/Auth";
 
 export const Header: React.FC<PropsHeader> = (props) => {
   const { type } = props;
