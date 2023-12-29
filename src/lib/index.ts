@@ -1,4 +1,4 @@
-export { media, params } from "./_mixinStyled";
+export { media, params, GlobalStyle } from "./_mixinStyled";
 
 export type {
   PropsFormExample,
