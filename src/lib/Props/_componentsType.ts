@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
 /* -------------------------------------------------------
     ▽ Props の型定義 (コンポーネント編) ▽
 ---------------------------------------------------------- */
@@ -41,9 +40,11 @@ export type PropsTodoItems = {
     checkBoxName: string;
     inputName: string;
   };
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   append: any;
-  remove: any;
-  fields: Array<any>;
+  remove: (index?: number | number[]) => void;
+  fields: Array<object & { id: string }>;
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   register: any;
 };
 
