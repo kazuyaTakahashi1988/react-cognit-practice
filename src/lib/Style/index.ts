@@ -1,1 +1,2 @@
-export { media, params, GlobalStyle } from "./_mixin";
+export { media, params } from "./_mixin";
+export { GlobalStyle } from "./_globalStyle";
