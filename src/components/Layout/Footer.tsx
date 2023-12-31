@@ -13,6 +13,15 @@ export const Footer: React.FC = () => {
         <li>
           <NavLink to="/auth">Auth</NavLink>
         </li>
+        <li>
+          <a
+            href="http://test03.empty-service.com"
+            target="_blank"
+            rel="noreferrer"
+          >
+            Storybook
+          </a>
+        </li>
       </ul>
     </Styled>
   );
