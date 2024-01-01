@@ -1,6 +1,6 @@
 import React from "react";
 import styled from "styled-components";
-import { PropsVerification } from "../../../lib/Props";
+import { TypeVerification } from "../../../lib/Types";
 import { useForm } from "react-hook-form";
 
 import Layout from "../../../components/Layout/Layout";
@@ -15,7 +15,7 @@ const Verification: React.FC = () => {
     handleSubmit,
     reset,
     formState: { errors },
-  } = useForm<PropsVerification>({
+  } = useForm<TypeVerification>({
     defaultValues: {
       verificationCode: "",
       email: "",

@@ -1,12 +1,12 @@
 import React, { forwardRef } from "react";
 import styled from "styled-components";
 import { params } from "../../lib/Style";
-import { PropsTextArea } from "../../lib/Props";
+import { TypeTextArea } from "../../lib/Types";
 
 import { Label } from "./Label";
 import { ErrorMessage } from "./ErrorMessage";
 
-type Props = React.TextareaHTMLAttributes<HTMLTextAreaElement> & PropsTextArea;
+type Props = React.TextareaHTMLAttributes<HTMLTextAreaElement> & TypeTextArea;
 
 export const TextAreaField: React.ForwardRefRenderFunction<
   HTMLTextAreaElement,

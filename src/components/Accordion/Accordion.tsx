@@ -1,9 +1,9 @@
 import React, { forwardRef, useState, useEffect } from "react";
 import styled from "styled-components";
 import { params } from "../../lib/Style";
-import { PropsAccordion } from "../../lib/Props";
+import { TypeAccordion } from "../../lib/Types";
 
-type Props = React.HTMLAttributes<HTMLDivElement> & PropsAccordion;
+type Props = React.HTMLAttributes<HTMLDivElement> & TypeAccordion;
 
 export const AccordionField: React.ForwardRefRenderFunction<
   HTMLDivElement,

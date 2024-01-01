@@ -1,6 +1,6 @@
 import React from "react";
 import styled from "styled-components";
-import { PropsSignIn } from "../../../lib/Props";
+import { TypeSignIn } from "../../../lib/Types";
 import { useForm } from "react-hook-form";
 
 import Layout from "../../../components/Layout/Layout";
@@ -15,7 +15,7 @@ const SignIn: React.FC = () => {
     handleSubmit,
     reset,
     formState: { errors },
-  } = useForm<PropsSignIn>({
+  } = useForm<TypeSignIn>({
     defaultValues: {
       email: "",
       password: "",

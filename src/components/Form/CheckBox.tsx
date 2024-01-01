@@ -1,12 +1,12 @@
 import React, { forwardRef } from "react";
 import styled from "styled-components";
 import { params } from "../../lib/Style";
-import { PropsCheckBox } from "../../lib/Props";
+import { TypeCheckBox } from "../../lib/Types";
 
 import { Label } from "./Label";
 import { ErrorMessage } from "./ErrorMessage";
 
-type Props = React.InputHTMLAttributes<HTMLInputElement> & PropsCheckBox;
+type Props = React.InputHTMLAttributes<HTMLInputElement> & TypeCheckBox;
 
 export const CheckBoxField: React.ForwardRefRenderFunction<
   HTMLInputElement,

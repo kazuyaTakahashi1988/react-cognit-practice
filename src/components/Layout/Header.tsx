@@ -1,14 +1,14 @@
 import React from "react";
 import styled from "styled-components";
 import { params } from "../../lib/Style";
-import { PropsHeader } from "../../lib/Props";
+import { TypeHeader } from "../../lib/Types";
 import { NavLink, useNavigate } from "react-router-dom";
 
 import DropdownMenu from "../DropdownMenu/DropdownMenu";
 
 import { GetSignInFlag } from "../../utils/Auth";
 
-export const Header: React.FC<PropsHeader> = (props) => {
+export const Header: React.FC<TypeHeader> = (props) => {
   const { type } = props;
   const navigate = useNavigate();
 

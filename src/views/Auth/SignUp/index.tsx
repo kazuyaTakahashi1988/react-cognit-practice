@@ -1,6 +1,6 @@
 import React from "react";
 import styled from "styled-components";
-import { PropsSignUp } from "../../../lib/Props";
+import { TypeSignUp } from "../../../lib/Types";
 import { useForm } from "react-hook-form";
 
 import Layout from "../../../components/Layout/Layout";
@@ -15,7 +15,7 @@ const SignUp: React.FC = () => {
     handleSubmit,
     reset,
     formState: { errors },
-  } = useForm<PropsSignUp>({
+  } = useForm<TypeSignUp>({
     defaultValues: {
       email: "",
       password: "",

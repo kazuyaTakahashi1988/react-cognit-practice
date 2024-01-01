@@ -98,4 +98,3 @@ jobs:
           password: ${{ secrets.FTP_PASSWORD }} # FTPのパスワードを設定
           local-dir: ./storybook-static/ # どのディレクトリのデータをアップロードするか
           server-dir: /test03/ # リモートのどのディレクトリにアップロードするか
-

@@ -1,12 +1,12 @@
 import React, { forwardRef } from "react";
 import styled from "styled-components";
 import { params } from "../../lib/Style";
-import { PropsSwitchButton } from "../../lib/Props";
+import { TypeSwitchButton } from "../../lib/Types";
 
 import { Label } from "./Label";
 import { ErrorMessage } from "./ErrorMessage";
 
-type Props = React.InputHTMLAttributes<HTMLInputElement> & PropsSwitchButton;
+type Props = React.InputHTMLAttributes<HTMLInputElement> & TypeSwitchButton;
 
 export const SwitchButtonField: React.ForwardRefRenderFunction<
   HTMLInputElement,

@@ -8,12 +8,12 @@ import React, {
 } from "react";
 import styled from "styled-components";
 import { params } from "../../lib/Style";
-import { PropsSelectCustom } from "../../lib/Props";
+import { TypeSelectCustom } from "../../lib/Types";
 
 import { Label } from "./Label";
 import { ErrorMessage } from "./ErrorMessage";
 
-type Props = React.InputHTMLAttributes<HTMLInputElement> & PropsSelectCustom;
+type Props = React.InputHTMLAttributes<HTMLInputElement> & TypeSelectCustom;
 
 export const SelectCustomField: React.ForwardRefRenderFunction<
   HTMLInputElement,

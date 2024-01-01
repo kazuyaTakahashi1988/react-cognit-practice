@@ -1,19 +1,19 @@
 /* -------------------------------------------------------
-    ▽ Props の型定義 (コンポーネント編) ▽
+    ▽ 型定義 (コンポーネント編) ▽
 ---------------------------------------------------------- */
 // Layout
-export type PropsLayout = {
+export type TypeLayout = {
   type: string;
   children?: React.ReactNode;
 };
 
-// PropsHeader
-export type PropsHeader = {
+// Header
+export type TypeHeader = {
   type: string;
 };
 
 // Label
-export type PropsLabel = {
+export type TypeLabel = {
   label: {
     text: string;
     required?: boolean;
@@ -21,12 +21,12 @@ export type PropsLabel = {
 };
 
 // ErrorMessage
-export type PropsErrorMessage = {
+export type TypeErrorMessage = {
   errorMessage: string;
 };
 
 // Input
-export type PropsInput = {
+export type TypeInput = {
   label?: {
     text: string;
     required?: boolean;
@@ -35,7 +35,7 @@ export type PropsInput = {
 };
 
 // TodoItems
-export type PropsTodoItems = {
+export type TypeTodoItems = {
   itemsName: {
     checkBoxName: string;
     inputName: string;
@@ -49,7 +49,7 @@ export type PropsTodoItems = {
 };
 
 // CheckBox
-export type PropsCheckBox = {
+export type TypeCheckBox = {
   label?: {
     text: string;
     required?: boolean;
@@ -62,7 +62,7 @@ export type PropsCheckBox = {
 };
 
 // RadioButton
-export type PropsRadioButton = {
+export type TypeRadioButton = {
   label?: {
     text: string;
     required?: boolean;
@@ -75,7 +75,7 @@ export type PropsRadioButton = {
 };
 
 // SwitchButton
-export type PropsSwitchButton = {
+export type TypeSwitchButton = {
   label?: {
     text: string;
     required?: boolean;
@@ -89,7 +89,7 @@ export type PropsSwitchButton = {
 };
 
 // Select
-export type PropsSelect = {
+export type TypeSelect = {
   label?: {
     text: string;
     required?: boolean;
@@ -102,7 +102,7 @@ export type PropsSelect = {
 };
 
 // SelectCustom
-export type PropsSelectCustom = {
+export type TypeSelectCustom = {
   label?: {
     text: string;
     required?: boolean;
@@ -115,7 +115,7 @@ export type PropsSelectCustom = {
 };
 
 // TextArea
-export type PropsTextArea = {
+export type TypeTextArea = {
   label?: {
     text: string;
     required?: boolean;
@@ -124,12 +124,12 @@ export type PropsTextArea = {
 };
 
 // Button
-export type PropsButton = {
+export type TypeButton = {
   children?: React.ReactNode;
 };
 
 // Modal
-export type PropsModal = {
+export type TypeModal = {
   title: string;
   onEvent?: {
     text: string;
@@ -143,14 +143,14 @@ export type PropsModal = {
 };
 
 // Accordion
-export type PropsAccordion = {
+export type TypeAccordion = {
   title: string;
   children?: React.ReactNode;
   initOpen?: boolean;
 };
 
 // DropdownMenu
-export type PropsDropdownMenu = {
+export type TypeDropdownMenu = {
   menuList: Array<{
     text: string;
     onClick?: (event: React.MouseEvent<HTMLElement, MouseEvent>) => void;

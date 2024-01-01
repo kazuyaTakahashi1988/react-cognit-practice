@@ -1,7 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 import { media, params } from "../../../lib/Style";
-import { PropsFormExample } from "../../../lib/Props";
+import { TypeFormExample } from "../../../lib/Types";
 import { useForm } from "react-hook-form";
 
 import Layout from "../../../components/Layout/Layout";
@@ -20,7 +20,7 @@ const FormExample: React.FC = () => {
     handleSubmit,
     reset,
     formState: { errors },
-  } = useForm<PropsFormExample>({
+  } = useForm<TypeFormExample>({
     mode: "onSubmit", // 'onChange' or 'onBlur' or 'onSubmit' or 'onTouched' or 'all'
     reValidateMode: "onChange", // 'onChange' or 'onBlur' or 'onSubmit'
     criteriaMode: "all", // 'firstError' or 'all'

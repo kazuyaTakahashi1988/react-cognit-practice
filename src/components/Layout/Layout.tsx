@@ -1,11 +1,11 @@
 import React from "react";
 import styled from "styled-components";
-import { PropsLayout } from "../../lib/Props";
+import { TypeLayout } from "../../lib/Types";
 
 import Header from "../../components/Layout/Header";
 import Footer from "../../components/Layout/Footer";
 
-export const Layout: React.FC<PropsLayout> = (props) => {
+export const Layout: React.FC<TypeLayout> = (props) => {
   const { type, children } = props;
 
   return (

@@ -1,9 +1,9 @@
 import React, { forwardRef } from "react";
 import styled from "styled-components";
 import { params } from "../../lib/Style";
-import { PropsErrorMessage } from "../../lib/Props";
+import { TypeErrorMessage } from "../../lib/Types";
 
-type Props = React.LabelHTMLAttributes<HTMLLabelElement> & PropsErrorMessage;
+type Props = React.LabelHTMLAttributes<HTMLLabelElement> & TypeErrorMessage;
 
 export const ErrorMessageField: React.ForwardRefRenderFunction<
   HTMLLabelElement,

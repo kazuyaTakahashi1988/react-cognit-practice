@@ -1,12 +1,12 @@
 import React, { forwardRef } from "react";
 import styled from "styled-components";
 import { params } from "../../lib/Style";
-import { PropsInput } from "../../lib/Props";
+import { TypeInput } from "../../lib/Types";
 
 import { Label } from "./Label";
 import { ErrorMessage } from "./ErrorMessage";
 
-type Props = React.InputHTMLAttributes<HTMLInputElement> & PropsInput;
+type Props = React.InputHTMLAttributes<HTMLInputElement> & TypeInput;
 
 export const InputField: React.ForwardRefRenderFunction<
   HTMLInputElement,

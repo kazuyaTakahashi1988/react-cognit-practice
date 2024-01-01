@@ -1,8 +1,8 @@
 /* -------------------------------------------------------
-    ▽ Props の型定義 (ビュー編) ▽
+    ▽ 型定義 (ビュー編) ▽
 ---------------------------------------------------------- */
 // FormExample
-export type PropsFormExample = {
+export type TypeFormExample = {
   inputName: string;
   checkBoxName: object;
   radioButtonName: string;
@@ -13,27 +13,27 @@ export type PropsFormExample = {
 };
 
 // TodoExample
-export type PropsTodoExample = {
+export type TypeTodoExample = {
   todoItemsName: {
     check: boolean;
     task: string;
   }[];
 };
 
-// PropsSignIn
-export type PropsSignIn = {
+// SignIn
+export type TypeSignIn = {
   email: string;
   password: string;
 };
 
-// PropsSignUp
-export type PropsSignUp = {
+// SignUp
+export type TypeSignUp = {
   email: string;
   password: string;
 };
 
-// PropsVerification
-export type PropsVerification = {
+// Verification
+export type TypeVerification = {
   verificationCode: string;
   email: string;
 };

@@ -1,12 +1,12 @@
 import React, { forwardRef } from "react";
 import styled from "styled-components";
-import { PropsTodoItems } from "../../lib/Props";
+import { TypeTodoItems } from "../../lib/Types";
 
 import CheckBox from "./CheckBox";
 import Input from "./Input";
 import Button from "../Button/Button";
 
-type Props = React.InputHTMLAttributes<HTMLInputElement> & PropsTodoItems;
+type Props = React.InputHTMLAttributes<HTMLInputElement> & TypeTodoItems;
 
 export const TodoItemsField: React.ForwardRefRenderFunction<
   HTMLInputElement,

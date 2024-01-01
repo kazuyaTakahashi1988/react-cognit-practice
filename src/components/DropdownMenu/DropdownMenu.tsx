@@ -1,9 +1,9 @@
 import React, { forwardRef, useState, useEffect, useRef } from "react";
 import styled from "styled-components";
 import { params } from "../../lib/Style";
-import { PropsDropdownMenu } from "../../lib/Props";
+import { TypeDropdownMenu } from "../../lib/Types";
 
-type Props = React.HTMLAttributes<HTMLSpanElement> & PropsDropdownMenu;
+type Props = React.HTMLAttributes<HTMLSpanElement> & TypeDropdownMenu;
 
 export const DropdownMenuField: React.ForwardRefRenderFunction<
   HTMLSpanElement,

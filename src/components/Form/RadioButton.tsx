@@ -1,12 +1,12 @@
 import React, { forwardRef } from "react";
 import styled from "styled-components";
 import { params } from "../../lib/Style";
-import { PropsRadioButton } from "../../lib/Props";
+import { TypeRadioButton } from "../../lib/Types";
 
 import { Label } from "./Label";
 import { ErrorMessage } from "./ErrorMessage";
 
-type Props = React.InputHTMLAttributes<HTMLInputElement> & PropsRadioButton;
+type Props = React.InputHTMLAttributes<HTMLInputElement> & TypeRadioButton;
 
 export const RadioButtonField: React.ForwardRefRenderFunction<
   HTMLInputElement,

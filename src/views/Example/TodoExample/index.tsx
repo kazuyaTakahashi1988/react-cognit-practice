@@ -1,7 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 import { media, params } from "../../../lib/Style";
-import { PropsTodoExample } from "../../../lib/Props";
+import { TypeTodoExample } from "../../../lib/Types";
 import { useForm, useFieldArray } from "react-hook-form";
 
 import Layout from "../../../components/Layout/Layout";
@@ -9,7 +9,7 @@ import TodoItems from "../../../components/Form/TodoItems";
 import Button from "../../../components/Button/Button";
 
 const TodoExample: React.FC = () => {
-  const { register, handleSubmit, reset, control } = useForm<PropsTodoExample>({
+  const { register, handleSubmit, reset, control } = useForm<TypeTodoExample>({
     mode: "onSubmit",
     defaultValues: {
       todoItemsName: [{ check: false, task: "" }],
