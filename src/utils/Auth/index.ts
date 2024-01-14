@@ -8,8 +8,8 @@ import {
 import { TypeSignIn, TypeSignUp, TypeVerification } from "../../lib/Types";
 
 const userPool = new CognitoUserPool({
-  UserPoolId: `${process.env.REACT_APP_AWS_COGNITO_USER_POOL_ID}`,
-  ClientId: `${process.env.REACT_APP_AWS_COGNITO_CLIENT_ID}`,
+  UserPoolId: `${import.meta.env.VITE_APP_AWS_COGNITO_USER_POOL_ID}`,
+  ClientId: `${import.meta.env.VITE_APP_AWS_COGNITO_CLIENT_ID}`,
 });
 
 /* -----------------------------------
@@ -66,7 +66,7 @@ export const SignUpHelper = (data: TypeSignUp) => {
       }
       console.log(result);
       console.log("SignUp succeeded");
-    },
+    }
   );
 };
 

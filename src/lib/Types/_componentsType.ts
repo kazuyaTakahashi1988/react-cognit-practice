@@ -99,6 +99,7 @@ export type TypeSelect = {
     label: string;
   }>;
   errors?: object;
+  placeholder?: string;
 };
 
 // SelectCustom
