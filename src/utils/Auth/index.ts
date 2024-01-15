@@ -66,7 +66,7 @@ export const SignUpHelper = (data: TypeSignUp) => {
       }
       console.log(result);
       console.log("SignUp succeeded");
-    }
+    },
   );
 };
 

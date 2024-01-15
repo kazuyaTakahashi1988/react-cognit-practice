@@ -16,7 +16,7 @@ export const GlobalStyle = createGlobalStyle`
     font-size: 16px;
     line-height: 200%;
     text-align: left;
-    font-family: "Noto Sans JP", serif; // webフォントは"public/index.html"にてimport 
+    font-family: "Noto Sans JP", serif; // webフォントは"index.html"にてimport 
     height: 100%;
     width: 100%;
     letter-spacing: 1px;
@@ -127,7 +127,7 @@ export const GlobalStyle = createGlobalStyle`
   select {
     font-size: 16px;
     background: none;
-    font-family: "Noto Sans JP", serif; // webフォントは"public/index.html"にてimport 
+    font-family: "Noto Sans JP", serif; // webフォントは"index.html"にてimport 
     letter-spacing: 1px;
   }
 
