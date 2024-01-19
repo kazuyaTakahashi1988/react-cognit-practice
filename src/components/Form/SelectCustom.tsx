@@ -74,7 +74,7 @@ export const SelectCustomField: React.ForwardRefRenderFunction<
                 type="radio"
                 className=""
               />
-              <span data-selected-index={index}>{option.label}</span>
+              <span>{option.label}</span>
             </div>
           ))}
         </div>
