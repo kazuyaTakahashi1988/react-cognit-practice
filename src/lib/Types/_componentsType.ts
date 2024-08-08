@@ -40,12 +40,10 @@ export type TypeTodoItems = {
     checkBoxName: string;
     inputName: string;
   };
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  append: any;
+  append: (value?: string | object, options?: object) => void;
   remove: (index?: number | number[]) => void;
   fields: Array<object & { id: string }>;
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  register: any;
+  register: (name?: string, options?: object) => void;
 };
 
 // CheckBox
