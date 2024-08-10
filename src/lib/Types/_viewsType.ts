@@ -14,7 +14,7 @@ export type TypeFormExample = {
 
 // TodoExample
 export type TypeTodoExample = {
-  todoItemsName: {
+  todoItems: {
     check: boolean;
     task: string;
   }[];

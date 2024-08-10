@@ -1,6 +1,7 @@
 /* -------------------------------------------------------
     ▽ 型定義 (コンポーネント編) ▽
 ---------------------------------------------------------- */
+
 // Layout
 export type TypeLayout = {
   type: string;
@@ -40,9 +41,8 @@ export type TypeTodoItems = {
     checkBoxName: string;
     inputName: string;
   };
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  append: any;
-  remove: (index?: number | number[]) => void;
+  append: (event: React.MouseEvent<HTMLElement, MouseEvent>) => void;
+  remove: (event: React.MouseEvent<HTMLElement, MouseEvent>) => void;
   fields: Array<object & { id: string }>;
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   register: any;
