@@ -41,8 +41,8 @@ export type TypeTodoItems = {
     checkBoxName: string;
     inputName: string;
   };
-  append: (event: React.MouseEvent<HTMLElement, MouseEvent>) => void;
-  remove: (event: React.MouseEvent<HTMLElement, MouseEvent>) => void;
+  onAppend?: (event: React.MouseEvent<HTMLElement, MouseEvent>) => void;
+  onRemove?: (event: React.MouseEvent<HTMLElement, MouseEvent>) => void;
   fields: Array<object & { id: string }>;
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   register: any;

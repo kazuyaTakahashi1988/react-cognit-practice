@@ -28,9 +28,9 @@ const TodoExample: React.FC = () => {
 
   const onAppend = () => append(todoItems);
   const onRemove = (e: React.MouseEvent<HTMLElement, MouseEvent>) => {
-    const index = Number(e.currentTarget.getAttribute("data-index"));
+    const index = Number(e.currentTarget.getAttribute("key"));
     remove(index);
-  };
+  }
 
   const onSubmit = handleSubmit((data) => {
     console.log(data);
@@ -48,8 +48,8 @@ const TodoExample: React.FC = () => {
           name={todoItemsName}
           itemsName={{ checkBoxName: checkBoxName, inputName: inputName }}
           placeholder="タスクを入力してください。"
-          append={onAppend}
-          remove={(e) => onRemove(e)}
+          onAppend={onAppend}
+          onRemove={(e) => onRemove(e)}
           fields={fields}
           register={register}
         />

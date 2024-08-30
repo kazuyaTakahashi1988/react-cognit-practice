@@ -12,36 +12,36 @@ export const TodoItemsField: React.ForwardRefRenderFunction<
   HTMLInputElement,
   Props
 > = (props, ref) => {
-  const { itemsName, append, remove, fields, register, ...rest } = props;
+  const { itemsName, onAppend, onRemove, fields, register, ...rest } = props;
 
   const name = rest.name;
   const { checkBoxName, inputName } = itemsName;
 
   return (
     <Styled className={rest.className} ref={ref}>
-      <Button onClick={append}>追加</Button>
+      {onAppend && <Button onClick={onAppend}>追加</Button>}
 
       <ul className="todo-list">
         {fields?.map((field, index) => (
           <li key={field.id}>
             <CheckBox
               options={[{ value: "", label: "" }]}
-              {...register(`${name}.${index}.${checkBoxName}` as const)}
+              {...register(`${name}.${index}.${checkBoxName}`)}
               className="checkbox"
             />
             <Input
               {...rest}
-              {...register(`${name}.${index}.${inputName}` as const)}
+              {...register(`${name}.${index}.${inputName}`)}
               className="input"
             />
-            <Button
+            {onRemove && <Button
               className="secondary"
-              data-index={index}
-              onClick={remove}
+              key={field.id}
+              onClick={onRemove}
               disabled={fields?.length < 2}
             >
               削除
-            </Button>
+            </Button>}
           </li>
         ))}
       </ul>
