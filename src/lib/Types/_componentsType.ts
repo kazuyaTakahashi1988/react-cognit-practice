@@ -2,6 +2,9 @@
     ▽ 型定義 (コンポーネント編) ▽
 ---------------------------------------------------------- */
 
+import { UseFormRegister } from "react-hook-form";
+import { TypeTodoExample } from ".";
+
 // Layout
 export type TypeLayout = {
   type: string;
@@ -44,8 +47,7 @@ export type TypeTodoItems = {
   onAppend?: (event: React.MouseEvent<HTMLElement, MouseEvent>) => void;
   onRemove?: (event: React.MouseEvent<HTMLElement, MouseEvent>) => void;
   fields: Array<object & { id: string }>;
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  register: any;
+  register: UseFormRegister<TypeTodoExample>;
 };
 
 // CheckBox

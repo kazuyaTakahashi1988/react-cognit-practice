@@ -1,8 +1,8 @@
 import React from "react";
 import styled from "styled-components";
 import { media, params } from "../../../lib/Style";
-import { TypeTodoExample } from "../../../lib/Types";
 import { useForm, useFieldArray } from "react-hook-form";
+import { TypeTodoExample } from "../../../lib/Types";
 
 import Layout from "../../../components/Layout/Layout";
 import TodoItems from "../../../components/Form/TodoItems";
