@@ -3,20 +3,20 @@ import { Routes, Route, Navigate } from "react-router-dom";
 /* -----------------------------------
  * サインイン 済 or 未 フラグ
  * -------------------------------- */
-import { GetSignInFlag } from "../utils/Auth";
+import { GetSignInFlag } from "../utils/auth";
 
 /* -----------------------------------
- * VIEWS コンポーネント
+ * PAGES コンポーネント
  * -------------------------------- */
-import SignUp from "../views/Auth/SignUp";
-import Verification from "../views/Auth/Verification";
-import SignIn from "../views/Auth/SignIn";
-import SignOut from "../views/Auth/SignOut";
-import FormExample from "../views/Example/FormExample";
-import TodoExample from "../views/Example/TodoExample";
-import ModalExample from "../views/Example/ModalExample";
-import AccordionExample from "../views/Example/AccordionExample";
-import DropdownMenuExample from "../views/Example/DropdownMenuExample";
+import SignUp from "../pages/auth/signUp";
+import Verification from "../pages/auth/verification";
+import SignIn from "../pages/auth/signIn";
+import SignOut from "../pages/auth/signOut";
+import FormExample from "../pages/example/formExample";
+import TodoExample from "../pages/example/todoExample";
+import ModalExample from "../pages/example/modalExample";
+import AccordionExample from "../pages/example/accordionExample";
+import DropdownMenuExample from "../pages/example/dropdownMenuExample";
 
 export function Router() {
   return (
