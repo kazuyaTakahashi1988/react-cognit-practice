@@ -9,24 +9,19 @@ import TodoItems from "../../../components/form/todoItems";
 import Button from "../../../components/button/button";
 
 const TodoExample: React.FC = () => {
-  const todoItemsName = "todoItems";
-  const checkBoxName = "check";
-  const inputName = "task";
-  const todoItems = { [checkBoxName]: false, [inputName]: "" };
-
   const { register, handleSubmit, reset, control } = useForm<TypeTodoExample>({
     mode: "onSubmit",
     defaultValues: {
-      [todoItemsName]: [todoItems],
+      todoItems: [{ check: false, task: "" }],
     },
   });
 
   const { fields, append, remove } = useFieldArray({
-    name: todoItemsName,
+    name: "todoItems",
     control,
   });
 
-  const onAppend = () => append(todoItems);
+  const onAppend = () => append({ check: false, task: "" });
   const onRemove = (e: React.MouseEvent<HTMLElement, MouseEvent>) => {
     const index = Number(e.currentTarget.getAttribute("key"));
     remove(index);
@@ -45,8 +40,8 @@ const TodoExample: React.FC = () => {
 
         <TodoItems
           className="mt-30"
-          name={todoItemsName}
-          itemsName={{ checkBoxName: checkBoxName, inputName: inputName }}
+          name="todoItems"
+          itemsName={{ checkBoxName: "check", inputName: "task" }}
           placeholder="タスクを入力してください。"
           onAppend={onAppend}
           onRemove={(e) => onRemove(e)}
