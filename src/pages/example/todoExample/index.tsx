@@ -23,7 +23,7 @@ const TodoExample: React.FC = () => {
 
   const onAppend = () => append({ check: false, task: "" });
   const onRemove = (e: React.MouseEvent<HTMLElement, MouseEvent>) => {
-    const index = Number(e.currentTarget.getAttribute("key"));
+    const index = Number(e.currentTarget.getAttribute("data-index"));
     remove(index);
   }
 

@@ -36,7 +36,7 @@ export const TodoItemsField: React.ForwardRefRenderFunction<
             />
             {onRemove && <Button
               className="secondary"
-              key={field.id}
+              data-index={index}
               onClick={onRemove}
               disabled={fields?.length < 2}
             >
