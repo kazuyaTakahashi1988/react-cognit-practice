@@ -5,6 +5,7 @@ import {
   CognitoUserAttribute,
 } from "amazon-cognito-identity-js";
 
+import { loadingFlugStore } from '../../lib/store'
 import { TypeSignIn, TypeSignUp, TypeVerification } from "../../lib/types";
 
 const userPool = new CognitoUserPool({
@@ -21,6 +22,8 @@ export const GetSignInFlag = () => userPool.getCurrentUser();
  * サインイン 処理
  * -------------------------------- */
 export const SignInHelper = async (data: TypeSignIn) => {
+  loadingFlugStore.dispatch({ type: 'FLUG_UP' })
+
   const authenticationDetails = new AuthenticationDetails({
     Username: data.email,
     Password: data.password,
@@ -36,9 +39,11 @@ export const SignInHelper = async (data: TypeSignIn) => {
       const accessToken = result.getAccessToken().getJwtToken();
       console.log(result);
       console.log("AccessToken: " + accessToken);
+      loadingFlugStore.dispatch({ type: 'FLUG_DOWN' })
     },
     onFailure: (err) => {
       console.error(err);
+      loadingFlugStore.dispatch({ type: 'FLUG_DOWN' })
     },
   });
 };
@@ -47,6 +52,8 @@ export const SignInHelper = async (data: TypeSignIn) => {
  * サインアップ 処理
  * -------------------------------- */
 export const SignUpHelper = (data: TypeSignUp) => {
+  loadingFlugStore.dispatch({ type: 'FLUG_UP' })
+
   const attributeList = [
     new CognitoUserAttribute({
       Name: "email",
@@ -62,10 +69,12 @@ export const SignUpHelper = (data: TypeSignUp) => {
     (err, result) => {
       if (err) {
         console.error(err);
+        loadingFlugStore.dispatch({ type: 'FLUG_DOWN' })
         return;
       }
       console.log(result);
       console.log("SignUp succeeded");
+      loadingFlugStore.dispatch({ type: 'FLUG_DOWN' })
     },
   );
 };
@@ -74,6 +83,8 @@ export const SignUpHelper = (data: TypeSignUp) => {
  * アクティベート 処理
  * -------------------------------- */
 export const VerifyHelper = (data: TypeVerification) => {
+  loadingFlugStore.dispatch({ type: 'FLUG_UP' })
+
   const cognitoUser = new CognitoUser({
     Username: data.email,
     Pool: userPool,
@@ -82,9 +93,11 @@ export const VerifyHelper = (data: TypeVerification) => {
   cognitoUser.confirmRegistration(data.verificationCode, true, (err) => {
     if (err) {
       console.log(err);
+      loadingFlugStore.dispatch({ type: 'FLUG_DOWN' })
       return;
     }
     console.log("verification succeeded");
+    loadingFlugStore.dispatch({ type: 'FLUG_DOWN' })
   });
 };
 
@@ -92,13 +105,17 @@ export const VerifyHelper = (data: TypeVerification) => {
  * サインアウト 処理
  * -------------------------------- */
 export const SignOutHelper = () => {
+  loadingFlugStore.dispatch({ type: 'FLUG_UP' })
+
   const cognitoUser = userPool.getCurrentUser();
   if (cognitoUser) {
     cognitoUser.signOut();
     localStorage.clear();
     console.log("signed out");
+    loadingFlugStore.dispatch({ type: 'FLUG_DOWN' })
   } else {
     localStorage.clear();
     console.log("no user signing in");
+    loadingFlugStore.dispatch({ type: 'FLUG_DOWN' })
   }
 };

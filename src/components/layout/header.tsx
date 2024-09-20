@@ -6,7 +6,7 @@ import { NavLink, useNavigate } from "react-router-dom";
 
 import DropdownMenu from "../dropdownMenu/dropdownMenu";
 
-import { GetSignInFlag } from "../../utils/auth";
+import { GetSignInFlag } from "../../utils/authHelper";
 
 export const Header: React.FC<TypeHeader> = (props) => {
   const { type } = props;

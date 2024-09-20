@@ -7,7 +7,7 @@ import Layout from "../../../components/layout/layout";
 import Button from "../../../components/button/button";
 import Input from "../../../components/form/input";
 
-import { SignUpHelper } from "../../../utils/auth";
+import { SignUpHelper } from "../../../utils/authHelper";
 
 const SignUp: React.FC = () => {
   const {

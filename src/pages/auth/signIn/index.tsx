@@ -7,7 +7,7 @@ import Layout from "../../../components/layout/layout";
 import Button from "../../../components/button/button";
 import Input from "../../../components/form/input";
 
-import { SignInHelper } from "../../../utils/auth";
+import { SignInHelper } from "../../../utils/authHelper";
 
 const SignIn: React.FC = () => {
   const {

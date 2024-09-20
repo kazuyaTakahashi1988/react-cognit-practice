@@ -3,17 +3,26 @@ import styled from "styled-components";
 import { TypeLayout } from "../../lib/types";
 import { Header } from "./header";
 import { Footer } from "./footer";
+import { Loading } from "./loading";
 
+import { useSelector } from "react-redux";
+import { TypeLoadingFlugStore } from "../../lib/types";
 
 export const Layout: React.FC<TypeLayout> = (props) => {
   const { type, children } = props;
 
+  const loadingFlug = useSelector((state: TypeLoadingFlugStore) => state.flug);
+
   return (
     <Styled>
+      {loadingFlug > 0 && <Loading />}
+
       <Header type={type} />
+
       <div className="container">
         <div className="container__inner">{children}</div>
       </div>
+
       <Footer />
     </Styled>
   );

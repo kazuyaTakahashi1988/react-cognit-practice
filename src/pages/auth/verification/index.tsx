@@ -7,7 +7,7 @@ import Layout from "../../../components/layout/layout";
 import Button from "../../../components/button/button";
 import Input from "../../../components/form/input";
 
-import { VerifyHelper } from "../../../utils/auth";
+import { VerifyHelper } from "../../../utils/authHelper";
 
 const Verification: React.FC = () => {
   const {

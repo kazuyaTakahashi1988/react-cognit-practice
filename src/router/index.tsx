@@ -3,7 +3,7 @@ import { Routes, Route, Navigate } from "react-router-dom";
 /* -----------------------------------
  * サインイン 済 or 未 フラグ
  * -------------------------------- */
-import { GetSignInFlag } from "../utils/auth";
+import { GetSignInFlag } from "../utils/authHelper";
 
 /* -----------------------------------
  * PAGES コンポーネント
