@@ -63,7 +63,7 @@ const FormExample: React.FC = () => {
             //   message: `英数文字のみにしてね`
             // },
           })}
-          errors={errors}
+          errorMessage={errors.inputName?.message}
         />
 
         <CheckBox
@@ -81,7 +81,7 @@ const FormExample: React.FC = () => {
                 return "２つ以上選択してください。";
             },
           })}
-          errors={errors}
+          errorMessage={errors.checkBoxName?.message}
         />
 
         <RadioButton
@@ -95,7 +95,7 @@ const FormExample: React.FC = () => {
           {...register("radioButtonName", {
             required: { value: true, message: "必須項目だよ。" },
           })}
-          errors={errors}
+          errorMessage={errors.radioButtonName?.message}
         />
 
         <SwitchButton
@@ -120,7 +120,7 @@ const FormExample: React.FC = () => {
           {...register("switchButtonName", {
             required: { value: true, message: "必須項目だよ。" },
           })}
-          errors={errors}
+          errorMessage={errors.switchButtonName?.message}
         />
 
         <Select
@@ -135,7 +135,7 @@ const FormExample: React.FC = () => {
           {...register("selectName", {
             required: { value: true, message: "必須項目だよ。" },
           })}
-          errors={errors}
+          errorMessage={errors.selectName?.message}
         />
 
         <SelectCustom
@@ -154,7 +154,7 @@ const FormExample: React.FC = () => {
           {...register("selectCustomName", {
             required: { value: true, message: "必須項目だよ。" },
           })}
-          errors={errors}
+          errorMessage={errors.selectCustomName?.message}
         />
 
         <TextArea
@@ -170,7 +170,7 @@ const FormExample: React.FC = () => {
             //   message: `英数文字のみにしてね`
             // },
           })}
-          errors={errors}
+          errorMessage={errors.textAreaName?.message}
         />
 
         <div className="mt-30 button-clm">

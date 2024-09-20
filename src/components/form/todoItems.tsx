@@ -12,10 +12,13 @@ export const TodoItemsField: React.ForwardRefRenderFunction<
   HTMLInputElement,
   Props
 > = (props, ref) => {
-  const { itemsName, onAppend, onRemove, fields, register, ...rest } = props;
+  const { itemsName, onAppend, onRemove, fields, register, errors, ...rest } = props;
 
   const name = rest.name;
   const { checkBoxName, inputName } = itemsName;
+
+  // errorsに配列があることを保証させる処理、" errors?.[index]? "記述時に必要
+  const isErrorsArray = Array.isArray(errors)
 
   return (
     <Styled className={rest.className} ref={ref}>
@@ -26,14 +29,24 @@ export const TodoItemsField: React.ForwardRefRenderFunction<
           <li key={field.id}>
             <CheckBox
               options={[{ value: "", label: "" }]}
-              {...register(`${name}.${index}.${checkBoxName}`)}
+              {...register(`${name}.${index}.${checkBoxName}`, {
+                // required: { value: true, message: "必須項目だよ。" },
+              })}
+              // errorMessage={isErrorsArray && errors?.[index]?.[checkBoxName]?.message}
               className="checkbox"
             />
+
             <Input
               {...rest}
-              {...register(`${name}.${index}.${inputName}`)}
+              {...register(`${name}.${index}.${inputName}`, {
+                required: { value: true, message: "必須項目だよ。" },
+                // minLength: { value: 2, message: `2文字以上にしてね` },
+                // maxLength: { value: 50, message: "最大50文字だよ" },
+              })}
+              errorMessage={isErrorsArray && errors?.[index]?.[inputName]?.message}
               className="input"
             />
+
             {onRemove && <Button
               className="secondary"
               data-index={index}
@@ -55,10 +68,9 @@ const Styled = styled.div`
       margin-top: 30px;
       display: flex;
       justify-content: space-between;
-      align-items: center;
       animation: fadeIn 0.4s ease forwards;
       > .checkbox {
-        margin-right: 20px;
+        margin: 10px 20px 0 0;
         .label__text::before {
           margin: 0;
         }

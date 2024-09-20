@@ -9,7 +9,13 @@ import TodoItems from "../../../components/form/todoItems";
 import Button from "../../../components/button/button";
 
 const TodoExample: React.FC = () => {
-  const { register, handleSubmit, reset, control } = useForm<TypeTodoExample>({
+  const {
+    register,
+    handleSubmit,
+    reset,
+    control,
+    formState: { errors },
+  } = useForm<TypeTodoExample>({
     mode: "onSubmit",
     defaultValues: {
       todoItems: [{ check: false, task: "" }],
@@ -47,6 +53,7 @@ const TodoExample: React.FC = () => {
           onRemove={(e) => onRemove(e)}
           fields={fields}
           register={register}
+          errors={errors.todoItems}
         />
 
         <div className="mt-30 button-clm">

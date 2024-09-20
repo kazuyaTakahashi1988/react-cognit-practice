@@ -12,7 +12,7 @@ export const InputField: React.ForwardRefRenderFunction<
   HTMLInputElement,
   Props
 > = (props, ref) => {
-  const { label, errors, ...rest } = props;
+  const { label, errorMessage, ...rest } = props;
 
   return (
     <Styled className={rest.className}>
@@ -20,14 +20,7 @@ export const InputField: React.ForwardRefRenderFunction<
 
       <input ref={ref} {...rest} type={rest.type || "text"} className="" />
 
-      {errors &&
-        Object.values(errors).map((error, index) => {
-          return (
-            error.ref.name === rest.name && (
-              <ErrorMessage key={index} errorMessage={error.message} />
-            )
-          );
-        })}
+      {errorMessage && <ErrorMessage errorMessage={errorMessage} />}
     </Styled>
   );
 };

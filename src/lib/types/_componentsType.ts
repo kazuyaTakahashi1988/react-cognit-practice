@@ -35,7 +35,7 @@ export type TypeInput = {
     text: string;
     required?: boolean;
   };
-  errors?: object;
+  errorMessage?: string;
 };
 
 // TodoItems
@@ -48,6 +48,7 @@ export type TypeTodoItems = {
   onRemove?: (event: React.MouseEvent<HTMLElement, MouseEvent>) => void;
   fields: Array<object & { id: string }>;
   register: UseFormRegister<TypeTodoExample>;
+  errors?: object;
 };
 
 // CheckBox
@@ -60,7 +61,7 @@ export type TypeCheckBox = {
     value: string;
     label: string;
   }>;
-  errors?: object;
+  errorMessage?: string;
 };
 
 // RadioButton
@@ -73,7 +74,7 @@ export type TypeRadioButton = {
     value: string;
     label: string;
   }>;
-  errors?: object;
+  errorMessage?: string;
 };
 
 // SwitchButton
@@ -87,7 +88,7 @@ export type TypeSwitchButton = {
     label: string;
     labelActived?: string;
   }>;
-  errors?: object;
+  errorMessage?: string;
 };
 
 // Select
@@ -100,7 +101,7 @@ export type TypeSelect = {
     value: string;
     label: string;
   }>;
-  errors?: object;
+  errorMessage?: string;
   placeholder?: string;
 };
 
@@ -114,7 +115,7 @@ export type TypeSelectCustom = {
     value: string;
     label: string;
   }>;
-  errors?: object;
+  errorMessage?: string;
 };
 
 // TextArea
@@ -123,7 +124,7 @@ export type TypeTextArea = {
     text: string;
     required?: boolean;
   };
-  errors?: object;
+  errorMessage?: string;
 };
 
 // Button

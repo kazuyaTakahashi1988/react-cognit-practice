@@ -35,3 +35,15 @@ export const Required: Story = {
     ],
   },
 };
+
+export const Error: Story = {
+  args: {
+    label: { text: "CheckBoxラベルテキスト", required: true },
+    options: [
+      { value: "Check_Value_A", label: "Check_Label_A" },
+      { value: "Check_Value_B", label: "Check_Label_B" },
+      { value: "Check_Value_C", label: "Check_Label_C" },
+    ],
+    errorMessage: '必須項目だよ。'
+  },
+};

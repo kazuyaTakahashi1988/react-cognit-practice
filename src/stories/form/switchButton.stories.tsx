@@ -51,3 +51,23 @@ export const Required: Story = {
     ],
   },
 };
+
+export const Error: Story = {
+  args: {
+    label: { text: "SwitchButtonラベルテキスト", required: true },
+    options: [
+      {
+        value: "Switch_Value_A",
+        label: "noActive_A",
+        labelActived: "Actived_A",
+      },
+      {
+        value: "Switch_Value_B",
+        label: "noActive_B",
+        labelActived: "Actived_B",
+      },
+      { value: "Switch_Value_C", label: "----------" },
+    ],
+    errorMessage: '必須項目だよ。',
+  },
+};

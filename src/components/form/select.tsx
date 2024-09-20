@@ -12,7 +12,7 @@ export const SelectField: React.ForwardRefRenderFunction<
   HTMLSelectElement,
   Props
 > = (props, ref) => {
-  const { label, options, errors, ...rest } = props;
+  const { label, options, errorMessage, ...rest } = props;
 
   return (
     <Styled className={rest.className}>
@@ -33,14 +33,7 @@ export const SelectField: React.ForwardRefRenderFunction<
         </select>
       </div>
 
-      {errors &&
-        Object.values(errors).map((error, index) => {
-          return (
-            error.ref.name === rest.name && (
-              <ErrorMessage key={index} errorMessage={error.message} />
-            )
-          );
-        })}
+      {errorMessage && <ErrorMessage errorMessage={errorMessage} />}
     </Styled>
   );
 };

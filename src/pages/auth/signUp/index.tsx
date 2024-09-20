@@ -39,7 +39,7 @@ const SignUp: React.FC = () => {
             placeholder="○○○○＠○○○○.com"
             label={{ text: "emailを入力してください", required: true }}
             {...register("email", { required: "必須項目だよ。" })}
-            errors={errors}
+            errorMessage={errors.email?.message}
           />
 
           <Input
@@ -48,7 +48,7 @@ const SignUp: React.FC = () => {
             placeholder="○○○○○○○○"
             label={{ text: "passwordを入力してください", required: true }}
             {...register("password", { required: "必須項目だよ。" })}
-            errors={errors}
+            errorMessage={errors.password?.message}
           />
 
           <div className="mt-30 button-clm">

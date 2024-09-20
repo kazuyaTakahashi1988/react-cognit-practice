@@ -19,7 +19,7 @@ export const SelectCustomField: React.ForwardRefRenderFunction<
   HTMLInputElement,
   Props
 > = (props, ref) => {
-  const { label, options, errors, ...rest } = props;
+  const { label, options, errorMessage, ...rest } = props;
 
   const [isOpen, setIsOpen] = useState(false);
   const selectRef = useRef<HTMLDivElement>(null);
@@ -95,14 +95,7 @@ export const SelectCustomField: React.ForwardRefRenderFunction<
         )}
       </div>
 
-      {errors &&
-        Object.values(errors).map((error, index) => {
-          return (
-            error.ref.name === rest.name && (
-              <ErrorMessage key={index} errorMessage={error.message} />
-            )
-          );
-        })}
+      {errorMessage && <ErrorMessage errorMessage={errorMessage} />}
     </Styled>
   );
 };

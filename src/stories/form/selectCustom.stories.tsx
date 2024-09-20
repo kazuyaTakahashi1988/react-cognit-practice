@@ -57,3 +57,20 @@ export const Required: Story = {
     ],
   },
 };
+
+export const Error: Story = {
+  args: {
+    placeholder: "選択してください。",
+    label: { text: "SelectCustomラベルテキスト", required: true },
+    options: [
+      { value: "Select_Value_A", label: "Select_Label_A" },
+      { value: "Select_Value_B", label: "Select_Label_B" },
+      { value: "Select_Value_C", label: "Select_Label_C" },
+      { value: "Select_Value_D", label: "Select_Label_D" },
+      { value: "Select_Value_E", label: "Select_Label_E" },
+      { value: "Select_Value_F", label: "Select_Label_F" },
+      { value: "Select_Value_G", label: "Select_Label_G" },
+    ],
+    errorMessage: '必須項目だよ。',
+  },
+};

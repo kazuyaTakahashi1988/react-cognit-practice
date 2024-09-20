@@ -48,3 +48,16 @@ export const Required: Story = {
     ],
   },
 };
+
+export const Error: Story = {
+  args: {
+    placeholder: "選択してください。",
+    label: { text: "Selectラベルテキスト", required: true },
+    options: [
+      { value: "Select_Value_A", label: "Select_Label_A" },
+      { value: "Select_Value_B", label: "Select_Label_B" },
+      { value: "Select_Value_C", label: "Select_Label_C" },
+    ],
+    errorMessage: '必須項目だよ。',
+  },
+};
