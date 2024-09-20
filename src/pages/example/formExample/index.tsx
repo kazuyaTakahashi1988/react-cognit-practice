@@ -14,6 +14,8 @@ import Select from "../../../components/form/select";
 import SelectCustom from "../../../components/form/selectCustom";
 import TextArea from "../../../components/form/textArea";
 
+import { testGetApi, testPostApi } from "../../../utils/apiHelper";
+
 const FormExample: React.FC = () => {
   const {
     register,
@@ -35,8 +37,11 @@ const FormExample: React.FC = () => {
     },
   });
 
-  const onSubmit = handleSubmit((data) => {
-    console.log(data);
+  const onSubmit = handleSubmit(async (data) => {
+    const responseGet = await testGetApi()
+    const responsePost = await testPostApi(data)
+    console.log(responseGet)
+    console.log(responsePost.message)
   });
 
   return (
