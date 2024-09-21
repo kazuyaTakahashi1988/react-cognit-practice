@@ -4,16 +4,12 @@
 
 import { UseFormRegister } from "react-hook-form";
 import { TypeTodoExample } from ".";
-import { loadingFlugStore } from "../store";
 
 // Layout
 export type TypeLayout = {
   type: string;
   children?: React.ReactNode;
 };
-
-// Loading
-export type TypeLoadingFlugStore = ReturnType<typeof loadingFlugStore.getState>;
 
 // Header
 export type TypeHeader = {

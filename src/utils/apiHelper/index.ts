@@ -1,7 +1,7 @@
-import { loadingFlugStore } from '../../lib/store'
+import { store } from '../store'
 
 const execute = async (method: string, path: string, data?: object, params?: string) => {
-  loadingFlugStore.dispatch({ type: 'FLUG_UP' })
+  store.dispatch({ type: 'LOADING_FLUG_UP' })
 
   const config = {
     method: method,
@@ -21,7 +21,7 @@ const execute = async (method: string, path: string, data?: object, params?: str
   } catch (error) {
     //例外が発生した場合の処理
   } finally {
-    loadingFlugStore.dispatch({ type: 'FLUG_DOWN' })
+    store.dispatch({ type: 'LOADING_FLUG_DOWN' })
   }
 }
 

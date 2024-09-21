@@ -6,12 +6,12 @@ import { Footer } from "./footer";
 import { Loading } from "./loading";
 
 import { useSelector } from "react-redux";
-import { TypeLoadingFlugStore } from "../../lib/types";
+import { TypeStore } from "../../lib/types";
 
 export const Layout: React.FC<TypeLayout> = (props) => {
   const { type, children } = props;
 
-  const loadingFlug = useSelector((state: TypeLoadingFlugStore) => state.flug);
+  const loadingFlug = useSelector((state: TypeStore) => state.loadingFlug);
 
   return (
     <Styled>
