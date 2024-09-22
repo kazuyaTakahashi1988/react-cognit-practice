@@ -17,8 +17,9 @@ export const TodoItemsField: React.ForwardRefRenderFunction<
   const name = rest.name;
   const { checkBoxName, inputName } = itemsName;
 
-  // errorsに配列があることを保証させる処理、" errors?.[index]? "記述時に必要
-  const isErrorsArray = Array.isArray(errors)
+  const getErrorMessage = (index: number, itemName: string) => {
+    return Array.isArray(errors) && errors?.[index]?.[itemName]?.message
+  }
 
   return (
     <Styled className={rest.className} ref={ref}>
@@ -32,7 +33,7 @@ export const TodoItemsField: React.ForwardRefRenderFunction<
               {...register(`${name}.${index}.${checkBoxName}`, {
                 // required: { value: true, message: "必須項目だよ。" },
               })}
-              // errorMessage={isErrorsArray && errors?.[index]?.[checkBoxName]?.message}
+              // errorMessage={getErrorMessage(index, checkBoxName)}
               className="checkbox"
             />
 
@@ -43,7 +44,7 @@ export const TodoItemsField: React.ForwardRefRenderFunction<
                 // minLength: { value: 2, message: `2文字以上にしてね` },
                 // maxLength: { value: 50, message: "最大50文字だよ" },
               })}
-              errorMessage={isErrorsArray && errors?.[index]?.[inputName]?.message}
+              errorMessage={getErrorMessage(index, inputName)}
               className="input"
             />
 
