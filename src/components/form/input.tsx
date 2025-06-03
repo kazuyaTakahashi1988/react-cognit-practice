@@ -43,6 +43,11 @@ const Styled = styled.div`
     &::placeholder {
       color: ${params.gray100};
     }
+    &:disabled {
+      cursor: not-allowed;
+      background: ${params.gray};
+      color: ${params.gray100};
+    }
   }
 `;
 

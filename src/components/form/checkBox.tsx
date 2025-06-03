@@ -26,6 +26,7 @@ export const CheckBoxField: React.ForwardRefRenderFunction<
             ref={ref}
             {...rest}
             type="checkbox"
+            disabled={option.disabled}
             className=""
           />
           <span className="label__text">{option.label}</span>
@@ -74,6 +75,23 @@ const Styled = styled.div`
         border: solid;
         border-width: 0 2px 2px 0;
         border-color: ${params.white};
+      }
+      &:disabled {
+        cursor: not-allowed;
+        * {
+          cursor: not-allowed;
+        }
+        & + .label__text {
+          color: ${params.gray};
+        }
+        & + .label__text:before {
+          background-color: ${params.gray};
+        }
+        &:checked {
+          & + .label__text:before {
+            box-shadow: 0 0 0 1px ${params.gray};
+          }
+        }
       }
     }
     &__text {

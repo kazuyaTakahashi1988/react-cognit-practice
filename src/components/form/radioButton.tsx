@@ -26,6 +26,7 @@ export const RadioButtonField: React.ForwardRefRenderFunction<
             ref={ref}
             {...rest}
             type="radio"
+            disabled={option.disabled}
             className=""
           />
           <span className="label__text">{option.label}</span>
@@ -77,6 +78,26 @@ const Styled = styled.div`
       &:checked + .label__text:before {
         box-shadow: 0 0 0 1px ${params.primary};
         border: 0.35em solid ${params.primary};
+      }
+      &:disabled {
+        cursor: not-allowed;
+        * {
+          cursor: not-allowed;
+        }
+        & + .label__text {
+          color: ${params.gray};
+        }
+        & + .label__text:before {
+          background-color: ${params.gray};
+          border-color: ${params.white};
+        }
+        &:checked {
+          & + .label__text:before {
+            box-shadow: 0 0 0 1px ${params.gray};
+            background-color: ${params.white};
+            border-color: ${params.gray};
+          }
+        }
       }
     }
   }

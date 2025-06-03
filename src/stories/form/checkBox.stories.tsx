@@ -25,6 +25,17 @@ export const Default: Story = {
   },
 };
 
+export const Disabled: Story = {
+  args: {
+    label: { text: "CheckBoxラベルテキスト" },
+    options: [
+      { value: "Check_Value_A", label: "Check_Label_A", disabled: true },
+      { value: "Check_Value_B", label: "Check_Label_B", disabled: true },
+      { value: "Check_Value_C", label: "Check_Label_C", disabled: true },
+    ],
+  },
+};
+
 export const Required: Story = {
   args: {
     label: { text: "CheckBoxラベルテキスト", required: true },
@@ -44,6 +55,6 @@ export const Error: Story = {
       { value: "Check_Value_B", label: "Check_Label_B" },
       { value: "Check_Value_C", label: "Check_Label_C" },
     ],
-    errorMessage: '必須項目だよ。'
+    errorMessage: "必須項目だよ。",
   },
 };

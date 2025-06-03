@@ -31,7 +31,7 @@ const TodoExample: React.FC = () => {
   const onRemove = (e: React.MouseEvent<HTMLElement, MouseEvent>) => {
     const index = Number(e.currentTarget.getAttribute("data-index"));
     remove(index);
-  }
+  };
 
   const onSubmit = handleSubmit((data) => {
     console.log(data);

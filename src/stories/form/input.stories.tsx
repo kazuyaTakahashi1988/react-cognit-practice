@@ -29,7 +29,15 @@ export const Default: Story = {
   args: {
     placeholder: "入力をお願いします。",
     label: { text: "Inputラベルテキスト" },
-    errorMessage: '',
+    errorMessage: "",
+  },
+};
+
+export const Disabled: Story = {
+  args: {
+    placeholder: "入力をお願いします。",
+    label: { text: "Inputラベルテキスト" },
+    disabled: true,
   },
 };
 
@@ -37,7 +45,7 @@ export const Required: Story = {
   args: {
     placeholder: "入力をお願いします。",
     label: { text: "Inputラベルテキスト", required: true },
-    errorMessage: '',
+    errorMessage: "",
   },
 };
 
@@ -45,6 +53,6 @@ export const Error: Story = {
   args: {
     placeholder: "入力をお願いします。",
     label: { text: "Inputラベルテキスト", required: true },
-    errorMessage: '必須項目だよ。',
+    errorMessage: "必須項目だよ。",
   },
 };

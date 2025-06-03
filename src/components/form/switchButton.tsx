@@ -26,6 +26,7 @@ export const SwitchButtonField: React.ForwardRefRenderFunction<
             ref={ref}
             {...rest}
             type={rest.type ? rest.type : "checkbox"}
+            disabled={option.disabled}
             className=""
           />
           <span className="label__text">
@@ -106,6 +107,26 @@ const Styled = styled.div`
         }
         .actived {
           display: block;
+        }
+      }
+      &:disabled {
+        cursor: not-allowed;
+        * {
+          cursor: not-allowed;
+        }
+        & + .label__text {
+          color: ${params.gray};
+        }
+        & + .label__text:before {
+          background-color: ${params.gray};
+          border-color: ${params.white};
+        }
+        &:checked {
+          & + .label__text:before {
+            box-shadow: 0 0 0 1px ${params.gray};
+            background-color: ${params.white};
+            border-color: ${params.gray};
+          }
         }
       }
     }

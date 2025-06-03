@@ -1,43 +1,48 @@
-import { store } from '../store'
+import { store } from "../store";
 
-const execute = async (method: string, path: string, data?: object, params?: string) => {
-  store.dispatch({ type: 'LOADING_FLUG_UP' })
+const execute = async (
+  method: string,
+  path: string,
+  data?: object,
+  params?: string,
+) => {
+  store.dispatch({ type: "LOADING_FLUG_UP" });
 
   const config = {
     method: method,
     headers: {
-      'Accept': 'application/json',
-      'Content-Type': 'application/json'
+      Accept: "application/json",
+      "Content-Type": "application/json",
     },
     body: data && JSON.stringify(data),
-    params
-  }
+    params,
+  };
 
   try {
-    return await fetch(`${path}`, config).then(res => {
+    return await fetch(`${path}`, config).then((res) => {
       // if (res.status === 500) return
-      return res.json()
-    })
+      return res.json();
+    });
   } catch (error) {
     //例外が発生した場合の処理
   } finally {
-    store.dispatch({ type: 'LOADING_FLUG_DOWN' })
+    store.dispatch({ type: "LOADING_FLUG_DOWN" });
   }
-}
+};
 
 const postApi = async (path: string, data: object, params?: string) => {
-  return execute('POST', path, data, params)
-}
+  return execute("POST", path, data, params);
+};
 
 const getApi = async (path: string, params?: string) => {
-  return execute('GET', path, undefined, params)
-}
+  return execute("GET", path, undefined, params);
+};
 
 // テストポストAPI（てきとーなやつ）
 export const testPostApi = (data: object) => {
-  return postApi('http://wp.empty-service.com/wp-json/wp/v2/posts', data)
-}
+  return postApi("http://wp.empty-service.com/wp-json/wp/v2/posts", data);
+};
 // テストゲットAPI（てきとーなやつ）
 export const testGetApi = () => {
-  return getApi('http://wp.empty-service.com/wp-json/wp/v2/posts')
-}
+  return getApi("http://wp.empty-service.com/wp-json/wp/v2/posts");
+};

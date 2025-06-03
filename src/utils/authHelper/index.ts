@@ -5,7 +5,7 @@ import {
   CognitoUserAttribute,
 } from "amazon-cognito-identity-js";
 
-import { store } from '../store'
+import { store } from "../store";
 import { TypeSignIn, TypeSignUp, TypeVerification } from "../../lib/types";
 
 const userPool = new CognitoUserPool({
@@ -22,7 +22,7 @@ export const GetSignInFlag = () => userPool.getCurrentUser();
  * サインイン 処理
  * -------------------------------- */
 export const SignInHelper = async (data: TypeSignIn) => {
-  store.dispatch({ type: 'LOADING_FLUG_UP' })
+  store.dispatch({ type: "LOADING_FLUG_UP" });
 
   const authenticationDetails = new AuthenticationDetails({
     Username: data.email,
@@ -39,11 +39,11 @@ export const SignInHelper = async (data: TypeSignIn) => {
       const accessToken = result.getAccessToken().getJwtToken();
       console.log(result);
       console.log("AccessToken: " + accessToken);
-      store.dispatch({ type: 'LOADING_FLUG_DOWN' })
+      store.dispatch({ type: "LOADING_FLUG_DOWN" });
     },
     onFailure: (err) => {
       console.error(err);
-      store.dispatch({ type: 'LOADING_FLUG_DOWN' })
+      store.dispatch({ type: "LOADING_FLUG_DOWN" });
     },
   });
 };
@@ -52,7 +52,7 @@ export const SignInHelper = async (data: TypeSignIn) => {
  * サインアップ 処理
  * -------------------------------- */
 export const SignUpHelper = (data: TypeSignUp) => {
-  store.dispatch({ type: 'LOADING_FLUG_UP' })
+  store.dispatch({ type: "LOADING_FLUG_UP" });
 
   const attributeList = [
     new CognitoUserAttribute({
@@ -69,12 +69,12 @@ export const SignUpHelper = (data: TypeSignUp) => {
     (err, result) => {
       if (err) {
         console.error(err);
-        store.dispatch({ type: 'LOADING_FLUG_DOWN' })
+        store.dispatch({ type: "LOADING_FLUG_DOWN" });
         return;
       }
       console.log(result);
       console.log("SignUp succeeded");
-      store.dispatch({ type: 'LOADING_FLUG_DOWN' })
+      store.dispatch({ type: "LOADING_FLUG_DOWN" });
     },
   );
 };
@@ -83,7 +83,7 @@ export const SignUpHelper = (data: TypeSignUp) => {
  * アクティベート 処理
  * -------------------------------- */
 export const VerifyHelper = (data: TypeVerification) => {
-  store.dispatch({ type: 'LOADING_FLUG_UP' })
+  store.dispatch({ type: "LOADING_FLUG_UP" });
 
   const cognitoUser = new CognitoUser({
     Username: data.email,
@@ -93,11 +93,11 @@ export const VerifyHelper = (data: TypeVerification) => {
   cognitoUser.confirmRegistration(data.verificationCode, true, (err) => {
     if (err) {
       console.log(err);
-      store.dispatch({ type: 'LOADING_FLUG_DOWN' })
+      store.dispatch({ type: "LOADING_FLUG_DOWN" });
       return;
     }
     console.log("verification succeeded");
-    store.dispatch({ type: 'LOADING_FLUG_DOWN' })
+    store.dispatch({ type: "LOADING_FLUG_DOWN" });
   });
 };
 
@@ -105,17 +105,17 @@ export const VerifyHelper = (data: TypeVerification) => {
  * サインアウト 処理
  * -------------------------------- */
 export const SignOutHelper = () => {
-  store.dispatch({ type: 'LOADING_FLUG_UP' })
+  store.dispatch({ type: "LOADING_FLUG_UP" });
 
   const cognitoUser = userPool.getCurrentUser();
   if (cognitoUser) {
     cognitoUser.signOut();
     localStorage.clear();
     console.log("signed out");
-    store.dispatch({ type: 'LOADING_FLUG_DOWN' })
+    store.dispatch({ type: "LOADING_FLUG_DOWN" });
   } else {
     localStorage.clear();
     console.log("no user signing in");
-    store.dispatch({ type: 'LOADING_FLUG_DOWN' })
+    store.dispatch({ type: "LOADING_FLUG_DOWN" });
   }
 };

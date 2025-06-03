@@ -68,6 +68,6 @@ export const Error: Story = {
       },
       { value: "Switch_Value_C", label: "----------" },
     ],
-    errorMessage: '必須項目だよ。',
+    errorMessage: "必須項目だよ。",
   },
 };

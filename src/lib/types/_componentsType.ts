@@ -60,6 +60,7 @@ export type TypeCheckBox = {
   options: Array<{
     value: string;
     label: string;
+    disabled?: boolean;
   }>;
   errorMessage?: string;
 };
@@ -73,6 +74,7 @@ export type TypeRadioButton = {
   options: Array<{
     value: string;
     label: string;
+    disabled?: boolean;
   }>;
   errorMessage?: string;
 };
@@ -87,6 +89,7 @@ export type TypeSwitchButton = {
     value: string;
     label: string;
     labelActived?: string;
+    disabled?: boolean;
   }>;
   errorMessage?: string;
 };

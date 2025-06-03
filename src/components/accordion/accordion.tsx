@@ -80,7 +80,7 @@ const Styled = styled.div`
       line-height: 28px;
       padding: 10px 10px 20px;
       transition: 0.2s ease-out;
-      animation: fadeTranslateY 0.2s linear forwards;
+      animation: fadeTranslateY 0.1s linear forwards;
     }
   }
   @keyframes fadeTranslateY {

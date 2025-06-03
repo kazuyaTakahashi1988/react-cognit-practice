@@ -12,14 +12,15 @@ export const TodoItemsField: React.ForwardRefRenderFunction<
   HTMLInputElement,
   Props
 > = (props, ref) => {
-  const { itemsName, onAppend, onRemove, fields, register, errors, ...rest } = props;
+  const { itemsName, onAppend, onRemove, fields, register, errors, ...rest } =
+    props;
 
   const name = rest.name;
   const { checkBoxName, inputName } = itemsName;
 
   const getErrorMessage = (index: number, itemName: string) => {
-    return Array.isArray(errors) && errors?.[index]?.[itemName]?.message
-  }
+    return Array.isArray(errors) && errors?.[index]?.[itemName]?.message;
+  };
 
   return (
     <Styled className={rest.className} ref={ref}>
@@ -48,14 +49,16 @@ export const TodoItemsField: React.ForwardRefRenderFunction<
               className="input"
             />
 
-            {onRemove && <Button
-              className="secondary"
-              data-index={index}
-              onClick={onRemove}
-              disabled={fields?.length < 2}
-            >
-              削除
-            </Button>}
+            {onRemove && (
+              <Button
+                className="secondary"
+                data-index={index}
+                onClick={onRemove}
+                disabled={fields?.length < 2}
+              >
+                削除
+              </Button>
+            )}
           </li>
         ))}
       </ul>

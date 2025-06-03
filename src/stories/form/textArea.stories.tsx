@@ -43,6 +43,6 @@ export const Error: Story = {
   args: {
     placeholder: "入力をお願いします。",
     label: { text: "TextAreaラベルテキスト", required: true },
-    errorMessage: '必須項目だよ。',
+    errorMessage: "必須項目だよ。",
   },
 };

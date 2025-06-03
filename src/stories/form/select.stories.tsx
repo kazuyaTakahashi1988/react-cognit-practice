@@ -58,6 +58,6 @@ export const Error: Story = {
       { value: "Select_Value_B", label: "Select_Label_B" },
       { value: "Select_Value_C", label: "Select_Label_C" },
     ],
-    errorMessage: '必須項目だよ。',
+    errorMessage: "必須項目だよ。",
   },
 };

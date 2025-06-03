@@ -25,6 +25,17 @@ export const Default: Story = {
   },
 };
 
+export const Disabled: Story = {
+  args: {
+    label: { text: "RadioButtonラベルテキスト" },
+    options: [
+      { value: "Radio_Value_A", label: "Radio_Label_A", disabled: true },
+      { value: "Radio_Value_B", label: "Radio_Label_B", disabled: true },
+      { value: "Radio_Value_C", label: "Radio_Label_C", disabled: true },
+    ],
+  },
+};
+
 export const Required: Story = {
   args: {
     label: { text: "RadioButtonラベルテキスト", required: true },
@@ -44,6 +55,6 @@ export const Error: Story = {
       { value: "Radio_Value_B", label: "Radio_Label_B" },
       { value: "Radio_Value_C", label: "Radio_Label_C" },
     ],
-    errorMessage: '必須項目だよ。',
+    errorMessage: "必須項目だよ。",
   },
 };

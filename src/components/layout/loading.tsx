@@ -12,7 +12,7 @@ export const Loading: React.FC = () => {
 };
 
 const Styled = styled.div`
-  background: rgba(255,255,255,0.6);
+  background: rgba(255, 255, 255, 0.6);
   position: fixed;
   top: 0;
   left: 0;
@@ -33,21 +33,19 @@ const Styled = styled.div`
     border-radius: 50%;
     background: ${params.primary};
     z-index: 9999999;
-    --_m: 
-      conic-gradient(#0000 10%,#000),
-      linear-gradient(#000 0 0) content-box;
+    --_m: conic-gradient(#0000 10%, #000), linear-gradient(#000 0 0) content-box;
     -webkit-mask: var(--_m);
-            mask: var(--_m);
+    mask: var(--_m);
     -webkit-mask-composite: source-out;
-            mask-composite: subtract;
+    mask-composite: subtract;
     animation: l3 1s infinite linear;
   }
   @keyframes l3 {
     0% {
-      transform: rotate(0turn)
+      transform: rotate(0turn);
     }
     100% {
-      transform: rotate(1turn)
+      transform: rotate(1turn);
     }
   }
   @keyframes fadeIn {
