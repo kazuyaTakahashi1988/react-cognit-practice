@@ -1,11 +1,11 @@
 import React from "react";
-import styled from "styled-components";
-import { TypeLayout } from "../../lib/types";
-import { Header } from "./header";
-import { Footer } from "./footer";
-import { Loading } from "./loading";
-
 import { useSelector } from "react-redux";
+import styled from "styled-components";
+
+import { Footer } from "./footer";
+import { Header } from "./header";
+import { Loading } from "./loading";
+import { TypeLayout } from "../../lib/types";
 import { TypeStore } from "../../lib/types";
 
 export const Layout: React.FC<TypeLayout> = (props) => {

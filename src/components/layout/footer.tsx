@@ -1,7 +1,8 @@
 import React from "react";
-import styled from "styled-components";
-import { params } from "../../lib/style";
 import { NavLink } from "react-router-dom";
+import styled from "styled-components";
+
+import { params } from "../../lib/style";
 
 export const Footer: React.FC = () => {
   return (
@@ -14,11 +15,7 @@ export const Footer: React.FC = () => {
           <NavLink to="/auth">Auth</NavLink>
         </li>
         <li>
-          <a
-            href="http://storybook.empty-service.com"
-            target="_blank"
-            rel="noreferrer"
-          >
+          <a href="http://storybook.empty-service.com" target="_blank" rel="noreferrer">
             Storybook
           </a>
         </li>

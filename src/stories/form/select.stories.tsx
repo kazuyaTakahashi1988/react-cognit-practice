@@ -1,6 +1,6 @@
-import type { Meta, StoryObj } from "@storybook/react";
-
 import { Select } from "../../components/form/select";
+
+import type { Meta, StoryObj } from "@storybook/react";
 
 const meta = {
   title: "Form/Select",

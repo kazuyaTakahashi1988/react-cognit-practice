@@ -5,8 +5,8 @@ import {
   CognitoUserAttribute,
 } from "amazon-cognito-identity-js";
 
-import { store } from "../store";
 import { TypeSignIn, TypeSignUp, TypeVerification } from "../../lib/types";
+import { store } from "../store";
 
 const userPool = new CognitoUserPool({
   UserPoolId: `${import.meta.env.VITE_APP_AWS_COGNITO_USER_POOL_ID}`,
@@ -61,22 +61,16 @@ export const SignUpHelper = (data: TypeSignUp) => {
     }),
   ];
 
-  userPool.signUp(
-    data.email,
-    data.password,
-    attributeList,
-    [],
-    (err, result) => {
-      if (err) {
-        console.error(err);
-        store.dispatch({ type: "LOADING_FLUG_DOWN" });
-        return;
-      }
-      console.log(result);
-      console.log("SignUp succeeded");
+  userPool.signUp(data.email, data.password, attributeList, [], (err, result) => {
+    if (err) {
+      console.error(err);
       store.dispatch({ type: "LOADING_FLUG_DOWN" });
-    },
-  );
+      return;
+    }
+    console.log(result);
+    console.log("SignUp succeeded");
+    store.dispatch({ type: "LOADING_FLUG_DOWN" });
+  });
 };
 
 /* -----------------------------------

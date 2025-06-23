@@ -1,14 +1,15 @@
 import React, { forwardRef } from "react";
 import styled from "styled-components";
+
 import { params } from "../../lib/style";
 import { TypeErrorMessage } from "../../lib/types";
 
 type Props = React.LabelHTMLAttributes<HTMLLabelElement> & TypeErrorMessage;
 
-export const ErrorMessageField: React.ForwardRefRenderFunction<
-  HTMLLabelElement,
-  Props
-> = (props, ref) => {
+export const ErrorMessageField: React.ForwardRefRenderFunction<HTMLLabelElement, Props> = (
+  props,
+  ref
+) => {
   const { errorMessage, ...rest } = props;
 
   return (

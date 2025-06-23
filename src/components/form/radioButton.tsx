@@ -1,17 +1,17 @@
 import React, { forwardRef } from "react";
 import styled from "styled-components";
+
+import { ErrorMessage } from "./errorMessage";
+import { Label } from "./label";
 import { params } from "../../lib/style";
 import { TypeRadioButton } from "../../lib/types";
 
-import { Label } from "./label";
-import { ErrorMessage } from "./errorMessage";
-
 type Props = React.InputHTMLAttributes<HTMLInputElement> & TypeRadioButton;
 
-export const RadioButtonField: React.ForwardRefRenderFunction<
-  HTMLInputElement,
-  Props
-> = (props, ref) => {
+export const RadioButtonField: React.ForwardRefRenderFunction<HTMLInputElement, Props> = (
+  props,
+  ref
+) => {
   const { label, options, errorMessage, ...rest } = props;
 
   return (

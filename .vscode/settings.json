@@ -1,6 +1,6 @@
 {
-  "editor.formatOnSave": true,
   "editor.defaultFormatter": "esbenp.prettier-vscode",
+  "editor.formatOnSave": true,
   "editor.tabSize": 2,
   "files.insertFinalNewline": true,
   "redhat.telemetry.enabled": true,
@@ -9,5 +9,8 @@
     "editor.tabSize": 2,
     "editor.insertSpaces": true
   },
-  "typescript.tsdk": "node_modules/typescript/lib"
+  "typescript.tsdk": "node_modules/typescript/lib",
+  "editor.codeActionsOnSave": {
+    "source.fixAll.eslint": "always"
+  }
 }

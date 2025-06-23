@@ -1,14 +1,15 @@
 import React, { forwardRef } from "react";
 import styled from "styled-components";
+
 import { params } from "../../lib/style";
 import { TypeButton } from "../../lib/types";
 
 type Props = React.ButtonHTMLAttributes<HTMLButtonElement> & TypeButton;
 
-export const ButtonField: React.ForwardRefRenderFunction<
-  HTMLButtonElement,
-  Props
-> = (props, ref) => {
+export const ButtonField: React.ForwardRefRenderFunction<HTMLButtonElement, Props> = (
+  props,
+  ref
+) => {
   const { children, ...rest } = props;
 
   return (

@@ -1,14 +1,12 @@
 import React, { forwardRef } from "react";
 import styled from "styled-components";
+
 import { params } from "../../lib/style";
 import { TypeLabel } from "../../lib/types";
 
 type Props = React.LabelHTMLAttributes<HTMLLabelElement> & TypeLabel;
 
-export const LabelField: React.ForwardRefRenderFunction<
-  HTMLLabelElement,
-  Props
-> = (props, ref) => {
+export const LabelField: React.ForwardRefRenderFunction<HTMLLabelElement, Props> = (props, ref) => {
   const { label, ...rest } = props;
 
   return (

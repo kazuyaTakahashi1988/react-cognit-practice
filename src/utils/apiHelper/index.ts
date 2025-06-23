@@ -1,11 +1,6 @@
 import { store } from "../store";
 
-const execute = async (
-  method: string,
-  path: string,
-  data?: object,
-  params?: string,
-) => {
+const execute = async (method: string, path: string, data?: object, params?: string) => {
   store.dispatch({ type: "LOADING_FLUG_UP" });
 
   const config = {

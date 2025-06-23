@@ -1,4 +1,5 @@
 import { createGlobalStyle } from "styled-components";
+
 import { media, params } from "./_mixin";
 
 export const GlobalStyle = createGlobalStyle`

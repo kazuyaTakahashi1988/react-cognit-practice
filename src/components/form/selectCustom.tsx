@@ -1,33 +1,23 @@
-import React, {
-  forwardRef,
-  useState,
-  useEffect,
-  useRef,
-  createRef,
-  RefObject,
-} from "react";
+import React, { forwardRef, useState, useEffect, useRef, createRef, RefObject } from "react";
 import styled from "styled-components";
+
+import { ErrorMessage } from "./errorMessage";
+import { Label } from "./label";
 import { params } from "../../lib/style";
 import { TypeSelectCustom } from "../../lib/types";
 
-import { Label } from "./label";
-import { ErrorMessage } from "./errorMessage";
-
 type Props = React.InputHTMLAttributes<HTMLInputElement> & TypeSelectCustom;
 
-export const SelectCustomField: React.ForwardRefRenderFunction<
-  HTMLInputElement,
-  Props
-> = (props, ref) => {
+export const SelectCustomField: React.ForwardRefRenderFunction<HTMLInputElement, Props> = (
+  props,
+  ref
+) => {
   const { label, options, errorMessage, ...rest } = props;
 
   const [isOpen, setIsOpen] = useState(false);
   const selectRef = useRef<HTMLDivElement>(null);
   const handleOutsideClick = (e: Event) => {
-    if (
-      e.target instanceof HTMLElement &&
-      !selectRef?.current?.contains(e.target)
-    ) {
+    if (e.target instanceof HTMLElement && !selectRef?.current?.contains(e.target)) {
       setIsOpen(false);
     }
   };
@@ -56,16 +46,12 @@ export const SelectCustomField: React.ForwardRefRenderFunction<
       {label && <Label label={label} />}
 
       <div className="select" ref={selectRef}>
-        <div className={[`selected`, `${isOpen ? "is-open" : ""}`].join(" ")}>
+        <div className={["selected", `${isOpen ? "is-open" : ""}`].join(" ")}>
           <span className="placeholder" onClick={() => onOpenToggle(null)}>
             {rest.placeholder && rest.placeholder}
           </span>
           {options.map((option, index) => (
-            <div
-              className="selected__label"
-              key={index}
-              onClick={() => onOpenToggle(index)}
-            >
+            <div className="selected__label" key={index} onClick={() => onOpenToggle(index)}>
               <input
                 id={rest.name + option.value}
                 value={option.value}

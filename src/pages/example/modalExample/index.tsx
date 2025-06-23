@@ -1,10 +1,10 @@
 import React, { useState } from "react";
 import styled from "styled-components";
-import { media, params } from "../../../lib/style";
 
+import Button from "../../../components/button/button";
 import Layout from "../../../components/layout/layout";
 import Modal from "../../../components/modal/modal";
-import Button from "../../../components/button/button";
+import { media, params } from "../../../lib/style";
 
 const ModalExample: React.FC = () => {
   const [isModal, setIsModal] = useState({
@@ -24,13 +24,9 @@ const ModalExample: React.FC = () => {
         </h1>
 
         <div className="button-clm">
-          <Button onClick={() => onModal("modal01", true)}>
-            モーダルを開く01
-          </Button>
+          <Button onClick={() => onModal("modal01", true)}>モーダルを開く01</Button>
 
-          <Button onClick={() => onModal("modal02", true)}>
-            モーダルを開く02
-          </Button>
+          <Button onClick={() => onModal("modal02", true)}>モーダルを開く02</Button>
         </div>
 
         {isModal.modal01 && (

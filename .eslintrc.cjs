@@ -1,20 +1,27 @@
 module.exports = {
   root: true,
   env: { browser: true, es2020: true },
-  extends: ['eslint:recommended', 'plugin:@typescript-eslint/recommended', 'plugin:react-hooks/recommended', 'plugin:storybook/recommended'],
-  ignorePatterns: ['dist', '.eslintrc.cjs'],
-  parser: '@typescript-eslint/parser',
-  plugins: ['react-refresh'],
+  // parserOptions: {
+  //   ecmaVersion: 'latest',
+  //   sourceType: 'module',
+  //   project: ['./tsconfig. json'],
+  //   tsconfigRootDir: __dirname
+  // },
+  ignorePatterns: ["dist", "node_modules"],
+  extends: ["eslint:recommended", "plugin:@typescript-eslint/recommended", "plugin:react-hooks/recommended", "plugin:storybook/recommended", "prettier"],
+  parser: "@typescript-eslint/parser",
+  plugins: ["react-refresh", "import"],
   rules: {
     /* ------------------------------------------------
       ▽▽▽ プロジェクトごとにLintルールを追加しよう ▽▽▽
     ------------------------------------------------ */
-    'react-refresh/only-export-components': [
-      'warn',
+    "react-refresh/only-export-components": [
+      "warn",
       { allowConstantExport: true },
     ],
-    'react/react-in-jsx-scope': 'off',
-    'no-use-before-define': 0,
+    "no-undef": "off",
+    "react/react-in-jsx-scope": "off",
+    "no-use-before-define": 0,
     // 'no-console': 'error',
     // 'no-restricted-syntax': [
     //   'error',
@@ -23,5 +30,25 @@ module.exports = {
     //     'message': 'Unexpected property on console object was called'
     //   }
     // ]
+    quotes: ["error", "double"],
+    "import/order": [
+      "error",
+      {
+        groups: [
+          "builtin",
+          "external",
+          "internal",
+          ["parent", "sibling"],
+          "object",
+          "type",
+          "index",
+        ],
+        pathGroupsExcludedImportTypes: ["builtin"],
+        "newlines-between": "always",
+        alphabetize: {
+          order: "asc"
+        }
+      }
+    ]
   },
 }

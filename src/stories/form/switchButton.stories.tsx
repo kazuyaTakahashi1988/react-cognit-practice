@@ -1,6 +1,6 @@
-import type { Meta, StoryObj } from "@storybook/react";
-
 import { SwitchButton } from "../../components/form/switchButton";
+
+import type { Meta, StoryObj } from "@storybook/react";
 
 const meta = {
   title: "Form/SwitchButton",

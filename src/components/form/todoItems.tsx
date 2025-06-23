@@ -1,19 +1,18 @@
 import React, { forwardRef } from "react";
 import styled from "styled-components";
-import { TypeTodoItems } from "../../lib/types";
 
 import CheckBox from "./checkBox";
 import Input from "./input";
+import { TypeTodoItems } from "../../lib/types";
 import Button from "../button/button";
 
 type Props = React.InputHTMLAttributes<HTMLInputElement> & TypeTodoItems;
 
-export const TodoItemsField: React.ForwardRefRenderFunction<
-  HTMLInputElement,
-  Props
-> = (props, ref) => {
-  const { itemsName, onAppend, onRemove, fields, register, errors, ...rest } =
-    props;
+export const TodoItemsField: React.ForwardRefRenderFunction<HTMLInputElement, Props> = (
+  props,
+  ref
+) => {
+  const { itemsName, onAppend, onRemove, fields, register, errors, ...rest } = props;
 
   const name = rest.name;
   const { checkBoxName, inputName } = itemsName;
