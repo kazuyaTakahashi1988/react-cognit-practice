@@ -12,7 +12,7 @@ type Props = React.InputHTMLAttributes<HTMLInputElement> & TypeRadioButton;
 
 export const RadioButtonField: React.ForwardRefRenderFunction<HTMLInputElement, Props> = (
   props,
-  ref
+  ref,
 ) => {
   const { label, options, errorMessage, ...rest } = props;
 

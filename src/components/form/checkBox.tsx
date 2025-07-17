@@ -12,7 +12,7 @@ type Props = React.InputHTMLAttributes<HTMLInputElement> & TypeCheckBox;
 
 export const CheckBoxField: React.ForwardRefRenderFunction<HTMLInputElement, Props> = (
   props,
-  ref
+  ref,
 ) => {
   const { label, options, errorMessage, ...rest } = props;
 

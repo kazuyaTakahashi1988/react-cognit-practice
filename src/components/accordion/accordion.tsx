@@ -10,7 +10,7 @@ type Props = React.HTMLAttributes<HTMLDivElement> & TypeAccordion;
 
 export const AccordionField: React.ForwardRefRenderFunction<HTMLDivElement, Props> = (
   props,
-  ref
+  ref,
 ) => {
   const { title, initOpen, children, ...rest } = props;
   const [isOpen, setIsOpen] = useState(initOpen);

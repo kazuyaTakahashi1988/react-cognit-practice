@@ -13,7 +13,7 @@ type Props = React.InputHTMLAttributes<HTMLInputElement> & TypeSelectCustom;
 
 export const SelectCustomField: React.ForwardRefRenderFunction<HTMLInputElement, Props> = (
   props,
-  ref
+  ref,
 ) => {
   const { label, options, errorMessage, ...rest } = props;
 

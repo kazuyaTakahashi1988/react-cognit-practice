@@ -16,5 +16,5 @@ createRoot(container).render(
     <Provider store={store}>
       <App />
     </Provider>
-  </React.StrictMode>
+  </React.StrictMode>,
 );

@@ -12,7 +12,7 @@ type Props = React.SelectHTMLAttributes<HTMLSelectElement> & TypeSelect;
 
 export const SelectField: React.ForwardRefRenderFunction<HTMLSelectElement, Props> = (
   props,
-  ref
+  ref,
 ) => {
   const { label, options, errorMessage, ...rest } = props;
 

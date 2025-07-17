@@ -12,7 +12,7 @@ type Props = React.InputHTMLAttributes<HTMLInputElement> & TypeTodoItems;
 
 export const TodoItemsField: React.ForwardRefRenderFunction<HTMLInputElement, Props> = (
   props,
-  ref
+  ref,
 ) => {
   const { itemsName, onAppend, onRemove, fields, register, errors, ...rest } = props;
 

@@ -10,7 +10,7 @@ type Props = React.HTMLAttributes<HTMLSpanElement> & TypeDropdownMenu;
 
 export const DropdownMenuField: React.ForwardRefRenderFunction<HTMLSpanElement, Props> = (
   props,
-  ref
+  ref,
 ) => {
   const { menuList, children, ...rest } = props;
 

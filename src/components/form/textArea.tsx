@@ -12,7 +12,7 @@ type Props = React.TextareaHTMLAttributes<HTMLTextAreaElement> & TypeTextArea;
 
 export const TextAreaField: React.ForwardRefRenderFunction<HTMLTextAreaElement, Props> = (
   props,
-  ref
+  ref,
 ) => {
   const { label, errorMessage, ...rest } = props;
 
