@@ -1,10 +1,12 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import styled from "styled-components";
 
 import Button from "../../../components/button/button";
 import Layout from "../../../components/layout/layout";
 import Modal from "../../../components/modal/modal";
 import { media, params } from "../../../lib/style";
+
+import type React from "react";
 
 const ModalExample: React.FC = () => {
   const [isModal, setIsModal] = useState({

@@ -1,11 +1,12 @@
-import React from "react";
 import { NavLink, useNavigate } from "react-router-dom";
 import styled from "styled-components";
 
 import { params } from "../../lib/style";
-import { TypeHeader } from "../../lib/types";
 import { GetSignInFlag } from "../../utils/authHelper";
 import DropdownMenu from "../dropdownMenu/dropdownMenu";
+
+import type { TypeHeader } from "../../lib/types";
+import type React from "react";
 
 export const Header: React.FC<TypeHeader> = (props) => {
   const { type } = props;

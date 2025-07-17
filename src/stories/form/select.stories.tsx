@@ -28,7 +28,7 @@ type Story = StoryObj<typeof meta>;
 export const Default: Story = {
   args: {
     placeholder: "選択してください。",
-    label: { text: "Selectラベルテキスト" },
+    label: { text: "Default：Selectラベルテキスト" },
     options: [
       { value: "Select_Value_A", label: "Select_Label_A" },
       { value: "Select_Value_B", label: "Select_Label_B" },
@@ -40,7 +40,7 @@ export const Default: Story = {
 export const Required: Story = {
   args: {
     placeholder: "選択してください。",
-    label: { text: "Selectラベルテキスト", required: true },
+    label: { text: "Required：Selectラベルテキスト", required: true },
     options: [
       { value: "Select_Value_A", label: "Select_Label_A" },
       { value: "Select_Value_B", label: "Select_Label_B" },
@@ -52,7 +52,7 @@ export const Required: Story = {
 export const Error: Story = {
   args: {
     placeholder: "選択してください。",
-    label: { text: "Selectラベルテキスト", required: true },
+    label: { text: "Error：Selectラベルテキスト", required: true },
     options: [
       { value: "Select_Value_A", label: "Select_Label_A" },
       { value: "Select_Value_B", label: "Select_Label_B" },

@@ -16,7 +16,7 @@ type Story = StoryObj<typeof meta>;
 
 export const Default: Story = {
   args: {
-    onClick: () => alert("onClicked !!"),
+    onClick: () => alert("Default：onClicked !!"),
     children: "ボタンクリック！",
   },
 };
@@ -24,14 +24,14 @@ export const Default: Story = {
 export const Secondary: Story = {
   args: {
     className: "secondary",
-    onClick: () => alert("onClicked !!"),
+    onClick: () => alert("Secondary：onClicked !!"),
     children: "ボタンクリック！",
   },
 };
 
 export const Disabled: Story = {
   args: {
-    onClick: () => alert("onClicked !!"),
+    onClick: () => alert("Disabled：onClicked !!"),
     children: "ボタンクリック！",
     disabled: true,
   },

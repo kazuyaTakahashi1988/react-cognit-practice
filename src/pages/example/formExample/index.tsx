@@ -1,4 +1,3 @@
-import React from "react";
 import { useForm } from "react-hook-form";
 import styled from "styled-components";
 
@@ -12,8 +11,10 @@ import SwitchButton from "../../../components/form/switchButton";
 import TextArea from "../../../components/form/textArea";
 import Layout from "../../../components/layout/layout";
 import { media, params } from "../../../lib/style";
-import { TypeFormExample } from "../../../lib/types";
 import { testPostApi } from "../../../utils/apiHelper"; // テストポストAPI（てきとーなやつ）
+
+import type { TypeFormExample } from "../../../lib/types";
+import type React from "react";
 
 const FormExample: React.FC = () => {
   const {
@@ -38,7 +39,12 @@ const FormExample: React.FC = () => {
 
   const onSubmit = handleSubmit(async (data) => {
     const responsePost = await testPostApi(data);
-    console.log(responsePost.message);
+
+    const hasMessage = (obj: { message: string }): obj is { message: string } => {
+      return obj && typeof obj.message === "string";
+    }; // responsePost.messageの値がany型でないことを保証するための処理
+
+    if (hasMessage(responsePost)) console.log(responsePost.message);
   });
 
   return (

@@ -27,22 +27,22 @@ type Story = StoryObj<typeof meta>;
 
 export const Default: Story = {
   args: {
-    placeholder: "入力をお願いします。",
-    label: { text: "TextAreaラベルテキスト" },
+    placeholder: "Default：入力をお願いします。",
+    label: { text: "Default：TextAreaラベルテキスト" },
   },
 };
 
 export const Required: Story = {
   args: {
-    placeholder: "入力をお願いします。",
-    label: { text: "TextAreaラベルテキスト", required: true },
+    placeholder: "Required：入力をお願いします。",
+    label: { text: "Required：TextAreaラベルテキスト", required: true },
   },
 };
 
 export const Error: Story = {
   args: {
-    placeholder: "入力をお願いします。",
-    label: { text: "TextAreaラベルテキスト", required: true },
+    placeholder: "Error：入力をお願いします。",
+    label: { text: "Error：TextAreaラベルテキスト", required: true },
     errorMessage: "必須項目だよ。",
   },
 };

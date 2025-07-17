@@ -1,8 +1,10 @@
-import React, { forwardRef, useState, useEffect, useRef } from "react";
+import { forwardRef, useState, useEffect, useRef } from "react";
 import styled from "styled-components";
 
 import { params } from "../../lib/style";
-import { TypeDropdownMenu } from "../../lib/types";
+
+import type { TypeDropdownMenu } from "../../lib/types";
+import type React from "react";
 
 type Props = React.HTMLAttributes<HTMLSpanElement> & TypeDropdownMenu;
 

@@ -16,7 +16,7 @@ type Story = StoryObj<typeof meta>;
 
 export const Default: Story = {
   args: {
-    label: { text: "RadioButtonラベルテキスト" },
+    label: { text: "Default：RadioButtonラベルテキスト" },
     options: [
       { value: "Radio_Value_A", label: "Radio_Label_A" },
       { value: "Radio_Value_B", label: "Radio_Label_B" },
@@ -27,7 +27,7 @@ export const Default: Story = {
 
 export const Disabled: Story = {
   args: {
-    label: { text: "RadioButtonラベルテキスト" },
+    label: { text: "Disabled：RadioButtonラベルテキスト" },
     options: [
       { value: "Radio_Value_A", label: "Radio_Label_A", disabled: true },
       { value: "Radio_Value_B", label: "Radio_Label_B", disabled: true },
@@ -38,7 +38,7 @@ export const Disabled: Story = {
 
 export const Required: Story = {
   args: {
-    label: { text: "RadioButtonラベルテキスト", required: true },
+    label: { text: "Required：RadioButtonラベルテキスト", required: true },
     options: [
       { value: "Radio_Value_A", label: "Radio_Label_A" },
       { value: "Radio_Value_B", label: "Radio_Label_B" },
@@ -49,7 +49,7 @@ export const Required: Story = {
 
 export const Error: Story = {
   args: {
-    label: { text: "RadioButtonラベルテキスト", required: true },
+    label: { text: "Error：RadioButtonラベルテキスト", required: true },
     options: [
       { value: "Radio_Value_A", label: "Radio_Label_A" },
       { value: "Radio_Value_B", label: "Radio_Label_B" },

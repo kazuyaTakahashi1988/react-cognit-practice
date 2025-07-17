@@ -1,9 +1,11 @@
-import React, { forwardRef } from "react";
+import { forwardRef } from "react";
 import styled from "styled-components";
 
 import { params } from "../../lib/style";
-import { TypeModal } from "../../lib/types";
 import Button from "../button/button";
+
+import type { TypeModal } from "../../lib/types";
+import type React from "react";
 
 type Props = React.HTMLAttributes<HTMLDivElement> & TypeModal;
 

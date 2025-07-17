@@ -1,12 +1,13 @@
-import React from "react";
 import { useForm } from "react-hook-form";
 import styled from "styled-components";
 
 import Button from "../../../components/button/button";
 import Input from "../../../components/form/input";
 import Layout from "../../../components/layout/layout";
-import { TypeVerification } from "../../../lib/types";
 import { VerifyHelper } from "../../../utils/authHelper";
+
+import type { TypeVerification } from "../../../lib/types";
+import type React from "react";
 
 const Verification: React.FC = () => {
   const {

@@ -16,7 +16,7 @@ type Story = StoryObj<typeof meta>;
 
 export const Default: Story = {
   args: {
-    label: { text: "CheckBoxラベルテキスト" },
+    label: { text: "Default：CheckBoxラベルテキスト" },
     options: [
       { value: "Check_Value_A", label: "Check_Label_A" },
       { value: "Check_Value_B", label: "Check_Label_B" },
@@ -27,7 +27,7 @@ export const Default: Story = {
 
 export const Disabled: Story = {
   args: {
-    label: { text: "CheckBoxラベルテキスト" },
+    label: { text: "Disabled：CheckBoxラベルテキスト" },
     options: [
       { value: "Check_Value_A", label: "Check_Label_A", disabled: true },
       { value: "Check_Value_B", label: "Check_Label_B", disabled: true },
@@ -38,7 +38,7 @@ export const Disabled: Story = {
 
 export const Required: Story = {
   args: {
-    label: { text: "CheckBoxラベルテキスト", required: true },
+    label: { text: "Required：CheckBoxラベルテキスト", required: true },
     options: [
       { value: "Check_Value_A", label: "Check_Label_A" },
       { value: "Check_Value_B", label: "Check_Label_B" },
@@ -49,7 +49,7 @@ export const Required: Story = {
 
 export const Error: Story = {
   args: {
-    label: { text: "CheckBoxラベルテキスト", required: true },
+    label: { text: "Error：CheckBoxラベルテキスト", required: true },
     options: [
       { value: "Check_Value_A", label: "Check_Label_A" },
       { value: "Check_Value_B", label: "Check_Label_B" },

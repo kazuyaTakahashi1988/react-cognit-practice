@@ -1,9 +1,10 @@
-import React from "react";
 import styled from "styled-components";
 
 import Accordion from "../../../components/accordion/accordion";
 import Layout from "../../../components/layout/layout";
 import { media, params } from "../../../lib/style";
+
+import type React from "react";
 
 const AccordionExample: React.FC = () => {
   return (

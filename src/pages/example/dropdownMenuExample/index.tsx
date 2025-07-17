@@ -1,9 +1,10 @@
-import React from "react";
 import styled from "styled-components";
 
 import DropdownMenu from "../../../components/dropdownMenu/dropdownMenu";
 import Layout from "../../../components/layout/layout";
 import { media, params } from "../../../lib/style";
+
+import type React from "react";
 
 const DropdownMenuExample: React.FC = () => {
   return (
@@ -18,10 +19,10 @@ const DropdownMenuExample: React.FC = () => {
           menuList={[
             {
               text: "Menu_A_01Menu_A_01Menu_A_01Menu_A_01Menu_A_01Menu_A_01Menu_A_01Menu_A_01",
-              onClick: () => alert("01 onClicked !!"),
+              onClick: () => alert("Menu_A：01 onClicked !!"),
             },
-            { text: "Menu_A_02", onClick: () => alert("02 onClicked !!") },
-            { text: "Menu_A_03", onClick: () => alert("03 onClicked !!") },
+            { text: "Menu_A_02", onClick: () => alert("Menu_A：02 onClicked !!") },
+            { text: "Menu_A_03", onClick: () => alert("Menu_A：03 onClicked !!") },
           ]}
         >
           ドロップダウンメニュー_A
@@ -30,9 +31,9 @@ const DropdownMenuExample: React.FC = () => {
         <DropdownMenu
           className="mt-30 right"
           menuList={[
-            { text: "Menu_B_01", onClick: () => alert("01 onClicked !!") },
-            { text: "Menu_B_02", onClick: () => alert("02 onClicked !!") },
-            { text: "Menu_B_03", onClick: () => alert("03 onClicked !!") },
+            { text: "Menu_B_01", onClick: () => alert("Menu_B：01 onClicked !!") },
+            { text: "Menu_B_02", onClick: () => alert("Menu_B：02 onClicked !!") },
+            { text: "Menu_B_03", onClick: () => alert("Menu_B：03 onClicked !!") },
           ]}
         >
           ドロップダウンメニュー_B
@@ -41,9 +42,9 @@ const DropdownMenuExample: React.FC = () => {
         <DropdownMenu
           className="mt-30"
           menuList={[
-            { text: "Menu_C_01", onClick: () => alert("01 onClicked !!") },
-            { text: "Menu_C_02", onClick: () => alert("02 onClicked !!") },
-            { text: "Menu_C_03", onClick: () => alert("03 onClicked !!") },
+            { text: "Menu_C_01", onClick: () => alert("Menu_C：01 onClicked !!") },
+            { text: "Menu_C_02", onClick: () => alert("Menu_C：02 onClicked !!") },
+            { text: "Menu_C_03", onClick: () => alert("Menu_C：03 onClicked !!") },
           ]}
         >
           ドロップダウンメニュー_c
@@ -52,9 +53,9 @@ const DropdownMenuExample: React.FC = () => {
         <DropdownMenu
           className="mt-30 right"
           menuList={[
-            { text: "Menu_D_01", onClick: () => alert("01 onClicked !!") },
-            { text: "Menu_D_02", onClick: () => alert("02 onClicked !!") },
-            { text: "Menu_D_03", onClick: () => alert("03 onClicked !!") },
+            { text: "Menu_D_01", onClick: () => alert("Menu_D：01 onClicked !!") },
+            { text: "Menu_D_02", onClick: () => alert("Menu_D：02 onClicked !!") },
+            { text: "Menu_D_03", onClick: () => alert("Menu_D：03 onClicked !!") },
           ]}
         >
           ドロップダウンメニュー_D

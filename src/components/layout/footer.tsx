@@ -1,8 +1,9 @@
-import React from "react";
 import { NavLink } from "react-router-dom";
 import styled from "styled-components";
 
 import { params } from "../../lib/style";
+
+import type React from "react";
 
 export const Footer: React.FC = () => {
   return (

@@ -1,10 +1,12 @@
-import React, { forwardRef } from "react";
+import { forwardRef } from "react";
 import styled from "styled-components";
 
 import { ErrorMessage } from "./errorMessage";
 import { Label } from "./label";
 import { params } from "../../lib/style";
-import { TypeInput } from "../../lib/types";
+
+import type { TypeInput } from "../../lib/types";
+import type React from "react";
 
 type Props = React.InputHTMLAttributes<HTMLInputElement> & TypeInput;
 

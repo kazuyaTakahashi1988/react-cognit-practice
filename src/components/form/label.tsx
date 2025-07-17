@@ -1,8 +1,10 @@
-import React, { forwardRef } from "react";
+import { forwardRef } from "react";
 import styled from "styled-components";
 
 import { params } from "../../lib/style";
-import { TypeLabel } from "../../lib/types";
+
+import type { TypeLabel } from "../../lib/types";
+import type React from "react";
 
 type Props = React.LabelHTMLAttributes<HTMLLabelElement> & TypeLabel;
 

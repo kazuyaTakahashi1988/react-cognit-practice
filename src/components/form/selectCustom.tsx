@@ -1,10 +1,13 @@
-import React, { forwardRef, useState, useEffect, useRef, createRef, RefObject } from "react";
+import { forwardRef, useState, useEffect, useRef, createRef } from "react";
 import styled from "styled-components";
 
 import { ErrorMessage } from "./errorMessage";
 import { Label } from "./label";
 import { params } from "../../lib/style";
-import { TypeSelectCustom } from "../../lib/types";
+
+import type { TypeSelectCustom } from "../../lib/types";
+import type React from "react";
+import type { RefObject } from "react";
 
 type Props = React.InputHTMLAttributes<HTMLInputElement> & TypeSelectCustom;
 
@@ -48,7 +51,7 @@ export const SelectCustomField: React.ForwardRefRenderFunction<HTMLInputElement,
       <div className="select" ref={selectRef}>
         <div className={["selected", `${isOpen ? "is-open" : ""}`].join(" ")}>
           <span className="placeholder" onClick={() => onOpenToggle(null)}>
-            {rest.placeholder && rest.placeholder}
+            {rest.placeholder ? rest.placeholder : ""}
           </span>
           {options.map((option, index) => (
             <div className="selected__label" key={index} onClick={() => onOpenToggle(index)}>
