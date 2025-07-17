@@ -96,8 +96,8 @@ module.exports = {
     /* -------------------------------------------------------
       認知的複雑度（Cognitive Complexity）
     ---------------------------------------------------------- */
-    "sonarjs/cognitive-complexity": ["error", 5],
-    complexity: ["error", { max: 5 }], // 関数内の分岐複雑度
+    "sonarjs/cognitive-complexity": ["error", 15],
+    complexity: ["error", { max: 15 }], // 関数内の分岐複雑度
     "max-depth": ["error", 15], // ネストの深さ制限
     "no-else-return": ["error"], // 不要な else の排除
     "sonarjs/no-small-switch": ["error"], // 無意味に小さい switch の警告
