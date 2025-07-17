@@ -1,17 +1,19 @@
-import React, { forwardRef } from "react";
+import { forwardRef } from "react";
 import styled from "styled-components";
-import { params } from "../../lib/style";
-import { TypeSelect } from "../../lib/types";
 
-import { Label } from "./label";
 import { ErrorMessage } from "./errorMessage";
+import { Label } from "./label";
+import { params } from "../../lib/style";
+
+import type { TypeSelect } from "../../lib/types";
+import type React from "react";
 
 type Props = React.SelectHTMLAttributes<HTMLSelectElement> & TypeSelect;
 
-export const SelectField: React.ForwardRefRenderFunction<
-  HTMLSelectElement,
-  Props
-> = (props, ref) => {
+export const SelectField: React.ForwardRefRenderFunction<HTMLSelectElement, Props> = (
+  props,
+  ref,
+) => {
   const { label, options, errorMessage, ...rest } = props;
 
   return (

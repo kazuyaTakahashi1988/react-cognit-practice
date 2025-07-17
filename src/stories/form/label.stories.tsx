@@ -1,6 +1,6 @@
-import type { Meta, StoryObj } from "@storybook/react";
-
 import { Label } from "../../components/form/label";
+
+import type { Meta, StoryObj } from "@storybook/react";
 
 const meta = {
   title: "Form/Label",

@@ -1,17 +1,19 @@
-import React, { forwardRef } from "react";
+import { forwardRef } from "react";
 import styled from "styled-components";
-import { params } from "../../lib/style";
-import { TypeTextArea } from "../../lib/types";
 
-import { Label } from "./label";
 import { ErrorMessage } from "./errorMessage";
+import { Label } from "./label";
+import { params } from "../../lib/style";
+
+import type { TypeTextArea } from "../../lib/types";
+import type React from "react";
 
 type Props = React.TextareaHTMLAttributes<HTMLTextAreaElement> & TypeTextArea;
 
-export const TextAreaField: React.ForwardRefRenderFunction<
-  HTMLTextAreaElement,
-  Props
-> = (props, ref) => {
+export const TextAreaField: React.ForwardRefRenderFunction<HTMLTextAreaElement, Props> = (
+  props,
+  ref,
+) => {
   const { label, errorMessage, ...rest } = props;
 
   return (

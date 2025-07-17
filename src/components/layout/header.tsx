@@ -1,12 +1,12 @@
-import React from "react";
-import styled from "styled-components";
-import { params } from "../../lib/style";
-import { TypeHeader } from "../../lib/types";
 import { NavLink, useNavigate } from "react-router-dom";
+import styled from "styled-components";
 
+import { params } from "../../lib/style";
+import { GetSignInFlag } from "../../utils/authHelper";
 import DropdownMenu from "../dropdownMenu/dropdownMenu";
 
-import { GetSignInFlag } from "../../utils/authHelper";
+import type { TypeHeader } from "../../lib/types";
+import type React from "react";
 
 export const Header: React.FC<TypeHeader> = (props) => {
   const { type } = props;
@@ -84,18 +84,15 @@ export const Header: React.FC<TypeHeader> = (props) => {
                   menuList={[
                     {
                       text: "Form",
-                      onClick: () =>
-                        navigate("/example/form_example", { replace: true }),
+                      onClick: () => navigate("/example/form_example", { replace: true }),
                     },
                     {
                       text: "Todo",
-                      onClick: () =>
-                        navigate("/example/todo_example", { replace: true }),
+                      onClick: () => navigate("/example/todo_example", { replace: true }),
                     },
                     {
                       text: "Modal",
-                      onClick: () =>
-                        navigate("/example/modal_example", { replace: true }),
+                      onClick: () => navigate("/example/modal_example", { replace: true }),
                     },
                     {
                       text: "Accordion",
@@ -125,18 +122,15 @@ export const Header: React.FC<TypeHeader> = (props) => {
                   menuList={[
                     {
                       text: "SighIn",
-                      onClick: () =>
-                        navigate("/auth/signin", { replace: true }),
+                      onClick: () => navigate("/auth/signin", { replace: true }),
                     },
                     {
                       text: "SighUp",
-                      onClick: () =>
-                        navigate("/auth/signup", { replace: true }),
+                      onClick: () => navigate("/auth/signup", { replace: true }),
                     },
                     {
                       text: "Verification",
-                      onClick: () =>
-                        navigate("/auth/verification", { replace: true }),
+                      onClick: () => navigate("/auth/verification", { replace: true }),
                     },
                   ]}
                 >
@@ -152,8 +146,7 @@ export const Header: React.FC<TypeHeader> = (props) => {
                   menuList={[
                     {
                       text: "SignOut",
-                      onClick: () =>
-                        navigate("/auth/signOut", { replace: true }),
+                      onClick: () => navigate("/auth/signOut", { replace: true }),
                     },
                   ]}
                 >

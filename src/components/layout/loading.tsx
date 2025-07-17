@@ -1,7 +1,8 @@
-import React from "react";
 import styled from "styled-components";
 
 import { params } from "../../lib/style";
+
+import type React from "react";
 
 export const Loading: React.FC = () => {
   return (

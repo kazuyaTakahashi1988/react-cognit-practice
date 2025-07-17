@@ -1,12 +1,13 @@
-import React from "react";
-import styled from "styled-components";
-import { media, params } from "../../../lib/style";
 import { useForm, useFieldArray } from "react-hook-form";
-import { TypeTodoExample } from "../../../lib/types";
+import styled from "styled-components";
 
-import Layout from "../../../components/layout/layout";
-import TodoItems from "../../../components/form/todoItems";
 import Button from "../../../components/button/button";
+import TodoItems from "../../../components/form/todoItems";
+import Layout from "../../../components/layout/layout";
+import { media, params } from "../../../lib/style";
+
+import type { TypeTodoExample } from "../../../lib/types";
+import type React from "react";
 
 const TodoExample: React.FC = () => {
   const {

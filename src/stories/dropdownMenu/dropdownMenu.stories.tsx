@@ -1,7 +1,7 @@
-import type { Meta, StoryObj } from "@storybook/react";
-
-import { DropdownMenu } from "../../components/dropdownMenu/dropdownMenu";
 import { Button } from "../../components/button/button";
+import { DropdownMenu } from "../../components/dropdownMenu/dropdownMenu";
+
+import type { Meta, StoryObj } from "@storybook/react";
 
 const meta = {
   title: "DropdownMenu/DropdownMenu",
@@ -31,9 +31,9 @@ type Story = StoryObj<typeof meta>;
 export const Default: Story = {
   args: {
     menuList: [
-      { text: "Menu_01", onClick: () => alert("01 onClicked !!") },
-      { text: "Menu_02", onClick: () => alert("02 onClicked !!") },
-      { text: "Menu_03", onClick: () => alert("03 onClicked !!") },
+      { text: "Menu_01", onClick: () => alert("Default：01 onClicked !!") },
+      { text: "Menu_02", onClick: () => alert("Default：02 onClicked !!") },
+      { text: "Menu_03", onClick: () => alert("Default：03 onClicked !!") },
     ],
     children: "メニューを開くよ！",
   },
@@ -42,9 +42,9 @@ export const Default: Story = {
 export const ButtonClick: Story = {
   args: {
     menuList: [
-      { text: "Menu_01", onClick: () => alert("01 onClicked !!") },
-      { text: "Menu_02", onClick: () => alert("02 onClicked !!") },
-      { text: "Menu_03", onClick: () => alert("03 onClicked !!") },
+      { text: "Menu_01", onClick: () => alert("ButtonClick：01 onClicked !!") },
+      { text: "Menu_02", onClick: () => alert("ButtonClick：02 onClicked !!") },
+      { text: "Menu_03", onClick: () => alert("ButtonClick：03 onClicked !!") },
     ],
     children: <Button>メニューを開くよ！</Button>,
   },
@@ -53,9 +53,9 @@ export const ButtonClick: Story = {
 export const Left: Story = {
   args: {
     menuList: [
-      { text: "Menu_01", onClick: () => alert("01 onClicked !!") },
-      { text: "Menu_02", onClick: () => alert("02 onClicked !!") },
-      { text: "Menu_03", onClick: () => alert("03 onClicked !!") },
+      { text: "Menu_01", onClick: () => alert("Left：01 onClicked !!") },
+      { text: "Menu_02", onClick: () => alert("Left：02 onClicked !!") },
+      { text: "Menu_03", onClick: () => alert("Left：03 onClicked !!") },
     ],
     children: <Button>メニューを開くよ！</Button>,
   },
@@ -75,9 +75,9 @@ export const Left: Story = {
 export const Right: Story = {
   args: {
     menuList: [
-      { text: "Menu_01", onClick: () => alert("01 onClicked !!") },
-      { text: "Menu_02", onClick: () => alert("02 onClicked !!") },
-      { text: "Menu_03", onClick: () => alert("03 onClicked !!") },
+      { text: "Menu_01", onClick: () => alert("Right：01 onClicked !!") },
+      { text: "Menu_02", onClick: () => alert("Right：02 onClicked !!") },
+      { text: "Menu_03", onClick: () => alert("Right：03 onClicked !!") },
     ],
     children: <Button>メニューを開くよ！</Button>,
   },
@@ -97,9 +97,9 @@ export const Right: Story = {
 export const Bottom: Story = {
   args: {
     menuList: [
-      { text: "Menu_01", onClick: () => alert("01 onClicked !!") },
-      { text: "Menu_02", onClick: () => alert("02 onClicked !!") },
-      { text: "Menu_03", onClick: () => alert("03 onClicked !!") },
+      { text: "Menu_01", onClick: () => alert("Bottom：01 onClicked !!") },
+      { text: "Menu_02", onClick: () => alert("Bottom：02 onClicked !!") },
+      { text: "Menu_03", onClick: () => alert("Bottom：03 onClicked !!") },
     ],
     children: <Button>メニューを開くよ！</Button>,
   },

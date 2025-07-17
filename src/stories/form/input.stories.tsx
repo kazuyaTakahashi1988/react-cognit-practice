@@ -1,6 +1,6 @@
-import type { Meta, StoryObj } from "@storybook/react";
-
 import { Input } from "../../components/form/input";
+
+import type { Meta, StoryObj } from "@storybook/react";
 
 const meta = {
   title: "Form/Input",
@@ -27,32 +27,32 @@ type Story = StoryObj<typeof meta>;
 
 export const Default: Story = {
   args: {
-    placeholder: "入力をお願いします。",
-    label: { text: "Inputラベルテキスト" },
+    placeholder: "Default：入力をお願いします。",
+    label: { text: "Default：Inputラベルテキスト" },
     errorMessage: "",
   },
 };
 
 export const Disabled: Story = {
   args: {
-    placeholder: "入力をお願いします。",
-    label: { text: "Inputラベルテキスト" },
+    placeholder: "Disabled：入力をお願いします。",
+    label: { text: "Disabled：Inputラベルテキスト" },
     disabled: true,
   },
 };
 
 export const Required: Story = {
   args: {
-    placeholder: "入力をお願いします。",
-    label: { text: "Inputラベルテキスト", required: true },
+    placeholder: "Required：入力をお願いします。",
+    label: { text: "Required：Inputラベルテキスト", required: true },
     errorMessage: "",
   },
 };
 
 export const Error: Story = {
   args: {
-    placeholder: "入力をお願いします。",
-    label: { text: "Inputラベルテキスト", required: true },
+    placeholder: "Error：入力をお願いします。",
+    label: { text: "Error：Inputラベルテキスト", required: true },
     errorMessage: "必須項目だよ。",
   },
 };

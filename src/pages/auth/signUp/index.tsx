@@ -1,13 +1,13 @@
-import React from "react";
-import styled from "styled-components";
-import { TypeSignUp } from "../../../lib/types";
 import { useForm } from "react-hook-form";
+import styled from "styled-components";
 
-import Layout from "../../../components/layout/layout";
 import Button from "../../../components/button/button";
 import Input from "../../../components/form/input";
-
+import Layout from "../../../components/layout/layout";
 import { SignUpHelper } from "../../../utils/authHelper";
+
+import type { TypeSignUp } from "../../../lib/types";
+import type React from "react";
 
 const SignUp: React.FC = () => {
   const {

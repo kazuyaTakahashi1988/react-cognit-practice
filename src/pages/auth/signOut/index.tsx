@@ -1,9 +1,9 @@
-import React from "react";
 import styled from "styled-components";
 
 import Layout from "../../../components/layout/layout";
-
 import { SignOutHelper } from "../../../utils/authHelper";
+
+import type React from "react";
 
 const SignOut: React.FC = () => {
   const signOut = () => SignOutHelper();
@@ -12,7 +12,9 @@ const SignOut: React.FC = () => {
     <Layout type="auth">
       <Styled>
         <h1>サインアウト</h1>
-        <button onClick={signOut}>Sign Out</button>
+        <button type="button" onClick={signOut}>
+          Sign Out
+        </button>
       </Styled>
     </Layout>
   );

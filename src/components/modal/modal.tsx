@@ -1,16 +1,15 @@
-import React, { forwardRef } from "react";
+import { forwardRef } from "react";
 import styled from "styled-components";
-import { params } from "../../lib/style";
-import { TypeModal } from "../../lib/types";
 
+import { params } from "../../lib/style";
 import Button from "../button/button";
+
+import type { TypeModal } from "../../lib/types";
+import type React from "react";
 
 type Props = React.HTMLAttributes<HTMLDivElement> & TypeModal;
 
-export const ModalField: React.ForwardRefRenderFunction<
-  HTMLDivElement,
-  Props
-> = (props, ref) => {
+export const ModalField: React.ForwardRefRenderFunction<HTMLDivElement, Props> = (props, ref) => {
   const { children, title, onEvent, onClose, ...rest } = props;
 
   return (

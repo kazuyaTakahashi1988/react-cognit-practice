@@ -2,8 +2,8 @@
     ▽ 型定義 (コンポーネント編) ▽
 ---------------------------------------------------------- */
 
-import { UseFormRegister } from "react-hook-form";
-import { TypeTodoExample } from ".";
+import type { TypeTodoExample } from ".";
+import type { UseFormRegister } from "react-hook-form";
 
 // Layout
 export type TypeLayout = {

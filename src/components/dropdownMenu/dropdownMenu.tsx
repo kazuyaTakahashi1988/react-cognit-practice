@@ -1,14 +1,17 @@
-import React, { forwardRef, useState, useEffect, useRef } from "react";
+import { forwardRef, useState, useEffect, useRef } from "react";
 import styled from "styled-components";
+
 import { params } from "../../lib/style";
-import { TypeDropdownMenu } from "../../lib/types";
+
+import type { TypeDropdownMenu } from "../../lib/types";
+import type React from "react";
 
 type Props = React.HTMLAttributes<HTMLSpanElement> & TypeDropdownMenu;
 
-export const DropdownMenuField: React.ForwardRefRenderFunction<
-  HTMLSpanElement,
-  Props
-> = (props, ref) => {
+export const DropdownMenuField: React.ForwardRefRenderFunction<HTMLSpanElement, Props> = (
+  props,
+  ref,
+) => {
   const { menuList, children, ...rest } = props;
 
   const [isOpen, setIsOpen] = useState(false);
@@ -24,10 +27,7 @@ export const DropdownMenuField: React.ForwardRefRenderFunction<
   }, []);
 
   const handleOutsideClick = (e: Event) => {
-    if (
-      e.target instanceof HTMLElement &&
-      !dropdownMenuRef?.current?.contains(e.target)
-    ) {
+    if (e.target instanceof HTMLElement && !dropdownMenuRef?.current?.contains(e.target)) {
       setIsOpen(false);
     }
     e.stopPropagation();
@@ -37,10 +37,8 @@ export const DropdownMenuField: React.ForwardRefRenderFunction<
     if (isOpen) {
       const refCurrent = dropdownMenuInnerRef?.current;
       const clientRect = refCurrent?.getBoundingClientRect();
-      const clientBottom =
-        Number(clientRect?.top) + Number(refCurrent?.clientHeight);
-      const clientCenter =
-        Number(clientRect?.left) + Number(refCurrent?.clientWidth) / 2;
+      const clientBottom = Number(clientRect?.top) + Number(refCurrent?.clientHeight);
+      const clientCenter = Number(clientRect?.left) + Number(refCurrent?.clientWidth) / 2;
       setIsClientBottom(window.innerHeight < clientBottom);
       setIsClientLeft(window.innerWidth / 2 > clientCenter);
     } else {
@@ -51,17 +49,13 @@ export const DropdownMenuField: React.ForwardRefRenderFunction<
 
   return (
     <Styled ref={ref} {...rest}>
-      <div
-        className="dropdown-menu"
-        ref={dropdownMenuRef}
-        onClick={() => setIsOpen(!isOpen)}
-      >
+      <div className="dropdown-menu" ref={dropdownMenuRef} onClick={() => setIsOpen(!isOpen)}>
         {children}
 
         {isOpen && (
           <ul
             className={[
-              `dropdown-menu__inner`,
+              "dropdown-menu__inner",
               `${isClientBottom ? "bottom" : ""}`,
               `${isClientLeft ? "left" : ""}`,
             ].join(" ")}

@@ -1,20 +1,20 @@
-import React from "react";
-import styled from "styled-components";
-import { media, params } from "../../../lib/style";
-import { TypeFormExample } from "../../../lib/types";
 import { useForm } from "react-hook-form";
+import styled from "styled-components";
 
-import Layout from "../../../components/layout/layout";
 import Button from "../../../components/button/button";
-import Input from "../../../components/form/input";
 import CheckBox from "../../../components/form/checkBox";
+import Input from "../../../components/form/input";
 import RadioButton from "../../../components/form/radioButton";
-import SwitchButton from "../../../components/form/switchButton";
 import Select from "../../../components/form/select";
 import SelectCustom from "../../../components/form/selectCustom";
+import SwitchButton from "../../../components/form/switchButton";
 import TextArea from "../../../components/form/textArea";
-
+import Layout from "../../../components/layout/layout";
+import { media, params } from "../../../lib/style";
 import { testPostApi } from "../../../utils/apiHelper"; // テストポストAPI（てきとーなやつ）
+
+import type { TypeFormExample } from "../../../lib/types";
+import type React from "react";
 
 const FormExample: React.FC = () => {
   const {
@@ -39,7 +39,12 @@ const FormExample: React.FC = () => {
 
   const onSubmit = handleSubmit(async (data) => {
     const responsePost = await testPostApi(data);
-    console.log(responsePost.message);
+
+    const hasMessage = (obj: { message: string }): obj is { message: string } => {
+      return obj && typeof obj.message === "string";
+    }; // responsePost.messageの値がany型でないことを保証するための処理
+
+    if (hasMessage(responsePost)) console.log(responsePost.message);
   });
 
   return (
@@ -59,7 +64,7 @@ const FormExample: React.FC = () => {
           label={{ text: "Inputラベルテキスト", required: true }}
           {...register("inputName", {
             required: { value: true, message: "必須項目だよ。" },
-            minLength: { value: 2, message: `2文字以上にしてね` },
+            minLength: { value: 2, message: "2文字以上にしてね" },
             maxLength: { value: 50, message: "最大50文字だよ" },
             // pattern: {
             //   value: /^[A-Za-z0-9]{1}[A-Za-z0-9_.-]*@{1}[A-Za-z0-9_.-]+.[A-Za-z0-9]+$/,
@@ -80,8 +85,7 @@ const FormExample: React.FC = () => {
           {...register("checkBoxName", {
             required: { value: true, message: "必須項目だよ。" },
             validate: (e: object) => {
-              if (Object.keys(e).length < 2)
-                return "２つ以上選択してください。";
+              if (Object.keys(e).length < 2) return "２つ以上選択してください。";
             },
           })}
           errorMessage={errors.checkBoxName?.message}
@@ -166,7 +170,7 @@ const FormExample: React.FC = () => {
           label={{ text: "TextAreaラベルテキスト", required: true }}
           {...register("textAreaName", {
             required: { value: true, message: "必須項目だよ。" },
-            minLength: { value: 2, message: `2文字以上にしてね` },
+            minLength: { value: 2, message: "2文字以上にしてね" },
             maxLength: { value: 50, message: "最大50文字だよ" },
             // pattern: {
             //   value: /^[A-Za-z0-9]{1}[A-Za-z0-9_.-]*@{1}[A-Za-z0-9_.-]+.[A-Za-z0-9]+$/,

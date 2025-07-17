@@ -1,11 +1,6 @@
 import { store } from "../store";
 
-const execute = async (
-  method: string,
-  path: string,
-  data?: object,
-  params?: string,
-) => {
+const execute = async (method: string, path: string, data?: object, params?: string) => {
   store.dispatch({ type: "LOADING_FLUG_UP" });
 
   const config = {
@@ -25,6 +20,7 @@ const execute = async (
     });
   } catch (error) {
     //例外が発生した場合の処理
+    console.error(error);
   } finally {
     store.dispatch({ type: "LOADING_FLUG_DOWN" });
   }

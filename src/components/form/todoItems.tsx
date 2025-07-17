@@ -1,24 +1,26 @@
-import React, { forwardRef } from "react";
+import { forwardRef } from "react";
 import styled from "styled-components";
-import { TypeTodoItems } from "../../lib/types";
 
 import CheckBox from "./checkBox";
 import Input from "./input";
 import Button from "../button/button";
 
+import type { TypeTodoItems } from "../../lib/types";
+import type React from "react";
+
 type Props = React.InputHTMLAttributes<HTMLInputElement> & TypeTodoItems;
 
-export const TodoItemsField: React.ForwardRefRenderFunction<
-  HTMLInputElement,
-  Props
-> = (props, ref) => {
-  const { itemsName, onAppend, onRemove, fields, register, errors, ...rest } =
-    props;
+export const TodoItemsField: React.ForwardRefRenderFunction<HTMLInputElement, Props> = (
+  props,
+  ref,
+) => {
+  const { itemsName, onAppend, onRemove, fields, register, errors, ...rest } = props;
 
   const name = rest.name;
   const { checkBoxName, inputName } = itemsName;
 
   const getErrorMessage = (index: number, itemName: string) => {
+    // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
     return Array.isArray(errors) && errors?.[index]?.[itemName]?.message;
   };
 

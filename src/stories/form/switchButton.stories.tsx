@@ -1,6 +1,6 @@
-import type { Meta, StoryObj } from "@storybook/react";
-
 import { SwitchButton } from "../../components/form/switchButton";
+
+import type { Meta, StoryObj } from "@storybook/react";
 
 const meta = {
   title: "Form/SwitchButton",
@@ -16,7 +16,7 @@ type Story = StoryObj<typeof meta>;
 
 export const Default: Story = {
   args: {
-    label: { text: "SwitchButtonラベルテキスト" },
+    label: { text: "Default：SwitchButtonラベルテキスト" },
     options: [
       {
         value: "Switch_Value_A",
@@ -35,7 +35,7 @@ export const Default: Story = {
 
 export const Required: Story = {
   args: {
-    label: { text: "SwitchButtonラベルテキスト", required: true },
+    label: { text: "Required：SwitchButtonラベルテキスト", required: true },
     options: [
       {
         value: "Switch_Value_A",
@@ -47,14 +47,14 @@ export const Required: Story = {
         label: "noActive_B",
         labelActived: "Actived_B",
       },
-      { value: "Switch_Value_C", label: "----------" },
+      { value: "Switch_Value_C", label: "-----------" },
     ],
   },
 };
 
 export const Error: Story = {
   args: {
-    label: { text: "SwitchButtonラベルテキスト", required: true },
+    label: { text: "Error：SwitchButtonラベルテキスト", required: true },
     options: [
       {
         value: "Switch_Value_A",
@@ -66,7 +66,7 @@ export const Error: Story = {
         label: "noActive_B",
         labelActived: "Actived_B",
       },
-      { value: "Switch_Value_C", label: "----------" },
+      { value: "Switch_Value_C", label: "------------" },
     ],
     errorMessage: "必須項目だよ。",
   },

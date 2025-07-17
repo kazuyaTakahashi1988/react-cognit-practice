@@ -1,14 +1,17 @@
-import React, { forwardRef, useState, useEffect } from "react";
+import { forwardRef, useState, useEffect } from "react";
 import styled from "styled-components";
+
 import { params } from "../../lib/style";
-import { TypeAccordion } from "../../lib/types";
+
+import type { TypeAccordion } from "../../lib/types";
+import type React from "react";
 
 type Props = React.HTMLAttributes<HTMLDivElement> & TypeAccordion;
 
-export const AccordionField: React.ForwardRefRenderFunction<
-  HTMLDivElement,
-  Props
-> = (props, ref) => {
+export const AccordionField: React.ForwardRefRenderFunction<HTMLDivElement, Props> = (
+  props,
+  ref,
+) => {
   const { title, initOpen, children, ...rest } = props;
   const [isOpen, setIsOpen] = useState(initOpen);
 
