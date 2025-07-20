@@ -50,7 +50,7 @@ module.exports = {
     /* async 関数なのに await を使ってない場合の警告は"off"、"error"とする */
     "require-await": "off",
     "@typescript-eslint/require-await": "error",
-    /* require() を使うことを禁止するルールを"off" (0はoffと同じ) */
+    /* require() を使うことを禁止するルール */
     "@typescript-eslint/no-var-requires": 0,
     /* "!" を使った 非nullアサーション を禁止 */
     "@typescript-eslint/no-non-null-assertion": "error",
