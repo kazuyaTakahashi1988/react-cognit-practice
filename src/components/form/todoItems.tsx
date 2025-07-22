@@ -19,8 +19,8 @@ export const TodoItemsField: React.ForwardRefRenderFunction<HTMLInputElement, Pr
   const name = rest.name;
   const { checkBoxName, inputName } = itemsName;
 
-  const isErrorArray = (value: unknown): value is TypeTodoErrorArray[] => {
-    return Array.isArray(value) && value.every((item) => typeof item === "object" && item !== null);
+  const isErrorArray = (value: object | undefined): value is TypeTodoErrorArray[] => {
+    return Array.isArray(value);
   };
 
   const getErrorMessage = (index: number, itemName: string) => {
