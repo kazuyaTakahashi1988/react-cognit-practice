@@ -5,7 +5,7 @@ import CheckBox from "./checkBox";
 import Input from "./input";
 import Button from "../button/button";
 
-import type { TypeTodoItems } from "../../lib/types";
+import type { TypeTodoItems, TypeTodoErrorArray } from "../../lib/types";
 import type React from "react";
 
 type Props = React.InputHTMLAttributes<HTMLInputElement> & TypeTodoItems;
@@ -19,9 +19,13 @@ export const TodoItemsField: React.ForwardRefRenderFunction<HTMLInputElement, Pr
   const name = rest.name;
   const { checkBoxName, inputName } = itemsName;
 
+  const isErrorArray = (value: unknown): value is TypeTodoErrorArray[] => {
+    return Array.isArray(value) && value.every((item) => typeof item === "object" && item !== null);
+  };
+
   const getErrorMessage = (index: number, itemName: string) => {
-    // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
-    return Array.isArray(errors) && errors?.[index]?.[itemName]?.message;
+    if (!isErrorArray(errors)) return undefined;
+    return errors?.[index]?.[itemName]?.message;
   };
 
   return (
