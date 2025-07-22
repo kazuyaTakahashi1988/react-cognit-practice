@@ -50,7 +50,6 @@ export type TypeTodoItems = {
   register: UseFormRegister<TypeTodoExample>;
   errors?: object;
 };
-export type TypeTodoErrorArray = { [key: string]: { message?: string } };
 
 // CheckBox
 export type TypeCheckBox = {
