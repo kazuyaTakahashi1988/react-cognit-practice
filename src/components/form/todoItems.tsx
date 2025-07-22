@@ -5,7 +5,7 @@ import CheckBox from "./checkBox";
 import Input from "./input";
 import Button from "../button/button";
 
-import type { TypeTodoItems, TypeTodoErrorArray } from "../../lib/types";
+import type { TypeTodoItems } from "../../lib/types";
 import type React from "react";
 
 type Props = React.InputHTMLAttributes<HTMLInputElement> & TypeTodoItems;
@@ -19,7 +19,9 @@ export const TodoItemsField: React.ForwardRefRenderFunction<HTMLInputElement, Pr
   const name = rest.name;
   const { checkBoxName, inputName } = itemsName;
 
-  const isErrorArray = (value: object | undefined): value is TypeTodoErrorArray[] => {
+  const isErrorArray = (
+    value: object | undefined,
+  ): value is { [key: string]: { message?: string } }[] => {
     return Array.isArray(value);
   };
 
