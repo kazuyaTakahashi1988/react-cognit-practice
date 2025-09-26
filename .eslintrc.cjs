@@ -54,7 +54,7 @@ module.exports = {
         "require-await": "off",
         "@typescript-eslint/require-await": "error",
         /* require() を使うことを禁止するルール */
-        "@typescript-eslint/no-var-requires": 0,
+        "@typescript-eslint/no-require-imports": "error",
         /* "!" を使った 非nullアサーション を禁止 */
         "@typescript-eslint/no-non-null-assertion": "error",
         /* 配列や文字列に対して "indexOf(...) !== -1" よりも "includes(...)" を使うことを推奨するルール */

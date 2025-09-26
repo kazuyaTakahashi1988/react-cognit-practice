@@ -10,7 +10,7 @@
     "storybook": "storybook dev -p 6006",
     "build-storybook": "storybook build",
     "preview-storybook": "vite preview --outDir storybook-static",
-    "lint": "eslint --ext .ts,.tsx ./src",
+    "lint": "eslint --ext .ts,.tsx ./src && tsc --noEmit",
     "lint:fix": "eslint --fix --ext .ts,.tsx ./src",
     "format": "prettier --write ./src",
     "fix": "yarn format && yarn lint:fix"
