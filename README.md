@@ -3,11 +3,11 @@ vs-code にプラグイン [ vscode-styled-components ] [ styled-components-snip
 それぞれインストールすると便利
 <br>
 
-# ① node v20.x 下で yarn install & yarn dev
+# ① node v24.x 下で yarn install & yarn dev
 
 ```
 $ node -v
-v20.x
+v24.x
 
 $ yarn install
 $ yarn dev
