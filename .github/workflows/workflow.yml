@@ -56,7 +56,7 @@ jobs:
         run: yarn build
 
       - name: FTP-Deploy-Action
-        uses: SamKirkland/FTP-Deploy-Action@4.1.0 # FTPを使ってサーバーにDeployするアクションを実行
+        uses: SamKirkland/FTP-Deploy-Action@v4.3.6 # FTPを使ってサーバーにDeployするアクションを実行
         with:
           server: ${{ secrets.FTP_SERVER }} # FTPサーバーのURLを設定
           username: ${{ secrets.FTP_USERNAME }} # FTPのユーザー名を設定
@@ -91,7 +91,7 @@ jobs:
         run: yarn build-storybook
 
       - name: FTP-Deploy-Action
-        uses: SamKirkland/FTP-Deploy-Action@4.1.0 # FTPを使ってサーバーにDeployするアクションを実行
+        uses: SamKirkland/FTP-Deploy-Action@v4.3.6 # FTPを使ってサーバーにDeployするアクションを実行
         with:
           server: ${{ secrets.FTP_SERVER }} # FTPサーバーのURLを設定
           username: ${{ secrets.FTP_USERNAME }} # FTPのユーザー名を設定
