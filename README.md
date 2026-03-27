@@ -82,3 +82,29 @@ $ yarn dev
 
 Open <a href="http://localhost:3000" target="_blank">http://localhost:3000</a> in your browser<br>
 <br>
+
+## Project Structure
+
+
+```
+react-cognit-practice/
+├── .github
+├── .husky
+├── .storybook
+├── .vscode
+├── cdk
+├── public
+├── src/             # アプリ本体
+│   ├── components       # 各コンポーネント
+│   ├── lib              # 静的な値・処理
+│   ├── pages            # 各画面
+│   ├── router           # ナビゲーション
+│   ├── stories          # ストーリーブック
+│   ├── utils            # 動的な処理
+│   ├── App.tsx          # アプリルートファイル
+│   └── main.tsx         # アプリメインファイル
+├── ...
+├── ...
+├── ...
+└── README.md        # This file
+```
