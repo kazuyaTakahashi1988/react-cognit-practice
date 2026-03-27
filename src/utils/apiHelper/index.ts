@@ -1,41 +1,118 @@
-import { store } from "../store";
+import axios from "axios";
 
-const execute = async (method: string, path: string, data?: object, params?: string) => {
-  store.dispatch({ type: "LOADING_FLUG_UP" });
+import type { Method, AxiosRequestConfig, AxiosResponse } from "axios";
 
-  const config = {
-    method: method,
-    headers: { Accept: "application/json", "Content-Type": "application/json" },
-    body: data && JSON.stringify(data),
+/* -----------------------------------------------
+ * axios および API 処理
+ * ----------------------------------------------- */
+
+export type TypeOptions<TRequest> = {
+  apiPath: string;
+  method: Method;
+  requestData?: TRequest;
+  params?: Record<string, unknown>;
+  headers?: Record<string, string>;
+  baseURL?: string;
+  accessToken?: string;
+};
+
+// デフォルトのベースURL
+const DEFAULT_BASE_URL = import.meta.env.VITE_APP_PUBLIC_API_BASE_URL ?? "";
+
+/*
+ * APIリクエスト 実行処理
+ */
+const execute = async <TResponse = unknown, TRequest = unknown>(
+  options: TypeOptions<TRequest>,
+): Promise<AxiosResponse<TResponse>> => {
+  const {
+    apiPath,
+    method,
+    requestData,
     params,
+    headers,
+    baseURL = DEFAULT_BASE_URL, // デフォルトのベースURL
+    accessToken,
+  } = options;
+
+  // ヘッダー情報のセット
+  const setHeaders = (
+    accessToken?: string,
+    headers?: Record<string, string>,
+  ): Record<string, string> => {
+    const bearerToken =
+      accessToken ??
+      (typeof sessionStorage !== "undefined"
+        ? (sessionStorage.getItem("access_token") ?? undefined)
+        : undefined);
+
+    return {
+      Accept: "application/json",
+      "Content-Type": "application/json",
+      ...(bearerToken != null ? { Authorization: `Bearer ${bearerToken}` } : {}),
+      ...headers,
+    };
+  };
+
+  const requestConfig: AxiosRequestConfig = {
+    method,
+    url: `${baseURL}${apiPath}`,
+    data: requestData,
+    params,
+    headers: setHeaders(accessToken, headers), // ヘッダー情報のセット
   };
 
   try {
-    return await fetch(`${path}`, config).then((res) => {
-      // if (res.status === 500) return
-      return res.json();
-    });
-  } catch (error) {
-    //例外が発生した場合の処理
-    console.error(error);
-  } finally {
-    store.dispatch({ type: "LOADING_FLUG_DOWN" });
+    return await axios.request<TResponse>(requestConfig);
+  } catch (err) {
+    if (axios.isAxiosError(err)) {
+      const message = err.response?.data ?? err.message;
+      console.error("API request failed", message);
+      throw err;
+    }
+
+    console.error("API request failed", err);
+    throw err;
   }
 };
 
-const postApi = async (path: string, data: object, params?: string) => {
-  return execute("POST", path, data, params);
-};
+/*
+ * APIリクエスト（フォーマット） 処理
+ */
+const request = async <TResponse = unknown, TRequest = unknown>(
+  method: Method,
+  apiPath: string,
+  options: Omit<TypeOptions<TRequest>, "apiPath" | "method"> = {},
+): Promise<AxiosResponse<TResponse>> =>
+  // APIリクエスト 実行処理
+  execute<TResponse, TRequest>({ method, apiPath, ...options });
 
-const getApi = async (path: string, params?: string) => {
-  return execute("GET", path, undefined, params);
+/* -----------------------------------------------
+ * 各 APIリクエスト
+ * （並べくswaggerの順序と揃える）
+ * ----------------------------------------------- */
+
+// テストゲットAPI（てきとーなやつ）
+export const testGetArticleApi = () => {
+  return request("GET", "/wp-json/wp/v2/posts");
 };
 
 // テストポストAPI（てきとーなやつ）
 export const testPostApi = (data: object) => {
-  return postApi("http://wp.empty-service.com/wp-json/wp/v2/posts", data);
+  const options = { requestData: data };
+
+  return request("POST", "/wp-json/wp/v2/posts", options);
 };
-// テストゲットAPI（てきとーなやつ）
-export const testGetApi = () => {
-  return getApi("http://wp.empty-service.com/wp-json/wp/v2/posts");
-};
+
+/*
+ * export const postXXXXApi = (params, baseURL, headers, requestData, accessToken) => {
+ *  const options = {
+ *    params, // クエリパラム
+ *    baseURL, // DEFAULT_BASE_URL を使わない際のベースURLの指定
+ *    headers, // 追加ヘッダー情報を付与
+ *    requestData, // リクエストデータ（リクエストボディ）
+ *    accessToken, // アクセストークン
+ *  };
+ *  return request('POST', '/xxxx/xxxx', options);
+ * };
+ */

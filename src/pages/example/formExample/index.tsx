@@ -39,12 +39,7 @@ const FormExample: React.FC = () => {
 
   const onSubmit = handleSubmit(async (data) => {
     const responsePost = await testPostApi(data);
-
-    const hasMessage = (obj: { message: string }): obj is { message: string } => {
-      return obj && typeof obj.message === "string";
-    }; // responsePost.messageの値がany型でないことを保証するための処理
-
-    if (hasMessage(responsePost)) console.log(responsePost.message);
+    console.log("API response:::", responsePost);
   });
 
   return (
