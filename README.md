@@ -85,7 +85,6 @@ Open <a href="http://localhost:3000" target="_blank">http://localhost:3000</a> i
 
 ## Project Structure
 
-
 ```
 react-cognit-practice/
 ├── .github
