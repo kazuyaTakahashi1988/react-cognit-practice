@@ -68,7 +68,7 @@ const execute = async <TResponse = unknown, TRequest = unknown>(
     if (axios.isAxiosError(err)) {
       const message = err.response?.data ?? err.message;
       console.error("API request failed", message);
-      throw err;
+      return message;
     }
 
     console.error("API request failed", err);
