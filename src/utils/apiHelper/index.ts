@@ -1,20 +1,11 @@
 import axios from "axios";
 
+import type { TypeOptions } from "../../lib/types";
 import type { Method, AxiosRequestConfig, AxiosResponse } from "axios";
 
 /* -----------------------------------------------
  * axios および API 処理
  * ----------------------------------------------- */
-
-export type TypeOptions<TRequest> = {
-  apiPath: string;
-  method: Method;
-  requestData?: TRequest;
-  params?: Record<string, unknown>;
-  headers?: Record<string, string>;
-  baseURL?: string;
-  accessToken?: string;
-};
 
 // デフォルトのベースURL
 const DEFAULT_BASE_URL = import.meta.env.VITE_APP_PUBLIC_API_BASE_URL ?? "";
