@@ -80,16 +80,6 @@ module.exports = {
         "import/default": "off",
         "import/no-named-as-default": "off",
 
-        /* 1プロパティのオブジェクトは1行で記述を強制（checkerで検知可能にする） */
-        "object-curly-newline": [
-          "error",
-          {
-            ObjectExpression: { multiline: true, minProperties: 2, consistent: true },
-            ObjectPattern: { multiline: true, minProperties: 2, consistent: true },
-            ImportDeclaration: "never",
-            ExportDeclaration: { multiline: true, minProperties: 3, consistent: true },
-          },
-        ],
 
         /* -------------------------------------------------------
           認知的複雑度（sonarjs / total-functions / ESLintコア）

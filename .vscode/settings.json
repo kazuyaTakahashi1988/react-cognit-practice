@@ -22,5 +22,5 @@
   "[javascriptreact]": {
     "editor.defaultFormatter": "esbenp.prettier-vscode"
   },
-  "prettier.requireConfig": false
+  "prettier.requireConfig": true
 }
