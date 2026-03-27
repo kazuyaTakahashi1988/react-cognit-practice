@@ -8,5 +8,6 @@
   "printWidth": 100,
   "bracketSpacing": true,
   "arrowParens": "always",
-  "htmlWhitespaceSensitivity": "ignore"
+  "htmlWhitespaceSensitivity": "ignore",
+  "objectWrap": "collapse"
 }
