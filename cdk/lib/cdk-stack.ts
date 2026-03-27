@@ -22,8 +22,7 @@ export class CdkCognitoUserpoolStack extends cdk.Stack {
       userVerification: {
         emailStyle: cognito.VerificationEmailStyle.CODE,
         emailSubject: "test email verification",
-        emailBody:
-          "Thanks for signing up to test Your verification code is {####}",
+        emailBody: "Thanks for signing up to test Your verification code is {####}",
       },
       /**
        * customising admin invite
@@ -58,18 +57,9 @@ export class CdkCognitoUserpoolStack extends cdk.Stack {
        * if required user wont be able to signup unless that attribute is provided
        */
       standardAttributes: {
-        email: {
-          required: true,
-          mutable: true,
-        },
-        fullname: {
-          required: false,
-          mutable: true,
-        },
-        gender: {
-          required: false,
-          mutable: true,
-        },
+        email: { required: true, mutable: true },
+        fullname: { required: false, mutable: true },
+        gender: { required: false, mutable: true },
       },
       /**
        * custom attributes for a user
@@ -127,9 +117,7 @@ export class CdkCognitoUserpoolStack extends cdk.Stack {
     /**
      * print values to console
      */
-    new cdk.CfnOutput(this, "aws_user_pools_id", {
-      value: testUserpool.userPoolId,
-    });
+    new cdk.CfnOutput(this, "aws_user_pools_id", { value: testUserpool.userPoolId });
 
     new cdk.CfnOutput(this, "aws_user_pools_web_client_id", {
       value: userpoolClient.userPoolClientId,

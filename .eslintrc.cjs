@@ -1,10 +1,6 @@
 module.exports = {
   root: true,
-  env: {
-    browser: true,
-    es2020: true,
-    node: true,
-  },
+  env: { browser: true, es2020: true, node: true },
   parser: "@typescript-eslint/parser",
   parserOptions: {
     ecmaVersion: "latest",
@@ -14,9 +10,7 @@ module.exports = {
   },
   ignorePatterns: ["dist", "node_modules"],
   settings: {
-    react: {
-      version: "detect",
-    },
+    react: { version: "detect" },
     "import/resolver": {
       typescript: {
         alwaysTryTypes: true, // optional
@@ -79,10 +73,7 @@ module.exports = {
               "type",
             ],
             "newlines-between": "always",
-            alphabetize: {
-              order: "asc",
-              caseInsensitive: true,
-            },
+            alphabetize: { order: "asc", caseInsensitive: true },
             pathGroupsExcludedImportTypes: ["builtin"],
           },
         ],
