@@ -8,7 +8,7 @@ module.exports = {
     projectService: true,
     tsconfigRootDir: __dirname,
   },
-  ignorePatterns: ["dist", "node_modules"],
+  ignorePatterns: ["dist", "node_modules", "cdk/**"],
   settings: {
     react: { version: "detect" },
     "import/resolver": {
