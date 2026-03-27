@@ -13,7 +13,8 @@
     "lint": "eslint --ext .ts,.tsx ./src && tsc --noEmit",
     "lint:fix": "eslint --fix --ext .ts,.tsx ./src",
     "format": "prettier --write ./src",
-    "fix": "yarn format && yarn lint:fix"
+    "fix": "yarn format && yarn lint:fix",
+    "checker": "prettier --check ./src && yarn lint"
   },
   "dependencies": {
     "amazon-cognito-identity-js": "^6.3.15",
