@@ -18,7 +18,6 @@ const Verification: React.FC = () => {
   } = useForm<TypeVerification>({ defaultValues: { verificationCode: "", email: "" } });
 
   const onSubmit = handleSubmit((data) => {
-    console.log(data);
     VerifyHelper(data);
   });
 

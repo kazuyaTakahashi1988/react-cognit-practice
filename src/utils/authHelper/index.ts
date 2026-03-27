@@ -35,8 +35,7 @@ export const SignInHelper = (data: TypeSignIn) => {
   cognitoUser.authenticateUser(authenticationDetails, {
     onSuccess: (result) => {
       const accessToken = result.getAccessToken().getJwtToken();
-      console.log(result);
-      console.log("AccessToken: " + accessToken);
+      console.warn("AccessToken: " + accessToken);
       store.dispatch({ type: "LOADING_FLUG_DOWN" });
     },
     onFailure: (err) => {
@@ -60,8 +59,8 @@ export const SignUpHelper = (data: TypeSignUp) => {
       store.dispatch({ type: "LOADING_FLUG_DOWN" });
       return;
     }
-    console.log(result);
-    console.log("SignUp succeeded");
+    console.warn(result);
+    console.warn("SignUp succeeded");
     store.dispatch({ type: "LOADING_FLUG_DOWN" });
   });
 };
@@ -76,11 +75,11 @@ export const VerifyHelper = (data: TypeVerification) => {
 
   cognitoUser.confirmRegistration(data.verificationCode, true, (err) => {
     if (err) {
-      console.log(err);
+      console.warn(err);
       store.dispatch({ type: "LOADING_FLUG_DOWN" });
       return;
     }
-    console.log("verification succeeded");
+    console.warn("verification succeeded");
     store.dispatch({ type: "LOADING_FLUG_DOWN" });
   });
 };
@@ -95,11 +94,11 @@ export const SignOutHelper = () => {
   if (cognitoUser) {
     cognitoUser.signOut();
     localStorage.clear();
-    console.log("signed out");
+    console.warn("signed out");
     store.dispatch({ type: "LOADING_FLUG_DOWN" });
   } else {
     localStorage.clear();
-    console.log("no user signing in");
+    console.warn("no user signing in");
     store.dispatch({ type: "LOADING_FLUG_DOWN" });
   }
 };

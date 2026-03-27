@@ -18,7 +18,6 @@ const SignIn: React.FC = () => {
   } = useForm<TypeSignIn>({ defaultValues: { email: "", password: "" } });
 
   const onSubmit = handleSubmit((data) => {
-    console.log(data);
     SignInHelper(data);
   });
 

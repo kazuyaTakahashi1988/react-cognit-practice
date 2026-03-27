@@ -39,7 +39,7 @@ const FormExample: React.FC = () => {
 
   const onSubmit = handleSubmit(async (data) => {
     const responsePost = await testPostApi(data);
-    console.log("API response:", responsePost);
+    console.warn("API response:", responsePost);
   });
 
   return (

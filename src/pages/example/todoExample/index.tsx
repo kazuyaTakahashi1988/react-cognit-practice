@@ -30,7 +30,7 @@ const TodoExample: React.FC = () => {
   };
 
   const onSubmit = handleSubmit((data) => {
-    console.log(data);
+    console.warn(data);
   });
 
   return (
