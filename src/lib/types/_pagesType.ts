@@ -13,26 +13,13 @@ export type TypeFormExample = {
 };
 
 // TodoExample
-export type TypeTodoExample = {
-  [x: string]: {
-    [x: string]: boolean | string;
-  }[];
-};
+export type TypeTodoExample = { [x: string]: { [x: string]: boolean | string }[] };
 
 // SignIn
-export type TypeSignIn = {
-  email: string;
-  password: string;
-};
+export type TypeSignIn = { email: string; password: string };
 
 // SignUp
-export type TypeSignUp = {
-  email: string;
-  password: string;
-};
+export type TypeSignUp = { email: string; password: string };
 
 // Verification
-export type TypeVerification = {
-  verificationCode: string;
-  email: string;
-};
+export type TypeVerification = { verificationCode: string; email: string };

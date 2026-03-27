@@ -9,10 +9,7 @@ import { media, params } from "../../../lib/style";
 import type React from "react";
 
 const ModalExample: React.FC = () => {
-  const [isModal, setIsModal] = useState({
-    modal01: false,
-    modal02: false,
-  });
+  const [isModal, setIsModal] = useState({ modal01: false, modal02: false });
 
   const onModal = (target: string, flag: boolean) => {
     setIsModal({ ...isModal, [target]: flag });
@@ -34,14 +31,8 @@ const ModalExample: React.FC = () => {
         {isModal.modal01 && (
           <Modal
             title="タイトル01"
-            onEvent={{
-              text: "イベント01",
-              onClick: () => alert("01 onEvent !!"),
-            }}
-            onClose={{
-              text: "閉じる",
-              onClick: () => onModal("modal01", false),
-            }}
+            onEvent={{ text: "イベント01", onClick: () => alert("01 onEvent !!") }}
+            onClose={{ text: "閉じる", onClick: () => onModal("modal01", false) }}
           >
             ダミーテキスト・ダミーテキスト・ダミーテキスト
           </Modal>
@@ -50,14 +41,8 @@ const ModalExample: React.FC = () => {
         {isModal.modal02 && (
           <Modal
             title="タイトル02"
-            onEvent={{
-              text: "イベント02",
-              onClick: () => alert("02 onEvent !!"),
-            }}
-            onClose={{
-              text: "閉じる",
-              onClick: () => onModal("modal02", false),
-            }}
+            onEvent={{ text: "イベント02", onClick: () => alert("02 onEvent !!") }}
+            onClose={{ text: "閉じる", onClick: () => onModal("modal02", false) }}
           >
             ダミーテキスト・ダミーテキスト・ダミーテキスト・ダミーテキスト・ダミーテキスト・ダミーテキスト・ダミーテキスト・ダミーテキスト・ダミーテキスト・ダミーテキスト・ダミーテキスト・ダミーテキスト・ダミーテキスト・ダミーテキスト・ダミーテキスト・ダミーテキスト・ダミーテキスト・ダミーテキスト・ダミーテキスト・ダミーテキスト・ダミーテキスト・ダミーテキスト・ダミーテキスト・ダミーテキスト・ダミーテキスト・ダミーテキスト・ダミーテキスト・ダミーテキスト・ダミーテキスト・ダミーテキスト・ダミーテキスト・ダミーテキスト・ダミーテキスト・ダミーテキスト・ダミーテキスト・ダミーテキスト・ダミーテキスト・ダミーテキスト・ダミーテキスト・ダミーテキスト・ダミーテキスト・ダミーテキスト・ダミーテキスト・ダミーテキスト・ダミーテキスト・ダミーテキスト・ダミーテキスト・ダミーテキスト・ダミーテキスト・ダミーテキスト・ダミーテキスト・ダミーテキスト・ダミーテキスト・ダミーテキスト・ダミーテキスト・ダミーテキスト・ダミーテキスト・ダミーテキスト・ダミーテキスト・ダミーテキスト・ダミーテキスト・ダミーテキスト・ダミーテキスト・ダミーテキスト・ダミーテキスト・ダミーテキスト・ダミーテキスト・ダミーテキスト・ダミーテキスト・ダミーテキスト・ダミーテキスト・ダミーテキスト・ダミーテキスト・ダミーテキスト・ダミーテキスト・ダミーテキスト・ダミーテキスト・ダミーテキスト・ダミーテキスト・ダミーテキスト・ダミーテキスト・ダミーテキスト・ダミーテキスト・ダミーテキスト・ダミーテキスト・ダミーテキスト
           </Modal>

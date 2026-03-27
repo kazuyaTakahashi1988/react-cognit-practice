@@ -5,18 +5,11 @@ import type { Meta, StoryObj } from "@storybook/react";
 const meta = {
   title: "Form/SelectCustom",
   component: SelectCustom,
-  parameters: {
-    layout: "centered",
-  },
+  parameters: { layout: "centered" },
   tags: ["autodocs"],
   decorators: [
     (Story) => (
-      <div
-        style={{
-          width: "100vh",
-          height: "250px",
-        }}
-      >
+      <div style={{ width: "100vh", height: "250px" }}>
         <Story />
       </div>
     ),

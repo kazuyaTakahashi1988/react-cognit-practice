@@ -5,17 +5,11 @@ import type { Meta, StoryObj } from "@storybook/react";
 const meta = {
   title: "Accordion/Accordion",
   component: Accordion,
-  parameters: {
-    layout: "centered",
-  },
+  parameters: { layout: "centered" },
   tags: ["autodocs"],
   decorators: [
     (Story) => (
-      <div
-        style={{
-          width: "500px",
-        }}
-      >
+      <div style={{ width: "500px" }}>
         <Story />
       </div>
     ),

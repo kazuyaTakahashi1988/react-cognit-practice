@@ -5,9 +5,7 @@ import type { Meta, StoryObj } from "@storybook/react";
 const meta = {
   title: "Modal/Modal",
   component: Modal,
-  parameters: {
-    layout: "centered",
-  },
+  parameters: { layout: "centered" },
   tags: ["autodocs"],
   decorators: [
     (Story) => (
@@ -32,14 +30,8 @@ type Story = StoryObj<typeof meta>;
 export const Default: Story = {
   args: {
     title: "モーダルタイトル",
-    onEvent: {
-      text: "モーダルイベントボタン",
-      onClick: () => alert("onClicked !!"),
-    },
-    onClose: {
-      text: "閉じる",
-      onClick: () => console.log("閉じます"),
-    },
+    onEvent: { text: "モーダルイベントボタン", onClick: () => alert("onClicked !!") },
+    onClose: { text: "閉じる", onClick: () => console.log("閉じます") },
     children: "ダミーテキスト・ダミーテキスト・ダミーテキスト",
   },
 };
@@ -47,14 +39,8 @@ export const Default: Story = {
 export const Longtext: Story = {
   args: {
     title: "モーダルタイトル",
-    onEvent: {
-      text: "モーダルイベントボタン",
-      onClick: () => alert("onClicked !!"),
-    },
-    onClose: {
-      text: "閉じる",
-      onClick: () => console.log("閉じます"),
-    },
+    onEvent: { text: "モーダルイベントボタン", onClick: () => alert("onClicked !!") },
+    onClose: { text: "閉じる", onClick: () => console.log("閉じます") },
     children:
       "ダミーテキスト・ダミーテキスト・ダミーテキスト・ダミーテキスト・ダミーテキスト・ダミーテキスト・ダミーテキスト・ダミーテキスト・ダミーテキスト・ダミーテキスト・ダミーテキスト・ダミーテキスト・ダミーテキスト・ダミーテキスト・ダミーテキスト・ダミーテキスト・ダミーテキスト・ダミーテキスト・ダミーテキスト・ダミーテキスト・ダミーテキスト・ダミーテキスト・ダミーテキスト・ダミーテキスト・ダミーテキスト・ダミーテキスト・ダミーテキスト・ダミーテキスト・ダミーテキスト・ダミーテキスト・ダミーテキスト・ダミーテキスト・ダミーテキスト・ダミーテキスト・ダミーテキスト・ダミーテキスト・ダミーテキスト・ダミーテキスト・ダミーテキスト・ダミーテキスト・ダミーテキスト・ダミーテキスト・ダミーテキスト・ダミーテキスト・ダミーテキスト・ダミーテキスト・ダミーテキスト・ダミーテキスト・ダミーテキスト・ダミーテキスト・ダミーテキスト・ダミーテキスト・ダミーテキスト・ダミーテキスト・ダミーテキスト・ダミーテキスト・ダミーテキスト・ダミーテキスト・ダミーテキスト・ダミーテキスト・ダミーテキスト・ダミーテキスト・ダミーテキスト・ダミーテキスト・ダミーテキスト・ダミーテキスト・ダミーテキスト・ダミーテキスト・ダミーテキスト",
   },

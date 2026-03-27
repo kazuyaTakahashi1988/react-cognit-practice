@@ -6,19 +6,11 @@ import type { Meta, StoryObj } from "@storybook/react";
 const meta = {
   title: "DropdownMenu/DropdownMenu",
   component: DropdownMenu,
-  parameters: {
-    layout: "centered",
-  },
+  parameters: { layout: "centered" },
   tags: ["autodocs"],
   decorators: [
     (Story) => (
-      <div
-        style={{
-          width: "700px",
-          height: "170px",
-          textAlign: "center",
-        }}
-      >
+      <div style={{ width: "700px", height: "170px", textAlign: "center" }}>
         <Story />
       </div>
     ),
@@ -61,11 +53,7 @@ export const Left: Story = {
   },
   decorators: [
     (Story) => (
-      <div
-        style={{
-          textAlign: "left",
-        }}
-      >
+      <div style={{ textAlign: "left" }}>
         <Story />
       </div>
     ),
@@ -83,11 +71,7 @@ export const Right: Story = {
   },
   decorators: [
     (Story) => (
-      <div
-        style={{
-          textAlign: "right",
-        }}
-      >
+      <div style={{ textAlign: "right" }}>
         <Story />
       </div>
     ),

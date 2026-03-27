@@ -15,12 +15,7 @@ const SignUp: React.FC = () => {
     handleSubmit,
     reset,
     formState: { errors },
-  } = useForm<TypeSignUp>({
-    defaultValues: {
-      email: "",
-      password: "",
-    },
-  });
+  } = useForm<TypeSignUp>({ defaultValues: { email: "", password: "" } });
 
   const onSubmit = handleSubmit((data) => {
     console.log(data);

@@ -30,10 +30,7 @@ export const SignInHelper = (data: TypeSignIn) => {
     Password: data.password,
   });
 
-  const cognitoUser = new CognitoUser({
-    Username: data.email,
-    Pool: userPool,
-  });
+  const cognitoUser = new CognitoUser({ Username: data.email, Pool: userPool });
 
   cognitoUser.authenticateUser(authenticationDetails, {
     onSuccess: (result) => {
@@ -55,12 +52,7 @@ export const SignInHelper = (data: TypeSignIn) => {
 export const SignUpHelper = (data: TypeSignUp) => {
   store.dispatch({ type: "LOADING_FLUG_UP" });
 
-  const attributeList = [
-    new CognitoUserAttribute({
-      Name: "email",
-      Value: data.email,
-    }),
-  ];
+  const attributeList = [new CognitoUserAttribute({ Name: "email", Value: data.email })];
 
   userPool.signUp(data.email, data.password, attributeList, [], (err, result) => {
     if (err) {
@@ -80,10 +72,7 @@ export const SignUpHelper = (data: TypeSignUp) => {
 export const VerifyHelper = (data: TypeVerification) => {
   store.dispatch({ type: "LOADING_FLUG_UP" });
 
-  const cognitoUser = new CognitoUser({
-    Username: data.email,
-    Pool: userPool,
-  });
+  const cognitoUser = new CognitoUser({ Username: data.email, Pool: userPool });
 
   cognitoUser.confirmRegistration(data.verificationCode, true, (err) => {
     if (err) {

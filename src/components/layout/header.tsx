@@ -96,17 +96,11 @@ export const Header: React.FC<TypeHeader> = (props) => {
                     },
                     {
                       text: "Accordion",
-                      onClick: () =>
-                        navigate("/example/accordion_example", {
-                          replace: true,
-                        }),
+                      onClick: () => navigate("/example/accordion_example", { replace: true }),
                     },
                     {
                       text: "DropdownMenu",
-                      onClick: () =>
-                        navigate("/example/dropdownmenu_example", {
-                          replace: true,
-                        }),
+                      onClick: () => navigate("/example/dropdownmenu_example", { replace: true }),
                     },
                   ]}
                 >
@@ -120,14 +114,8 @@ export const Header: React.FC<TypeHeader> = (props) => {
               <li>
                 <DropdownMenu
                   menuList={[
-                    {
-                      text: "SighIn",
-                      onClick: () => navigate("/auth/signin", { replace: true }),
-                    },
-                    {
-                      text: "SighUp",
-                      onClick: () => navigate("/auth/signup", { replace: true }),
-                    },
+                    { text: "SighIn", onClick: () => navigate("/auth/signin", { replace: true }) },
+                    { text: "SighUp", onClick: () => navigate("/auth/signup", { replace: true }) },
                     {
                       text: "Verification",
                       onClick: () => navigate("/auth/verification", { replace: true }),

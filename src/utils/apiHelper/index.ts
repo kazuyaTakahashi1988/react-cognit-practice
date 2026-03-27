@@ -5,10 +5,7 @@ const execute = async (method: string, path: string, data?: object, params?: str
 
   const config = {
     method: method,
-    headers: {
-      Accept: "application/json",
-      "Content-Type": "application/json",
-    },
+    headers: { Accept: "application/json", "Content-Type": "application/json" },
     body: data && JSON.stringify(data),
     params,
   };

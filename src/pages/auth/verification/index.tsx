@@ -15,12 +15,7 @@ const Verification: React.FC = () => {
     handleSubmit,
     reset,
     formState: { errors },
-  } = useForm<TypeVerification>({
-    defaultValues: {
-      verificationCode: "",
-      email: "",
-    },
-  });
+  } = useForm<TypeVerification>({ defaultValues: { verificationCode: "", email: "" } });
 
   const onSubmit = handleSubmit((data) => {
     console.log(data);
@@ -36,10 +31,7 @@ const Verification: React.FC = () => {
           type="password"
           className="mt-30"
           placeholder="○○○○○○○○"
-          label={{
-            text: "verificationCodeを入力してください",
-            required: true,
-          }}
+          label={{ text: "verificationCodeを入力してください", required: true }}
           {...register("verificationCode", { required: "必須項目だよ。" })}
           errorMessage={errors.verificationCode?.message}
         />

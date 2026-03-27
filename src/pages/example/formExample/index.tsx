@@ -99,9 +99,7 @@ const FormExample: React.FC = () => {
             { value: "Radio_Value_B", label: "Radio_Label_B" },
             { value: "Radio_Value_C", label: "Radio_Label_C" },
           ]}
-          {...register("radioButtonName", {
-            required: { value: true, message: "必須項目だよ。" },
-          })}
+          {...register("radioButtonName", { required: { value: true, message: "必須項目だよ。" } })}
           errorMessage={errors.radioButtonName?.message}
         />
 
@@ -109,20 +107,9 @@ const FormExample: React.FC = () => {
           className="mt-30"
           label={{ text: "SwitchButtonラベルテキスト", required: true }}
           options={[
-            {
-              value: "Switch_Value_A",
-              label: "noActive_A",
-              labelActived: "Actived_A",
-            },
-            {
-              value: "Switch_Value_B",
-              label: "noActive_B",
-              labelActived: "Actived_B",
-            },
-            {
-              value: "Switch_Value_C",
-              label: "----------",
-            },
+            { value: "Switch_Value_A", label: "noActive_A", labelActived: "Actived_A" },
+            { value: "Switch_Value_B", label: "noActive_B", labelActived: "Actived_B" },
+            { value: "Switch_Value_C", label: "----------" },
           ]}
           {...register("switchButtonName", {
             required: { value: true, message: "必須項目だよ。" },
@@ -139,9 +126,7 @@ const FormExample: React.FC = () => {
             { value: "Select_Value_B", label: "Select_Label_B" },
             { value: "Select_Value_C", label: "Select_Label_C" },
           ]}
-          {...register("selectName", {
-            required: { value: true, message: "必須項目だよ。" },
-          })}
+          {...register("selectName", { required: { value: true, message: "必須項目だよ。" } })}
           errorMessage={errors.selectName?.message}
         />
 

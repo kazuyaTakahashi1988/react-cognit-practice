@@ -5,17 +5,11 @@ import type { Meta, StoryObj } from "@storybook/react";
 const meta = {
   title: "Form/Input",
   component: Input,
-  parameters: {
-    layout: "centered",
-  },
+  parameters: { layout: "centered" },
   tags: ["autodocs"],
   decorators: [
     (Story) => (
-      <div
-        style={{
-          width: "100vh",
-        }}
-      >
+      <div style={{ width: "100vh" }}>
         <Story />
       </div>
     ),

@@ -18,15 +18,10 @@ const TodoExample: React.FC = () => {
     formState: { errors },
   } = useForm<TypeTodoExample>({
     mode: "onSubmit",
-    defaultValues: {
-      todoItems: [{ check: false, task: "" }],
-    },
+    defaultValues: { todoItems: [{ check: false, task: "" }] },
   });
 
-  const { fields, append, remove } = useFieldArray({
-    name: "todoItems",
-    control,
-  });
+  const { fields, append, remove } = useFieldArray({ name: "todoItems", control });
 
   const onAppend = () => append({ check: false, task: "" });
   const onRemove = (e: React.MouseEvent<HTMLElement, MouseEvent>) => {
