@@ -1,29 +1,25 @@
-import { createContext, useContext, useMemo, useState } from "react";
+import { createContext, useMemo, useState } from "react";
 
-import { GetSignInFlag } from ".";
+import { userPool } from ".";
 
+import type { TypeAuthContext } from "../../lib/types";
 import type React from "react";
 
-type TypeAuthContext = { isSignedIn: boolean; refreshAuthState: () => void };
+export const AuthContext = createContext<TypeAuthContext | null>(null);
 
-const AuthContext = createContext<TypeAuthContext | null>(null);
+const getCurrentSignInFlag = () => !!userPool.getCurrentUser();
 
+/* -----------------------------------
+ * Auth プロバイダー
+ * -------------------------------- */
 export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
-  const [isSignedIn, setIsSignedIn] = useState<boolean>(GetSignInFlag());
+  const [isSignedIn, setIsSignedIn] = useState<boolean>(getCurrentSignInFlag());
 
   const refreshAuthState = () => {
-    setIsSignedIn(GetSignInFlag());
+    setIsSignedIn(getCurrentSignInFlag());
   };
 
   const value = useMemo(() => ({ isSignedIn, refreshAuthState }), [isSignedIn]);
 
   return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>;
-};
-
-export const useAuth = () => {
-  const context = useContext(AuthContext);
-  if (!context) {
-    throw new Error("useAuth must be used within AuthProvider");
-  }
-  return context;
 };

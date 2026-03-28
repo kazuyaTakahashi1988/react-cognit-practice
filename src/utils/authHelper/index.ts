@@ -4,12 +4,14 @@ import {
   CognitoUserPool,
   CognitoUserAttribute,
 } from "amazon-cognito-identity-js";
+import { useContext } from "react";
 
 import { loadingFlagDown, loadingFlagUp, store } from "../store";
+import { AuthContext } from "./authProvider";
 
 import type { TypeSignIn, TypeSignUp, TypeVerification } from "../../lib/types";
 
-const userPool = new CognitoUserPool({
+export const userPool = new CognitoUserPool({
   UserPoolId: `${import.meta.env.VITE_APP_AWS_COGNITO_USER_POOL_ID}`,
   ClientId: `${import.meta.env.VITE_APP_AWS_COGNITO_CLIENT_ID}`,
 });
@@ -17,7 +19,13 @@ const userPool = new CognitoUserPool({
 /* -----------------------------------
  * サインイン 済 or 未 フラグ
  * -------------------------------- */
-export const GetSignInFlag = () => !!userPool.getCurrentUser();
+export const useAuth = () => {
+  const context = useContext(AuthContext);
+  if (!context) {
+    throw new Error("useAuth must be used within AuthProvider");
+  }
+  return context;
+};
 
 /* -----------------------------------
  * サインイン 処理
