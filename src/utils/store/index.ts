@@ -31,9 +31,7 @@ const appSlice = createSlice({
 
 export const { loadingFlagUp, loadingFlagDown } = appSlice.actions;
 
-export const store = configureStore({
-  reducer: appSlice.reducer,
-});
+export const store = configureStore({ reducer: appSlice.reducer });
 
 export type TypeStore = ReturnType<typeof store.getState>;
 export type TypeStoreDispatch = typeof store.dispatch;

@@ -4,7 +4,6 @@ import styled from "styled-components";
 import { Footer } from "./footer";
 import { Header } from "./header";
 import { Loading } from "./loading";
-
 import { selectLoadingFlagCount } from "../../utils/store";
 
 import type { TypeLayout, TypeStore } from "../../lib/types";
