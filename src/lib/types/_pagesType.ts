@@ -23,3 +23,6 @@ export type TypeSignUp = { email: string; password: string };
 
 // Verification
 export type TypeVerification = { verificationCode: string; email: string };
+
+// AuthProvider
+export type TypeAuthContext = { isSignedIn: boolean; refreshAuthState: () => void };

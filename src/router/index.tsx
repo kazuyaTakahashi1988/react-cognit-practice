@@ -12,7 +12,7 @@ import DropdownMenuExample from "../pages/example/dropdownMenuExample";
 import FormExample from "../pages/example/formExample";
 import ModalExample from "../pages/example/modalExample";
 import TodoExample from "../pages/example/todoExample";
-import { useAuth } from "../utils/authHelper/authProvider";
+import { useAuth } from "../utils/authHelper";
 
 import type React from "react";
 
