@@ -3,13 +3,16 @@
 ---------------------------------------------------------- */
 
 import type { TypeTodoExample } from ".";
-import type { UseFormRegister, FieldArrayWithId } from "react-hook-form";
+import type { UseFormRegister, FieldArrayWithId, FieldErrors } from "react-hook-form";
 
-// Layout
-export type TypeLayout = { type: string; children?: React.ReactNode };
+// ページタイプ（TypeHeader / TypeLayout 用）
+export type PageType = "auth" | "example";
 
 // Header
-export type TypeHeader = { type: string };
+export type TypeHeader = { type: PageType };
+
+// Layout
+export type TypeLayout = { type: PageType; children?: React.ReactNode };
 
 // Label
 export type TypeLabel = { label: { text: string; required?: boolean } };
@@ -29,7 +32,7 @@ export type TypeTodoItems = {
   onRemove?: (event: React.MouseEvent<HTMLElement, MouseEvent>) => void;
   fields: FieldArrayWithId<TypeTodoExample, "todoItems", "id">[];
   register: UseFormRegister<TypeTodoExample>;
-  errors?: object;
+  errors?: FieldErrors<TypeTodoExample>;
 };
 
 // CheckBox
