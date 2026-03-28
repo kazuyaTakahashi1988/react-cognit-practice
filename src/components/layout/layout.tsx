@@ -5,17 +5,19 @@ import { Footer } from "./footer";
 import { Header } from "./header";
 import { Loading } from "./loading";
 
+import { selectLoadingFlagCount } from "../../utils/store";
+
 import type { TypeLayout, TypeStore } from "../../lib/types";
 import type React from "react";
 
 export const Layout: React.FC<TypeLayout> = (props) => {
   const { type, children } = props;
 
-  const loadingFlug = useSelector((state: TypeStore) => state.loadingFlug);
+  const loadingFlagCount = useSelector((state: TypeStore) => selectLoadingFlagCount(state));
 
   return (
     <Styled>
-      {loadingFlug > 0 && <Loading />}
+      {loadingFlagCount > 0 && <Loading />}
 
       <Header type={type} />
 
