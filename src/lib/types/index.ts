@@ -2,3 +2,4 @@ export type * from "./_apiType";
 export type * from "./_componentsType";
 export type * from "./_pagesType";
 export type * from "./_storeType";
+export type * from "./_authType";

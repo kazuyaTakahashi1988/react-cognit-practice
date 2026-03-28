@@ -9,7 +9,7 @@ import { useContext } from "react";
 import { loadingFlagDown, loadingFlagUp, store } from "../store";
 import { AuthContext } from "./authProvider";
 
-import type { TypeSignIn, TypeSignUp, TypeVerification } from "../../lib/types";
+import type { TypeSignIn, TypeSignUp, TypeVerify } from "../../lib/types";
 
 export const userPool = new CognitoUserPool({
   UserPoolId: `${import.meta.env.VITE_APP_AWS_COGNITO_USER_POOL_ID}`,
@@ -78,7 +78,7 @@ export const SignUpHelper = (data: TypeSignUp) => {
 /* -----------------------------------
  * アクティベート 処理
  * -------------------------------- */
-export const VerifyHelper = (data: TypeVerification) => {
+export const VerifyHelper = (data: TypeVerify) => {
   store.dispatch(loadingFlagUp());
 
   const cognitoUser = new CognitoUser({ Username: data.email, Pool: userPool });
