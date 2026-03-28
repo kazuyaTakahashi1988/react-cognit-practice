@@ -3,7 +3,7 @@ import { createRoot } from "react-dom/client";
 import { Provider } from "react-redux";
 
 import App from "./App.tsx";
-import { AuthProvider } from "./contexts/authContext";
+import { AuthProvider } from "./utils/authHelper/authProvider";
 import { store } from "./utils/store";
 
 const container = document.getElementById("root");

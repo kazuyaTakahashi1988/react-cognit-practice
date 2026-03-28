@@ -1,8 +1,8 @@
 import { NavLink, useNavigate } from "react-router-dom";
 import styled from "styled-components";
 
-import { useAuth } from "../../contexts/authContext";
 import { params } from "../../lib/style";
+import { useAuth } from "../../utils/authHelper/authProvider";
 import DropdownMenu from "../dropdownMenu/dropdownMenu";
 
 import type { TypeHeader } from "../../lib/types";

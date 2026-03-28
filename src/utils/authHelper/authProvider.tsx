@@ -1,6 +1,6 @@
 import { createContext, useContext, useMemo, useState } from "react";
 
-import { GetSignInFlag } from "../utils/authHelper";
+import { GetSignInFlag } from ".";
 
 import type React from "react";
 
