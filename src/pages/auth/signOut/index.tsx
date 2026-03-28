@@ -1,5 +1,6 @@
 import styled from "styled-components";
 
+import Button from "../../../components/button/button";
 import Layout from "../../../components/layout/layout";
 import { SignOutHelper, useAuth } from "../../../utils/authHelper";
 
@@ -16,16 +17,16 @@ const SignOut: React.FC = () => {
     <Layout type="auth">
       <Styled>
         <h1>サインアウト</h1>
-        <button type="button" onClick={signOut}>
-          Sign Out
-        </button>
+        <div className="mt-30">
+          <Button onClick={signOut}>Sign Out</Button>
+        </div>
       </Styled>
     </Layout>
   );
 };
 
 const Styled = styled.div`
-  .clm {
+  .mt-30 {
     margin-top: 30px;
   }
 `;
