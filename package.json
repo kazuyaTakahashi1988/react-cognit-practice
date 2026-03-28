@@ -26,7 +26,6 @@
     "react-hook-form": "^7.67.0",
     "react-redux": "^9.2.0",
     "react-router-dom": "^7.9.1",
-    "redux": "^5.0.1",
     "storybook": "^8.6.18",
     "styled-components": "^6.1.19"
   },
