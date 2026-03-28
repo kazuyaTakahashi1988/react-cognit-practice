@@ -33,6 +33,32 @@ const TodoExample: React.FC = () => {
     console.warn(data);
   });
 
+  const isRecord = (value: unknown): value is Record<string, unknown> =>
+    typeof value === "object" && value !== null;
+
+  const getItemErrorMessage = (itemError: unknown, fieldName: "check" | "task") => {
+    if (!isRecord(itemError)) return undefined;
+
+    const fieldError = itemError[fieldName];
+    if (!isRecord(fieldError)) return undefined;
+
+    const message = fieldError.message;
+    return typeof message === "string" ? message : undefined;
+  };
+
+  const todoItemsErrors = Array.isArray(errors.todoItems)
+    ? errors.todoItems.map((itemError: unknown) => ({
+        check:
+          getItemErrorMessage(itemError, "check") != null
+            ? { message: getItemErrorMessage(itemError, "check") }
+            : undefined,
+        task:
+          getItemErrorMessage(itemError, "task") != null
+            ? { message: getItemErrorMessage(itemError, "task") }
+            : undefined,
+      }))
+    : undefined;
+
   return (
     <Layout type="example">
       <Styled>
@@ -49,7 +75,7 @@ const TodoExample: React.FC = () => {
           onRemove={(e) => onRemove(e)}
           fields={fields}
           register={register}
-          errors={errors.todoItems}
+          errors={todoItemsErrors}
         />
 
         <div className="mt-30 button-clm">

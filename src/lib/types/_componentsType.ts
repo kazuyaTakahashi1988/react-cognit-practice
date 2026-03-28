@@ -2,8 +2,8 @@
     ▽ 型定義 (コンポーネント編) ▽
 ---------------------------------------------------------- */
 
-import type { TypeTodoExample } from ".";
-import type { UseFormRegister } from "react-hook-form";
+import type { TypeTodoExample, TypeTodoItem } from ".";
+import type { UseFormRegister, FieldArrayWithId } from "react-hook-form";
 
 // Layout
 export type TypeLayout = { type: string; children?: React.ReactNode };
@@ -22,12 +22,12 @@ export type TypeInput = { label?: { text: string; required?: boolean }; errorMes
 
 // TodoItems
 export type TypeTodoItems = {
-  itemsName: { checkBoxName: string; inputName: string };
+  itemsName: { checkBoxName: keyof TypeTodoItem; inputName: keyof TypeTodoItem };
   onAppend?: (event: React.MouseEvent<HTMLElement, MouseEvent>) => void;
   onRemove?: (event: React.MouseEvent<HTMLElement, MouseEvent>) => void;
-  fields: Array<object & { id: string }>;
+  fields: FieldArrayWithId<TypeTodoExample, "todoItems", "id">[];
   register: UseFormRegister<TypeTodoExample>;
-  errors?: object;
+  errors?: Array<Partial<Record<keyof TypeTodoItem, { message?: string }>>>;
 };
 
 // CheckBox

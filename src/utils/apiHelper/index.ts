@@ -1,6 +1,11 @@
 import axios from "axios";
 
-import type { TypeOptions } from "../../lib/types";
+import type {
+  TypeOptions,
+  TypeApiError,
+  TypeWpPostRequest,
+  TypeWpPostResponse,
+} from "../../lib/types";
 import type { Method, AxiosRequestConfig, AxiosResponse } from "axios";
 
 /* -----------------------------------------------
@@ -9,13 +14,14 @@ import type { Method, AxiosRequestConfig, AxiosResponse } from "axios";
 
 // デフォルトのベースURL
 const DEFAULT_BASE_URL = import.meta.env.VITE_APP_PUBLIC_API_BASE_URL ?? "";
+const API_REQUEST_FAILED_MESSAGE = "API request failed";
 
 /*
  * APIリクエスト 実行処理
  */
 const execute = async <TResponse = unknown, TRequest = unknown>(
   options: TypeOptions<TRequest>,
-): Promise<AxiosResponse<TResponse>> => {
+): Promise<AxiosResponse<TResponse> | TypeApiError> => {
   const {
     apiPath,
     method,
@@ -58,11 +64,16 @@ const execute = async <TResponse = unknown, TRequest = unknown>(
   } catch (err) {
     if (axios.isAxiosError(err)) {
       const message = err.response?.data ?? err.message;
-      console.error("API request failed", message);
-      return message;
+      console.error(API_REQUEST_FAILED_MESSAGE, message);
+
+      return {
+        message: typeof err.message === "string" ? err.message : API_REQUEST_FAILED_MESSAGE,
+        status: err.response?.status,
+        data: err.response?.data,
+      };
     }
 
-    console.error("API request failed", err);
+    console.error(API_REQUEST_FAILED_MESSAGE, err);
     throw err;
   }
 };
@@ -74,7 +85,7 @@ const request = async <TResponse = unknown, TRequest = unknown>(
   method: Method,
   apiPath: string,
   options: Omit<TypeOptions<TRequest>, "apiPath" | "method"> = {},
-): Promise<AxiosResponse<TResponse>> =>
+): Promise<AxiosResponse<TResponse> | TypeApiError> =>
   // APIリクエスト 実行処理
   execute<TResponse, TRequest>({ method, apiPath, ...options });
 
@@ -85,14 +96,14 @@ const request = async <TResponse = unknown, TRequest = unknown>(
 
 // テストゲットAPI（てきとーなやつ）
 export const testGetArticleApi = () => {
-  return request("GET", "/wp-json/wp/v2/posts");
+  return request<TypeWpPostResponse[]>("GET", "/wp-json/wp/v2/posts");
 };
 
 // テストポストAPI（てきとーなやつ）
-export const testPostApi = (data: object) => {
+export const testPostApi = (data: TypeWpPostRequest) => {
   const options = { requestData: data };
 
-  return request("POST", "/wp-json/wp/v2/posts", options);
+  return request<TypeWpPostResponse, TypeWpPostRequest>("POST", "/wp-json/wp/v2/posts", options);
 };
 
 /*

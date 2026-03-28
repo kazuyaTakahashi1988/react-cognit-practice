@@ -14,7 +14,7 @@ import { media, params } from "../../../lib/style";
 import { testPostApi } from "../../../utils/apiHelper"; // テストポストAPI（てきとーなやつ）
 import { loadingFlagDown, loadingFlagUp, store } from "../../../utils/store";
 
-import type { TypeFormExample } from "../../../lib/types";
+import type { TypeFormExample, TypeWpPostRequest } from "../../../lib/types";
 import type React from "react";
 
 const FormExample: React.FC = () => {
@@ -39,8 +39,14 @@ const FormExample: React.FC = () => {
   });
 
   const onSubmit = handleSubmit(async (data) => {
+    const requestPayload: TypeWpPostRequest = {
+      title: data.inputName,
+      content: data.textAreaName,
+      status: "draft",
+    };
+
     store.dispatch(loadingFlagUp());
-    const responsePost = await testPostApi(data);
+    const responsePost = await testPostApi(requestPayload);
     console.warn("API response:", responsePost);
     store.dispatch(loadingFlagDown());
   });
@@ -82,8 +88,8 @@ const FormExample: React.FC = () => {
           ]}
           {...register("checkBoxName", {
             required: { value: true, message: "必須項目だよ。" },
-            validate: (e: object) => {
-              if (Object.keys(e).length < 2) return "２つ以上選択してください。";
+            validate: (checkedValues: string[]) => {
+              if (checkedValues.length < 2) return "２つ以上選択してください。";
             },
           })}
           errorMessage={errors.checkBoxName?.message}

@@ -5,10 +5,11 @@ import CheckBox from "./checkBox";
 import Input from "./input";
 import Button from "../button/button";
 
-import type { TypeTodoItems } from "../../lib/types";
+import type { TypeTodoItems, TypeTodoItem } from "../../lib/types";
 import type React from "react";
 
-type Props = React.InputHTMLAttributes<HTMLInputElement> & TypeTodoItems;
+type Props = Omit<React.InputHTMLAttributes<HTMLInputElement>, "name"> &
+  TypeTodoItems & { name: "todoItems" };
 
 export const TodoItemsField: React.ForwardRefRenderFunction<HTMLInputElement, Props> = (
   props,
@@ -19,14 +20,7 @@ export const TodoItemsField: React.ForwardRefRenderFunction<HTMLInputElement, Pr
   const name = rest.name;
   const { checkBoxName, inputName } = itemsName;
 
-  const isErrorArray = (
-    value: object | undefined,
-  ): value is { [key: string]: { message?: string } }[] => {
-    return Array.isArray(value);
-  };
-
-  const getErrorMessage = (index: number, itemName: string) => {
-    if (!isErrorArray(errors)) return undefined;
+  const getErrorMessage = (index: number, itemName: keyof TypeTodoItem) => {
     return errors?.[index]?.[itemName]?.message;
   };
 
