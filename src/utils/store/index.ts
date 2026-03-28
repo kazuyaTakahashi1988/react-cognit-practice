@@ -1,4 +1,4 @@
-import { legacy_createStore as createStore } from "redux";
+import { configureStore } from "@reduxjs/toolkit";
 
 const initialState = {
   loadingFlug: 0,
@@ -20,4 +20,6 @@ const CounterReducer = (state = initialState, action: { type: string }) => {
   }
 };
 
-export const store = createStore(CounterReducer);
+export const store = configureStore({
+  reducer: CounterReducer,
+});
