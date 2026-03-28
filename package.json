@@ -18,6 +18,7 @@
     "prepare": "husky install"
   },
   "dependencies": {
+    "@reduxjs/toolkit": "^2.11.2",
     "amazon-cognito-identity-js": "^6.3.15",
     "axios": "^1.13.6",
     "react": "^19.2.4",
