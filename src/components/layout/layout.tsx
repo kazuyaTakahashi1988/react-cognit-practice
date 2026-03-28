@@ -1,21 +1,21 @@
-import { useSelector } from "react-redux";
 import styled from "styled-components";
 
 import { Footer } from "./footer";
 import { Header } from "./header";
 import { Loading } from "./loading";
+import { useAppSelector } from "../../utils/store/hooks";
 
-import type { TypeLayout, TypeStore } from "../../lib/types";
+import type { TypeLayout } from "../../lib/types";
 import type React from "react";
 
 export const Layout: React.FC<TypeLayout> = (props) => {
   const { type, children } = props;
 
-  const loadingFlug = useSelector((state: TypeStore) => state.loadingFlug);
+  const loadingFlag = useAppSelector((state) => state.loadingFlag);
 
   return (
     <Styled>
-      {loadingFlug > 0 && <Loading />}
+      {loadingFlag > 0 && <Loading />}
 
       <Header type={type} />
 
