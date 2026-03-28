@@ -9,7 +9,7 @@ import type { Method, AxiosRequestConfig, AxiosResponse } from "axios";
 
 // デフォルトのベースURL
 const DEFAULT_BASE_URL = import.meta.env.VITE_APP_PUBLIC_API_BASE_URL ?? "";
-const API_REQUEST_FAILED_MESSAGE = "API request failed";
+const API_REQUEST_FAILED_MESSAGE = "API request failed:";
 
 /*
  * APIリクエスト 実行処理
