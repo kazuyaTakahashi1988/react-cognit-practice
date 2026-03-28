@@ -1,11 +1,6 @@
 import axios from "axios";
 
-import type {
-  TypeOptions,
-  TypeApiError,
-  TypeWpPostRequest,
-  TypeWpPostResponse,
-} from "../../lib/types";
+import type { TypeOptions, TypeApiError, TypeFormExample } from "../../lib/types";
 import type { Method, AxiosRequestConfig, AxiosResponse } from "axios";
 
 /* -----------------------------------------------
@@ -96,14 +91,14 @@ const request = async <TResponse = unknown, TRequest = unknown>(
 
 // テストゲットAPI（てきとーなやつ）
 export const testGetArticleApi = () => {
-  return request<TypeWpPostResponse[]>("GET", "/wp-json/wp/v2/posts");
+  return request("GET", "/wp-json/wp/v2/posts");
 };
 
 // テストポストAPI（てきとーなやつ）
-export const testPostApi = (data: TypeWpPostRequest) => {
+export const testPostApi = (data: TypeFormExample) => {
   const options = { requestData: data };
 
-  return request<TypeWpPostResponse, TypeWpPostRequest>("POST", "/wp-json/wp/v2/posts", options);
+  return request("POST", "/wp-json/wp/v2/posts", options);
 };
 
 /*

@@ -14,7 +14,7 @@ import { media, params } from "../../../lib/style";
 import { testPostApi } from "../../../utils/apiHelper"; // テストポストAPI（てきとーなやつ）
 import { loadingFlagDown, loadingFlagUp, store } from "../../../utils/store";
 
-import type { TypeFormExample, TypeWpPostRequest } from "../../../lib/types";
+import type { TypeFormExample } from "../../../lib/types";
 import type React from "react";
 
 const FormExample: React.FC = () => {
@@ -39,14 +39,8 @@ const FormExample: React.FC = () => {
   });
 
   const onSubmit = handleSubmit(async (data) => {
-    const requestPayload: TypeWpPostRequest = {
-      title: data.inputName,
-      content: data.textAreaName,
-      status: "draft",
-    };
-
     store.dispatch(loadingFlagUp());
-    const responsePost = await testPostApi(requestPayload);
+    const responsePost = await testPostApi(data);
     console.warn("API response:", responsePost);
     store.dispatch(loadingFlagDown());
   });

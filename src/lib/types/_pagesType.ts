@@ -1,6 +1,9 @@
 /* -------------------------------------------------------
     ▽ 型定義 (ページ編) ▽
 ---------------------------------------------------------- */
+
+import type { TypeTodoItem } from "./_componentsType";
+
 // FormExample
 export type TypeFormExample = {
   inputName: string;
@@ -13,11 +16,4 @@ export type TypeFormExample = {
 };
 
 // TodoExample
-export type TypeTodoItem = {
-  check: boolean;
-  task: string;
-};
-
-export type TypeTodoExample = {
-  todoItems: TypeTodoItem[];
-};
+export type TypeTodoExample = { todoItems: TypeTodoItem[] };
