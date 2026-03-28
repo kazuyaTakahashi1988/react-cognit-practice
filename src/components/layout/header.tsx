@@ -105,7 +105,7 @@ export const Header: React.FC<TypeHeader> = (props) => {
                     },
                   ]}
                 >
-                  <a>Example</a>
+                  <b>Example</b>
                 </DropdownMenu>
               </li>
             </>
@@ -123,7 +123,7 @@ export const Header: React.FC<TypeHeader> = (props) => {
                     },
                   ]}
                 >
-                  <a>Auth</a>
+                  <b>Auth</b>
                 </DropdownMenu>
               </li>
             </>
@@ -139,7 +139,7 @@ export const Header: React.FC<TypeHeader> = (props) => {
                     },
                   ]}
                 >
-                  <a>Auth</a>
+                  <b>Auth</b>
                 </DropdownMenu>
               </li>
             </>
