@@ -1,39 +1,36 @@
 import { configureStore, createSlice } from "@reduxjs/toolkit";
 
-export type TypeAppState = {
-  loadingFlagCount: number;
-  // xxxxFlag: boolean;
-};
+import type { TypeState } from "../../lib/types";
 
-const initialState: TypeAppState = {
+const initialState: TypeState = {
   loadingFlagCount: 0,
-  // xxxxFlag: false,
+  // xxxxFlag: false
 };
 
 const appSlice = createSlice({
   name: "app",
   initialState,
   reducers: {
-    loadingFlagUp: (state: TypeAppState) => {
+    loadingFlagUp: (state: TypeState) => {
       state.loadingFlagCount += 1;
     },
-    loadingFlagDown: (state: TypeAppState) => {
+    loadingFlagDown: (state: TypeState) => {
       state.loadingFlagCount = Math.max(0, state.loadingFlagCount - 1);
     },
-    // xxxxFlagTrue: (state) => {
+    // xxxxFlagTrue: (state: TypeState) => {
     //   state.xxxxFlag = true;
     // },
-    // xxxxFlagFalse: (state) => {
+    // xxxxFlagFalse: (state: TypeState) => {
     //   state.xxxxFlag = false;
     // },
   },
 });
 
-export const { loadingFlagUp, loadingFlagDown } = appSlice.actions;
+export const {
+  loadingFlagUp,
+  loadingFlagDown,
+  // xxxxFlagTrue,
+  // xxxxFlagFalse
+} = appSlice.actions;
 
 export const store = configureStore({ reducer: appSlice.reducer });
-
-export type TypeStore = ReturnType<typeof store.getState>;
-export type TypeStoreDispatch = typeof store.dispatch;
-
-export const selectLoadingFlagCount = (state: TypeStore) => state.loadingFlagCount;

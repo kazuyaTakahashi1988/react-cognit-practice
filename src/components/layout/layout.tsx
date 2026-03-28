@@ -4,15 +4,14 @@ import styled from "styled-components";
 import { Footer } from "./footer";
 import { Header } from "./header";
 import { Loading } from "./loading";
-import { selectLoadingFlagCount } from "../../utils/store";
 
-import type { TypeLayout, TypeStore } from "../../lib/types";
+import type { TypeLayout, TypeSelectorState } from "../../lib/types";
 import type React from "react";
 
 export const Layout: React.FC<TypeLayout> = (props) => {
   const { type, children } = props;
 
-  const loadingFlagCount = useSelector((state: TypeStore) => selectLoadingFlagCount(state));
+  const loadingFlagCount = useSelector((state: TypeSelectorState) => state.loadingFlagCount);
 
   return (
     <Styled>
