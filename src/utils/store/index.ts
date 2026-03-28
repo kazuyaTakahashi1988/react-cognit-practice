@@ -20,6 +20,4 @@ const CounterReducer = (state = initialState, action: { type: string }) => {
   }
 };
 
-export const store = configureStore({
-  reducer: CounterReducer,
-});
+export const store = configureStore({ reducer: CounterReducer });
