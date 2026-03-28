@@ -11,7 +11,7 @@ import SwitchButton from "../../../components/form/switchButton";
 import TextArea from "../../../components/form/textArea";
 import Layout from "../../../components/layout/layout";
 import { media, params } from "../../../lib/style";
-import { testPostApi } from "../../../utils/apiHelper"; // テストポストAPI（てきとーなやつ）
+import { testPostApi } from "../../../utils/apiHelper";
 import { loadingFlagDown, loadingFlagUp, store } from "../../../utils/store";
 
 import type { TypeFormExample } from "../../../lib/types";
@@ -41,7 +41,11 @@ const FormExample: React.FC = () => {
   const onSubmit = handleSubmit(async (data) => {
     store.dispatch(loadingFlagUp());
     const responsePost = await testPostApi(data);
-    console.warn("API response:", responsePost);
+    if (responsePost.ok) {
+      console.warn("API success response:", responsePost.data);
+    } else {
+      console.error("API error response:", responsePost.error);
+    }
     store.dispatch(loadingFlagDown());
   });
 

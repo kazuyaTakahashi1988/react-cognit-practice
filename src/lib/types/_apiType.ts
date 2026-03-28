@@ -15,3 +15,11 @@ export type TypeOptions<TRequest> = {
 };
 
 export type TypeApiError = { message: string; status?: number; data?: unknown };
+
+export type TypeApiSuccess<TData> = { ok: true; data: TData };
+
+export type TypeApiFailure<TError = TypeApiError> = { ok: false; error: TError };
+
+export type TypeApiResult<TData, TError = TypeApiError> =
+  | TypeApiSuccess<TData>
+  | TypeApiFailure<TError>;

@@ -1,70 +1,62 @@
 import axios from "axios";
 
-import type { TypeOptions, TypeApiError, TypeFormExample } from "../../lib/types";
-import type { Method, AxiosRequestConfig, AxiosResponse } from "axios";
+import type { TypeApiError, TypeApiResult, TypeFormExample, TypeOptions } from "../../lib/types";
+import type { AxiosRequestConfig, Method } from "axios";
 
 /* -----------------------------------------------
  * axios および API 処理
  * ----------------------------------------------- */
 
-// デフォルトのベースURL
 const DEFAULT_BASE_URL = import.meta.env.VITE_APP_PUBLIC_API_BASE_URL ?? "";
 const API_REQUEST_FAILED_MESSAGE = "API request failed:";
 
-/*
- * APIリクエスト 実行処理
- */
+const setHeaders = (
+  accessToken?: string,
+  headers?: Record<string, string>,
+): Record<string, string> => {
+  const bearerToken =
+    accessToken ??
+    (typeof sessionStorage !== "undefined" ? (sessionStorage.getItem("access_token") ?? undefined) : undefined);
+
+  return {
+    Accept: "application/json",
+    "Content-Type": "application/json",
+    ...(bearerToken != null ? { Authorization: `Bearer ${bearerToken}` } : {}),
+    ...headers,
+  };
+};
+
 const execute = async <TResponse = unknown, TRequest = unknown>(
   options: TypeOptions<TRequest>,
-): Promise<AxiosResponse<TResponse> | TypeApiError> => {
-  const {
-    apiPath,
-    method,
-    requestData,
-    params,
-    headers,
-    baseURL = DEFAULT_BASE_URL, // デフォルトのベースURL
-    accessToken,
-  } = options;
-
-  // ヘッダー情報のセット
-  const setHeaders = (
-    accessToken?: string,
-    headers?: Record<string, string>,
-  ): Record<string, string> => {
-    const bearerToken =
-      accessToken ??
-      (typeof sessionStorage !== "undefined"
-        ? (sessionStorage.getItem("access_token") ?? undefined)
-        : undefined);
-
-    return {
-      Accept: "application/json",
-      "Content-Type": "application/json",
-      ...(bearerToken != null ? { Authorization: `Bearer ${bearerToken}` } : {}),
-      ...headers,
-    };
-  };
+): Promise<TypeApiResult<TResponse, TypeApiError>> => {
+  const { apiPath, method, requestData, params, headers, baseURL = DEFAULT_BASE_URL, accessToken } = options;
 
   const requestConfig: AxiosRequestConfig = {
     method,
     url: `${baseURL}${apiPath}`,
     data: requestData,
     params,
-    headers: setHeaders(accessToken, headers), // ヘッダー情報のセット
+    headers: setHeaders(accessToken, headers),
   };
 
   try {
-    return await axios.request<TResponse>(requestConfig);
+    const response = await axios.request<TResponse>(requestConfig);
+    return {
+      ok: true,
+      data: response.data,
+    };
   } catch (err) {
     if (axios.isAxiosError(err)) {
       const message = err.response?.data ?? err.message;
       console.error(API_REQUEST_FAILED_MESSAGE, message);
 
       return {
-        message: typeof err.message === "string" ? err.message : API_REQUEST_FAILED_MESSAGE,
-        status: err.response?.status,
-        data: err.response?.data,
+        ok: false,
+        error: {
+          message: typeof err.message === "string" ? err.message : API_REQUEST_FAILED_MESSAGE,
+          status: err.response?.status,
+          data: err.response?.data,
+        },
       };
     }
 
@@ -73,43 +65,22 @@ const execute = async <TResponse = unknown, TRequest = unknown>(
   }
 };
 
-/*
- * APIリクエスト（フォーマット） 処理
- */
 const request = async <TResponse = unknown, TRequest = unknown>(
   method: Method,
   apiPath: string,
   options: Omit<TypeOptions<TRequest>, "apiPath" | "method"> = {},
-): Promise<AxiosResponse<TResponse> | TypeApiError> =>
-  // APIリクエスト 実行処理
-  execute<TResponse, TRequest>({ method, apiPath, ...options });
+): Promise<TypeApiResult<TResponse, TypeApiError>> => execute<TResponse, TRequest>({ method, apiPath, ...options });
 
-/* -----------------------------------------------
- * 各 APIリクエスト
- * （並べくswaggerの順序と揃える）
- * ----------------------------------------------- */
-
-// テストゲットAPI（てきとーなやつ）
-export const testGetArticleApi = () => {
-  return request("GET", "/wp-json/wp/v2/posts");
+type TypePost = {
+  id: number;
+  title?: { rendered?: string };
+  content?: { rendered?: string };
 };
 
-// テストポストAPI（てきとーなやつ）
-export const testPostApi = (data: TypeFormExample) => {
-  const options = { requestData: data };
-
-  return request("POST", "/wp-json/wp/v2/posts", options);
+export const testGetArticleApi = (): Promise<TypeApiResult<TypePost[]>> => {
+  return request<TypePost[]>("GET", "/wp-json/wp/v2/posts");
 };
 
-/*
- * export const postXXXXApi = (params, baseURL, headers, requestData, accessToken) => {
- *  const options = {
- *    params, // クエリパラム
- *    baseURL, // DEFAULT_BASE_URL を使わない際のベースURLの指定
- *    headers, // 追加ヘッダー情報を付与
- *    requestData, // リクエストデータ（リクエストボディ）
- *    accessToken, // アクセストークン
- *  };
- *  return request('POST', '/xxxx/xxxx', options);
- * };
- */
+export const testPostApi = (data: TypeFormExample): Promise<TypeApiResult<TypePost>> => {
+  return request<TypePost, TypeFormExample>("POST", "/wp-json/wp/v2/posts", { requestData: data });
+};
