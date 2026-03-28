@@ -4,12 +4,14 @@ import styled from "styled-components";
 import Button from "../../../components/button/button";
 import Input from "../../../components/form/input";
 import Layout from "../../../components/layout/layout";
+import { useAuth } from "../../../contexts/authContext";
 import { SignInHelper } from "../../../utils/authHelper";
 
 import type { TypeSignIn } from "../../../lib/types";
 import type React from "react";
 
 const SignIn: React.FC = () => {
+  const { refreshAuthState } = useAuth();
   const {
     register,
     handleSubmit,
@@ -17,8 +19,9 @@ const SignIn: React.FC = () => {
     formState: { errors },
   } = useForm<TypeSignIn>({ defaultValues: { email: "", password: "" } });
 
-  const onSubmit = handleSubmit((data) => {
-    SignInHelper(data);
+  const onSubmit = handleSubmit(async (data) => {
+    await SignInHelper(data);
+    refreshAuthState();
   });
 
   return (

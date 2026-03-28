@@ -1,8 +1,8 @@
 import { NavLink, useNavigate } from "react-router-dom";
 import styled from "styled-components";
 
+import { useAuth } from "../../contexts/authContext";
 import { params } from "../../lib/style";
-import { GetSignInFlag } from "../../utils/authHelper";
 import DropdownMenu from "../dropdownMenu/dropdownMenu";
 
 import type { TypeHeader } from "../../lib/types";
@@ -11,6 +11,7 @@ import type React from "react";
 export const Header: React.FC<TypeHeader> = (props) => {
   const { type } = props;
   const navigate = useNavigate();
+  const { isSignedIn } = useAuth();
 
   return (
     <Styled>
@@ -46,7 +47,7 @@ export const Header: React.FC<TypeHeader> = (props) => {
               </li>
             </>
           )}
-          {type === "auth" && !GetSignInFlag() && (
+          {type === "auth" && !isSignedIn && (
             <>
               <li>
                 <NavLink end to="/auth/signin">
@@ -65,7 +66,7 @@ export const Header: React.FC<TypeHeader> = (props) => {
               </li>
             </>
           )}
-          {type === "auth" && GetSignInFlag() && (
+          {type === "auth" && isSignedIn && (
             <>
               <li>
                 <NavLink end to="/auth/signout">
@@ -109,7 +110,7 @@ export const Header: React.FC<TypeHeader> = (props) => {
               </li>
             </>
           )}
-          {type === "auth" && !GetSignInFlag() && (
+          {type === "auth" && !isSignedIn && (
             <>
               <li>
                 <DropdownMenu
@@ -127,14 +128,14 @@ export const Header: React.FC<TypeHeader> = (props) => {
               </li>
             </>
           )}
-          {type === "auth" && GetSignInFlag() && (
+          {type === "auth" && isSignedIn && (
             <>
               <li>
                 <DropdownMenu
                   menuList={[
                     {
                       text: "SignOut",
-                      onClick: () => navigate("/auth/signOut", { replace: true }),
+                      onClick: () => navigate("/auth/signout", { replace: true }),
                     },
                   ]}
                 >

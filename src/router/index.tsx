@@ -1,12 +1,9 @@
-import { Routes, Route, Navigate } from "react-router-dom";
-
-/* -----------------------------------
- * サインイン 済 or 未 フラグ
- * -------------------------------- */
+import { Navigate, Route, Routes } from "react-router-dom";
 
 /* -----------------------------------
  * PAGES コンポーネント
  * -------------------------------- */
+import { useAuth } from "../contexts/authContext";
 import SignIn from "../pages/auth/signIn";
 import SignOut from "../pages/auth/signOut";
 import SignUp from "../pages/auth/signUp";
@@ -16,32 +13,74 @@ import DropdownMenuExample from "../pages/example/dropdownMenuExample";
 import FormExample from "../pages/example/formExample";
 import ModalExample from "../pages/example/modalExample";
 import TodoExample from "../pages/example/todoExample";
-import { GetSignInFlag } from "../utils/authHelper";
+
+import type React from "react";
+
+const ProtectedRoute: React.FC<{ children: React.ReactNode }> = ({ children }) => {
+  const { isSignedIn } = useAuth();
+
+  if (!isSignedIn) {
+    return <Navigate to="/auth/signin" replace />;
+  }
+
+  return <>{children}</>;
+};
+
+const PublicRoute: React.FC<{ children: React.ReactNode }> = ({ children }) => {
+  const { isSignedIn } = useAuth();
+
+  if (isSignedIn) {
+    return <Navigate to="/auth/signout" replace />;
+  }
+
+  return <>{children}</>;
+};
 
 export function Router() {
+  const { isSignedIn } = useAuth();
+
   return (
     <Routes>
-      {GetSignInFlag() ? (
-        <>
-          {/* -----------------------------------
-           * ルーター設定（サインイン 済）
-           * -------------------------------- */}
-          <Route path="/" element={<Navigate to="/auth/signout" replace />} />
-          <Route path="/auth" element={<Navigate to="/auth/signout" replace />} />
-          <Route path="/auth/signout" element={<SignOut />} />
-        </>
-      ) : (
-        <>
-          {/* -----------------------------------
-           * ルーター設定（サインイン 未）
-           * -------------------------------- */}
-          <Route path="/" element={<Navigate to="/example/form_example" replace />} />
-          <Route path="/auth" element={<Navigate to="/auth/signin" replace />} />
-          <Route path="/auth/signin" element={<SignIn />} />
-          <Route path="/auth/signup" element={<SignUp />} />
-          <Route path="/auth/verification" element={<Verification />} />
-        </>
-      )}
+      <Route
+        path="/"
+        element={<Navigate to={isSignedIn ? "/auth/signout" : "/example/form_example"} replace />}
+      />
+      <Route
+        path="/auth"
+        element={<Navigate to={isSignedIn ? "/auth/signout" : "/auth/signin"} replace />}
+      />
+      <Route
+        path="/auth/signin"
+        element={
+          <PublicRoute>
+            <SignIn />
+          </PublicRoute>
+        }
+      />
+      <Route
+        path="/auth/signup"
+        element={
+          <PublicRoute>
+            <SignUp />
+          </PublicRoute>
+        }
+      />
+      <Route
+        path="/auth/verification"
+        element={
+          <PublicRoute>
+            <Verification />
+          </PublicRoute>
+        }
+      />
+      <Route
+        path="/auth/signout"
+        element={
+          <ProtectedRoute>
+            <SignOut />
+          </ProtectedRoute>
+        }
+      />
       <Route path="/example" element={<Navigate to="/example/form_example" replace />} />
       <Route path="/example/form_example" element={<FormExample />} />
       <Route path="/example/todo_example" element={<TodoExample />} />

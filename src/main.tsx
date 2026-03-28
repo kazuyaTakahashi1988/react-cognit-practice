@@ -3,6 +3,7 @@ import { createRoot } from "react-dom/client";
 import { Provider } from "react-redux";
 
 import App from "./App.tsx";
+import { AuthProvider } from "./contexts/authContext";
 import { store } from "./utils/store";
 
 const container = document.getElementById("root");
@@ -14,7 +15,9 @@ if (!container) {
 createRoot(container).render(
   <React.StrictMode>
     <Provider store={store}>
-      <App />
+      <AuthProvider>
+        <App />
+      </AuthProvider>
     </Provider>
   </React.StrictMode>,
 );

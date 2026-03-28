@@ -1,12 +1,17 @@
 import styled from "styled-components";
 
 import Layout from "../../../components/layout/layout";
+import { useAuth } from "../../../contexts/authContext";
 import { SignOutHelper } from "../../../utils/authHelper";
 
 import type React from "react";
 
 const SignOut: React.FC = () => {
-  const signOut = () => SignOutHelper();
+  const { refreshAuthState } = useAuth();
+  const signOut = async () => {
+    await SignOutHelper();
+    refreshAuthState();
+  };
 
   return (
     <Layout type="auth">

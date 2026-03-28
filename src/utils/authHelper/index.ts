@@ -17,33 +17,35 @@ const userPool = new CognitoUserPool({
 /* -----------------------------------
  * サインイン 済 or 未 フラグ
  * -------------------------------- */
-export const GetSignInFlag = () => userPool.getCurrentUser();
+export const GetSignInFlag = () => !!userPool.getCurrentUser();
 
 /* -----------------------------------
  * サインイン 処理
  * -------------------------------- */
-export const SignInHelper = (data: TypeSignIn) => {
-  store.dispatch(loadingFlagUp());
+export const SignInHelper = async (data: TypeSignIn) =>
+  await new Promise<boolean>((resolve) => {
+    store.dispatch(loadingFlagUp());
 
-  const authenticationDetails = new AuthenticationDetails({
-    Username: data.email,
-    Password: data.password,
+    const authenticationDetails = new AuthenticationDetails({
+      Username: data.email,
+      Password: data.password,
+    });
+
+    const cognitoUser = new CognitoUser({ Username: data.email, Pool: userPool });
+
+    cognitoUser.authenticateUser(authenticationDetails, {
+      onSuccess: () => {
+        console.warn("SignIn succeeded");
+        store.dispatch(loadingFlagDown());
+        resolve(true);
+      },
+      onFailure: (err) => {
+        console.error(err);
+        store.dispatch(loadingFlagDown());
+        resolve(false);
+      },
+    });
   });
-
-  const cognitoUser = new CognitoUser({ Username: data.email, Pool: userPool });
-
-  cognitoUser.authenticateUser(authenticationDetails, {
-    onSuccess: (result) => {
-      const accessToken = result.getAccessToken().getJwtToken();
-      console.warn("AccessToken: " + accessToken);
-      store.dispatch(loadingFlagDown());
-    },
-    onFailure: (err) => {
-      console.error(err);
-      store.dispatch(loadingFlagDown());
-    },
-  });
-};
 
 /* -----------------------------------
  * サインアップ 処理
@@ -87,18 +89,21 @@ export const VerifyHelper = (data: TypeVerification) => {
 /* -----------------------------------
  * サインアウト 処理
  * -------------------------------- */
-export const SignOutHelper = () => {
-  store.dispatch(loadingFlagUp());
+export const SignOutHelper = async () =>
+  await new Promise<boolean>((resolve) => {
+    store.dispatch(loadingFlagUp());
 
-  const cognitoUser = userPool.getCurrentUser();
-  if (cognitoUser) {
-    cognitoUser.signOut();
-    localStorage.clear();
-    console.warn("signed out");
-    store.dispatch(loadingFlagDown());
-  } else {
-    localStorage.clear();
-    console.warn("no user signing in");
-    store.dispatch(loadingFlagDown());
-  }
-};
+    const cognitoUser = userPool.getCurrentUser();
+    if (cognitoUser) {
+      cognitoUser.signOut();
+      localStorage.clear();
+      console.warn("signed out");
+      store.dispatch(loadingFlagDown());
+      resolve(true);
+    } else {
+      localStorage.clear();
+      console.warn("no user signing in");
+      store.dispatch(loadingFlagDown());
+      resolve(false);
+    }
+  });
