@@ -4,7 +4,8 @@ import type { TypeState } from "../../lib/types";
 
 const initialState: TypeState = {
   loadingFlagCount: 0,
-  // xxxxFlag: false
+  // xxxxString: "",
+  // xxxxFlag: false,
 };
 
 const appSlice = createSlice({
@@ -17,10 +18,13 @@ const appSlice = createSlice({
     loadingFlagDown: (state: TypeState) => {
       state.loadingFlagCount = Math.max(0, state.loadingFlagCount - 1);
     },
-    // xxxxFlagTrue: (state: TypeState) => {
+    // xxxxStringSet: (state: TypeState, action: { payload: string }) => {
+    //   state.xxxxString = action.payload;
+    // },
+    // xxxxFlagSetTrue: (state: TypeState) => {
     //   state.xxxxFlag = true;
     // },
-    // xxxxFlagFalse: (state: TypeState) => {
+    // xxxxFlagSetFalse: (state: TypeState) => {
     //   state.xxxxFlag = false;
     // },
   },
@@ -29,8 +33,9 @@ const appSlice = createSlice({
 export const {
   loadingFlagUp,
   loadingFlagDown,
-  // xxxxFlagTrue,
-  // xxxxFlagFalse
+  // xxxxStringSet,
+  // xxxxFlagSetTrue,
+  // xxxxFlagSetFalse
 } = appSlice.actions;
 
 export const store = configureStore({ reducer: appSlice.reducer });

@@ -7,5 +7,6 @@ export type TypeSelectorState = ReturnType<typeof store.getState>;
 
 export type TypeState = {
   loadingFlagCount: number;
-  // xxxxFlag: boolean
+  // xxxxString: string;
+  // xxxxFlag: boolean;
 };
