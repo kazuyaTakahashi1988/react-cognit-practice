@@ -2,17 +2,13 @@
     ▽ 型定義 (コンポーネント編) ▽
 ---------------------------------------------------------- */
 
-import type { TypeTodoExample } from ".";
-import type { UseFormRegister, FieldArrayWithId, FieldErrors } from "react-hook-form";
-
-// ページタイプ（TypeHeader / TypeLayout 用）
-export type PageType = "auth" | "example";
+import type { UseFormRegister } from "react-hook-form";
 
 // Header
-export type TypeHeader = { type: PageType };
+export type TypeHeader = { type: string };
 
 // Layout
-export type TypeLayout = { type: PageType; children?: React.ReactNode };
+export type TypeLayout = { type: string; children?: React.ReactNode };
 
 // Label
 export type TypeLabel = { label: { text: string; required?: boolean } };
@@ -24,15 +20,13 @@ export type TypeErrorMessage = { errorMessage: string };
 export type TypeInput = { label?: { text: string; required?: boolean }; errorMessage?: string };
 
 // TodoItems
-export type TypeTodoItem = { check: boolean; task: string };
-
 export type TypeTodoItems = {
-  itemsName: { checkBoxName: keyof TypeTodoItem; inputName: keyof TypeTodoItem };
+  itemsName: { checkBoxName: string; inputName: string };
   onAppend?: (event: React.MouseEvent<HTMLElement, MouseEvent>) => void;
   onRemove?: (event: React.MouseEvent<HTMLElement, MouseEvent>) => void;
-  fields: FieldArrayWithId<TypeTodoExample, "todoItems", "id">[];
-  register: UseFormRegister<TypeTodoExample>;
-  errors?: FieldErrors<TypeTodoExample>;
+  fields: Array<object & { id: string }>;
+  register: UseFormRegister<{ [x: string]: { [x: string]: boolean | string }[] }>;
+  errors?: object;
 };
 
 // CheckBox
