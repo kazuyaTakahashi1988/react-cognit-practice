@@ -24,7 +24,7 @@ const AccordionExample: React.FC = () => {
         <Accordion
           className="mt-30"
           title="アコーディオンタイトル（デフォルトオープン）"
-          initOpen={true}
+          visible={true}
         >
           <h3>
             アコーディオンコンテンツ

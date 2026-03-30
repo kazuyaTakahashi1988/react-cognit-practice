@@ -12,12 +12,12 @@ export const AccordionField: React.ForwardRefRenderFunction<HTMLDivElement, Prop
   props,
   ref,
 ) => {
-  const { title, initOpen, children, ...rest } = props;
-  const [isOpen, setIsOpen] = useState(initOpen);
+  const { title, visible = false, children, ...rest } = props;
+  const [isOpen, setIsOpen] = useState(visible);
 
   useEffect(() => {
-    setIsOpen(initOpen);
-  }, [initOpen]);
+    setIsOpen(visible);
+  }, [visible]);
 
   return (
     <Styled ref={ref} {...rest}>

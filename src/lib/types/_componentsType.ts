@@ -81,7 +81,7 @@ export type TypeModal = {
 };
 
 // Accordion
-export type TypeAccordion = { title: string; children?: React.ReactNode; initOpen?: boolean };
+export type TypeAccordion = { title: string; children?: React.ReactNode; visible?: boolean };
 
 // DropdownMenu
 export type TypeDropdownMenu = {
