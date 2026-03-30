@@ -1,8 +1,9 @@
 import axios from "axios";
 
+import { loadingFlagDown, loadingFlagUp, store } from "../../utils/store";
+
 import type { TypeOptions, TypeApiError, TypeFormExample } from "../../lib/types";
 import type { Method, AxiosRequestConfig, AxiosResponse } from "axios";
-
 /* -----------------------------------------------
  * axios および API 処理
  * ----------------------------------------------- */
@@ -24,7 +25,10 @@ const execute = async <TResponse = unknown, TRequest = unknown>(
     headers,
     baseURL = DEFAULT_BASE_URL, // デフォルトのベースURL
     accessToken,
+    isLoading = true,
   } = options;
+
+  if (isLoading) store.dispatch(loadingFlagUp());
 
   // ヘッダー情報のセット
   const setHeaders = (
@@ -71,6 +75,8 @@ const execute = async <TResponse = unknown, TRequest = unknown>(
 
     console.error(failed_message, err);
     throw err;
+  } finally {
+    if (isLoading) store.dispatch(loadingFlagDown());
   }
 };
 
@@ -80,10 +86,11 @@ const execute = async <TResponse = unknown, TRequest = unknown>(
 const request = async <TResponse = unknown, TRequest = unknown>(
   method: Method,
   apiPath: string,
-  options: Omit<TypeOptions<TRequest>, "apiPath" | "method"> = {},
+  options: Omit<TypeOptions<TRequest>, "apiPath" | "method" | "isLoading"> = {},
+  isLoading?: boolean,
 ): Promise<AxiosResponse<TResponse> | TypeApiError> =>
   // APIリクエスト 実行処理
-  execute<TResponse, TRequest>({ method, apiPath, ...options });
+  execute<TResponse, TRequest>({ method, apiPath, isLoading, ...options });
 
 /* -----------------------------------------------
  * 各 APIリクエスト
@@ -103,7 +110,7 @@ export const testPostApi = (data: TypeFormExample) => {
 };
 
 /*
- * export const postXXXXApi = (params, baseURL, headers, requestData, accessToken) => {
+ * export const postXXXXApi = (params, baseURL, headers, requestData, accessToken, isLoading) => {
  *  const options = {
  *    params, // クエリパラム
  *    baseURL, // DEFAULT_BASE_URL を使わない際のベースURLの指定
@@ -111,6 +118,6 @@ export const testPostApi = (data: TypeFormExample) => {
  *    requestData, // リクエストデータ（リクエストボディ）
  *    accessToken, // アクセストークン
  *  };
- *  return request('POST', '/xxxx/xxxx', options);
+ *  return request('POST', '/xxxx/xxxx', options, isLoading);
  * };
  */

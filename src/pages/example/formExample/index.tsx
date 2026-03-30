@@ -12,7 +12,6 @@ import TextArea from "../../../components/form/textArea";
 import Layout from "../../../components/layout/layout";
 import { media, params } from "../../../lib/style";
 import { testPostApi } from "../../../utils/apiHelper"; // テストポストAPI（てきとーなやつ）
-import { loadingFlagDown, loadingFlagUp, store } from "../../../utils/store";
 
 import type { TypeFormExample } from "../../../lib/types";
 import type React from "react";
@@ -39,10 +38,8 @@ const FormExample: React.FC = () => {
   });
 
   const onSubmit = handleSubmit(async (data) => {
-    store.dispatch(loadingFlagUp());
     const responsePost = await testPostApi(data);
     console.warn("API response:", responsePost);
-    store.dispatch(loadingFlagDown());
   });
 
   return (

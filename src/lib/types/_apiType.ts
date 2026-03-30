@@ -12,6 +12,7 @@ export type TypeOptions<TRequest> = {
   headers?: Record<string, string>;
   baseURL?: string;
   accessToken?: string;
+  isLoading?: boolean;
 };
 
 export type TypeApiError = { message: string; status?: number; data?: unknown };
