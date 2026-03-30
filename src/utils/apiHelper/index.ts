@@ -86,11 +86,10 @@ const execute = async <TResponse = unknown, TRequest = unknown>(
 const request = async <TResponse = unknown, TRequest = unknown>(
   method: Method,
   apiPath: string,
-  options: Omit<TypeOptions<TRequest>, "apiPath" | "method" | "isLoading"> = {},
-  isLoading?: boolean,
+  options: Omit<TypeOptions<TRequest>, "apiPath" | "method"> = {},
 ): Promise<AxiosResponse<TResponse> | TypeApiError> =>
   // APIリクエスト 実行処理
-  execute<TResponse, TRequest>({ method, apiPath, isLoading, ...options });
+  execute<TResponse, TRequest>({ method, apiPath, ...options });
 
 /* -----------------------------------------------
  * 各 APIリクエスト
@@ -117,7 +116,8 @@ export const testPostApi = (data: TypeFormExample) => {
  *    headers, // 追加ヘッダー情報を付与
  *    requestData, // リクエストデータ（リクエストボディ）
  *    accessToken, // アクセストークン
+ *    isLoading, // ローディングフラグ制御
  *  };
- *  return request('POST', '/xxxx/xxxx', options, isLoading);
+ *  return request('POST', '/xxxx/xxxx', options);
  * };
  */
