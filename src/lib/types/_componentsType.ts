@@ -74,6 +74,7 @@ export type TypeButton = { children?: React.ReactNode };
 // Modal
 export type TypeModal = {
   title: string;
+  visible: boolean;
   onEvent?: { text: string; onClick: (event: React.MouseEvent<HTMLElement, MouseEvent>) => void };
   onClose: { text?: string; onClick: (event: React.MouseEvent<HTMLElement, MouseEvent>) => void };
   children?: React.ReactNode;

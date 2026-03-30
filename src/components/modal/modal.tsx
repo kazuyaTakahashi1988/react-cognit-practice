@@ -10,7 +10,8 @@ import type React from "react";
 type Props = React.HTMLAttributes<HTMLDivElement> & TypeModal;
 
 export const ModalField: React.ForwardRefRenderFunction<HTMLDivElement, Props> = (props, ref) => {
-  const { children, title, onEvent, onClose, ...rest } = props;
+  const { children, title, visible = false, onEvent, onClose, ...rest } = props;
+  if (!visible) return null;
 
   return (
     <Styled

@@ -30,6 +30,7 @@ type Story = StoryObj<typeof meta>;
 export const Default: Story = {
   args: {
     title: "モーダルタイトル",
+    visible: true,
     onEvent: { text: "モーダルイベントボタン", onClick: () => alert("onClicked !!") },
     onClose: { text: "閉じる", onClick: () => {} },
     children: "ダミーテキスト・ダミーテキスト・ダミーテキスト",
@@ -39,6 +40,7 @@ export const Default: Story = {
 export const Longtext: Story = {
   args: {
     title: "モーダルタイトル",
+    visible: true,
     onEvent: { text: "モーダルイベントボタン", onClick: () => alert("onClicked !!") },
     onClose: { text: "閉じる", onClick: () => {} },
     children:
