@@ -9,7 +9,6 @@ import type { Method, AxiosRequestConfig, AxiosResponse } from "axios";
 
 // デフォルトのベースURL
 const DEFAULT_BASE_URL = import.meta.env.VITE_APP_PUBLIC_API_BASE_URL ?? "";
-const API_REQUEST_FAILED_MESSAGE = "API request failed:";
 
 /*
  * APIリクエスト 実行処理
@@ -57,18 +56,20 @@ const execute = async <TResponse = unknown, TRequest = unknown>(
   try {
     return await axios.request<TResponse>(requestConfig);
   } catch (err) {
+    const failed_message = "API request failed";
+
     if (axios.isAxiosError(err)) {
       const message = err.response?.data ?? err.message;
-      console.error(API_REQUEST_FAILED_MESSAGE, message);
+      console.error(failed_message, message);
 
       return {
-        message: typeof err.message === "string" ? err.message : API_REQUEST_FAILED_MESSAGE,
+        message: typeof err.message === "string" ? err.message : failed_message,
         status: err.response?.status,
         data: err.response?.data,
       };
     }
 
-    console.error(API_REQUEST_FAILED_MESSAGE, err);
+    console.error(failed_message, err);
     throw err;
   }
 };
