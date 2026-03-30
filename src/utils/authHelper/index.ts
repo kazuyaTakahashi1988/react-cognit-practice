@@ -1,9 +1,5 @@
-import {
-  CognitoUser,
-  AuthenticationDetails,
-  CognitoUserPool,
-  CognitoUserAttribute,
-} from "amazon-cognito-identity-js";
+import { Amplify } from "aws-amplify";
+import { confirmSignUp, getCurrentUser, signIn, signOut, signUp } from "aws-amplify/auth";
 import { useContext } from "react";
 
 import { loadingFlagDown, loadingFlagUp, store } from "../store";
@@ -11,9 +7,14 @@ import { AuthContext } from "./authProvider";
 
 import type { TypeSignIn, TypeSignUp, TypeVerify } from "../../lib/types";
 
-export const userPool = new CognitoUserPool({
-  UserPoolId: `${import.meta.env.VITE_APP_AWS_COGNITO_USER_POOL_ID}`,
-  ClientId: `${import.meta.env.VITE_APP_AWS_COGNITO_CLIENT_ID}`,
+Amplify.configure({
+  Auth: {
+    Cognito: {
+      userPoolId: `${import.meta.env.VITE_APP_AWS_COGNITO_USER_POOL_ID}`,
+      userPoolClientId: `${import.meta.env.VITE_APP_AWS_COGNITO_CLIENT_ID}`,
+      identityPoolId: `${import.meta.env.VITE_APP_AWS_COGNITO_IDENTITY_POOL_ID}`,
+    },
+  },
 });
 
 /* -----------------------------------
@@ -27,91 +28,86 @@ export const useAuth = () => {
   return context;
 };
 
+export const getCurrentSignInFlag = async () => {
+  try {
+    await getCurrentUser();
+    return true;
+  } catch {
+    return false;
+  }
+};
+
 /* -----------------------------------
  * サインイン 処理
  * -------------------------------- */
-export const SignInHelper = async (data: TypeSignIn) =>
-  await new Promise<boolean>((resolve) => {
-    store.dispatch(loadingFlagUp());
+export const SignInHelper = async (data: TypeSignIn) => {
+  store.dispatch(loadingFlagUp());
 
-    const authenticationDetails = new AuthenticationDetails({
-      Username: data.email,
-      Password: data.password,
-    });
-
-    const cognitoUser = new CognitoUser({ Username: data.email, Pool: userPool });
-
-    cognitoUser.authenticateUser(authenticationDetails, {
-      onSuccess: () => {
-        console.warn("SignIn succeeded");
-        store.dispatch(loadingFlagDown());
-        resolve(true);
-      },
-      onFailure: (err) => {
-        console.error(err);
-        store.dispatch(loadingFlagDown());
-        resolve(false);
-      },
-    });
-  });
+  try {
+    const result = await signIn({ username: data.email, password: data.password });
+    console.warn("SignIn succeeded", result);
+    return true;
+  } catch (err) {
+    console.error(err);
+    return false;
+  } finally {
+    store.dispatch(loadingFlagDown());
+  }
+};
 
 /* -----------------------------------
  * サインアップ 処理
  * -------------------------------- */
-export const SignUpHelper = (data: TypeSignUp) => {
+export const SignUpHelper = async (data: TypeSignUp) => {
   store.dispatch(loadingFlagUp());
 
-  const attributeList = [new CognitoUserAttribute({ Name: "email", Value: data.email })];
-
-  userPool.signUp(data.email, data.password, attributeList, [], (err, result) => {
-    if (err) {
-      console.error(err);
-      store.dispatch(loadingFlagDown());
-      return;
-    }
+  try {
+    const result = await signUp({
+      username: data.email,
+      password: data.password,
+      options: { userAttributes: { email: data.email } },
+    });
     console.warn(result);
     console.warn("SignUp succeeded");
+  } catch (err) {
+    console.error(err);
+  } finally {
     store.dispatch(loadingFlagDown());
-  });
+  }
 };
 
 /* -----------------------------------
  * アクティベート 処理
  * -------------------------------- */
-export const VerifyHelper = (data: TypeVerify) => {
+export const VerifyHelper = async (data: TypeVerify) => {
   store.dispatch(loadingFlagUp());
 
-  const cognitoUser = new CognitoUser({ Username: data.email, Pool: userPool });
-
-  cognitoUser.confirmRegistration(data.verificationCode, true, (err) => {
-    if (err) {
-      console.warn(err);
-      store.dispatch(loadingFlagDown());
-      return;
-    }
+  try {
+    await confirmSignUp({ username: data.email, confirmationCode: data.verificationCode });
     console.warn("verification succeeded");
+  } catch (err) {
+    console.warn(err);
+  } finally {
     store.dispatch(loadingFlagDown());
-  });
+  }
 };
 
 /* -----------------------------------
  * サインアウト 処理
  * -------------------------------- */
-export const SignOutHelper = async () =>
-  await new Promise<boolean>((resolve) => {
-    store.dispatch(loadingFlagUp());
+export const SignOutHelper = async () => {
+  store.dispatch(loadingFlagUp());
 
-    const cognitoUser = userPool.getCurrentUser();
-    if (cognitoUser) {
-      cognitoUser.signOut();
-      localStorage.clear();
-      console.warn("signed out");
-      store.dispatch(loadingFlagDown());
-      resolve(true);
-    } else {
-      localStorage.clear();
-      console.warn("no user signing in");
-      store.dispatch(loadingFlagDown());
-      resolve(false);
-    }
-  });
+  try {
+    await signOut();
+    localStorage.clear();
+    console.warn("signed out");
+    return true;
+  } catch (err) {
+    console.warn(err);
+    localStorage.clear();
+    return false;
+  } finally {
+    store.dispatch(loadingFlagDown());
+  }
+};
