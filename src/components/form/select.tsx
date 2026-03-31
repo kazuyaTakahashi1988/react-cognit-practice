@@ -21,7 +21,7 @@ export const SelectField: React.ForwardRefRenderFunction<HTMLSelectElement, Prop
       {label && <Label label={label} />}
 
       <div className="select">
-        <select className="" ref={ref} {...rest}>
+        <select {...rest} className="" ref={ref}>
           {rest.placeholder && (
             <option hidden value="">
               {rest.placeholder}

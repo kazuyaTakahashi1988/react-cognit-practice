@@ -48,9 +48,9 @@ export const TodoItemsField: React.ForwardRefRenderFunction<HTMLInputElement, Pr
             />
 
             <Input
+              {...rest}
               className="input"
               errorMessage={getErrorMessage(index, inputName)}
-              {...rest}
               {...register(`${name}.${index}.${inputName}`, {
                 required: { value: true, message: "必須項目だよ。" },
                 // minLength: { value: 2, message: `2文字以上にしてね` },

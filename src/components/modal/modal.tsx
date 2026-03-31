@@ -15,10 +15,10 @@ export const ModalField: React.ForwardRefRenderFunction<HTMLDivElement, Props> =
 
   return (
     <Styled
+      {...rest}
       className={["modal", `${rest.className ? rest.className : ""}`].join(" ")}
       onClick={onClose?.onClick}
       ref={ref}
-      {...rest}
     >
       <div className="modal__inner" onClick={(e) => e.stopPropagation()}>
         <div className="modal__header">

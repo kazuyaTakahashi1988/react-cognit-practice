@@ -20,7 +20,7 @@ export const TextAreaField: React.ForwardRefRenderFunction<HTMLTextAreaElement, 
     <Styled className={rest.className}>
       {label && <Label label={label} />}
 
-      <textarea className="" ref={ref} {...rest}></textarea>
+      <textarea {...rest} className="" ref={ref}></textarea>
 
       {errorMessage && <ErrorMessage errorMessage={errorMessage} />}
     </Styled>

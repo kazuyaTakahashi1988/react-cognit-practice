@@ -56,12 +56,12 @@ export const SelectCustomField: React.ForwardRefRenderFunction<HTMLInputElement,
           {options.map((option, index) => (
             <div className="selected__label" key={index} onClick={() => onOpenToggle(index)}>
               <input
+                {...rest}
                 className=""
                 id={rest.name + option.value}
                 ref={ref}
                 type="radio"
                 value={option.value}
-                {...rest}
               />
               <span>{option.label}</span>
             </div>
