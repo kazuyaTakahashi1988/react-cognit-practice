@@ -31,8 +31,7 @@ export const {
   loadingFlagUp,
   loadingFlagDown,
   // xxxxStringSet,
-  // xxxxFlagSetTrue,
-  // xxxxFlagSetFalse
+  // xxxxFlagSet,
 } = appSlice.actions;
 
 export const store = configureStore({ reducer: appSlice.reducer });
