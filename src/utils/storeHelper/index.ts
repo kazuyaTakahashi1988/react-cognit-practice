@@ -21,11 +21,8 @@ const appSlice = createSlice({
     // xxxxStringSet: (state: TypeState, action: { payload: string }) => {
     //   state.xxxxString = action.payload;
     // },
-    // xxxxFlagSetTrue: (state: TypeState) => {
-    //   state.xxxxFlag = true;
-    // },
-    // xxxxFlagSetFalse: (state: TypeState) => {
-    //   state.xxxxFlag = false;
+    // xxxxFlagSet: (state: TypeStat,  action: { payload: boolean }) => {
+    //   state.xxxxFlag = action.payload;
     // },
   },
 });

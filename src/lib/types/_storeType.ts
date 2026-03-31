@@ -1,7 +1,7 @@
 /* -------------------------------------------------------
     ▽ 型定義 (ストア編) ▽
 ---------------------------------------------------------- */
-import type { AppDispatch, RootState } from "../../utils/store";
+import type { AppDispatch, RootState } from "../../utils/storeHelper";
 
 export type TypeSelectorState = RootState;
 export type TypeDispatch = AppDispatch;

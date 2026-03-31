@@ -4,7 +4,7 @@ import { Provider } from "react-redux";
 
 import App from "./App.tsx";
 import { AuthProvider } from "./utils/authHelper/authProvider";
-import { store } from "./utils/store";
+import { store } from "./utils/storeHelper";
 
 const container = document.getElementById("root");
 

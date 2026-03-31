@@ -2,7 +2,7 @@ import { Amplify } from "aws-amplify";
 import { confirmSignUp, getCurrentUser, signIn, signOut, signUp } from "aws-amplify/auth";
 import { useContext } from "react";
 
-import { loadingFlagDown, loadingFlagUp, store } from "../store";
+import { loadingFlagDown, loadingFlagUp, store } from "../storeHelper";
 import { AuthContext } from "./authProvider";
 
 import type { TypeSignIn, TypeSignUp, TypeVerify } from "../../lib/types";
