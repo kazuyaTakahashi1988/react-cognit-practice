@@ -13,20 +13,20 @@ export const AccordionField: React.ForwardRefRenderFunction<HTMLDivElement, Prop
   ref,
 ) => {
   const { title, visible = false, children, ...rest } = props;
-  const [isOpen, setIsOpen] = useState(visible);
+  const [isVisible, setIsVisible] = useState(visible);
 
   useEffect(() => {
-    setIsOpen(visible);
+    setIsVisible(visible);
   }, [visible]);
 
   return (
     <Styled ref={ref} {...rest}>
-      <div className={["accordion", `${isOpen ? "is-open" : ""}`].join(" ")}>
-        <div className="accordion__title" onClick={() => setIsOpen(!isOpen)}>
+      <div className={["accordion", `${isVisible ? "is-visible" : ""}`].join(" ")}>
+        <div className="accordion__title" onClick={() => setIsVisible(!isVisible)}>
           {title}
         </div>
 
-        {isOpen && <div className="accordion__container">{children}</div>}
+        {isVisible && <div className="accordion__container">{children}</div>}
       </div>
     </Styled>
   );
@@ -46,7 +46,7 @@ const Styled = styled.div`
       height: 1px;
       background: ${params.gray};
     }
-    &.is-open::after {
+    &.is-visible::after {
       animation: fadeTranslateY 0.2s linear forwards;
     }
     &__title {
@@ -73,7 +73,7 @@ const Styled = styled.div`
         border-right: 2px solid ${params.gray50};
       }
     }
-    &.is-open > .accordion__title:before {
+    &.is-visible > .accordion__title:before {
       transform: rotate(-45deg);
     }
     &__container {
@@ -83,7 +83,7 @@ const Styled = styled.div`
       line-height: 28px;
       padding: 10px 10px 20px;
       transition: 0.2s ease-out;
-      animation: fadeTranslateY 0.1s linear forwards;
+      animation: fadeTranslateY 0.2s linear forwards;
     }
   }
   @keyframes fadeTranslateY {
