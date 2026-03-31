@@ -1,4 +1,4 @@
-import { forwardRef, useState, useEffect, useRef } from "react";
+import { forwardRef, useEffect, useRef, useState } from "react";
 import styled from "styled-components";
 
 import { params } from "../../lib/style";
@@ -49,7 +49,7 @@ export const DropdownMenuField: React.ForwardRefRenderFunction<HTMLSpanElement, 
 
   return (
     <Styled ref={ref} {...rest}>
-      <div className="dropdown-menu" ref={dropdownMenuRef} onClick={() => setIsOpen(!isOpen)}>
+      <div className="dropdown-menu" onClick={() => setIsOpen(!isOpen)} ref={dropdownMenuRef}>
         {children}
 
         {isOpen && (
@@ -59,11 +59,11 @@ export const DropdownMenuField: React.ForwardRefRenderFunction<HTMLSpanElement, 
               `${isClientBottom ? "bottom" : ""}`,
               `${isClientLeft ? "left" : ""}`,
             ].join(" ")}
-            ref={dropdownMenuInnerRef}
             onClick={(e) => e.stopPropagation()}
+            ref={dropdownMenuInnerRef}
           >
             {menuList.map((menu, index) => (
-              <li onClick={menu.onClick} key={index}>
+              <li key={index} onClick={menu.onClick}>
                 {menu.text}
               </li>
             ))}

@@ -21,14 +21,14 @@ export const SelectField: React.ForwardRefRenderFunction<HTMLSelectElement, Prop
       {label && <Label label={label} />}
 
       <div className="select">
-        <select ref={ref} {...rest} className="">
+        <select className="" ref={ref} {...rest}>
           {rest.placeholder && (
-            <option value="" hidden>
+            <option hidden value="">
               {rest.placeholder}
             </option>
           )}
           {options.map((option, index) => (
-            <option value={option.value} key={index}>
+            <option key={index} value={option.value}>
               {option.label}
             </option>
           ))}

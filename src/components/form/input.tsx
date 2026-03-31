@@ -17,7 +17,7 @@ export const InputField: React.ForwardRefRenderFunction<HTMLInputElement, Props>
     <Styled className={rest.className}>
       {label && <Label label={label} />}
 
-      <input ref={ref} {...rest} type={rest.type || "text"} className="" />
+      <input className="" type={rest.type || "text"} {...rest} ref={ref} />
 
       {errorMessage && <ErrorMessage errorMessage={errorMessage} />}
     </Styled>

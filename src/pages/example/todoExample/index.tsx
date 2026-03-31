@@ -1,4 +1,4 @@
-import { useForm, useFieldArray } from "react-hook-form";
+import { useFieldArray, useForm } from "react-hook-form";
 import styled from "styled-components";
 
 import Button from "../../../components/button/button";
@@ -42,14 +42,14 @@ const TodoExample: React.FC = () => {
 
         <TodoItems
           className="mt-30"
-          name="todoItems"
+          errors={errors.todoItems}
+          fields={fields}
           itemsName={{ checkBoxName: "check", inputName: "task" }}
-          placeholder="タスクを入力してください。"
+          name="todoItems"
           onAppend={onAppend}
           onRemove={(e) => onRemove(e)}
-          fields={fields}
+          placeholder="タスクを入力してください。"
           register={register}
-          errors={errors.todoItems}
         />
 
         <div className="mt-30 button-clm">

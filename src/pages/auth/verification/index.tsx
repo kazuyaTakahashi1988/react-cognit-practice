@@ -27,21 +27,21 @@ const Verification: React.FC = () => {
         <h1>Verification</h1>
 
         <Input
-          type="password"
           className="mt-30"
-          placeholder="○○○○○○○○"
-          label={{ text: "verificationCodeを入力してください", required: true }}
-          {...register("verificationCode", { required: "必須項目だよ。" })}
           errorMessage={errors.verificationCode?.message}
+          label={{ text: "verificationCodeを入力してください", required: true }}
+          placeholder="○○○○○○○○"
+          type="password"
+          {...register("verificationCode", { required: "必須項目だよ。" })}
         />
 
         <Input
-          type="email"
           className="mt-30"
-          placeholder="○○○○＠○○○○.com"
-          label={{ text: "emailを入力してください", required: true }}
-          {...register("email", { required: "必須項目だよ。" })}
           errorMessage={errors.email?.message}
+          label={{ text: "emailを入力してください", required: true }}
+          placeholder="○○○○＠○○○○.com"
+          type="email"
+          {...register("email", { required: "必須項目だよ。" })}
         />
 
         <div className="mt-30 button-clm">

@@ -14,7 +14,7 @@ export const LabelField: React.ForwardRefRenderFunction<HTMLLabelElement, Props>
   return (
     <Styled className={rest.className}>
       {label && (
-        <label ref={ref} {...rest} className="label-text">
+        <label className="label-text" ref={ref} {...rest}>
           {label.text}
           {label.required && <span>*</span>}
         </label>

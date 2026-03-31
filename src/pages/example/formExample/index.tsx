@@ -55,8 +55,9 @@ const FormExample: React.FC = () => {
 
         <Input
           className="mt-30"
-          placeholder="入力をお願いします。"
+          errorMessage={errors.inputName?.message}
           label={{ text: "Inputラベルテキスト", required: true }}
+          placeholder="入力をお願いします。"
           {...register("inputName", {
             required: { value: true, message: "必須項目だよ。" },
             minLength: { value: 2, message: "2文字以上にしてね" },
@@ -66,11 +67,11 @@ const FormExample: React.FC = () => {
             //   message: `英数文字のみにしてね`
             // },
           })}
-          errorMessage={errors.inputName?.message}
         />
 
         <CheckBox
           className="mt-30"
+          errorMessage={errors.checkBoxName?.message}
           label={{ text: "CheckBoxラベルテキスト", required: true }}
           options={[
             { value: "Check_Value_A", label: "Check_Label_A" },
@@ -83,11 +84,11 @@ const FormExample: React.FC = () => {
               if (checkedValues.length < 2) return "２つ以上選択してください。";
             },
           })}
-          errorMessage={errors.checkBoxName?.message}
         />
 
         <RadioButton
           className="mt-30"
+          errorMessage={errors.radioButtonName?.message}
           label={{ text: "RadioButtonラベルテキスト", required: true }}
           options={[
             { value: "Radio_Value_A", label: "Radio_Label_A" },
@@ -95,11 +96,11 @@ const FormExample: React.FC = () => {
             { value: "Radio_Value_C", label: "Radio_Label_C" },
           ]}
           {...register("radioButtonName", { required: { value: true, message: "必須項目だよ。" } })}
-          errorMessage={errors.radioButtonName?.message}
         />
 
         <SwitchButton
           className="mt-30"
+          errorMessage={errors.switchButtonName?.message}
           label={{ text: "SwitchButtonラベルテキスト", required: true }}
           options={[
             { value: "Switch_Value_A", label: "noActive_A", labelActived: "Actived_A" },
@@ -109,25 +110,24 @@ const FormExample: React.FC = () => {
           {...register("switchButtonName", {
             required: { value: true, message: "必須項目だよ。" },
           })}
-          errorMessage={errors.switchButtonName?.message}
         />
 
         <Select
           className="mt-30"
-          placeholder="選択してください。"
+          errorMessage={errors.selectName?.message}
           label={{ text: "Selectラベルテキスト", required: true }}
           options={[
             { value: "Select_Value_A", label: "Select_Label_A" },
             { value: "Select_Value_B", label: "Select_Label_B" },
             { value: "Select_Value_C", label: "Select_Label_C" },
           ]}
+          placeholder="選択してください。"
           {...register("selectName", { required: { value: true, message: "必須項目だよ。" } })}
-          errorMessage={errors.selectName?.message}
         />
 
         <SelectCustom
           className="mt-30"
-          placeholder="選択してください。"
+          errorMessage={errors.selectCustomName?.message}
           label={{ text: "SelectCustomラベルテキスト", required: true }}
           options={[
             { value: "Select_Value_A", label: "Select_Label_A" },
@@ -138,16 +138,17 @@ const FormExample: React.FC = () => {
             { value: "Select_Value_F", label: "Select_Label_F" },
             { value: "Select_Value_G", label: "Select_Label_G" },
           ]}
+          placeholder="選択してください。"
           {...register("selectCustomName", {
             required: { value: true, message: "必須項目だよ。" },
           })}
-          errorMessage={errors.selectCustomName?.message}
         />
 
         <TextArea
           className="mt-30"
-          placeholder="入力をお願いします。"
+          errorMessage={errors.textAreaName?.message}
           label={{ text: "TextAreaラベルテキスト", required: true }}
+          placeholder="入力をお願いします。"
           {...register("textAreaName", {
             required: { value: true, message: "必須項目だよ。" },
             minLength: { value: 2, message: "2文字以上にしてね" },
@@ -157,7 +158,6 @@ const FormExample: React.FC = () => {
             //   message: `英数文字のみにしてね`
             // },
           })}
-          errorMessage={errors.textAreaName?.message}
         />
 
         <div className="mt-30 button-clm">

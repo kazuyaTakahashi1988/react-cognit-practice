@@ -28,21 +28,21 @@ const SignUp: React.FC = () => {
           <h1>SignUp</h1>
 
           <Input
-            type="email"
             className="mt-30"
-            placeholder="○○○○＠○○○○.com"
-            label={{ text: "emailを入力してください", required: true }}
-            {...register("email", { required: "必須項目だよ。" })}
             errorMessage={errors.email?.message}
+            label={{ text: "emailを入力してください", required: true }}
+            placeholder="○○○○＠○○○○.com"
+            type="email"
+            {...register("email", { required: "必須項目だよ。" })}
           />
 
           <Input
-            type="password"
             className="mt-30"
-            placeholder="○○○○○○○○"
-            label={{ text: "passwordを入力してください", required: true }}
-            {...register("password", { required: "必須項目だよ。" })}
             errorMessage={errors.password?.message}
+            label={{ text: "passwordを入力してください", required: true }}
+            placeholder="○○○○○○○○"
+            type="password"
+            {...register("password", { required: "必須項目だよ。" })}
           />
 
           <div className="mt-30 button-clm">

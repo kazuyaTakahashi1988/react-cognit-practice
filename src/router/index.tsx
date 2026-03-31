@@ -20,7 +20,7 @@ const ProtectedRoute: React.FC<{ children: React.ReactNode }> = ({ children }) =
   const { isSignedIn } = useAuth();
 
   if (!isSignedIn) {
-    return <Navigate to="/auth/signin" replace />;
+    return <Navigate replace to="/auth/signin" />;
   }
 
   return <>{children}</>;
@@ -30,7 +30,7 @@ const PublicRoute: React.FC<{ children: React.ReactNode }> = ({ children }) => {
   const { isSignedIn } = useAuth();
 
   if (isSignedIn) {
-    return <Navigate to="/auth/signout" replace />;
+    return <Navigate replace to="/auth/signout" />;
   }
 
   return <>{children}</>;
@@ -41,53 +41,53 @@ export function Router() {
 
   return (
     <Routes>
-      <Route path="/" element={<Navigate to="/example/form_example" replace />} />
-      <Route path="/example" element={<Navigate to="/example/form_example" replace />} />
-      <Route path="/example/form_example" element={<FormExample />} />
-      <Route path="/example/todo_example" element={<TodoExample />} />
-      <Route path="/example/modal_example" element={<ModalExample />} />
-      <Route path="/example/accordion_example" element={<AccordionExample />} />
-      <Route path="/example/dropdownmenu_example" element={<DropdownMenuExample />} />
-      <Route path="/*" element={<Navigate to="/" replace />} />
+      <Route element={<Navigate replace to="/example/form_example" />} path="/" />
+      <Route element={<Navigate replace to="/example/form_example" />} path="/example" />
+      <Route element={<FormExample />} path="/example/form_example" />
+      <Route element={<TodoExample />} path="/example/todo_example" />
+      <Route element={<ModalExample />} path="/example/modal_example" />
+      <Route element={<AccordionExample />} path="/example/accordion_example" />
+      <Route element={<DropdownMenuExample />} path="/example/dropdownmenu_example" />
+      <Route element={<Navigate replace to="/" />} path="/*" />
 
       {/*
        * auth 画面ルート設定
        */}
       <Route
+        element={<Navigate replace to={isSignedIn ? "/auth/signout" : "/auth/signin"} />}
         path="/auth"
-        element={<Navigate to={isSignedIn ? "/auth/signout" : "/auth/signin"} replace />}
       />
       <Route
-        path="/auth/signin"
         element={
           <PublicRoute>
             <SignIn />
           </PublicRoute>
         }
+        path="/auth/signin"
       />
       <Route
-        path="/auth/signup"
         element={
           <PublicRoute>
             <SignUp />
           </PublicRoute>
         }
+        path="/auth/signup"
       />
       <Route
-        path="/auth/verification"
         element={
           <PublicRoute>
             <Verification />
           </PublicRoute>
         }
+        path="/auth/verification"
       />
       <Route
-        path="/auth/signout"
         element={
           <ProtectedRoute>
             <SignOut />
           </ProtectedRoute>
         }
+        path="/auth/signout"
       />
     </Routes>
   );

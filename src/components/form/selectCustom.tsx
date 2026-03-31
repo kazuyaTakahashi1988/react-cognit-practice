@@ -1,4 +1,4 @@
-import { forwardRef, useState, useEffect, useRef, createRef } from "react";
+import { createRef, forwardRef, useEffect, useRef, useState } from "react";
 import styled from "styled-components";
 
 import { ErrorMessage } from "./errorMessage";
@@ -56,12 +56,12 @@ export const SelectCustomField: React.ForwardRefRenderFunction<HTMLInputElement,
           {options.map((option, index) => (
             <div className="selected__label" key={index} onClick={() => onOpenToggle(index)}>
               <input
-                id={rest.name + option.value}
-                value={option.value}
-                ref={ref}
-                {...rest}
-                type="radio"
                 className=""
+                id={rest.name + option.value}
+                ref={ref}
+                type="radio"
+                value={option.value}
+                {...rest}
               />
               <span>{option.label}</span>
             </div>
@@ -72,9 +72,9 @@ export const SelectCustomField: React.ForwardRefRenderFunction<HTMLInputElement,
           <div className="select-box">
             {options.map((option, index) => (
               <label
+                className="select-box__label"
                 htmlFor={rest.name + option.value}
                 key={index}
-                className="select-box__label"
                 ref={labelRefs.current[index]}
               >
                 {option.label}

@@ -21,15 +21,15 @@ export const CheckBoxField: React.ForwardRefRenderFunction<HTMLInputElement, Pro
       {label && <Label label={label} />}
 
       {options.map((option, index) => (
-        <label htmlFor={rest.name + option.value} key={index} className="label">
+        <label className="label" htmlFor={rest.name + option.value} key={index}>
           <input
-            id={rest.name + option.value}
-            value={option.value}
-            ref={ref}
-            {...rest}
-            type="checkbox"
-            disabled={option.disabled}
             className=""
+            disabled={option.disabled}
+            id={rest.name + option.value}
+            ref={ref}
+            type="checkbox"
+            value={option.value}
+            {...rest}
           />
           <span className="label__text">{option.label}</span>
         </label>

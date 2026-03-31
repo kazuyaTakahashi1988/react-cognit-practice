@@ -2,8 +2,8 @@ import axios from "axios";
 
 import { loadingFlagDown, loadingFlagUp, store } from "../../utils/store";
 
-import type { TypeOptions, TypeApiError, TypeFormExample } from "../../lib/types";
-import type { Method, AxiosRequestConfig, AxiosResponse } from "axios";
+import type { TypeApiError, TypeFormExample, TypeOptions } from "../../lib/types";
+import type { AxiosRequestConfig, AxiosResponse, Method } from "axios";
 /* -----------------------------------------------
  * axios および API 処理
  * ----------------------------------------------- */

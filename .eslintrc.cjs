@@ -80,6 +80,29 @@ module.exports = {
         "import/default": "off",
         "import/no-named-as-default": "off",
 
+        /* インポートのメンバーをアルファベット順に */
+        "sort-imports": [
+          "error",
+          {
+            ignoreCase: true,
+            ignoreDeclarationSort: true,
+            memberSyntaxSortOrder: ["none", "all", "multiple", "single"],
+          },
+        ],
+
+        /* propsのメンバーをアルファベット順に */
+        "react/jsx-sort-props": [
+          "error",
+          {
+            ignoreCase: true,
+            callbacksLast: false,
+            shorthandFirst: false,
+            multiline: "ignore",
+            noSortAlphabetically: false,
+            reservedFirst: false,
+          },
+        ],
+
         /* -------------------------------------------------------
           認知的複雑度（sonarjs / total-functions / ESLintコア）
         ---------------------------------------------------------- */

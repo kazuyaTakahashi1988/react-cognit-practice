@@ -39,31 +39,31 @@ export const TodoItemsField: React.ForwardRefRenderFunction<HTMLInputElement, Pr
         {fields?.map((field, index) => (
           <li key={field.id}>
             <CheckBox
+              className="checkbox"
+              // errorMessage={getErrorMessage(index, checkBoxName)}
               options={[{ value: "", label: "" }]}
               {...register(`${name}.${index}.${checkBoxName}`, {
                 // required: { value: true, message: "必須項目だよ。" },
               })}
-              // errorMessage={getErrorMessage(index, checkBoxName)}
-              className="checkbox"
             />
 
             <Input
+              className="input"
+              errorMessage={getErrorMessage(index, inputName)}
               {...rest}
               {...register(`${name}.${index}.${inputName}`, {
                 required: { value: true, message: "必須項目だよ。" },
                 // minLength: { value: 2, message: `2文字以上にしてね` },
                 // maxLength: { value: 50, message: "最大50文字だよ" },
               })}
-              errorMessage={getErrorMessage(index, inputName)}
-              className="input"
             />
 
             {onRemove && (
               <Button
                 className="secondary"
                 data-index={index}
-                onClick={onRemove}
                 disabled={fields?.length < 2}
+                onClick={onRemove}
               >
                 削除
               </Button>
