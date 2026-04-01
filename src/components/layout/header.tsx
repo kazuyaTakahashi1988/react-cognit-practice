@@ -47,68 +47,67 @@ export const Header: React.FC<TypeHeader> = (props) => {
               </li>
             </>
           )}
-          {type === "auth" && !isSignedIn ? (
-            <>
+          {type === "auth" &&
+            (!isSignedIn ? (
+              <>
+                <li>
+                  <NavLink end to="/auth/signin">
+                    SignIn
+                  </NavLink>
+                </li>
+                <li>
+                  <NavLink end to="/auth/signup">
+                    SignUp
+                  </NavLink>
+                </li>
+                <li>
+                  <NavLink end to="/auth/verification">
+                    Verification
+                  </NavLink>
+                </li>
+              </>
+            ) : (
               <li>
-                <NavLink end to="/auth/signin">
-                  SignIn
+                <NavLink end to="/auth/signout">
+                  SignOut
                 </NavLink>
               </li>
-              <li>
-                <NavLink end to="/auth/signup">
-                  SignUp
-                </NavLink>
-              </li>
-              <li>
-                <NavLink end to="/auth/verification">
-                  Verification
-                </NavLink>
-              </li>
-            </>
-          ) : (
-            <li>
-              <NavLink end to="/auth/signout">
-                SignOut
-              </NavLink>
-            </li>
-          )}
+            ))}
         </ul>
 
         <ul className="sp-only">
           {type === "example" && (
-            <>
-              <li>
-                <DropdownMenu
-                  menuList={[
-                    {
-                      text: "Form",
-                      onClick: () => navigate("/example/form_example", { replace: true }),
-                    },
-                    {
-                      text: "Todo",
-                      onClick: () => navigate("/example/todo_example", { replace: true }),
-                    },
-                    {
-                      text: "Modal",
-                      onClick: () => navigate("/example/modal_example", { replace: true }),
-                    },
-                    {
-                      text: "Accordion",
-                      onClick: () => navigate("/example/accordion_example", { replace: true }),
-                    },
-                    {
-                      text: "DropdownMenu",
-                      onClick: () => navigate("/example/dropdownmenu_example", { replace: true }),
-                    },
-                  ]}
-                >
-                  <b>Example</b>
-                </DropdownMenu>
-              </li>
-            </>
+            <li>
+              <DropdownMenu
+                menuList={[
+                  {
+                    text: "Form",
+                    onClick: () => navigate("/example/form_example", { replace: true }),
+                  },
+                  {
+                    text: "Todo",
+                    onClick: () => navigate("/example/todo_example", { replace: true }),
+                  },
+                  {
+                    text: "Modal",
+                    onClick: () => navigate("/example/modal_example", { replace: true }),
+                  },
+                  {
+                    text: "Accordion",
+                    onClick: () => navigate("/example/accordion_example", { replace: true }),
+                  },
+                  {
+                    text: "DropdownMenu",
+                    onClick: () => navigate("/example/dropdownmenu_example", { replace: true }),
+                  },
+                ]}
+              >
+                <b>Example</b>
+              </DropdownMenu>
+            </li>
           )}
-          {type === "auth" && !isSignedIn ? (
-            <>
+          {type === "auth" &&
+            (!isSignedIn ? (
               <li>
                 <DropdownMenu
                   menuList={[
@@ -123,18 +122,20 @@ export const Header: React.FC<TypeHeader> = (props) => {
                   <b>Auth</b>
                 </DropdownMenu>
               </li>
-            </>
-          ) : (
-            <li>
-              <DropdownMenu
-                menuList={[
-                  { text: "SignOut", onClick: () => navigate("/auth/signout", { replace: true }) },
-                ]}
-              >
-                <b>Auth</b>
-              </DropdownMenu>
-            </li>
-          )}
+            ) : (
+              <li>
+                <DropdownMenu
+                  menuList={[
+                    {
+                      text: "SignOut",
+                      onClick: () => navigate("/auth/signout", { replace: true }),
+                    },
+                  ]}
+                >
+                  <b>Auth</b>
+                </DropdownMenu>
+              </li>
+            ))}
         </ul>
       </nav>
     </Styled>
