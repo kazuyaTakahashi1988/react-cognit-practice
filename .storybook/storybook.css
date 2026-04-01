@@ -1,1 +1,10 @@
 @import url("https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;900&display=swap");
+
+body {
+  overflow: initial !important;
+}
+
+table.docblock-argstable,
+.docblock-argstable-head tr {
+  border: none !important;
+}
