@@ -5,6 +5,6 @@ body {
 }
 
 table.docblock-argstable,
-.docblock-argstable-head tr {
+.docblock-argstable-head > tr {
   border: none !important;
 }
