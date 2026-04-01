@@ -47,7 +47,7 @@ export const Header: React.FC<TypeHeader> = (props) => {
               </li>
             </>
           )}
-          {type === "auth" && !isSignedIn && (
+          {type === "auth" && !isSignedIn ? (
             <>
               <li>
                 <NavLink end to="/auth/signin">
@@ -65,15 +65,12 @@ export const Header: React.FC<TypeHeader> = (props) => {
                 </NavLink>
               </li>
             </>
-          )}
-          {type === "auth" && isSignedIn && (
-            <>
-              <li>
-                <NavLink end to="/auth/signout">
-                  SignOut
-                </NavLink>
-              </li>
-            </>
+          ) : (
+            <li>
+              <NavLink end to="/auth/signout">
+                SignOut
+              </NavLink>
+            </li>
           )}
         </ul>
 
@@ -110,7 +107,7 @@ export const Header: React.FC<TypeHeader> = (props) => {
               </li>
             </>
           )}
-          {type === "auth" && !isSignedIn && (
+          {type === "auth" && !isSignedIn ? (
             <>
               <li>
                 <DropdownMenu
@@ -127,22 +124,16 @@ export const Header: React.FC<TypeHeader> = (props) => {
                 </DropdownMenu>
               </li>
             </>
-          )}
-          {type === "auth" && isSignedIn && (
-            <>
-              <li>
-                <DropdownMenu
-                  menuList={[
-                    {
-                      text: "SignOut",
-                      onClick: () => navigate("/auth/signout", { replace: true }),
-                    },
-                  ]}
-                >
-                  <b>Auth</b>
-                </DropdownMenu>
-              </li>
-            </>
+          ) : (
+            <li>
+              <DropdownMenu
+                menuList={[
+                  { text: "SignOut", onClick: () => navigate("/auth/signout", { replace: true }) },
+                ]}
+              >
+                <b>Auth</b>
+              </DropdownMenu>
+            </li>
           )}
         </ul>
       </nav>
