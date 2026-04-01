@@ -1,26 +1,10 @@
 @import url("https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;900&display=swap");
 
 body {
-  letter-spacing: 1px;
-  word-break: break-all;
-  line-break: strict;
-  overflow-wrap: break-word;
-  word-wrap: break-word;
-  font-size: 16px;
-  line-height: 200%;
-  font-family: "Noto Sans JP", serif;
+  overflow: initial !important;
 }
 
-/* List_group */
-ul,
-ol,
-li {
-  list-style: none;
-}
-
-*,
-*:before,
-*:after {
-  outline: none !important;
-  box-sizing: border-box;
+table.docblock-argstable,
+.docblock-argstable-head tr {
+  border: none !important;
 }
