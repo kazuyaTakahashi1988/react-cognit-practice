@@ -25,7 +25,7 @@ export const RadioButtonField: React.ForwardRefRenderFunction<HTMLInputElement, 
           <input
             {...rest}
             className=""
-            disabled={option.disabled}
+            disabled={rest.disabled || option.disabled}
             id={rest.name + option.value}
             ref={ref}
             type="radio"

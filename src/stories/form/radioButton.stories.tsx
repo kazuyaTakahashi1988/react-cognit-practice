@@ -26,10 +26,11 @@ export const Default: Story = {
 export const Disabled: Story = {
   args: {
     label: { text: "Disabled：RadioButtonラベルテキスト" },
+    disabled: true,
     options: [
-      { value: "Radio_Value_A", label: "Radio_Label_A", disabled: true },
-      { value: "Radio_Value_B", label: "Radio_Label_B", disabled: true },
-      { value: "Radio_Value_C", label: "Radio_Label_C", disabled: true },
+      { value: "Radio_Value_A", label: "Radio_Label_A" },
+      { value: "Radio_Value_B", label: "Radio_Label_B" },
+      { value: "Radio_Value_C", label: "Radio_Label_C" },
     ],
   },
 };
