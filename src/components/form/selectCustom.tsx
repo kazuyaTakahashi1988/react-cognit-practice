@@ -54,7 +54,11 @@ export const SelectCustomField: React.ForwardRefRenderFunction<HTMLInputElement,
 
       <div className="select" ref={selectRef}>
         <div
-          className={["selected", `${isOpen ? "is-open" : ""}`, `${isDisabled ? DISABLED_CLASS : ""}`].join(" ")}
+          className={[
+            "selected",
+            `${isOpen ? "is-open" : ""}`,
+            `${isDisabled ? DISABLED_CLASS : ""}`,
+          ].join(" ")}
         >
           <span className="placeholder" onClick={() => onOpenToggle(null)}>
             {rest.placeholder ? rest.placeholder : ""}
