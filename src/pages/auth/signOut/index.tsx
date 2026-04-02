@@ -2,14 +2,14 @@ import styled from "styled-components";
 
 import Button from "../../../components/button/button";
 import Layout from "../../../components/layout/layout";
-import { SignOutHelper, useAuth } from "../../../utils/authHelper";
+import { signOutHelper, useAuth } from "../../../utils/authHelper";
 
 import type React from "react";
 
 const SignOut: React.FC = () => {
   const { refreshAuthState } = useAuth();
   const signOut = async () => {
-    await SignOutHelper();
+    await signOutHelper();
     refreshAuthState();
   };
 

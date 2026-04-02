@@ -40,7 +40,7 @@ export const getCurrentSignInFlag = async () => {
 /* -----------------------------------
  * サインイン 処理
  * -------------------------------- */
-export const SignInHelper = async (data: TypeSignIn) => {
+export const signInHelper = async (data: TypeSignIn) => {
   store.dispatch(loadingFlagUp());
 
   try {
@@ -58,7 +58,7 @@ export const SignInHelper = async (data: TypeSignIn) => {
 /* -----------------------------------
  * サインアップ 処理
  * -------------------------------- */
-export const SignUpHelper = async (data: TypeSignUp) => {
+export const signUpHelper = async (data: TypeSignUp) => {
   store.dispatch(loadingFlagUp());
 
   try {
@@ -79,7 +79,7 @@ export const SignUpHelper = async (data: TypeSignUp) => {
 /* -----------------------------------
  * アクティベート 処理
  * -------------------------------- */
-export const VerifyHelper = async (data: TypeVerify) => {
+export const verifyHelper = async (data: TypeVerify) => {
   store.dispatch(loadingFlagUp());
 
   try {
@@ -95,7 +95,7 @@ export const VerifyHelper = async (data: TypeVerify) => {
 /* -----------------------------------
  * サインアウト 処理
  * -------------------------------- */
-export const SignOutHelper = async () => {
+export const signOutHelper = async () => {
   store.dispatch(loadingFlagUp());
 
   try {

@@ -4,7 +4,7 @@ import styled from "styled-components";
 import Button from "../../../components/button/button";
 import Input from "../../../components/form/input";
 import Layout from "../../../components/layout/layout";
-import { VerifyHelper } from "../../../utils/authHelper";
+import { verifyHelper } from "../../../utils/authHelper";
 
 import type { TypeVerify } from "../../../lib/types";
 import type React from "react";
@@ -18,7 +18,7 @@ const Verification: React.FC = () => {
   } = useForm<TypeVerify>({ defaultValues: { verificationCode: "", email: "" } });
 
   const onSubmit = handleSubmit((data) => {
-    VerifyHelper(data);
+    verifyHelper(data);
   });
 
   return (

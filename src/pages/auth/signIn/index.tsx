@@ -4,7 +4,7 @@ import styled from "styled-components";
 import Button from "../../../components/button/button";
 import Input from "../../../components/form/input";
 import Layout from "../../../components/layout/layout";
-import { SignInHelper, useAuth } from "../../../utils/authHelper";
+import { signInHelper, useAuth } from "../../../utils/authHelper";
 
 import type { TypeSignIn } from "../../../lib/types";
 import type React from "react";
@@ -19,7 +19,7 @@ const SignIn: React.FC = () => {
   } = useForm<TypeSignIn>({ defaultValues: { email: "", password: "" } });
 
   const onSubmit = handleSubmit(async (data) => {
-    await SignInHelper(data);
+    await signInHelper(data);
     refreshAuthState();
   });
 
