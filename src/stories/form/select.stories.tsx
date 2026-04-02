@@ -43,6 +43,19 @@ export const Required: Story = {
   },
 };
 
+export const Disabled: Story = {
+  args: {
+    placeholder: "選択してください。",
+    label: { text: "Disabled：Selectラベルテキスト" },
+    options: [
+      { value: "Select_Value_A", label: "Select_Label_A" },
+      { value: "Select_Value_B", label: "Select_Label_B" },
+      { value: "Select_Value_C", label: "Select_Label_C" },
+    ],
+    disabled: true,
+  },
+};
+
 export const Error: Story = {
   args: {
     placeholder: "選択してください。",

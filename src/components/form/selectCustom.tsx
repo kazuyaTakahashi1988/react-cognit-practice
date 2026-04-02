@@ -10,12 +10,15 @@ import type React from "react";
 import type { RefObject } from "react";
 
 type Props = React.InputHTMLAttributes<HTMLInputElement> & TypeSelectCustom;
+const SELECT_BOX_LABEL_CLASS = "select-box__label";
+const DISABLED_CLASS = "is-disabled";
 
 export const SelectCustomField: React.ForwardRefRenderFunction<HTMLInputElement, Props> = (
   props,
   ref,
 ) => {
   const { label, options, errorMessage, ...rest } = props;
+  const isDisabled = rest.disabled || false;
 
   const [isOpen, setIsOpen] = useState(false);
   const selectRef = useRef<HTMLDivElement>(null);
@@ -35,6 +38,7 @@ export const SelectCustomField: React.ForwardRefRenderFunction<HTMLInputElement,
     labelRefs.current[index] = createRef<HTMLLabelElement>();
   });
   const onOpenToggle = (e: number | null) => {
+    if (isDisabled) return;
     setSelectedIndex(e);
     setIsOpen(!isOpen);
   };
@@ -49,15 +53,25 @@ export const SelectCustomField: React.ForwardRefRenderFunction<HTMLInputElement,
       {label && <Label label={label} />}
 
       <div className="select" ref={selectRef}>
-        <div className={["selected", `${isOpen ? "is-open" : ""}`].join(" ")}>
+        <div
+          className={["selected", `${isOpen ? "is-open" : ""}`, `${isDisabled ? DISABLED_CLASS : ""}`].join(" ")}
+        >
           <span className="placeholder" onClick={() => onOpenToggle(null)}>
             {rest.placeholder ? rest.placeholder : ""}
           </span>
           {options.map((option, index) => (
-            <div className="selected__label" key={index} onClick={() => onOpenToggle(index)}>
+            <div
+              className={["selected__label", `${option.disabled ? DISABLED_CLASS : ""}`].join(" ")}
+              key={index}
+              onClick={() => {
+                if (option.disabled || isDisabled) return;
+                onOpenToggle(index);
+              }}
+            >
               <input
                 {...rest}
                 className=""
+                disabled={isDisabled || option.disabled}
                 id={rest.name + option.value}
                 ref={ref}
                 type="radio"
@@ -72,9 +86,16 @@ export const SelectCustomField: React.ForwardRefRenderFunction<HTMLInputElement,
           <div className="select-box">
             {options.map((option, index) => (
               <label
-                className="select-box__label"
+                aria-disabled={isDisabled || option.disabled}
+                className={[
+                  SELECT_BOX_LABEL_CLASS,
+                  `${option.disabled || isDisabled ? DISABLED_CLASS : ""}`,
+                ].join(" ")}
                 htmlFor={rest.name + option.value}
                 key={index}
+                onClick={(e) => {
+                  if (isDisabled || option.disabled) e.preventDefault();
+                }}
                 ref={labelRefs.current[index]}
               >
                 {option.label}
@@ -105,6 +126,11 @@ const Styled = styled.div`
       box-shadow: 0 0 0 1px ${params.gray};
       background: ${params.white};
       cursor: pointer;
+      &.is-disabled {
+        cursor: not-allowed;
+        background: ${params.gray};
+        color: ${params.gray100};
+      }
       &.is-open {
         border-radius: 4px 4px 0 0;
         box-shadow: 0 0 0 1px ${params.primary};
@@ -145,6 +171,9 @@ const Styled = styled.div`
       &__label {
         width: 0px;
         height: 0px;
+        &.is-disabled {
+          cursor: not-allowed;
+        }
         > input {
           position: absolute;
           top: 0;
@@ -214,6 +243,11 @@ const Styled = styled.div`
         &.current {
           color: ${params.white};
           background: ${params.primary};
+        }
+        &.is-disabled {
+          cursor: not-allowed;
+          color: ${params.gray};
+          background: ${params.gray};
         }
       }
     }

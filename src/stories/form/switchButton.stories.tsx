@@ -34,6 +34,17 @@ export const Required: Story = {
   },
 };
 
+export const Disabled: Story = {
+  args: {
+    label: { text: "Disabled：SwitchButtonラベルテキスト" },
+    options: [
+      { value: "Switch_Value_A", label: "noActive_A", labelActived: "Actived_A", disabled: true },
+      { value: "Switch_Value_B", label: "noActive_B", labelActived: "Actived_B", disabled: true },
+      { value: "Switch_Value_C", label: "------------", disabled: true },
+    ],
+  },
+};
+
 export const Error: Story = {
   args: {
     label: { text: "Error：SwitchButtonラベルテキスト", required: true },

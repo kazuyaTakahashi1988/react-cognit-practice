@@ -53,7 +53,7 @@ export type TypeSwitchButton = {
 // Select
 export type TypeSelect = {
   label?: { text: string; required?: boolean };
-  options: Array<{ value: string; label: string }>;
+  options: Array<{ value: string; label: string; disabled?: boolean }>;
   errorMessage?: string;
   placeholder?: string;
 };
@@ -61,7 +61,7 @@ export type TypeSelect = {
 // SelectCustom
 export type TypeSelectCustom = {
   label?: { text: string; required?: boolean };
-  options: Array<{ value: string; label: string }>;
+  options: Array<{ value: string; label: string; disabled?: boolean }>;
   errorMessage?: string;
 };
 
