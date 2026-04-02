@@ -25,7 +25,7 @@ export const CheckBoxField: React.ForwardRefRenderFunction<HTMLInputElement, Pro
           <input
             {...rest}
             className=""
-            disabled={option.disabled}
+            disabled={rest.disabled || option.disabled}
             id={rest.name + option.value}
             ref={ref}
             type="checkbox"

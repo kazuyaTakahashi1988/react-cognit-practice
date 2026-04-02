@@ -26,10 +26,11 @@ export const Default: Story = {
 export const Disabled: Story = {
   args: {
     label: { text: "Disabled：CheckBoxラベルテキスト" },
+    disabled: true,
     options: [
-      { value: "Check_Value_A", label: "Check_Label_A", disabled: true },
-      { value: "Check_Value_B", label: "Check_Label_B", disabled: true },
-      { value: "Check_Value_C", label: "Check_Label_C", disabled: true },
+      { value: "Check_Value_A", label: "Check_Label_A" },
+      { value: "Check_Value_B", label: "Check_Label_B" },
+      { value: "Check_Value_C", label: "Check_Label_C" },
     ],
   },
 };
