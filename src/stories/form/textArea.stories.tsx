@@ -33,6 +33,14 @@ export const Required: Story = {
   },
 };
 
+export const Disabled: Story = {
+  args: {
+    placeholder: "Disabled：入力をお願いします。",
+    label: { text: "Disabled：TextAreaラベルテキスト" },
+    disabled: true,
+  },
+};
+
 export const Error: Story = {
   args: {
     placeholder: "Error：入力をお願いします。",

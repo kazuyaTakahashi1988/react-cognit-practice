@@ -28,7 +28,7 @@ export const SelectField: React.ForwardRefRenderFunction<HTMLSelectElement, Prop
             </option>
           )}
           {options.map((option, index) => (
-            <option key={index} value={option.value}>
+            <option disabled={option.disabled} key={index} value={option.value}>
               {option.label}
             </option>
           ))}
@@ -76,6 +76,11 @@ const Styled = styled.div`
       &:focus {
         outline: 0;
         box-shadow: 0 0 0 1px ${params.primary};
+      }
+      &:disabled {
+        cursor: not-allowed;
+        background: ${params.gray};
+        color: ${params.gray100};
       }
     }
   }
