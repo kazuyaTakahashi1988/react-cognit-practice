@@ -10,14 +10,9 @@ import type { TypeVerify } from "../../../lib/types";
 import type React from "react";
 
 const Verification: React.FC = () => {
-  const {
-    register,
-    handleSubmit,
-    reset,
-    formState: { errors },
-  } = useForm<TypeVerify>({ defaultValues: { verificationCode: "", email: "" } });
+  const verifyForm = useForm<TypeVerify>({ defaultValues: { verificationCode: "", email: "" } });
 
-  const onSubmit = handleSubmit((data) => {
+  const onSubmit = verifyForm.handleSubmit((data) => {
     verifyHelper(data);
   });
 
@@ -28,24 +23,24 @@ const Verification: React.FC = () => {
 
         <Input
           className="mt-30"
-          errorMessage={errors.verificationCode?.message}
+          errorMessage={verifyForm.formState.errors.verificationCode?.message}
           label={{ text: "verificationCodeを入力してください", required: true }}
           placeholder="○○○○○○○○"
           type="password"
-          {...register("verificationCode", { required: "必須項目だよ。" })}
+          {...verifyForm.register("verificationCode", { required: "必須項目だよ。" })}
         />
 
         <Input
           className="mt-30"
-          errorMessage={errors.email?.message}
+          errorMessage={verifyForm.formState.errors.email?.message}
           label={{ text: "emailを入力してください", required: true }}
           placeholder="○○○○＠○○○○.com"
           type="email"
-          {...register("email", { required: "必須項目だよ。" })}
+          {...verifyForm.register("email", { required: "必須項目だよ。" })}
         />
 
         <div className="mt-30 button-clm">
-          <Button className="secondary" onClick={() => reset()}>
+          <Button className="secondary" onClick={() => verifyForm.reset()}>
             リセット
           </Button>
           <Button onClick={() => onSubmit()}>送信する</Button>

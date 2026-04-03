@@ -3,15 +3,15 @@ import { Navigate, Route, Routes } from "react-router-dom";
 /* -----------------------------------
  * PAGES コンポーネント
  * -------------------------------- */
-import SignIn from "../pages/auth/signIn";
-import SignOut from "../pages/auth/signOut";
-import SignUp from "../pages/auth/signUp";
-import Verification from "../pages/auth/verification";
-import AccordionExample from "../pages/example/accordionExample";
-import DropdownMenuExample from "../pages/example/dropdownMenuExample";
-import FormExample from "../pages/example/formExample";
-import ModalExample from "../pages/example/modalExample";
-import TodoExample from "../pages/example/todoExample";
+import SignIn from "../features/auth/signIn/page";
+import SignOut from "../features/auth/signOut/page";
+import SignUp from "../features/auth/signUp/page";
+import Verification from "../features/auth/verification/page";
+import AccordionExample from "../features/example/accordionExample/page";
+import DropdownMenuExample from "../features/example/dropdownMenuExample/page";
+import FormExample from "../features/example/formExample/page";
+import ModalExample from "../features/example/modalExample/page";
+import TodoExample from "../features/example/todoExample/page";
 import { useAuth } from "../utils/authHelper";
 
 import type React from "react";

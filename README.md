@@ -95,8 +95,8 @@ react-cognit-practice/
 ├── public
 ├── src/             # アプリ本体
 │   ├── components       # 各コンポーネント
+│   ├── features         # 各画面（コロケーション）
 │   ├── lib              # 静的な値・処理
-│   ├── pages            # 各画面
 │   ├── router           # ナビゲーション
 │   ├── stories          # ストーリーブック
 │   ├── utils            # 動的な処理

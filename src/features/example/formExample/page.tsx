@@ -17,12 +17,7 @@ import type { TypeFormExample } from "../../../lib/types";
 import type React from "react";
 
 const FormExample: React.FC = () => {
-  const {
-    register,
-    handleSubmit,
-    reset,
-    formState: { errors },
-  } = useForm<TypeFormExample>({
+  const form = useForm<TypeFormExample>({
     mode: "onSubmit", // 'onChange' or 'onBlur' or 'onSubmit' or 'onTouched' or 'all'
     reValidateMode: "onChange", // 'onChange' or 'onBlur' or 'onSubmit'
     criteriaMode: "all", // 'firstError' or 'all'
@@ -37,7 +32,7 @@ const FormExample: React.FC = () => {
     },
   });
 
-  const onSubmit = handleSubmit(async (data) => {
+  const onSubmit = form.handleSubmit(async (data) => {
     const responsePost = await testPostApi(data);
     console.warn("API response:", responsePost);
   });
@@ -55,10 +50,10 @@ const FormExample: React.FC = () => {
 
         <Input
           className="mt-30"
-          errorMessage={errors.inputName?.message}
+          errorMessage={form.formState.errors.inputName?.message}
           label={{ text: "Inputラベルテキスト", required: true }}
           placeholder="入力をお願いします。"
-          {...register("inputName", {
+          {...form.register("inputName", {
             required: { value: true, message: "必須項目だよ。" },
             minLength: { value: 2, message: "2文字以上にしてね" },
             maxLength: { value: 50, message: "最大50文字だよ" },
@@ -71,14 +66,14 @@ const FormExample: React.FC = () => {
 
         <CheckBox
           className="mt-30"
-          errorMessage={errors.checkBoxName?.message}
+          errorMessage={form.formState.errors.checkBoxName?.message}
           label={{ text: "CheckBoxラベルテキスト", required: true }}
           options={[
             { value: "Check_Value_A", label: "Check_Label_A" },
             { value: "Check_Value_B", label: "Check_Label_B" },
             { value: "Check_Value_C", label: "Check_Label_C" },
           ]}
-          {...register("checkBoxName", {
+          {...form.register("checkBoxName", {
             required: { value: true, message: "必須項目だよ。" },
             validate: (checkedValues: string[]) => {
               if (checkedValues.length < 2) return "２つ以上選択してください。";
@@ -88,33 +83,35 @@ const FormExample: React.FC = () => {
 
         <RadioButton
           className="mt-30"
-          errorMessage={errors.radioButtonName?.message}
+          errorMessage={form.formState.errors.radioButtonName?.message}
           label={{ text: "RadioButtonラベルテキスト", required: true }}
           options={[
             { value: "Radio_Value_A", label: "Radio_Label_A" },
             { value: "Radio_Value_B", label: "Radio_Label_B" },
             { value: "Radio_Value_C", label: "Radio_Label_C" },
           ]}
-          {...register("radioButtonName", { required: { value: true, message: "必須項目だよ。" } })}
+          {...form.register("radioButtonName", {
+            required: { value: true, message: "必須項目だよ。" },
+          })}
         />
 
         <SwitchButton
           className="mt-30"
-          errorMessage={errors.switchButtonName?.message}
+          errorMessage={form.formState.errors.switchButtonName?.message}
           label={{ text: "SwitchButtonラベルテキスト", required: true }}
           options={[
             { value: "Switch_Value_A", label: "noActive_A", labelActived: "Actived_A" },
             { value: "Switch_Value_B", label: "noActive_B", labelActived: "Actived_B" },
             { value: "Switch_Value_C", label: "----------" },
           ]}
-          {...register("switchButtonName", {
+          {...form.register("switchButtonName", {
             required: { value: true, message: "必須項目だよ。" },
           })}
         />
 
         <Select
           className="mt-30"
-          errorMessage={errors.selectName?.message}
+          errorMessage={form.formState.errors.selectName?.message}
           label={{ text: "Selectラベルテキスト", required: true }}
           options={[
             { value: "Select_Value_A", label: "Select_Label_A" },
@@ -122,12 +119,12 @@ const FormExample: React.FC = () => {
             { value: "Select_Value_C", label: "Select_Label_C" },
           ]}
           placeholder="選択してください。"
-          {...register("selectName", { required: { value: true, message: "必須項目だよ。" } })}
+          {...form.register("selectName", { required: { value: true, message: "必須項目だよ。" } })}
         />
 
         <SelectCustom
           className="mt-30"
-          errorMessage={errors.selectCustomName?.message}
+          errorMessage={form.formState.errors.selectCustomName?.message}
           label={{ text: "SelectCustomラベルテキスト", required: true }}
           options={[
             { value: "Select_Value_A", label: "Select_Label_A" },
@@ -135,21 +132,19 @@ const FormExample: React.FC = () => {
             { value: "Select_Value_C", label: "Select_Label_C" },
             { value: "Select_Value_D", label: "Select_Label_D" },
             { value: "Select_Value_E", label: "Select_Label_E" },
-            { value: "Select_Value_F", label: "Select_Label_F" },
-            { value: "Select_Value_G", label: "Select_Label_G" },
           ]}
           placeholder="選択してください。"
-          {...register("selectCustomName", {
+          {...form.register("selectCustomName", {
             required: { value: true, message: "必須項目だよ。" },
           })}
         />
 
         <TextArea
           className="mt-30"
-          errorMessage={errors.textAreaName?.message}
+          errorMessage={form.formState.errors.textAreaName?.message}
           label={{ text: "TextAreaラベルテキスト", required: true }}
           placeholder="入力をお願いします。"
-          {...register("textAreaName", {
+          {...form.register("textAreaName", {
             required: { value: true, message: "必須項目だよ。" },
             minLength: { value: 2, message: "2文字以上にしてね" },
             maxLength: { value: 50, message: "最大50文字だよ" },
@@ -161,7 +156,7 @@ const FormExample: React.FC = () => {
         />
 
         <div className="mt-30 button-clm">
-          <Button className="secondary" onClick={() => reset()}>
+          <Button className="secondary" onClick={() => form.reset()}>
             リセット
           </Button>
           <Button onClick={() => onSubmit()}>送信する</Button>

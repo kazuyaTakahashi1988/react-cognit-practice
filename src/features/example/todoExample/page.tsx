@@ -10,18 +10,15 @@ import type { TypeTodoExample } from "../../../lib/types";
 import type React from "react";
 
 const TodoExample: React.FC = () => {
-  const {
-    register,
-    handleSubmit,
-    reset,
-    control,
-    formState: { errors },
-  } = useForm<TypeTodoExample>({
+  const todoForm = useForm<TypeTodoExample>({
     mode: "onSubmit",
     defaultValues: { todoItems: [{ check: false, task: "" }] },
   });
 
-  const { fields, append, remove } = useFieldArray({ name: "todoItems", control });
+  const { fields, append, remove } = useFieldArray({
+    name: "todoItems",
+    control: todoForm.control,
+  });
 
   const onAppend = () => append({ check: false, task: "" });
   const onRemove = (e: React.MouseEvent<HTMLElement, MouseEvent>) => {
@@ -29,7 +26,7 @@ const TodoExample: React.FC = () => {
     remove(index);
   };
 
-  const onSubmit = handleSubmit((data) => {
+  const onSubmit = todoForm.handleSubmit((data) => {
     console.warn(data);
   });
 
@@ -42,18 +39,18 @@ const TodoExample: React.FC = () => {
 
         <TodoItems
           className="mt-30"
-          errors={errors.todoItems}
+          errors={todoForm.formState.errors.todoItems}
           fields={fields}
           itemsName={{ checkBoxName: "check", inputName: "task" }}
           name="todoItems"
           onAppend={onAppend}
           onRemove={(e) => onRemove(e)}
           placeholder="タスクを入力してください。"
-          register={register}
+          register={todoForm.register}
         />
 
         <div className="mt-30 button-clm">
-          <Button className="secondary" onClick={() => reset()}>
+          <Button className="secondary" onClick={() => todoForm.reset()}>
             リセット
           </Button>
           <Button onClick={() => onSubmit()}>送信する</Button>

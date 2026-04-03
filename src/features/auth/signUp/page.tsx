@@ -10,14 +10,9 @@ import type { TypeSignUp } from "../../../lib/types";
 import type React from "react";
 
 const SignUp: React.FC = () => {
-  const {
-    register,
-    handleSubmit,
-    reset,
-    formState: { errors },
-  } = useForm<TypeSignUp>({ defaultValues: { email: "", password: "" } });
+  const signUpForm = useForm<TypeSignUp>({ defaultValues: { email: "", password: "" } });
 
-  const onSubmit = handleSubmit((data) => {
+  const onSubmit = signUpForm.handleSubmit((data) => {
     signUpHelper(data);
   });
 
@@ -29,24 +24,24 @@ const SignUp: React.FC = () => {
 
           <Input
             className="mt-30"
-            errorMessage={errors.email?.message}
+            errorMessage={signUpForm.formState.errors.email?.message}
             label={{ text: "emailを入力してください", required: true }}
             placeholder="○○○○＠○○○○.com"
             type="email"
-            {...register("email", { required: "必須項目だよ。" })}
+            {...signUpForm.register("email", { required: "必須項目だよ。" })}
           />
 
           <Input
             className="mt-30"
-            errorMessage={errors.password?.message}
+            errorMessage={signUpForm.formState.errors.password?.message}
             label={{ text: "passwordを入力してください", required: true }}
             placeholder="○○○○○○○○"
             type="password"
-            {...register("password", { required: "必須項目だよ。" })}
+            {...signUpForm.register("password", { required: "必須項目だよ。" })}
           />
 
           <div className="mt-30 button-clm">
-            <Button className="secondary" onClick={() => reset()}>
+            <Button className="secondary" onClick={() => signUpForm.reset()}>
               リセット
             </Button>
             <Button onClick={() => onSubmit()}>送信する</Button>

@@ -11,14 +11,9 @@ import type React from "react";
 
 const SignIn: React.FC = () => {
   const { refreshAuthState } = useAuth();
-  const {
-    register,
-    handleSubmit,
-    reset,
-    formState: { errors },
-  } = useForm<TypeSignIn>({ defaultValues: { email: "", password: "" } });
+  const signInForm = useForm<TypeSignIn>({ defaultValues: { email: "", password: "" } });
 
-  const onSubmit = handleSubmit(async (data) => {
+  const onSubmit = signInForm.handleSubmit(async (data) => {
     await signInHelper(data);
     refreshAuthState();
   });
@@ -30,24 +25,24 @@ const SignIn: React.FC = () => {
 
         <Input
           className="mt-30"
-          errorMessage={errors.email?.message}
+          errorMessage={signInForm.formState.errors.email?.message}
           label={{ text: "emailを入力してください", required: true }}
           placeholder="○○○○＠○○○○.com"
           type="email"
-          {...register("email", { required: "必須項目だよ。" })}
+          {...signInForm.register("email", { required: "必須項目だよ。" })}
         />
 
         <Input
           className="mt-30"
-          errorMessage={errors.password?.message}
+          errorMessage={signInForm.formState.errors.password?.message}
           label={{ text: "passwordを入力してください", required: true }}
           placeholder="○○○○○○○○"
           type="password"
-          {...register("password", { required: "必須項目だよ。" })}
+          {...signInForm.register("password", { required: "必須項目だよ。" })}
         />
 
         <div className="mt-30 button-clm">
-          <Button className="secondary" onClick={() => reset()}>
+          <Button className="secondary" onClick={() => signInForm.reset()}>
             リセット
           </Button>
           <Button onClick={() => onSubmit()}>送信する</Button>
