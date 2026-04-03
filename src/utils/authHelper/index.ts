@@ -75,7 +75,7 @@ export const signUpHelper = async (data: TypeSignUpValues) => {
 };
 
 /*
- * アクティベート 処理
+ * ベリファイ 処理
  */
 export const verifyHelper = async (data: TypeVerifyValues) => {
   store.dispatch(loadingFlagUp());
