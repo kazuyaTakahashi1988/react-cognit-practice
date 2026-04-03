@@ -18,13 +18,11 @@ const DropdownMenuExample: React.FC = () => {
           <span>DropdownMenuExample</span>
         </h1>
 
+        {/* ドロップダウンメニュー */}
         <DropdownMenu
           className="mt-30"
           menuList={[
-            {
-              text: "Menu_A_01Menu_A_01Menu_A_01Menu_A_01Menu_A_01Menu_A_01Menu_A_01Menu_A_01",
-              onClick: () => alert("Menu_A：01 onClicked !!"),
-            },
+            { text: "Menu_A_01", onClick: () => alert("Menu_A：01 onClicked !!") },
             { text: "Menu_A_02", onClick: () => alert("Menu_A：02 onClicked !!") },
             { text: "Menu_A_03", onClick: () => alert("Menu_A：03 onClicked !!") },
           ]}
@@ -32,6 +30,7 @@ const DropdownMenuExample: React.FC = () => {
           ドロップダウンメニュー_A
         </DropdownMenu>
 
+        {/* ドロップダウンメニュ- 右寄り */}
         <DropdownMenu
           className="mt-30 right"
           menuList={[
@@ -43,6 +42,7 @@ const DropdownMenuExample: React.FC = () => {
           ドロップダウンメニュー_B
         </DropdownMenu>
 
+        {/* ドロップダウンメニュ- */}
         <DropdownMenu
           className="mt-30"
           menuList={[
@@ -54,6 +54,7 @@ const DropdownMenuExample: React.FC = () => {
           ドロップダウンメニュー_c
         </DropdownMenu>
 
+        {/* ドロップダウンメニュ- 右寄り */}
         <DropdownMenu
           className="mt-30 right"
           menuList={[

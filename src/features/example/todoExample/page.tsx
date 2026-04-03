@@ -14,22 +14,32 @@ import type React from "react";
  * ----------------------------------------------- */
 
 const TodoExample: React.FC = () => {
+  /*
+   * RHForm 使用設定
+   */
   const todoForm = useForm<TypeTodoExampleValues>({
     mode: "onSubmit",
     defaultValues: { todoItems: [{ check: false, task: "" }] },
   });
 
+  /*
+   * TODO項目 使用設定
+   */
   const { fields, append, remove } = useFieldArray({
     name: "todoItems",
     control: todoForm.control,
   });
-
+  // 「追加」ボタン 処理
   const onAppend = () => append({ check: false, task: "" });
+  // 「削除」ボタン 処理
   const onRemove = (e: React.MouseEvent<HTMLElement, MouseEvent>) => {
     const index = Number(e.currentTarget.getAttribute("data-index"));
     remove(index);
   };
 
+  /*
+   * 「送信する」ボタン 処理
+   */
   const onSubmit = todoForm.handleSubmit((data) => {
     console.warn(data);
   });
@@ -41,6 +51,7 @@ const TodoExample: React.FC = () => {
           <span>TodoExample</span>
         </h1>
 
+        {/* TODO項目 */}
         <TodoItems
           className="mt-30"
           errors={todoForm.formState.errors.todoItems}
@@ -53,6 +64,7 @@ const TodoExample: React.FC = () => {
           register={todoForm.register}
         />
 
+        {/* ボタン */}
         <div className="mt-30 button-clm">
           <Button className="secondary" onClick={() => todoForm.reset()}>
             リセット

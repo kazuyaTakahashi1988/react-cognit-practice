@@ -18,6 +18,7 @@ const AccordionExample: React.FC = () => {
           <span>AccordionExample</span>
         </h1>
 
+        {/* アコーディオン */}
         <Accordion className="mt-30" title="アコーディオンタイトル">
           <h3>アコーディオンコンテンツ</h3>
           <p>
@@ -25,6 +26,7 @@ const AccordionExample: React.FC = () => {
           </p>
         </Accordion>
 
+        {/* アコーディオン（デフォルトオープン） */}
         <Accordion
           className="mt-30"
           title="アコーディオンタイトル（デフォルトオープン）"

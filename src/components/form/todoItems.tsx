@@ -24,7 +24,7 @@ export const TodoItemsField: React.ForwardRefRenderFunction<HTMLInputElement, Pr
   const name = rest.name;
   const { checkBoxName, inputName } = itemsName;
 
-  // エラーテキスト取得 処理用の型ガード
+  // エラーテキスト型ガード
   const isErrorArray = (
     value: object | undefined,
   ): value is { [key: string]: { message?: string } }[] => {

@@ -15,7 +15,10 @@ import type React from "react";
 const ModalExample: React.FC = () => {
   const [isVisible, setIsVisible] = useState({ modal01: false, modal02: false });
 
-  const onModal = (target: string, flag: boolean) => {
+  /*
+   * 「モーダルを開く」ボタン 処理
+   */
+  const toggleModal = (target: string, flag: boolean) => {
     setIsVisible({ ...isVisible, [target]: flag });
   };
 
@@ -26,14 +29,16 @@ const ModalExample: React.FC = () => {
           <span>ModalExample</span>
         </h1>
 
+        {/* ボタン */}
         <div className="button-clm">
-          <Button onClick={() => onModal("modal01", true)}>モーダルを開く01</Button>
+          <Button onClick={() => toggleModal("modal01", true)}>モーダルを開く01</Button>
 
-          <Button onClick={() => onModal("modal02", true)}>モーダルを開く02</Button>
+          <Button onClick={() => toggleModal("modal02", true)}>モーダルを開く02</Button>
         </div>
 
+        {/* モダール - 01 */}
         <Modal
-          onClose={{ text: "閉じる", onClick: () => onModal("modal01", false) }}
+          onClose={{ text: "閉じる", onClick: () => toggleModal("modal01", false) }}
           onEvent={{ text: "イベント01", onClick: () => alert("01 onEvent !!") }}
           title="タイトル01"
           visible={isVisible.modal01}
@@ -41,8 +46,9 @@ const ModalExample: React.FC = () => {
           ダミーテキスト・ダミーテキスト・ダミーテキスト
         </Modal>
 
+        {/* モダール - 02 */}
         <Modal
-          onClose={{ text: "閉じる", onClick: () => onModal("modal02", false) }}
+          onClose={{ text: "閉じる", onClick: () => toggleModal("modal02", false) }}
           onEvent={{ text: "イベント02", onClick: () => alert("02 onEvent !!") }}
           title="タイトル02"
           visible={isVisible.modal02}

@@ -21,6 +21,9 @@ import type React from "react";
  * ----------------------------------------------- */
 
 const FormExample: React.FC = () => {
+  /*
+   * RHForm 使用設定
+   */
   const form = useForm<TypeFormExampleValues>({
     mode: "onSubmit", // 'onChange' or 'onBlur' or 'onSubmit' or 'onTouched' or 'all'
     reValidateMode: "onChange", // 'onChange' or 'onBlur' or 'onSubmit'
@@ -36,8 +39,11 @@ const FormExample: React.FC = () => {
     },
   });
 
+  /*
+   * 「送信する」ボタン 処理
+   */
   const onSubmit = form.handleSubmit(async (data) => {
-    const responsePost = await testPostApi(data);
+    const responsePost = await testPostApi(data); // テストポストAPI（てきとーなやつ）処理
     console.warn("API response:", responsePost);
   });
 
@@ -52,6 +58,7 @@ const FormExample: React.FC = () => {
           </span>
         </h1>
 
+        {/* インプット項目 */}
         <Input
           className="mt-30"
           errorMessage={form.formState.errors.inputName?.message}
@@ -68,6 +75,7 @@ const FormExample: React.FC = () => {
           })}
         />
 
+        {/* チェックボックス項目 */}
         <CheckBox
           className="mt-30"
           errorMessage={form.formState.errors.checkBoxName?.message}
@@ -85,6 +93,7 @@ const FormExample: React.FC = () => {
           })}
         />
 
+        {/* ラジオボタン項目 */}
         <RadioButton
           className="mt-30"
           errorMessage={form.formState.errors.radioButtonName?.message}
@@ -99,6 +108,7 @@ const FormExample: React.FC = () => {
           })}
         />
 
+        {/* スイッチボタン項目 */}
         <SwitchButton
           className="mt-30"
           errorMessage={form.formState.errors.switchButtonName?.message}
@@ -113,6 +123,7 @@ const FormExample: React.FC = () => {
           })}
         />
 
+        {/* セレクトボックス項目 */}
         <Select
           className="mt-30"
           errorMessage={form.formState.errors.selectName?.message}
@@ -126,6 +137,7 @@ const FormExample: React.FC = () => {
           {...form.register("selectName", { required: { value: true, message: "必須項目だよ。" } })}
         />
 
+        {/* セレクトカスタムボックス項目 */}
         <SelectCustom
           className="mt-30"
           errorMessage={form.formState.errors.selectCustomName?.message}
@@ -143,6 +155,7 @@ const FormExample: React.FC = () => {
           })}
         />
 
+        {/* テキストエリア項目 */}
         <TextArea
           className="mt-30"
           errorMessage={form.formState.errors.textAreaName?.message}
@@ -159,6 +172,7 @@ const FormExample: React.FC = () => {
           })}
         />
 
+        {/* ボタン */}
         <div className="mt-30 button-clm">
           <Button className="secondary" onClick={() => form.reset()}>
             リセット
