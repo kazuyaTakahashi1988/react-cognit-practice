@@ -7,6 +7,13 @@ import { AuthContext } from "./authProvider";
 
 import type { TypeSignIn, TypeSignUp, TypeVerify } from "../../lib/types";
 
+/* -----------------------------------------------
+ * Amplify および Cognito Auth 処理
+ * ----------------------------------------------- */
+
+/*
+ * Amplify 設定
+ */
 Amplify.configure({
   Auth: {
     Cognito: {
@@ -17,9 +24,9 @@ Amplify.configure({
   },
 });
 
-/* -----------------------------------
+/*
  * サインイン 済 or 未 フラグ
- * -------------------------------- */
+ */
 export const useAuth = () => {
   const context = useContext(AuthContext);
   if (!context) {
@@ -37,9 +44,9 @@ export const getCurrentSignInFlag = async () => {
   }
 };
 
-/* -----------------------------------
+/*
  * サインイン 処理
- * -------------------------------- */
+ */
 export const signInHelper = async (data: TypeSignIn) => {
   store.dispatch(loadingFlagUp());
 
@@ -55,9 +62,9 @@ export const signInHelper = async (data: TypeSignIn) => {
   }
 };
 
-/* -----------------------------------
+/*
  * サインアップ 処理
- * -------------------------------- */
+ */
 export const signUpHelper = async (data: TypeSignUp) => {
   store.dispatch(loadingFlagUp());
 
@@ -76,9 +83,9 @@ export const signUpHelper = async (data: TypeSignUp) => {
   }
 };
 
-/* -----------------------------------
+/*
  * アクティベート 処理
- * -------------------------------- */
+ */
 export const verifyHelper = async (data: TypeVerify) => {
   store.dispatch(loadingFlagUp());
 
@@ -92,9 +99,9 @@ export const verifyHelper = async (data: TypeVerify) => {
   }
 };
 
-/* -----------------------------------
+/*
  * サインアウト 処理
- * -------------------------------- */
+ */
 export const signOutHelper = async () => {
   store.dispatch(loadingFlagUp());
 

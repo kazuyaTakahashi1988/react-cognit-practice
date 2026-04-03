@@ -5,6 +5,10 @@ import { params } from "../../lib/style";
 
 import type React from "react";
 
+/* -----------------------------------------------
+ * 共通フッター
+ * ----------------------------------------------- */
+
 export const Footer: React.FC = () => {
   return (
     <Styled>

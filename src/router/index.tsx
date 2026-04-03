@@ -1,8 +1,5 @@
 import { Navigate, Route, Routes } from "react-router-dom";
 
-/* -----------------------------------
- * PAGES コンポーネント
- * -------------------------------- */
 import SignIn from "../features/auth/signIn/page";
 import SignOut from "../features/auth/signOut/page";
 import SignUp from "../features/auth/signUp/page";
@@ -15,6 +12,10 @@ import TodoExample from "../features/example/todoExample/page";
 import { useAuth } from "../utils/authHelper";
 
 import type React from "react";
+
+/* -----------------------------------
+ * ルーティング設定
+ * -------------------------------- */
 
 const ProtectedRoute: React.FC<{ children: React.ReactNode }> = ({ children }) => {
   const { isSignedIn } = useAuth();

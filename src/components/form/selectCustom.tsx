@@ -13,6 +13,10 @@ type Props = React.InputHTMLAttributes<HTMLInputElement> & TypeSelectCustom;
 const SELECT_BOX_LABEL_CLASS = "select-box__label";
 const DISABLED_CLASS = "is-disabled";
 
+/* -----------------------------------------------
+ * セレクトカスタムボックス項目
+ * ----------------------------------------------- */
+
 export const SelectCustomField: React.ForwardRefRenderFunction<HTMLInputElement, Props> = (
   props,
   ref,

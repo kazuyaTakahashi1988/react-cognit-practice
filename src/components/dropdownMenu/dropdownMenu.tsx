@@ -8,6 +8,10 @@ import type React from "react";
 
 type Props = React.HTMLAttributes<HTMLSpanElement> & TypeDropdownMenu;
 
+/* -----------------------------------------------
+ * ドロップダウンメニュー
+ * ----------------------------------------------- */
+
 export const DropdownMenuField: React.ForwardRefRenderFunction<HTMLSpanElement, Props> = (
   props,
   ref,

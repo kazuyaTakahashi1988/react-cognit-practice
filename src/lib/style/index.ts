@@ -1,2 +1,2 @@
-export * from "./_mixin";
+export * from "./_variable";
 export * from "./_globalStyle";

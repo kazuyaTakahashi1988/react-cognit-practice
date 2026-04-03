@@ -11,6 +11,10 @@ import type React from "react";
 type Props = Omit<React.InputHTMLAttributes<HTMLInputElement>, "name"> &
   TypeTodoItems & { name: "todoItems" };
 
+/* -----------------------------------------------
+ * TODO項目
+ * ----------------------------------------------- */
+
 export const TodoItemsField: React.ForwardRefRenderFunction<HTMLInputElement, Props> = (
   props,
   ref,

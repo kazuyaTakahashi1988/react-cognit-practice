@@ -10,6 +10,10 @@ import type React from "react";
 
 type Props = React.SelectHTMLAttributes<HTMLSelectElement> & TypeSelect;
 
+/* -----------------------------------------------
+ * セレクトボックス項目
+ * ----------------------------------------------- */
+
 export const SelectField: React.ForwardRefRenderFunction<HTMLSelectElement, Props> = (
   props,
   ref,

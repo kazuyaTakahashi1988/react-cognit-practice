@@ -8,6 +8,10 @@ import type React from "react";
 
 type Props = React.LabelHTMLAttributes<HTMLLabelElement> & TypeErrorMessage;
 
+/* -----------------------------------------------
+ * エラーメッセージ
+ * ----------------------------------------------- */
+
 export const ErrorMessageField: React.ForwardRefRenderFunction<HTMLLabelElement, Props> = (
   props,
   ref,

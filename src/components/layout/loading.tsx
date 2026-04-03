@@ -4,6 +4,10 @@ import { params } from "../../lib/style";
 
 import type React from "react";
 
+/* -----------------------------------------------
+ * 共通ローディング
+ * ----------------------------------------------- */
+
 export const Loading: React.FC = () => {
   return (
     <Styled>

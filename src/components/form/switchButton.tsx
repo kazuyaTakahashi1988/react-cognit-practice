@@ -10,6 +10,9 @@ import type React from "react";
 
 type Props = React.InputHTMLAttributes<HTMLInputElement> & TypeSwitchButton;
 
+/* -----------------------------------------------
+ * スイッチボタン項目
+ * ----------------------------------------------- */
 export const SwitchButtonField: React.ForwardRefRenderFunction<HTMLInputElement, Props> = (
   props,
   ref,

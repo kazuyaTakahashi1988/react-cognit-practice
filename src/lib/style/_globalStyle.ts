@@ -1,11 +1,12 @@
 import { createGlobalStyle } from "styled-components";
 
-import { media, params } from "./_mixin";
+import { media, params } from "./_variable";
+
+/* -----------------------------------------------
+ * グローバルスタイル
+ * ----------------------------------------------- */
 
 export const GlobalStyle = createGlobalStyle`
-  /*=================================
-    Global & Initialization of style
-  ===================================*/
   html,
   #root {
     height: 100%;

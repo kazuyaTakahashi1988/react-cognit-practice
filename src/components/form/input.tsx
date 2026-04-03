@@ -10,6 +10,10 @@ import type React from "react";
 
 type Props = React.InputHTMLAttributes<HTMLInputElement> & TypeInput;
 
+/* -----------------------------------------------
+ * インプット項目
+ * ----------------------------------------------- */
+
 export const InputField: React.ForwardRefRenderFunction<HTMLInputElement, Props> = (props, ref) => {
   const { label, errorMessage, ...rest } = props;
 

@@ -8,6 +8,10 @@ import { Loading } from "./loading";
 import type { TypeLayout, TypeSelectorState } from "../../lib/types";
 import type React from "react";
 
+/* -----------------------------------------------
+ * 共通レイアウト
+ * ----------------------------------------------- */
+
 export const Layout: React.FC<TypeLayout> = (props) => {
   const { type, children } = props;
 

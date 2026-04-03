@@ -8,6 +8,10 @@ import type React from "react";
 
 type Props = React.ButtonHTMLAttributes<HTMLButtonElement> & TypeButton;
 
+/* -----------------------------------------------
+ * ボタン
+ * ----------------------------------------------- */
+
 export const ButtonField: React.ForwardRefRenderFunction<HTMLButtonElement, Props> = (
   props,
   ref,

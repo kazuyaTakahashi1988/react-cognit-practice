@@ -8,6 +8,10 @@ import type React from "react";
 
 type Props = React.HTMLAttributes<HTMLDivElement> & TypeAccordion;
 
+/* -----------------------------------------------
+ * アコーディオン
+ * ----------------------------------------------- */
+
 export const AccordionField: React.ForwardRefRenderFunction<HTMLDivElement, Props> = (
   props,
   ref,

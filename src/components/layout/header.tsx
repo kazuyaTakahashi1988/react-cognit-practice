@@ -8,6 +8,10 @@ import DropdownMenu from "../dropdownMenu/dropdownMenu";
 import type { TypeHeader } from "../../lib/types";
 import type React from "react";
 
+/* -----------------------------------------------
+ * 共通ヘッダー
+ * ----------------------------------------------- */
+
 export const Header: React.FC<TypeHeader> = (props) => {
   const { type } = props;
   const navigate = useNavigate();

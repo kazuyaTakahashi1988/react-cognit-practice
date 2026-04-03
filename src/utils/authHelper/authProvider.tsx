@@ -4,6 +4,10 @@ import { createContext, useEffect, useMemo, useState } from "react";
 import type { TypeAuthContext } from "../../lib/types";
 import type React from "react";
 
+/* -----------------------------------------------
+ * Auth プロバイダー
+ * ----------------------------------------------- */
+
 export const AuthContext = createContext<TypeAuthContext | null>(null);
 
 const getCurrentSignInFlag = async () => {
@@ -15,9 +19,6 @@ const getCurrentSignInFlag = async () => {
   }
 };
 
-/* -----------------------------------
- * Auth プロバイダー
- * -------------------------------- */
 export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
   const [isSignedIn, setIsSignedIn] = useState<boolean>(false);
 

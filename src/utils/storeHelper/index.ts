@@ -2,6 +2,10 @@ import { configureStore, createSlice } from "@reduxjs/toolkit";
 
 import type { TypeState } from "../../lib/types";
 
+/* -----------------------------------------------
+ * Store管理（Redux）処理
+ * ----------------------------------------------- */
+
 const initialState: TypeState = {
   loadingFlagCount: 0,
   // xxxxString: "",

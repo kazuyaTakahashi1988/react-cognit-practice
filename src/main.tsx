@@ -5,6 +5,10 @@ import App from "./App.tsx";
 import { AuthProvider } from "./utils/authHelper/authProvider";
 import { StoreProvider } from "./utils/storeHelper/storeProvider";
 
+/* -----------------------------------------------
+ * アプリメインファイル
+ * ----------------------------------------------- */
+
 const container = document.getElementById("root");
 
 if (!container) {
