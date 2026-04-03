@@ -6,7 +6,7 @@ import TodoItems from "../../../components/form/todoItems";
 import Layout from "../../../components/layouts/layout";
 import { media, params } from "../../../lib/style";
 
-import type { TypeTodoExampleValues } from "../../../lib/types";
+import type { TypeTodoExampleValues } from "./type";
 import type React from "react";
 
 /* -----------------------------------------------

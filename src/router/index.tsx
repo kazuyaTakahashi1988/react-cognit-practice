@@ -17,6 +17,7 @@ import type React from "react";
  * ルーティング設定
  * ----------------------------------------------- */
 
+// auth用：未サインイン時は SignIn ページへリダイレクトする処理
 const ProtectedRoute: React.FC<{ children: React.ReactNode }> = ({ children }) => {
   const { isSignedIn } = useAuth();
 
@@ -27,6 +28,7 @@ const ProtectedRoute: React.FC<{ children: React.ReactNode }> = ({ children }) =
   return <>{children}</>;
 };
 
+// auth用：サインイン時は SignOut ページへリダイレクトする処理
 const PublicRoute: React.FC<{ children: React.ReactNode }> = ({ children }) => {
   const { isSignedIn } = useAuth();
 
@@ -37,11 +39,19 @@ const PublicRoute: React.FC<{ children: React.ReactNode }> = ({ children }) => {
   return <>{children}</>;
 };
 
+/*
+ * ルーティング設定
+ * ルートの追加はここに記述していく
+ */
 export function Router() {
   const { isSignedIn } = useAuth();
 
   return (
     <Routes>
+      {/* ----------------------------------------
+       * example 各ルート設定
+       * ----------------------------------------- */}
+      <Route element={<Navigate replace to="/" />} path="/*" />
       <Route element={<Navigate replace to="/example/form_example" />} path="/" />
       <Route element={<Navigate replace to="/example/form_example" />} path="/example" />
       <Route element={<FormExample />} path="/example/form_example" />
@@ -49,11 +59,10 @@ export function Router() {
       <Route element={<ModalExample />} path="/example/modal_example" />
       <Route element={<AccordionExample />} path="/example/accordion_example" />
       <Route element={<DropdownMenuExample />} path="/example/dropdownmenu_example" />
-      <Route element={<Navigate replace to="/" />} path="/*" />
 
-      {/*
-       * auth 画面ルート設定
-       */}
+      {/* ----------------------------------------
+       * auth 各ルート設定
+       * ----------------------------------------- */}
       <Route
         element={<Navigate replace to={isSignedIn ? "/auth/signout" : "/auth/signin"} />}
         path="/auth"
