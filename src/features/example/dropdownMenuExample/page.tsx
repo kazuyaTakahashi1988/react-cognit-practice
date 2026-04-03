@@ -7,7 +7,7 @@ import { media, params } from "../../../lib/style";
 import type React from "react";
 
 /* -----------------------------------------------
- * "root/example/dropdownmenu_example" ページ
+ * "[root]/example/dropdownmenu_example" ページ
  * ----------------------------------------------- */
 
 const DropdownMenuExample: React.FC = () => {
