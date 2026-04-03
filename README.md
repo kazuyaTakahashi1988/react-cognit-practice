@@ -71,7 +71,7 @@ VITE_APP_AWS_COGNITO_CLIENT_ID='40oec5o56lukbe6ch1s9al1qh'
 
 ↓↓↓↓
 
-ルートに戻ってyarn install & yarn dev (node ver 20.x)
+ルートに戻ってyarn install & yarn dev (node ver 24.x)
 
 ```
 $ yarn install // ←上述①の手順を終えてるなら必要なし
