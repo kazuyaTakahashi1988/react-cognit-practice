@@ -15,11 +15,18 @@ import type React from "react";
 
 const SignIn: React.FC = () => {
   const { refreshAuthState } = useAuth();
+
+  /*
+   * RHForm 使用設定
+   */
   const signInForm = useForm<TypeSignInValues>({ defaultValues: { email: "", password: "" } });
 
+  /*
+   * 「送信する」ボタン 処理
+   */
   const onSubmit = signInForm.handleSubmit(async (data) => {
-    await signInHelper(data);
-    refreshAuthState();
+    await signInHelper(data); // サインイン処理
+    refreshAuthState(); // 認証状態を更新する処理
   });
 
   return (
@@ -27,6 +34,7 @@ const SignIn: React.FC = () => {
       <Styled>
         <h1>SignIn</h1>
 
+        {/* インプット項目 - E-mail */}
         <Input
           className="mt-30"
           errorMessage={signInForm.formState.errors.email?.message}
@@ -36,6 +44,7 @@ const SignIn: React.FC = () => {
           {...signInForm.register("email", { required: "必須項目だよ。" })}
         />
 
+        {/* インプット項目 - Password */}
         <Input
           className="mt-30"
           errorMessage={signInForm.formState.errors.password?.message}
@@ -45,6 +54,7 @@ const SignIn: React.FC = () => {
           {...signInForm.register("password", { required: "必須項目だよ。" })}
         />
 
+        {/* ボタン */}
         <div className="mt-30 button-clm">
           <Button className="secondary" onClick={() => signInForm.reset()}>
             リセット

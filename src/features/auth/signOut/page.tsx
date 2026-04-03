@@ -12,15 +12,21 @@ import type React from "react";
 
 const SignOut: React.FC = () => {
   const { refreshAuthState } = useAuth();
+
+  /*
+   * 「Sign Out」ボタン 処理
+   */
   const signOut = async () => {
-    await signOutHelper();
-    refreshAuthState();
+    await signOutHelper(); // サインアウト処理
+    refreshAuthState(); // 認証状態を更新する処理
   };
 
   return (
     <Layout type="auth">
       <Styled>
         <h1>サインアウト</h1>
+
+        {/* ボタン */}
         <div className="mt-30">
           <Button onClick={signOut}>Sign Out</Button>
         </div>

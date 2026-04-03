@@ -14,10 +14,16 @@ import type React from "react";
  * ----------------------------------------------- */
 
 const SignUp: React.FC = () => {
+  /*
+   * RHForm 使用設定
+   */
   const signUpForm = useForm<TypeSignUpValues>({ defaultValues: { email: "", password: "" } });
 
+  /*
+   * 「送信する」ボタン 処理
+   */
   const onSubmit = signUpForm.handleSubmit((data) => {
-    signUpHelper(data);
+    signUpHelper(data); // サインアップ処理
   });
 
   return (
@@ -26,6 +32,7 @@ const SignUp: React.FC = () => {
         <form>
           <h1>SignUp</h1>
 
+          {/* インプット項目 - E-mail */}
           <Input
             className="mt-30"
             errorMessage={signUpForm.formState.errors.email?.message}
@@ -35,6 +42,7 @@ const SignUp: React.FC = () => {
             {...signUpForm.register("email", { required: "必須項目だよ。" })}
           />
 
+          {/* インプット項目 - Password */}
           <Input
             className="mt-30"
             errorMessage={signUpForm.formState.errors.password?.message}
@@ -44,6 +52,7 @@ const SignUp: React.FC = () => {
             {...signUpForm.register("password", { required: "必須項目だよ。" })}
           />
 
+          {/* ボタン */}
           <div className="mt-30 button-clm">
             <Button className="secondary" onClick={() => signUpForm.reset()}>
               リセット

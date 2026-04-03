@@ -14,12 +14,18 @@ import type React from "react";
  * ----------------------------------------------- */
 
 const Verification: React.FC = () => {
+  /*
+   * RHForm 使用設定
+   */
   const verifyForm = useForm<TypeVerifyValues>({
     defaultValues: { verificationCode: "", email: "" },
   });
 
+  /*
+   * 「送信する」ボタン 処理
+   */
   const onSubmit = verifyForm.handleSubmit((data) => {
-    verifyHelper(data);
+    verifyHelper(data); // ベリファイ処理
   });
 
   return (
@@ -27,6 +33,7 @@ const Verification: React.FC = () => {
       <Styled>
         <h1>Verification</h1>
 
+        {/* インプット項目 - verificationCode */}
         <Input
           className="mt-30"
           errorMessage={verifyForm.formState.errors.verificationCode?.message}
@@ -36,6 +43,7 @@ const Verification: React.FC = () => {
           {...verifyForm.register("verificationCode", { required: "必須項目だよ。" })}
         />
 
+        {/* インプット項目 - E-mail */}
         <Input
           className="mt-30"
           errorMessage={verifyForm.formState.errors.email?.message}
@@ -45,6 +53,7 @@ const Verification: React.FC = () => {
           {...verifyForm.register("email", { required: "必須項目だよ。" })}
         />
 
+        {/* ボタン */}
         <div className="mt-30 button-clm">
           <Button className="secondary" onClick={() => verifyForm.reset()}>
             リセット
