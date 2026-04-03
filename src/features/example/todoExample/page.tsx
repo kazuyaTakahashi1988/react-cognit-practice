@@ -29,8 +29,10 @@ const TodoExample: React.FC = () => {
     name: "todoItems",
     control: todoForm.control,
   });
+
   // 「追加」ボタン 処理
   const onAppend = () => append({ check: false, task: "" });
+
   // 「削除」ボタン 処理
   const onRemove = (e: React.MouseEvent<HTMLElement, MouseEvent>) => {
     const index = Number(e.currentTarget.getAttribute("data-index"));
