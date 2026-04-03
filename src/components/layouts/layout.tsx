@@ -15,18 +15,23 @@ import type React from "react";
 export const Layout: React.FC<TypeLayout> = (props) => {
   const { type, children } = props;
 
+  /// ローディングフラグ（表示・非表示制御）
   const loadingFlagCount = useSelector((state: TypeSelectorState) => state.loadingFlagCount);
 
   return (
     <Styled>
+      {/* 共通ローディング */}
       {loadingFlagCount > 0 && <Loading />}
 
+      {/* 共通ヘッダー */}
       <Header type={type} />
 
+      {/* チャイルドコンテンツ */}
       <div className="container">
         <div className="container__inner">{children}</div>
       </div>
 
+      {/* 共通フッター */}
       <Footer />
     </Styled>
   );

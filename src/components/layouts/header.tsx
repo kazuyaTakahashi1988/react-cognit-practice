@@ -15,13 +15,19 @@ import type React from "react";
 export const Header: React.FC<TypeHeader> = (props) => {
   const { type } = props;
   const navigate = useNavigate();
-  const { isSignedIn } = useAuth();
+  const { isSignedIn } = useAuth(); // サインインフラグ
 
   return (
     <Styled>
       <h1 className="logo">LOGO</h1>
       <nav className="nav">
+        {/* --------------------------------------
+         * PC：Nav レイアウト
+         * --------------------------------------- */}
         <ul className="pc-only">
+          {/*
+           * PC：example 各NavLink
+           */}
           {type === "example" && (
             <>
               <li>
@@ -51,9 +57,14 @@ export const Header: React.FC<TypeHeader> = (props) => {
               </li>
             </>
           )}
+
+          {/*
+           * PC：auth 各NavLink
+           */}
           {type === "auth" &&
             (!isSignedIn ? (
               <>
+                {/* 未サインイン時 */}
                 <li>
                   <NavLink end to="/auth/signin">
                     SignIn
@@ -71,15 +82,24 @@ export const Header: React.FC<TypeHeader> = (props) => {
                 </li>
               </>
             ) : (
-              <li>
-                <NavLink end to="/auth/signout">
-                  SignOut
-                </NavLink>
-              </li>
+              <>
+                {/* サインイン時 */}
+                <li>
+                  <NavLink end to="/auth/signout">
+                    SignOut
+                  </NavLink>
+                </li>
+              </>
             ))}
         </ul>
 
+        {/* --------------------------------------
+         * SP：Nav レイアウト（ドロップダウンメニュー）
+         * --------------------------------------- */}
         <ul className="sp-only">
+          {/*
+           * SP：example 各navigate()
+           */}
           {type === "example" && (
             <li>
               <DropdownMenu
@@ -110,35 +130,51 @@ export const Header: React.FC<TypeHeader> = (props) => {
               </DropdownMenu>
             </li>
           )}
+
+          {/*
+           * SP：auth 各navigate()
+           */}
           {type === "auth" &&
             (!isSignedIn ? (
-              <li>
-                <DropdownMenu
-                  menuList={[
-                    { text: "SighIn", onClick: () => navigate("/auth/signin", { replace: true }) },
-                    { text: "SighUp", onClick: () => navigate("/auth/signup", { replace: true }) },
-                    {
-                      text: "Verification",
-                      onClick: () => navigate("/auth/verification", { replace: true }),
-                    },
-                  ]}
-                >
-                  <b>Auth</b>
-                </DropdownMenu>
-              </li>
+              <>
+                {/* 未サインイン時 */}
+                <li>
+                  <DropdownMenu
+                    menuList={[
+                      {
+                        text: "SighIn",
+                        onClick: () => navigate("/auth/signin", { replace: true }),
+                      },
+                      {
+                        text: "SighUp",
+                        onClick: () => navigate("/auth/signup", { replace: true }),
+                      },
+                      {
+                        text: "Verification",
+                        onClick: () => navigate("/auth/verification", { replace: true }),
+                      },
+                    ]}
+                  >
+                    <b>Auth</b>
+                  </DropdownMenu>
+                </li>
+              </>
             ) : (
-              <li>
-                <DropdownMenu
-                  menuList={[
-                    {
-                      text: "SignOut",
-                      onClick: () => navigate("/auth/signout", { replace: true }),
-                    },
-                  ]}
-                >
-                  <b>Auth</b>
-                </DropdownMenu>
-              </li>
+              <>
+                {/* サインイン時 */}
+                <li>
+                  <DropdownMenu
+                    menuList={[
+                      {
+                        text: "SignOut",
+                        onClick: () => navigate("/auth/signout", { replace: true }),
+                      },
+                    ]}
+                  >
+                    <b>Auth</b>
+                  </DropdownMenu>
+                </li>
+              </>
             ))}
         </ul>
       </nav>
