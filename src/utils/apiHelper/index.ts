@@ -2,7 +2,7 @@ import axios from "axios";
 
 import { loadingFlagDown, loadingFlagUp, store } from "../storeHelper";
 
-import type { TypeApiError, TypeFormExample, TypeOptions } from "../../lib/types";
+import type { TypeApiError, TypeFormExampleValues, TypeOptions } from "../../lib/types";
 import type { AxiosRequestConfig, AxiosResponse, Method } from "axios";
 
 /* -----------------------------------------------
@@ -103,7 +103,7 @@ export const testGetArticleApi = () => {
 };
 
 // テストポストAPI（てきとーなやつ）
-export const testPostApi = (data: TypeFormExample) => {
+export const testPostApi = (data: TypeFormExampleValues) => {
   const options = { requestData: data };
 
   return request("POST", "/wp-json/wp/v2/posts", options);

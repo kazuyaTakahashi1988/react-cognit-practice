@@ -13,7 +13,7 @@ import Layout from "../../../components/layouts/layout";
 import { media, params } from "../../../lib/style";
 import { testPostApi } from "../../../utils/apiHelper"; // テストポストAPI（てきとーなやつ）
 
-import type { TypeFormExample } from "../../../lib/types";
+import type { TypeFormExampleValues } from "../../../lib/types";
 import type React from "react";
 
 /* -----------------------------------------------
@@ -21,7 +21,7 @@ import type React from "react";
  * ----------------------------------------------- */
 
 const FormExample: React.FC = () => {
-  const form = useForm<TypeFormExample>({
+  const form = useForm<TypeFormExampleValues>({
     mode: "onSubmit", // 'onChange' or 'onBlur' or 'onSubmit' or 'onTouched' or 'all'
     reValidateMode: "onChange", // 'onChange' or 'onBlur' or 'onSubmit'
     criteriaMode: "all", // 'firstError' or 'all'

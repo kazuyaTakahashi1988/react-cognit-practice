@@ -6,7 +6,7 @@ import Input from "../../../components/form/input";
 import Layout from "../../../components/layouts/layout";
 import { verifyHelper } from "../../../utils/authHelper";
 
-import type { TypeVerify } from "../../../lib/types";
+import type { TypeVerifyValues } from "../../../lib/types";
 import type React from "react";
 
 /* -----------------------------------------------
@@ -14,7 +14,9 @@ import type React from "react";
  * ----------------------------------------------- */
 
 const Verification: React.FC = () => {
-  const verifyForm = useForm<TypeVerify>({ defaultValues: { verificationCode: "", email: "" } });
+  const verifyForm = useForm<TypeVerifyValues>({
+    defaultValues: { verificationCode: "", email: "" },
+  });
 
   const onSubmit = verifyForm.handleSubmit((data) => {
     verifyHelper(data);

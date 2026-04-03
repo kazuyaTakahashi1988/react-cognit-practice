@@ -3,7 +3,7 @@
 ---------------------------------------------------------- */
 
 // FormExample
-export type TypeFormExample = {
+export type TypeFormExampleValues = {
   inputName: string;
   checkBoxName: string[];
   radioButtonName: string;
@@ -14,4 +14,4 @@ export type TypeFormExample = {
 };
 
 // TodoExample
-export type TypeTodoExample = { [x: string]: { [x: string]: boolean | string }[] };
+export type TypeTodoExampleValues = { [x: string]: { [x: string]: boolean | string }[] };

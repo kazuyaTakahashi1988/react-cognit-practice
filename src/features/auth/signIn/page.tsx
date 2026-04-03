@@ -6,7 +6,7 @@ import Input from "../../../components/form/input";
 import Layout from "../../../components/layouts/layout";
 import { signInHelper, useAuth } from "../../../utils/authHelper";
 
-import type { TypeSignIn } from "../../../lib/types";
+import type { TypeSignInValues } from "../../../lib/types";
 import type React from "react";
 
 /* -----------------------------------------------
@@ -15,7 +15,7 @@ import type React from "react";
 
 const SignIn: React.FC = () => {
   const { refreshAuthState } = useAuth();
-  const signInForm = useForm<TypeSignIn>({ defaultValues: { email: "", password: "" } });
+  const signInForm = useForm<TypeSignInValues>({ defaultValues: { email: "", password: "" } });
 
   const onSubmit = signInForm.handleSubmit(async (data) => {
     await signInHelper(data);

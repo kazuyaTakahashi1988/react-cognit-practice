@@ -6,7 +6,7 @@ import Input from "../../../components/form/input";
 import Layout from "../../../components/layouts/layout";
 import { signUpHelper } from "../../../utils/authHelper";
 
-import type { TypeSignUp } from "../../../lib/types";
+import type { TypeSignUpValues } from "../../../lib/types";
 import type React from "react";
 
 /* -----------------------------------------------
@@ -14,7 +14,7 @@ import type React from "react";
  * ----------------------------------------------- */
 
 const SignUp: React.FC = () => {
-  const signUpForm = useForm<TypeSignUp>({ defaultValues: { email: "", password: "" } });
+  const signUpForm = useForm<TypeSignUpValues>({ defaultValues: { email: "", password: "" } });
 
   const onSubmit = signUpForm.handleSubmit((data) => {
     signUpHelper(data);

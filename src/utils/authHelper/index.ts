@@ -1,11 +1,11 @@
 import { Amplify } from "aws-amplify";
-import { confirmSignUp, getCurrentUser, signIn, signOut, signUp } from "aws-amplify/auth";
+import { confirmSignUp, signIn, signOut, signUp } from "aws-amplify/auth";
 import { useContext } from "react";
 
 import { loadingFlagDown, loadingFlagUp, store } from "../storeHelper";
 import { AuthContext } from "./authProvider";
 
-import type { TypeSignIn, TypeSignUp, TypeVerify } from "../../lib/types";
+import type { TypeSignInValues, TypeSignUpValues, TypeVerifyValues } from "../../lib/types";
 
 /* -----------------------------------------------
  * Amplify および Cognito Auth 処理
@@ -35,19 +35,10 @@ export const useAuth = () => {
   return context;
 };
 
-export const getCurrentSignInFlag = async () => {
-  try {
-    await getCurrentUser();
-    return true;
-  } catch {
-    return false;
-  }
-};
-
 /*
  * サインイン 処理
  */
-export const signInHelper = async (data: TypeSignIn) => {
+export const signInHelper = async (data: TypeSignInValues) => {
   store.dispatch(loadingFlagUp());
 
   try {
@@ -65,7 +56,7 @@ export const signInHelper = async (data: TypeSignIn) => {
 /*
  * サインアップ 処理
  */
-export const signUpHelper = async (data: TypeSignUp) => {
+export const signUpHelper = async (data: TypeSignUpValues) => {
   store.dispatch(loadingFlagUp());
 
   try {
@@ -86,7 +77,7 @@ export const signUpHelper = async (data: TypeSignUp) => {
 /*
  * アクティベート 処理
  */
-export const verifyHelper = async (data: TypeVerify) => {
+export const verifyHelper = async (data: TypeVerifyValues) => {
   store.dispatch(loadingFlagUp());
 
   try {

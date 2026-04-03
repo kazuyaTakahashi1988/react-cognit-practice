@@ -5,10 +5,10 @@
 export type TypeAuthContext = { isSignedIn: boolean; refreshAuthState: () => void };
 
 // SignIn
-export type TypeSignIn = { email: string; password: string };
+export type TypeSignInValues = { email: string; password: string };
 
 // SignUp
-export type TypeSignUp = { email: string; password: string };
+export type TypeSignUpValues = { email: string; password: string };
 
 // Verification
-export type TypeVerify = { verificationCode: string; email: string };
+export type TypeVerifyValues = { verificationCode: string; email: string };

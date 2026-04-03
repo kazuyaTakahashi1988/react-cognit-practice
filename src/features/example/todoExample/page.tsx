@@ -6,7 +6,7 @@ import TodoItems from "../../../components/form/todoItems";
 import Layout from "../../../components/layouts/layout";
 import { media, params } from "../../../lib/style";
 
-import type { TypeTodoExample } from "../../../lib/types";
+import type { TypeTodoExampleValues } from "../../../lib/types";
 import type React from "react";
 
 /* -----------------------------------------------
@@ -14,7 +14,7 @@ import type React from "react";
  * ----------------------------------------------- */
 
 const TodoExample: React.FC = () => {
-  const todoForm = useForm<TypeTodoExample>({
+  const todoForm = useForm<TypeTodoExampleValues>({
     mode: "onSubmit",
     defaultValues: { todoItems: [{ check: false, task: "" }] },
   });
