@@ -9,7 +9,7 @@ import Select from "../../../components/form/select";
 import SelectCustom from "../../../components/form/selectCustom";
 import SwitchButton from "../../../components/form/switchButton";
 import TextArea from "../../../components/form/textArea";
-import Layout from "../../../components/layout/layout";
+import Layout from "../../../components/layouts/layout";
 import { media, params } from "../../../lib/style";
 import { testPostApi } from "../../../utils/apiHelper"; // テストポストAPI（てきとーなやつ）
 

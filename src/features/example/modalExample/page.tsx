@@ -2,7 +2,7 @@ import { useState } from "react";
 import styled from "styled-components";
 
 import Button from "../../../components/button/button";
-import Layout from "../../../components/layout/layout";
+import Layout from "../../../components/layouts/layout";
 import Modal from "../../../components/modal/modal";
 import { media, params } from "../../../lib/style";
 

@@ -3,7 +3,7 @@ import styled from "styled-components";
 
 import Button from "../../../components/button/button";
 import Input from "../../../components/form/input";
-import Layout from "../../../components/layout/layout";
+import Layout from "../../../components/layouts/layout";
 import { signUpHelper } from "../../../utils/authHelper";
 
 import type { TypeSignUp } from "../../../lib/types";

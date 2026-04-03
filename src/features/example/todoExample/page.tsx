@@ -3,7 +3,7 @@ import styled from "styled-components";
 
 import Button from "../../../components/button/button";
 import TodoItems from "../../../components/form/todoItems";
-import Layout from "../../../components/layout/layout";
+import Layout from "../../../components/layouts/layout";
 import { media, params } from "../../../lib/style";
 
 import type { TypeTodoExample } from "../../../lib/types";

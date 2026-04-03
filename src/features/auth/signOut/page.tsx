@@ -1,7 +1,7 @@
 import styled from "styled-components";
 
 import Button from "../../../components/button/button";
-import Layout from "../../../components/layout/layout";
+import Layout from "../../../components/layouts/layout";
 import { signOutHelper, useAuth } from "../../../utils/authHelper";
 
 import type React from "react";

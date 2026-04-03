@@ -1,7 +1,7 @@
 import styled from "styled-components";
 
 import DropdownMenu from "../../../components/dropdownMenu/dropdownMenu";
-import Layout from "../../../components/layout/layout";
+import Layout from "../../../components/layouts/layout";
 import { media, params } from "../../../lib/style";
 
 import type React from "react";
