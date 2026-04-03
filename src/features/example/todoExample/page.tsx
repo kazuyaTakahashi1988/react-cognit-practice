@@ -82,7 +82,7 @@ const Styled = styled.div`
   }
 
   /* ---------------------------------------------- 
-    lib/Style/_mixin 試し書き
+    "lib/style/_variable" 試し書き
   ---------------------------------------------- */
   color: ${params.black};
   ${media.pc} {
