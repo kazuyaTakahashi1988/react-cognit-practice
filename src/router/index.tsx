@@ -13,9 +13,9 @@ import { useAuth } from "../utils/authHelper";
 
 import type React from "react";
 
-/* -----------------------------------
+/* -----------------------------------------------
  * ルーティング設定
- * -------------------------------- */
+ * ----------------------------------------------- */
 
 const ProtectedRoute: React.FC<{ children: React.ReactNode }> = ({ children }) => {
   const { isSignedIn } = useAuth();
