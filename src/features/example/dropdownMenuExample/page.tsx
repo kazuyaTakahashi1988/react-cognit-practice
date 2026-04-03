@@ -88,14 +88,17 @@ const Styled = styled.div`
     "lib/style/_variable" 試し書き
   ---------------------------------------------- */
   color: ${params.black};
+
+  // @media (min-width: 769px){ ・・・ } の内容が記述できるよ
   ${media.pc} {
-    /* @media (min-width: 769px){} の内容が記述できるよ */
   }
+
+  // @media (max-width: 768px){ ・・・ } の内容が記述できるよ
   ${media.sp} {
-    /* @media (max-width: 768px){} の内容が記述できるよ */
   }
+
+  // @media (max-width: 1080px){ ・・・ } の内容が記述できるよ
   ${media.tab} {
-    /* @media (max-width: 1080px){} の内容が記述できるよ */
   }
 `;
 
