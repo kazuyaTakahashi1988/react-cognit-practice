@@ -33,7 +33,7 @@ const Verification: React.FC = () => {
       <Styled>
         <h1>Verification</h1>
 
-        {/* インプット項目 - verificationCode */}
+        {/* インプット項目 - password（verificationCode） */}
         <Input
           className="mt-30"
           errorMessage={verifyForm.formState.errors.verificationCode?.message}

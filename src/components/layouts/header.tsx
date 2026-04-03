@@ -22,11 +22,11 @@ export const Header: React.FC<TypeHeader> = (props) => {
       <h1 className="logo">LOGO</h1>
       <nav className="nav">
         {/* --------------------------------------
-         * PC：Nav レイアウト
+         * PC幅：Nav レイアウト
          * --------------------------------------- */}
         <ul className="pc-only">
           {/*
-           * PC：example 各NavLink
+           * example 各NavLink
            */}
           {type === "example" && (
             <>
@@ -59,7 +59,7 @@ export const Header: React.FC<TypeHeader> = (props) => {
           )}
 
           {/*
-           * PC：auth 各NavLink
+           * auth 各NavLink
            */}
           {type === "auth" &&
             (!isSignedIn ? (
@@ -94,11 +94,11 @@ export const Header: React.FC<TypeHeader> = (props) => {
         </ul>
 
         {/* --------------------------------------
-         * SP：Nav レイアウト（ドロップダウンメニュー）
+         * SP幅：Nav レイアウト（ドロップダウンメニュー）
          * --------------------------------------- */}
         <ul className="sp-only">
           {/*
-           * SP：example 各navigate()
+           * example 各navigate()
            */}
           {type === "example" && (
             <li>
@@ -132,7 +132,7 @@ export const Header: React.FC<TypeHeader> = (props) => {
           )}
 
           {/*
-           * SP：auth 各navigate()
+           * auth 各navigate()
            */}
           {type === "auth" &&
             (!isSignedIn ? (
