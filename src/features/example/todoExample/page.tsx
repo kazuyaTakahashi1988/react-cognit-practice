@@ -9,6 +9,10 @@ import { media, params } from "../../../lib/style";
 import type { TypeTodoExample } from "../../../lib/types";
 import type React from "react";
 
+/* -----------------------------------------------
+ * [ root ] /example/todo_example ページ
+ * ----------------------------------------------- */
+
 const TodoExample: React.FC = () => {
   const todoForm = useForm<TypeTodoExample>({
     mode: "onSubmit",

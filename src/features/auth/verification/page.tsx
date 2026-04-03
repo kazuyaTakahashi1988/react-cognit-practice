@@ -9,6 +9,10 @@ import { verifyHelper } from "../../../utils/authHelper";
 import type { TypeVerify } from "../../../lib/types";
 import type React from "react";
 
+/* -----------------------------------------------
+ * [ root ] /auth/verification ページ
+ * ----------------------------------------------- */
+
 const Verification: React.FC = () => {
   const verifyForm = useForm<TypeVerify>({ defaultValues: { verificationCode: "", email: "" } });
 

@@ -8,6 +8,10 @@ import { media, params } from "../../../lib/style";
 
 import type React from "react";
 
+/* -----------------------------------------------
+ * [ root ] /example/modal_example ページ
+ * ----------------------------------------------- */
+
 const ModalExample: React.FC = () => {
   const [isVisible, setIsVisible] = useState({ modal01: false, modal02: false });
 

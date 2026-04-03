@@ -9,6 +9,10 @@ import { signInHelper, useAuth } from "../../../utils/authHelper";
 import type { TypeSignIn } from "../../../lib/types";
 import type React from "react";
 
+/* -----------------------------------------------
+ * [ root ] /auth/signin ページ
+ * ----------------------------------------------- */
+
 const SignIn: React.FC = () => {
   const { refreshAuthState } = useAuth();
   const signInForm = useForm<TypeSignIn>({ defaultValues: { email: "", password: "" } });

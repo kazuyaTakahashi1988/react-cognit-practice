@@ -16,6 +16,10 @@ import { testPostApi } from "../../../utils/apiHelper"; // テストポストAPI
 import type { TypeFormExample } from "../../../lib/types";
 import type React from "react";
 
+/* -----------------------------------------------
+ * [ root ] /example/form_example ページ
+ * ----------------------------------------------- */
+
 const FormExample: React.FC = () => {
   const form = useForm<TypeFormExample>({
     mode: "onSubmit", // 'onChange' or 'onBlur' or 'onSubmit' or 'onTouched' or 'all'
