@@ -10,7 +10,7 @@ import type { TypeSignUp } from "../../../lib/types";
 import type React from "react";
 
 /* -----------------------------------------------
- * [ root ] /auth/signup ページ
+ * "root/auth/signup" ページ
  * ----------------------------------------------- */
 
 const SignUp: React.FC = () => {
