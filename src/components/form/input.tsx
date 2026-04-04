@@ -23,7 +23,7 @@ export const InputField: React.ForwardRefRenderFunction<HTMLInputElement, Props>
 
       <input {...rest} className="" ref={ref} type={rest.type || "text"} />
 
-      {errorMessage && <ErrorMessage errorMessage={errorMessage} />}
+      <ErrorMessage errorMessage={errorMessage} />
     </Styled>
   );
 };

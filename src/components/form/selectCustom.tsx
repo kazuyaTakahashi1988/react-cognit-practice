@@ -113,7 +113,7 @@ export const SelectCustomField: React.ForwardRefRenderFunction<HTMLInputElement,
         )}
       </div>
 
-      {errorMessage && <ErrorMessage errorMessage={errorMessage} />}
+      <ErrorMessage errorMessage={errorMessage} />
     </Styled>
   );
 };

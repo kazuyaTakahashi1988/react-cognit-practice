@@ -26,7 +26,7 @@ export const TextAreaField: React.ForwardRefRenderFunction<HTMLTextAreaElement, 
 
       <textarea {...rest} className="" ref={ref}></textarea>
 
-      {errorMessage && <ErrorMessage errorMessage={errorMessage} />}
+      <ErrorMessage errorMessage={errorMessage} />
     </Styled>
   );
 };

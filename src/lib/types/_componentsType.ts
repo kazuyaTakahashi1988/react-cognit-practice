@@ -17,7 +17,7 @@ export type TypeLoading = { visible: boolean };
 export type TypeLabel = { label?: { text?: string; required?: boolean } };
 
 // ErrorMessage
-export type TypeErrorMessage = { errorMessage: string };
+export type TypeErrorMessage = { errorMessage?: string };
 
 // Input
 export type TypeInput = { label?: { text: string; required?: boolean }; errorMessage?: string };

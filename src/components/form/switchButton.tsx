@@ -45,7 +45,7 @@ export const SwitchButtonField: React.ForwardRefRenderFunction<HTMLInputElement,
         </label>
       ))}
 
-      {errorMessage && <ErrorMessage errorMessage={errorMessage} />}
+      <ErrorMessage errorMessage={errorMessage} />
     </Styled>
   );
 };

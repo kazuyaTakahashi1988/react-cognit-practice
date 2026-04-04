@@ -18,13 +18,15 @@ export const ErrorMessageField: React.ForwardRefRenderFunction<HTMLLabelElement,
 ) => {
   const { errorMessage, ...rest } = props;
 
+  if (!errorMessage) {
+    return null;
+  }
+
   return (
     <Styled className={rest.className}>
-      {errorMessage && (
-        <label {...rest} className="error" ref={ref}>
-          {errorMessage}
-        </label>
-      )}
+      <label {...rest} className="error" ref={ref}>
+        {errorMessage}
+      </label>
     </Styled>
   );
 };

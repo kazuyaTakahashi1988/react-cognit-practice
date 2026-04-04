@@ -39,7 +39,7 @@ export const SelectField: React.ForwardRefRenderFunction<HTMLSelectElement, Prop
         </select>
       </div>
 
-      {errorMessage && <ErrorMessage errorMessage={errorMessage} />}
+      <ErrorMessage errorMessage={errorMessage} />
     </Styled>
   );
 };

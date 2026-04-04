@@ -39,7 +39,7 @@ export const CheckBoxField: React.ForwardRefRenderFunction<HTMLInputElement, Pro
         </label>
       ))}
 
-      {errorMessage && <ErrorMessage errorMessage={errorMessage} />}
+      <ErrorMessage errorMessage={errorMessage} />
     </Styled>
   );
 };
