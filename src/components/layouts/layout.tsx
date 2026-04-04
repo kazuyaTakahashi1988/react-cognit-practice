@@ -21,7 +21,7 @@ export const Layout: React.FC<TypeLayout> = (props) => {
   return (
     <Styled>
       {/* 共通ローディング */}
-      {loadingFlagCount > 0 && <Loading />}
+      <Loading visible={loadingFlagCount > 0} />
 
       {/* 共通ヘッダー */}
       <Header type={type} />

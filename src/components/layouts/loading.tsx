@@ -2,13 +2,20 @@ import styled from "styled-components";
 
 import { params } from "../../lib/style";
 
+import type { TypeLoading } from "../../lib/types";
 import type React from "react";
 
 /* -----------------------------------------------
  * 共通ローディング
  * ----------------------------------------------- */
 
-export const Loading: React.FC = () => {
+export const Loading: React.FC<TypeLoading> = (props) => {
+  const { visible } = props;
+
+  if (!visible) {
+    return null;
+  }
+
   return (
     <Styled>
       <div className="loading"></div>

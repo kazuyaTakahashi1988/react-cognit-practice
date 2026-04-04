@@ -10,6 +10,9 @@ export type TypeHeader = { type: string };
 // Layout
 export type TypeLayout = { type: string; children?: React.ReactNode };
 
+// Loading
+export type TypeLoading = { visible: boolean };
+
 // Label
 export type TypeLabel = { label: { text: string; required?: boolean } };
 
