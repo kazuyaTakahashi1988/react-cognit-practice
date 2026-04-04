@@ -30,14 +30,16 @@ export const ModalField: React.ForwardRefRenderFunction<HTMLDivElement, Props> =
           <span className="close" onClick={onClose.onClick}></span>
         </div>
         <div className="modal__container">{children}</div>
-        <div className="modal__footer">
-          {onClose.text && (
-            <Button className="secondary" onClick={onClose.onClick}>
-              {onClose.text}
-            </Button>
-          )}
-          {onEvent && <Button onClick={onEvent.onClick}>{onEvent.text}</Button>}
-        </div>
+        {(onClose.text || onEvent) && (
+          <div className="modal__footer">
+            {onClose.text && (
+              <Button className="secondary" onClick={onClose.onClick}>
+                {onClose.text}
+              </Button>
+            )}
+            {onEvent && <Button onClick={onEvent.onClick}>{onEvent.text}</Button>}
+          </div>
+        )}
       </div>
     </Styled>
   );

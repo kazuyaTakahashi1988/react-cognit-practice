@@ -15,7 +15,7 @@ import type React from "react";
 export const Layout: React.FC<TypeLayout> = (props) => {
   const { type, children } = props;
 
-  // ローディングフラグ（表示・非表示制御）
+  // ローディングフラグ
   const loadingFlagCount = useSelector((state: TypeSelectorState) => state.loadingFlagCount);
 
   return (

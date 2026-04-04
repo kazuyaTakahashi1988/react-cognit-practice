@@ -19,7 +19,7 @@ import type React from "react";
 
 // auth用：未サインイン時は SignIn ページへリダイレクトする処理
 const ProtectedRoute: React.FC<{ children: React.ReactNode }> = ({ children }) => {
-  const { isSignedIn } = useAuth();
+  const { isSignedIn } = useAuth(); // サインインフラグ
 
   if (!isSignedIn) {
     return <Navigate replace to="/auth/signin" />;
@@ -30,7 +30,7 @@ const ProtectedRoute: React.FC<{ children: React.ReactNode }> = ({ children }) =
 
 // auth用：サインイン時は SignOut ページへリダイレクトする処理
 const PublicRoute: React.FC<{ children: React.ReactNode }> = ({ children }) => {
-  const { isSignedIn } = useAuth();
+  const { isSignedIn } = useAuth(); // サインインフラグ
 
   if (isSignedIn) {
     return <Navigate replace to="/auth/signout" />;
@@ -44,7 +44,7 @@ const PublicRoute: React.FC<{ children: React.ReactNode }> = ({ children }) => {
  * ルートの追加はここに記述していく
  */
 export function Router() {
-  const { isSignedIn } = useAuth();
+  const { isSignedIn } = useAuth(); // サインインフラグ
 
   return (
     <Routes>
