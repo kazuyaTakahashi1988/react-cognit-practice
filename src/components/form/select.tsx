@@ -22,7 +22,7 @@ export const SelectField: React.ForwardRefRenderFunction<HTMLSelectElement, Prop
 
   return (
     <Styled className={rest.className}>
-      {label && <Label label={label} />}
+      <Label label={label} />
 
       <div className="select">
         <select {...rest} className="" ref={ref}>

@@ -54,7 +54,7 @@ export const SelectCustomField: React.ForwardRefRenderFunction<HTMLInputElement,
 
   return (
     <Styled className={rest.className}>
-      {label && <Label label={label} />}
+      <Label label={label} />
 
       <div className="select" ref={selectRef}>
         <div

@@ -19,7 +19,7 @@ export const InputField: React.ForwardRefRenderFunction<HTMLInputElement, Props>
 
   return (
     <Styled className={rest.className}>
-      {label && <Label label={label} />}
+      <Label label={label} />
 
       <input {...rest} className="" ref={ref} type={rest.type || "text"} />
 

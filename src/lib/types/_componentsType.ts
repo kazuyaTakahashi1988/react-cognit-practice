@@ -14,7 +14,7 @@ export type TypeLayout = { type: string; children?: React.ReactNode };
 export type TypeLoading = { visible: boolean };
 
 // Label
-export type TypeLabel = { label: { text: string; required?: boolean } };
+export type TypeLabel = { label?: { text?: string; required?: boolean } };
 
 // ErrorMessage
 export type TypeErrorMessage = { errorMessage: string };

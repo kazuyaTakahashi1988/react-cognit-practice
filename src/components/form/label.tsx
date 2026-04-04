@@ -14,15 +14,16 @@ type Props = React.LabelHTMLAttributes<HTMLLabelElement> & TypeLabel;
 
 export const LabelField: React.ForwardRefRenderFunction<HTMLLabelElement, Props> = (props, ref) => {
   const { label, ...rest } = props;
+  if (!label) {
+    return null;
+  }
 
   return (
     <Styled className={rest.className}>
-      {label && (
-        <label {...rest} className="label-text" ref={ref}>
-          {label.text}
-          {label.required && <span>*</span>}
-        </label>
-      )}
+      <label {...rest} className="label-text" ref={ref}>
+        {label.text}
+        {label.required && <span>*</span>}
+      </label>
     </Styled>
   );
 };
