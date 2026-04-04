@@ -126,7 +126,7 @@ module.exports = {
       ※ 以下に重複記述があるのは override（上書き設定）を防ぐため
     -------------------------------------------------------------- */
     {
-      files: ["src/**", "index.ts"],
+      files: ["src/**"],
       rules: {
         "no-restricted-imports": [
           "error",
@@ -143,7 +143,7 @@ module.exports = {
       },
     },
     {
-      files: ["src/**", "index.ts"],
+      files: ["src/**"],
       excludedFiles: ["src/router/**"],
       rules: {
         "no-restricted-imports": [
