@@ -120,5 +120,49 @@ module.exports = {
         // "no-use-before-define": "off",
       },
     },
+    /* -----------------------------------------------------------
+      src/features 配下の実装は src/router 配下でのみ import 可能です。
+      先頭に _ が付くファイル（例：_type.ts）はそのファイルと同階層でのみ import 可能です。
+      ※ 以下に重複記述があるのは override（上書き設定）を防ぐため
+    -------------------------------------------------------------- */
+    {
+      files: ["src/**", "index.ts"],
+      rules: {
+        "no-restricted-imports": [
+          "error",
+          {
+            patterns: [
+              {
+                group: ["**/_*", "!./_*"],
+                message:
+                  "先頭に _ が付くファイル（例：_type.ts）はそのファイルと同階層でのみ import 可能です。",
+              },
+            ],
+          },
+        ],
+      },
+    },
+    {
+      files: ["src/**", "index.ts"],
+      excludedFiles: ["src/router/**"],
+      rules: {
+        "no-restricted-imports": [
+          "error",
+          {
+            patterns: [
+              {
+                group: ["**/features/**"],
+                message: "src/features 配下の実装は src/router 配下でのみ import 可能です。",
+              },
+              {
+                group: ["**/_*", "!./_*"],
+                message:
+                  "先頭に _ が付くファイル（例：_type.ts）はそのファイルと同階層でのみ import 可能です。",
+              },
+            ],
+          },
+        ],
+      },
+    },
   ],
 };
