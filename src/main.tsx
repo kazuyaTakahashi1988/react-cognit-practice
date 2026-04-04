@@ -2,11 +2,11 @@ import React from "react";
 import { createRoot } from "react-dom/client";
 
 import App from "./App.tsx";
-import { AuthProvider } from "./utils/authHelper/authProvider";
-import { StoreProvider } from "./utils/storeHelper/storeProvider";
+import { AuthProvider } from "./utils/providerHelper/authProvider";
+import { StoreProvider } from "./utils/providerHelper/storeProvider";
 
 /* -----------------------------------------------
- * アプリメインファイル
+ * アプリメインファイル（Providerなどを纒める箇所）
  * ----------------------------------------------- */
 
 const container = document.getElementById("root");

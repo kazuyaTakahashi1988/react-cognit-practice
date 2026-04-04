@@ -3,7 +3,7 @@ import { confirmSignUp, signIn, signOut, signUp } from "aws-amplify/auth";
 import { useContext } from "react";
 
 import { loadingFlagDown, loadingFlagUp, store } from "../storeHelper";
-import { AuthContext } from "./authProvider";
+import { AuthContext } from "../providerHelper/authProvider";
 
 import type { TypeSignInValues, TypeSignUpValues, TypeVerifyValues } from "../../lib/types";
 
