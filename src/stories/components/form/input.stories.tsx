@@ -1,9 +1,9 @@
-import { Input } from "../../components/form/input";
+import { Input } from "../../../components/form/input";
 
 import type { Meta, StoryObj } from "@storybook/react";
 
 const meta = {
-  title: "Form/Input",
+  title: "Components/Form/Input",
   component: Input,
   parameters: { layout: "centered" },
   tags: ["autodocs"],

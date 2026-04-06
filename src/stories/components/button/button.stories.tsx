@@ -1,9 +1,9 @@
-import { Button } from "../../components/button/button";
+import { Button } from "../../../components/button/button";
 
 import type { Meta, StoryObj } from "@storybook/react";
 
 const meta = {
-  title: "Button/Button",
+  title: "Components/Button/Button",
   component: Button,
   parameters: { layout: "centered" },
   tags: ["autodocs"],

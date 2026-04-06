@@ -1,9 +1,9 @@
-import { SwitchButton } from "../../components/form/switchButton";
+import { SwitchButton } from "../../../components/form/switchButton";
 
 import type { Meta, StoryObj } from "@storybook/react";
 
 const meta = {
-  title: "Form/SwitchButton",
+  title: "Components/Form/SwitchButton",
   component: SwitchButton,
   parameters: { layout: "centered" },
   tags: ["autodocs"],

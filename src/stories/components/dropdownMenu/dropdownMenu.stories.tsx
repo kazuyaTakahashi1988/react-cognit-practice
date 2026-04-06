@@ -1,10 +1,10 @@
-import { Button } from "../../components/button/button";
-import { DropdownMenu } from "../../components/dropdownMenu/dropdownMenu";
+import { Button } from "../../../components/button/button";
+import { DropdownMenu } from "../../../components/dropdownMenu/dropdownMenu";
 
 import type { Meta, StoryObj } from "@storybook/react";
 
 const meta = {
-  title: "DropdownMenu/DropdownMenu",
+  title: "Components/DropdownMenu/DropdownMenu",
   component: DropdownMenu,
   parameters: { layout: "centered" },
   tags: ["autodocs"],

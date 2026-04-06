@@ -1,9 +1,9 @@
-import { CheckBox } from "../../components/form/checkBox";
+import { CheckBox } from "../../../components/form/checkBox";
 
 import type { Meta, StoryObj } from "@storybook/react";
 
 const meta = {
-  title: "Form/CheckBox",
+  title: "Components/Form/CheckBox",
   component: CheckBox,
   parameters: { layout: "centered" },
   tags: ["autodocs"],

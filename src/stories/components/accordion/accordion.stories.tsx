@@ -1,9 +1,9 @@
-import { Accordion } from "../../components/accordion/accordion";
+import { Accordion } from "../../../components/accordion/accordion";
 
 import type { Meta, StoryObj } from "@storybook/react";
 
 const meta = {
-  title: "Accordion/Accordion",
+  title: "Components/Accordion/Accordion",
   component: Accordion,
   parameters: { layout: "centered" },
   tags: ["autodocs"],

@@ -1,9 +1,9 @@
-import { TextArea } from "../../components/form/textArea";
+import { TextArea } from "../../../components/form/textArea";
 
 import type { Meta, StoryObj } from "@storybook/react";
 
 const meta = {
-  title: "Form/TextArea",
+  title: "Components/Form/TextArea",
   component: TextArea,
   parameters: { layout: "centered" },
   tags: ["autodocs"],

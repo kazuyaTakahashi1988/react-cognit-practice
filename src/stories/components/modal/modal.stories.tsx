@@ -1,9 +1,9 @@
-import { Modal } from "../../components/modal/modal";
+import { Modal } from "../../../components/modal/modal";
 
 import type { Meta, StoryObj } from "@storybook/react";
 
 const meta = {
-  title: "Modal/Modal",
+  title: "Components/Modal/Modal",
   component: Modal,
   parameters: { layout: "centered" },
   tags: ["autodocs"],

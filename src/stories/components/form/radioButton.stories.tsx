@@ -1,9 +1,9 @@
-import { RadioButton } from "../../components/form/radioButton";
+import { RadioButton } from "../../../components/form/radioButton";
 
 import type { Meta, StoryObj } from "@storybook/react";
 
 const meta = {
-  title: "Form/RadioButton",
+  title: "Components/Form/RadioButton",
   component: RadioButton,
   parameters: { layout: "centered" },
   tags: ["autodocs"],

@@ -1,9 +1,9 @@
-import { ErrorMessage } from "../../components/form/errorMessage";
+import { ErrorMessage } from "../../../components/form/errorMessage";
 
 import type { Meta, StoryObj } from "@storybook/react";
 
 const meta = {
-  title: "Form/ErrorMessage",
+  title: "Components/Form/ErrorMessage",
   component: ErrorMessage,
   parameters: { layout: "centered" },
   tags: ["autodocs"],
