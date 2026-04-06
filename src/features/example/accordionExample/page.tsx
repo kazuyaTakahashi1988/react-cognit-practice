@@ -7,7 +7,7 @@ import { media, params } from "../../../lib/style";
 import type React from "react";
 
 /* -----------------------------------------------
- * "[root]/example/accordion_example" ページ
+ * AccordionExample ページ
  * ----------------------------------------------- */
 
 const AccordionExample: React.FC = () => {

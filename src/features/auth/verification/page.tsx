@@ -10,7 +10,7 @@ import type { TypeVerifyValues } from "../../../lib/types";
 import type React from "react";
 
 /* -----------------------------------------------
- * "[root]/auth/verification" ページ
+ * Verification ページ
  * ----------------------------------------------- */
 
 const Verification: React.FC = () => {

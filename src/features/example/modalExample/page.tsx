@@ -9,7 +9,7 @@ import { media, params } from "../../../lib/style";
 import type React from "react";
 
 /* -----------------------------------------------
- * "[root]/example/modal_example" ページ
+ * ModalExample ページ
  * ----------------------------------------------- */
 
 const ModalExample: React.FC = () => {

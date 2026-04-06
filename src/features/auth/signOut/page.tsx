@@ -7,7 +7,7 @@ import { signOutHelper, useAuth } from "../../../utils/authHelper";
 import type React from "react";
 
 /* -----------------------------------------------
- * "[root]/auth/signout" ページ
+ * SignOut ページ
  * ----------------------------------------------- */
 
 const SignOut: React.FC = () => {

@@ -17,7 +17,7 @@ import type { TypeFormExampleValues } from "../../../lib/types";
 import type React from "react";
 
 /* -----------------------------------------------
- * "[root]/example/form_example" ページ
+ * FormExample ページ
  * ----------------------------------------------- */
 
 const FormExample: React.FC = () => {

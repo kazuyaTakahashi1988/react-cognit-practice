@@ -10,7 +10,7 @@ import type { TypeTodoExampleValues } from "./type";
 import type React from "react";
 
 /* -----------------------------------------------
- * "[root]/example/todo_example" ページ
+ * TodoExample ページ
  * ----------------------------------------------- */
 
 const TodoExample: React.FC = () => {
