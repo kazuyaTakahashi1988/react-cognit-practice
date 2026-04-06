@@ -9,8 +9,8 @@ const ColorAssetList = () => {
     <div
       style={{
         display: "grid",
-        gridTemplateColumns: "repeat(auto-fill, minmax(180px, 1fr))",
-        gap: "16px",
+        gridTemplateColumns: "repeat(auto-fill, minmax(120px, 1fr))",
+        gap: "10px",
         width: "min(100%, 960px)",
       }}
     >
@@ -46,21 +46,17 @@ const ColorAssetList = () => {
               style={{
                 backgroundColor: color,
                 color: textColor,
-                minHeight: "92px",
+                minHeight: "60px",
                 padding: "12px",
                 display: "flex",
                 alignItems: "flex-end",
                 fontWeight: 700,
               }}
-            >
-              {name}
-            </div>
+            ></div>
 
-            <div style={{ padding: "10px 12px 12px" }}>
-              <div style={{ color: "#6b7280", fontSize: "12px", marginBottom: "4px" }}>Token</div>
-              <code style={{ fontSize: "13px", fontWeight: 600 }}>{name}</code>
-              <div style={{ color: "#6b7280", fontSize: "12px", margin: "10px 0 4px" }}>Value</div>
-              <code style={{ fontSize: "13px", fontWeight: 600 }}>{color}</code>
+            <div style={{ padding: "5px 10px", borderTop: "1px solid #e5e7eb" }}>
+              <div style={{ fontSize: "16px", fontWeight: "bold", color: "#2196f3" }}>{name}</div>
+              <div style={{ fontSize: "13px", fontWeight: 400 }}>{color}</div>
             </div>
           </div>
         );
@@ -76,7 +72,8 @@ const meta = {
     layout: "padded",
     docs: {
       description: {
-        component: "`src/lib/style/_variable.ts` の `params` で定義されているカラーアセット一覧です。",
+        component:
+          "`src/lib/style/_variable.ts` の `params` で定義されているカラーアセット一覧です。",
       },
     },
   },
@@ -87,6 +84,4 @@ export default meta;
 
 type Story = StoryObj<typeof meta>;
 
-export const Colors: Story = {
-  render: () => <ColorAssetList />,
-};
+export const Colors: Story = { render: () => <ColorAssetList /> };
