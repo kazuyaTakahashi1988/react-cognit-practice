@@ -41,7 +41,6 @@ const PublicRoute: React.FC<{ children: React.ReactNode }> = ({ children }) => {
 
 /*
  * ルーティング設定
- * ルートの追加はここに記述していく
  */
 export function Router() {
   const { isSignedIn } = useAuth(); // サインインフラグ
@@ -49,11 +48,32 @@ export function Router() {
   return (
     <Routes>
       {/* ----------------------------------------
+       * リダイレクト設定
+       * ----------------------------------------- */}
+      <Route
+        // 存在しないパス遷移時はトップへリダイレクト
+        element={<Navigate replace to="/" />}
+        path="/*"
+      />
+      <Route
+        // トップ遷移時は FormExampleページ へリダイレクト
+        element={<Navigate replace to="/example/form_example" />}
+        path="/"
+      />
+      <Route
+        // パス /example 遷移時は FormExampleページ へリダイレクト
+        element={<Navigate replace to="/example/form_example" />}
+        path="/example"
+      />
+      <Route
+        // パス /auth 遷移時はサインイン状態に応じ SignOut/SignInページ へリダイレクト
+        element={<Navigate replace to={isSignedIn ? "/auth/signout" : "/auth/signin"} />}
+        path="/auth"
+      />
+
+      {/* ----------------------------------------
        * example 各ルート設定
        * ----------------------------------------- */}
-      <Route element={<Navigate replace to="/" />} path="/*" />
-      <Route element={<Navigate replace to="/example/form_example" />} path="/" />
-      <Route element={<Navigate replace to="/example/form_example" />} path="/example" />
       <Route element={<FormExample />} path="/example/form_example" />
       <Route element={<TodoExample />} path="/example/todo_example" />
       <Route element={<ModalExample />} path="/example/modal_example" />
@@ -63,10 +83,6 @@ export function Router() {
       {/* ----------------------------------------
        * auth 各ルート設定
        * ----------------------------------------- */}
-      <Route
-        element={<Navigate replace to={isSignedIn ? "/auth/signout" : "/auth/signin"} />}
-        path="/auth"
-      />
       <Route
         element={
           <PublicRoute>
