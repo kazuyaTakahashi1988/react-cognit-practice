@@ -104,12 +104,12 @@ const Styled = styled.div`
   ${media.pc} {
   }
 
-  // @media (max-width: 768px){ ・・・ } の内容が記述できるよ
-  ${media.sp} {
-  }
-
   // @media (max-width: 1080px){ ・・・ } の内容が記述できるよ
   ${media.tab} {
+  }
+
+  // @media (max-width: 768px){ ・・・ } の内容が記述できるよ
+  ${media.sp} {
   }
 `;
 

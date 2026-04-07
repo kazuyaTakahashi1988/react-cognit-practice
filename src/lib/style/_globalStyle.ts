@@ -133,14 +133,14 @@ export const GlobalStyle = createGlobalStyle`
     letter-spacing: 1px;
   }
 
-  ${media.sp} {
-    .pc-only {
+  ${media.pc} {
+    .sp-only {
       display: none!important;
     }
   }
 
-  ${media.pc} {
-    .sp-only {
+  ${media.sp} {
+    .pc-only {
       display: none!important;
     }
   }
