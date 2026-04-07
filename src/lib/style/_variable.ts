@@ -3,13 +3,13 @@
  * ----------------------------------------------- */
 
 const pc = "769px"; // pc 幅（min-width）の指定
-const sp = "768px"; // sp 幅（max-width）の指定
 const tab = "1080px"; // tablet 幅（max-width）の指定
+const sp = "768px"; // sp 幅（max-width）の指定
 
 export const media = {
   pc: `@media (min-width: ${pc})`,
-  sp: `@media (max-width: ${sp})`,
   tab: `@media (max-width: ${tab})`,
+  sp: `@media (max-width: ${sp})`,
 };
 
 export const color = {
