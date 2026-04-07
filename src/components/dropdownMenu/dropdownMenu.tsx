@@ -1,7 +1,7 @@
 import { forwardRef, useEffect, useRef, useState } from "react";
 import styled from "styled-components";
 
-import { params } from "../../lib/style";
+import { color } from "../../lib/style";
 
 import type { TypeDropdownMenu } from "../../lib/types";
 import type React from "react";
@@ -90,19 +90,19 @@ const Styled = styled.span`
       right: 0;
       border-radius: 6px;
       padding: 5px 10px;
-      background: ${params.white};
+      background: ${color.white};
       width: max-content;
       display: block;
       cursor: initial;
       animation: fadeIn 0.1s ease forwards;
-      filter: drop-shadow(0px 0px 5px ${params.gray});
+      filter: drop-shadow(0px 0px 5px ${color.gray});
       &::before {
         content: "";
         position: absolute;
         width: 16px;
         height: 14px;
         clip-path: polygon(50% 30%, 0% 100%, 100% 100%);
-        background-color: ${params.white};
+        background-color: ${color.white};
         top: -13px;
         right: 20px;
         z-index: 10;

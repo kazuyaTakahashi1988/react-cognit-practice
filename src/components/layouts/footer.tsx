@@ -1,7 +1,7 @@
 import { NavLink } from "react-router-dom";
 import styled from "styled-components";
 
-import { params } from "../../lib/style";
+import { color } from "../../lib/style";
 
 import type React from "react";
 
@@ -33,7 +33,7 @@ const Styled = styled.footer`
   display: flex;
   justify-content: center;
   align-items: center;
-  box-shadow: 0 0 10px ${params.gray};
+  box-shadow: 0 0 10px ${color.gray};
   > .nav {
     display: flex;
     justify-content: center;
@@ -44,7 +44,7 @@ const Styled = styled.footer`
         padding: 10px;
         font-weight: bold;
         &.active {
-          color: ${params.primary};
+          color: ${color.primary};
         }
       }
     }

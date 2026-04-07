@@ -3,7 +3,7 @@ import styled from "styled-components";
 
 import { ErrorMessage } from "./errorMessage";
 import { Label } from "./label";
-import { params } from "../../lib/style";
+import { color } from "../../lib/style";
 
 import type { TypeInput } from "../../lib/types";
 import type React from "react";
@@ -38,18 +38,18 @@ const Styled = styled.div`
     appearance: none;
     -webkit-appearance: none;
     -moz-appearance: none;
-    box-shadow: 0 0 0 1px ${params.gray};
+    box-shadow: 0 0 0 1px ${color.gray};
     &:focus {
       outline: 0;
-      box-shadow: 0 0 0 1px ${params.primary};
+      box-shadow: 0 0 0 1px ${color.primary};
     }
     &::placeholder {
-      color: ${params.gray100};
+      color: ${color.gray100};
     }
     &:disabled {
       cursor: not-allowed;
-      background: ${params.gray};
-      color: ${params.gray100};
+      background: ${color.gray};
+      color: ${color.gray100};
     }
   }
 `;

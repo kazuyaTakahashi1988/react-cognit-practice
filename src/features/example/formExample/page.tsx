@@ -10,7 +10,7 @@ import SelectCustom from "../../../components/form/selectCustom";
 import SwitchButton from "../../../components/form/switchButton";
 import TextArea from "../../../components/form/textArea";
 import Layout from "../../../components/layouts/layout";
-import { media, params } from "../../../lib/style";
+import { color, media } from "../../../lib/style";
 import { testPostApi } from "../../../utils/apiHelper"; // テストポストAPI（てきとーなやつ）
 
 import type { TypeFormExampleValues } from "../../../lib/types";
@@ -204,7 +204,7 @@ const Styled = styled.div`
   /* ---------------------------------------------- 
     "lib/style/_variable" 試し書き
   ---------------------------------------------- */
-  color: ${params.black};
+  color: ${color.black};
 
   // @media (min-width: 769px){ ・・・ } の内容が記述できるよ
   ${media.pc} {

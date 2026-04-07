@@ -1,7 +1,7 @@
 import { forwardRef } from "react";
 import styled from "styled-components";
 
-import { params } from "../../lib/style";
+import { color } from "../../lib/style";
 import Button from "../button/button";
 
 import type { TypeModal } from "../../lib/types";
@@ -62,7 +62,7 @@ const Styled = styled.div`
     left: 0;
     width: 100%;
     height: calc(100vh);
-    background: ${params.black};
+    background: ${color.black};
     opacity: 0.3;
   }
   .modal {
@@ -76,8 +76,8 @@ const Styled = styled.div`
       border-radius: 10px 10px 5px 5px;
       text-align: left;
       animation: translateY 0.2s ease-out forwards;
-      background: ${params.white};
-      box-shadow: 0 0 0 1px ${params.gray};
+      background: ${color.white};
+      box-shadow: 0 0 0 1px ${color.gray};
       > * {
         padding-left: 20px;
         padding-right: 20px;
@@ -90,8 +90,8 @@ const Styled = styled.div`
       border-radius: 10px 10px 0 0;
       height: 50px;
       overflow: hidden;
-      background: ${params.primary};
-      color: ${params.white};
+      background: ${color.primary};
+      color: ${color.white};
       .title {
         font-size: 16px;
         line-height: 28px;
@@ -121,7 +121,7 @@ const Styled = styled.div`
           margin: auto;
           transform: rotate(135deg);
           z-index: 1;
-          background: ${params.white};
+          background: ${color.white};
         }
         &:after {
           transform: rotate(45deg);
@@ -145,7 +145,7 @@ const Styled = styled.div`
       align-items: center;
       height: 70px;
       overflow: hidden;
-      border-top: 1px solid ${params.gray};
+      border-top: 1px solid ${color.gray};
       > * {
         margin-right: 20px;
         &:last-child {

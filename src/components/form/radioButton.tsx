@@ -3,7 +3,7 @@ import styled from "styled-components";
 
 import { ErrorMessage } from "./errorMessage";
 import { Label } from "./label";
-import { params } from "../../lib/style";
+import { color } from "../../lib/style";
 
 import type { TypeRadioButton } from "../../lib/types";
 import type React from "react";
@@ -50,7 +50,7 @@ const Styled = styled.div`
       cursor: pointer;
       display: flex;
       align-items: center;
-      color: ${params.gray100};
+      color: ${color.gray100};
       &:before {
         content: "";
         display: inline-block;
@@ -60,7 +60,7 @@ const Styled = styled.div`
         border-radius: 50%;
         margin-right: 6px;
         flex-shrink: 0;
-        box-shadow: 0 0 0 1px ${params.gray};
+        box-shadow: 0 0 0 1px ${color.gray};
       }
     }
     > input {
@@ -79,11 +79,11 @@ const Styled = styled.div`
       pointer-events: none;
       opacity: 0;
       &:checked + .label__text {
-        color: ${params.primary};
+        color: ${color.primary};
       }
       &:checked + .label__text:before {
-        box-shadow: 0 0 0 1px ${params.primary};
-        border: 0.35em solid ${params.primary};
+        box-shadow: 0 0 0 1px ${color.primary};
+        border: 0.35em solid ${color.primary};
       }
       &:disabled {
         cursor: not-allowed;
@@ -91,17 +91,17 @@ const Styled = styled.div`
           cursor: not-allowed;
         }
         & + .label__text {
-          color: ${params.gray};
+          color: ${color.gray};
         }
         & + .label__text:before {
-          background-color: ${params.gray};
-          border-color: ${params.white};
+          background-color: ${color.gray};
+          border-color: ${color.white};
         }
         &:checked {
           & + .label__text:before {
-            box-shadow: 0 0 0 1px ${params.gray};
-            background-color: ${params.white};
-            border-color: ${params.gray};
+            box-shadow: 0 0 0 1px ${color.gray};
+            background-color: ${color.white};
+            border-color: ${color.gray};
           }
         }
       }

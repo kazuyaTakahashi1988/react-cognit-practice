@@ -2,7 +2,7 @@ import styled from "styled-components";
 
 import Accordion from "../../../components/accordion/accordion";
 import Layout from "../../../components/layouts/layout";
-import { media, params } from "../../../lib/style";
+import { color, media } from "../../../lib/style";
 
 import type React from "react";
 
@@ -54,7 +54,7 @@ const Styled = styled.div`
   /* ---------------------------------------------- 
     "lib/style/_variable" 試し書き
   ---------------------------------------------- */
-  color: ${params.black};
+  color: ${color.black};
 
   // @media (min-width: 769px){ ・・・ } の内容が記述できるよ
   ${media.pc} {

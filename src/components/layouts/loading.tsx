@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-import { params } from "../../lib/style";
+import { color } from "../../lib/style";
 
 import type { TypeLoading } from "../../lib/types";
 import type React from "react";
@@ -43,7 +43,7 @@ const Styled = styled.div`
     padding: 16px;
     aspect-ratio: 1;
     border-radius: 50%;
-    background: ${params.primary};
+    background: ${color.primary};
     z-index: 9999999;
     --_m: conic-gradient(#0000 10%, #000), linear-gradient(#000 0 0) content-box;
     -webkit-mask: var(--_m);

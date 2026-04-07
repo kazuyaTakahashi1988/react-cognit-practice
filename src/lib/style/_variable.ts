@@ -12,7 +12,7 @@ export const media = {
   tab: `@media (max-width: ${tab})`,
 };
 
-export const params = {
+export const color = {
   white: "#fff",
   black: "#000",
   red: "#ff0000",

@@ -1,7 +1,7 @@
 import { NavLink, useNavigate } from "react-router-dom";
 import styled from "styled-components";
 
-import { params } from "../../lib/style";
+import { color } from "../../lib/style";
 import { useAuth } from "../../utils/authHelper";
 import DropdownMenu from "../dropdownMenu/dropdownMenu";
 
@@ -186,14 +186,14 @@ const Styled = styled.header`
   display: flex;
   justify-content: space-between;
   align-items: center;
-  box-shadow: 0 0 10px ${params.gray};
+  box-shadow: 0 0 10px ${color.gray};
   > .logo {
     font-size: 24px;
     line-height: 26px;
     text-align: center;
     padding: 10px 20px;
-    border: 10px solid ${params.white};
-    background: ${params.gray};
+    border: 10px solid ${color.white};
+    background: ${color.gray};
   }
   > .nav {
     > ul {
@@ -207,7 +207,7 @@ const Styled = styled.header`
           padding: 10px;
           font-weight: bold;
           &.active {
-            color: ${params.primary};
+            color: ${color.primary};
           }
         }
       }

@@ -3,7 +3,7 @@ import styled from "styled-components";
 
 import { ErrorMessage } from "./errorMessage";
 import { Label } from "./label";
-import { params } from "../../lib/style";
+import { color } from "../../lib/style";
 
 import type { TypeSelect } from "../../lib/types";
 import type React from "react";
@@ -58,8 +58,8 @@ const Styled = styled.div`
       height: 8px;
       transform: rotate(135deg);
       pointer-events: none;
-      border-top: 2px solid ${params.gray50};
-      border-right: 2px solid ${params.gray50};
+      border-top: 2px solid ${color.gray50};
+      border-right: 2px solid ${color.gray50};
     }
     > select {
       height: 2.4em;
@@ -72,19 +72,19 @@ const Styled = styled.div`
       -webkit-appearance: none;
       -moz-appearance: none;
       cursor: pointer;
-      color: ${params.black};
-      box-shadow: 0 0 0 1px ${params.gray};
+      color: ${color.black};
+      box-shadow: 0 0 0 1px ${color.gray};
       &::-ms-expand {
         display: none;
       }
       &:focus {
         outline: 0;
-        box-shadow: 0 0 0 1px ${params.primary};
+        box-shadow: 0 0 0 1px ${color.primary};
       }
       &:disabled {
         cursor: not-allowed;
-        background: ${params.gray};
-        color: ${params.gray100};
+        background: ${color.gray};
+        color: ${color.gray100};
       }
     }
   }

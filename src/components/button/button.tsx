@@ -1,7 +1,7 @@
 import { forwardRef } from "react";
 import styled from "styled-components";
 
-import { params } from "../../lib/style";
+import { color } from "../../lib/style";
 
 import type { TypeButton } from "../../lib/types";
 import type React from "react";
@@ -36,22 +36,22 @@ const Styled = styled.button`
   transition: 0.1s;
   cursor: pointer;
   font-size: 16px;
-  background: ${params.primary};
-  color: ${params.white};
+  background: ${color.primary};
+  color: ${color.white};
   &:hover {
     opacity: 0.6;
   }
   &.primary {
   }
   &.secondary {
-    background: ${params.white};
-    box-shadow: 0 0 0 1px ${params.gray};
-    color: ${params.black};
+    background: ${color.white};
+    box-shadow: 0 0 0 1px ${color.gray};
+    color: ${color.black};
   }
   &:disabled {
     cursor: not-allowed;
-    background: ${params.gray};
-    color: ${params.gray100};
+    background: ${color.gray};
+    color: ${color.gray100};
     &:hover {
       opacity: 1;
     }

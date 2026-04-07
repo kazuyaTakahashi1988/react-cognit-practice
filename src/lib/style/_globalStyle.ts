@@ -1,6 +1,6 @@
 import { createGlobalStyle } from "styled-components";
 
-import { media, params } from "./_variable";
+import { color, media } from "./_variable";
 
 /* -----------------------------------------------
  * グローバルスタイル
@@ -27,21 +27,21 @@ export const GlobalStyle = createGlobalStyle`
     overflow-wrap: break-word;
     word-wrap: break-word;
     overflow: hidden;
-    color: ${params.black};
-    background: ${params.white};
+    color: ${color.black};
+    background: ${color.white};
   }
 
   a:link,
   a:visited {
     text-decoration: none;
-    color: ${params.black};
+    color: ${color.black};
   }
 
   a:hover,
   a:active {
     text-decoration: none;
     opacity: 0.7;
-    color: ${params.black};
+    color: ${color.black};
   }
 
   figure,
@@ -88,20 +88,20 @@ export const GlobalStyle = createGlobalStyle`
   address {
     font-style: normal;
     font-size: 12px;
-    color: ${params.black};
+    color: ${color.black};
   }
 
   address a,
   address a:link,
   address a:visited {
     text-decoration: none;
-    color: ${params.black};
+    color: ${color.black};
   }
 
   address a:hover,
   address a:active {
     text-decoration: underline;
-    color: ${params.black};
+    color: ${color.black};
   }
 
   /* table */

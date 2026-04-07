@@ -1,7 +1,7 @@
 import { forwardRef } from "react";
 import styled from "styled-components";
 
-import { params } from "../../lib/style";
+import { color } from "../../lib/style";
 
 import type { TypeErrorMessage } from "../../lib/types";
 import type React from "react";
@@ -36,7 +36,7 @@ const Styled = styled.div`
     font-size: 12px;
     line-height: 28px;
     display: block;
-    color: ${params.red};
+    color: ${color.red};
   }
 `;
 

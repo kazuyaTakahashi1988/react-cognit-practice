@@ -1,7 +1,7 @@
 import { forwardRef } from "react";
 import styled from "styled-components";
 
-import { params } from "../../lib/style";
+import { color } from "../../lib/style";
 
 import type { TypeLabel } from "../../lib/types";
 import type React from "react";
@@ -38,7 +38,7 @@ const Styled = styled.div`
     > span {
       transform: translateY(-3px);
       display: inline-block;
-      color: ${params.red};
+      color: ${color.red};
     }
   }
 `;

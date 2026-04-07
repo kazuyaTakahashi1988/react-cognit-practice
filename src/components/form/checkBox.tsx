@@ -3,7 +3,7 @@ import styled from "styled-components";
 
 import { ErrorMessage } from "./errorMessage";
 import { Label } from "./label";
-import { params } from "../../lib/style";
+import { color } from "../../lib/style";
 
 import type { TypeCheckBox } from "../../lib/types";
 import type React from "react";
@@ -62,11 +62,11 @@ const Styled = styled.div`
       pointer-events: none;
       opacity: 0;
       &:checked + .label__text {
-        color: ${params.primary};
+        color: ${color.primary};
       }
       &:checked + .label__text:before {
-        box-shadow: 0 0 0 1px ${params.primary};
-        background-color: ${params.primary};
+        box-shadow: 0 0 0 1px ${color.primary};
+        background-color: ${color.primary};
       }
       &:checked + .label__text:after {
         content: "";
@@ -80,7 +80,7 @@ const Styled = styled.div`
         transform: translateY(-1px) rotate(45deg);
         border: solid;
         border-width: 0 2px 2px 0;
-        border-color: ${params.white};
+        border-color: ${color.white};
       }
       &:disabled {
         cursor: not-allowed;
@@ -88,14 +88,14 @@ const Styled = styled.div`
           cursor: not-allowed;
         }
         & + .label__text {
-          color: ${params.gray};
+          color: ${color.gray};
         }
         & + .label__text:before {
-          background-color: ${params.gray};
+          background-color: ${color.gray};
         }
         &:checked {
           & + .label__text:before {
-            box-shadow: 0 0 0 1px ${params.gray};
+            box-shadow: 0 0 0 1px ${color.gray};
           }
         }
       }
@@ -105,7 +105,7 @@ const Styled = styled.div`
       position: relative;
       display: flex;
       align-items: center;
-      color: ${params.gray100};
+      color: ${color.gray100};
       &::before {
         content: "";
         display: inline-block;
@@ -115,7 +115,7 @@ const Styled = styled.div`
         border-radius: 3px;
         margin-right: 6px;
         flex-shrink: 0;
-        box-shadow: 0 0 0 1px ${params.gray};
+        box-shadow: 0 0 0 1px ${color.gray};
       }
     }
   }

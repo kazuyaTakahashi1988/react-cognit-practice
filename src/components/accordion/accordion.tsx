@@ -1,7 +1,7 @@
 import { forwardRef, useEffect, useState } from "react";
 import styled from "styled-components";
 
-import { params } from "../../lib/style";
+import { color } from "../../lib/style";
 
 import type { TypeAccordion } from "../../lib/types";
 import type React from "react";
@@ -48,7 +48,7 @@ const Styled = styled.div`
       display: block;
       width: 100%;
       height: 1px;
-      background: ${params.gray};
+      background: ${color.gray};
     }
     &.is-visible::after {
       animation: fadeTranslateY 0.2s linear forwards;
@@ -73,8 +73,8 @@ const Styled = styled.div`
         pointer-events: none;
         z-index: 1;
         transition: 0.2s ease-out;
-        border-top: 2px solid ${params.gray50};
-        border-right: 2px solid ${params.gray50};
+        border-top: 2px solid ${color.gray50};
+        border-right: 2px solid ${color.gray50};
       }
     }
     &.is-visible > .accordion__title:before {

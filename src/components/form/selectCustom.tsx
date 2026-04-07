@@ -3,7 +3,7 @@ import styled from "styled-components";
 
 import { ErrorMessage } from "./errorMessage";
 import { Label } from "./label";
-import { params } from "../../lib/style";
+import { color } from "../../lib/style";
 
 import type { TypeSelectCustom } from "../../lib/types";
 import type React from "react";
@@ -131,17 +131,17 @@ const Styled = styled.div`
       padding: 0 25px 0 8px;
       border-radius: 4px;
       border: none;
-      box-shadow: 0 0 0 1px ${params.gray};
-      background: ${params.white};
+      box-shadow: 0 0 0 1px ${color.gray};
+      background: ${color.white};
       cursor: pointer;
       &.is-disabled {
         cursor: not-allowed;
-        background: ${params.gray};
-        color: ${params.gray100};
+        background: ${color.gray};
+        color: ${color.gray100};
       }
       &.is-open {
         border-radius: 4px 4px 0 0;
-        box-shadow: 0 0 0 1px ${params.primary};
+        box-shadow: 0 0 0 1px ${color.primary};
         &::before {
           transform: rotate(-45deg);
         }
@@ -159,8 +159,8 @@ const Styled = styled.div`
         pointer-events: none;
         z-index: 3;
         transition: 0.2s ease-out;
-        border-top: 2px solid ${params.gray50};
-        border-right: 2px solid ${params.gray50};
+        border-top: 2px solid ${color.gray50};
+        border-right: 2px solid ${color.gray50};
       }
       > .placeholder {
         overflow: hidden;
@@ -217,7 +217,7 @@ const Styled = styled.div`
           text-overflow: ellipsis;
           white-space: nowrap;
           display: none;
-          background: ${params.white};
+          background: ${color.white};
         }
       }
     }
@@ -237,25 +237,25 @@ const Styled = styled.div`
       height: 150px;
       animation: fadeIn 0.1s ease forwards;
       box-shadow:
-        0 1px 0 0 ${params.gray},
-        1px 0 0 0 ${params.gray},
-        -1px 0 0 0 ${params.gray};
-      background: ${params.white};
+        0 1px 0 0 ${color.gray},
+        1px 0 0 0 ${color.gray},
+        -1px 0 0 0 ${color.gray};
+      background: ${color.white};
       &__label {
         display: block;
         padding: 0 10px;
         font-size: 16px;
         line-height: 2.4em;
         cursor: pointer;
-        color: ${params.gray100};
+        color: ${color.gray100};
         &.current {
-          color: ${params.white};
-          background: ${params.primary};
+          color: ${color.white};
+          background: ${color.primary};
         }
         &.is-disabled {
           cursor: not-allowed;
-          color: ${params.gray};
-          background: ${params.gray};
+          color: ${color.gray};
+          background: ${color.gray};
         }
       }
     }

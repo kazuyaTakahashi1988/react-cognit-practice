@@ -1,9 +1,9 @@
-import { params } from "../../../lib/style";
+import { color } from "../../../lib/style";
 
 import type { Meta, StoryObj } from "@storybook/react";
 
 const ColorAssetList = () => {
-  const colorEntries = Object.entries(params);
+  const colorEntries = Object.entries(color);
 
   return (
     <div
@@ -14,8 +14,8 @@ const ColorAssetList = () => {
         width: "min(100%, 960px)",
       }}
     >
-      {colorEntries.map(([name, color]) => {
-        const normalized = color.replace("#", "");
+      {colorEntries.map(([name, colorParam]) => {
+        const normalized = colorParam.replace("#", "");
         const hasValidHex = normalized.length === 3 || normalized.length === 6;
 
         const expanded =
@@ -44,7 +44,7 @@ const ColorAssetList = () => {
           >
             <div
               style={{
-                backgroundColor: color,
+                backgroundColor: colorParam,
                 color: textColor,
                 minHeight: "60px",
                 padding: "12px",
@@ -56,7 +56,7 @@ const ColorAssetList = () => {
 
             <div style={{ padding: "5px 10px", borderTop: "1px solid #e5e7eb" }}>
               <div style={{ fontSize: "16px", fontWeight: "bold", color: "#2196f3" }}>{name}</div>
-              <div style={{ fontSize: "13px", fontWeight: 400 }}>{color}</div>
+              <div style={{ fontSize: "13px", fontWeight: 400 }}>{colorParam}</div>
             </div>
           </div>
         );
@@ -73,7 +73,7 @@ const meta = {
     docs: {
       description: {
         component:
-          "`src/lib/style/_variable.ts` の `params` で定義されているカラーアセット一覧です。",
+          "`src/lib/style/_variable.ts` の `const color = {}` で定義されているカラーアセット一覧です。",
       },
     },
   },

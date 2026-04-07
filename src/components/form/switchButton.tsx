@@ -3,7 +3,7 @@ import styled from "styled-components";
 
 import { ErrorMessage } from "./errorMessage";
 import { Label } from "./label";
-import { params } from "../../lib/style";
+import { color } from "../../lib/style";
 
 import type { TypeSwitchButton } from "../../lib/types";
 import type React from "react";
@@ -56,7 +56,7 @@ const Styled = styled.div`
       cursor: pointer;
       display: flex;
       align-items: center;
-      color: ${params.gray100};
+      color: ${color.gray100};
       .circle {
         display: flex;
         align-items: center;
@@ -66,8 +66,8 @@ const Styled = styled.div`
         margin-right: 6px;
         padding: 3px;
         transition: 0.2s;
-        background: ${params.white};
-        box-shadow: 0px 0px 1px 1px ${params.gray} inset;
+        background: ${color.white};
+        box-shadow: 0px 0px 1px 1px ${color.gray} inset;
         &:before {
           content: "";
           display: inline-block;
@@ -77,7 +77,7 @@ const Styled = styled.div`
           border-radius: 20px;
           z-index: 1;
           transition: 0.2s;
-          background: ${params.gray200};
+          background: ${color.gray200};
         }
       }
       .no-active {
@@ -103,10 +103,10 @@ const Styled = styled.div`
       pointer-events: none;
       opacity: 0;
       &:checked + .label__text {
-        color: ${params.primary};
+        color: ${color.primary};
         .circle::before {
           margin-left: calc(50% + 3px);
-          background: ${params.primary};
+          background: ${color.primary};
         }
         .no-active {
           display: none;
@@ -121,20 +121,20 @@ const Styled = styled.div`
           cursor: not-allowed;
         }
         & + .label__text {
-          color: ${params.gray};
+          color: ${color.gray};
           .circle {
-            background: ${params.gray};
-            box-shadow: 0px 0px 1px 1px ${params.gray} inset;
+            background: ${color.gray};
+            box-shadow: 0px 0px 1px 1px ${color.gray} inset;
             &::before {
-              background: ${params.gray100};
+              background: ${color.gray100};
             }
           }
         }
         &:checked + .label__text {
-          color: ${params.gray};
+          color: ${color.gray};
           .circle {
             &::before {
-              background: ${params.gray100};
+              background: ${color.gray100};
             }
           }
         }
