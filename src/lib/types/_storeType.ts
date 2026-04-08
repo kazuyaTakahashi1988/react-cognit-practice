@@ -1,10 +1,10 @@
 /* -------------------------------------------------------
     ▽ 型定義 (ストア編) ▽
 ---------------------------------------------------------- */
-import type { AppDispatch, RootState } from "../../utils/storeHelper";
+import type { store } from "../../utils/storeHelper";
 
-export type TypeSelectorState = RootState;
-export type TypeDispatch = AppDispatch;
+export type TypeSelectorState = ReturnType<typeof store.getState>;
+export type TypeDispatch = typeof store.dispatch;
 
 export type TypeState = {
   loadingFlagCount: number;
