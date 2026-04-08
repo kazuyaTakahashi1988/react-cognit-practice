@@ -11,7 +11,7 @@ import SwitchButton from "../../../components/form/switchButton";
 import TextArea from "../../../components/form/textArea";
 import Layout from "../../../components/layouts/layout";
 import { color, media } from "../../../lib/style";
-import { testPostApi } from "../../../utils/apiHelper"; // テストポストAPI（てきとーなやつ）
+import { testPostApi } from "../../../utils/apiHelper";
 
 import type { TypeFormExampleValues } from "../../../lib/types";
 import type React from "react";

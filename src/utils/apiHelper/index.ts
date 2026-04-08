@@ -31,35 +31,28 @@ const execute = async <TResponse = unknown, TRequest = unknown>(
 
   if (isLoading) store.dispatch(loadingFlagUp());
 
-  // ヘッダー情報のセット
-  const setHeaders = (
-    accessToken?: string,
-    headers?: Record<string, string>,
-  ): Record<string, string> => {
-    const bearerToken =
-      accessToken ??
-      (typeof sessionStorage !== "undefined"
-        ? (sessionStorage.getItem("access_token") ?? undefined)
-        : undefined);
+  const bearerToken =
+    accessToken ??
+    (typeof sessionStorage !== "undefined"
+      ? (sessionStorage.getItem("access_token") ?? undefined)
+      : undefined);
 
-    return {
-      Accept: "application/json",
-      "Content-Type": "application/json",
-      ...(bearerToken != null ? { Authorization: `Bearer ${bearerToken}` } : {}),
-      ...headers,
-    };
-  };
-
+  // リクエスト内容
   const requestConfig: AxiosRequestConfig = {
     method,
     url: `${baseURL}${apiPath}`,
     data: requestData,
     params,
-    headers: setHeaders(accessToken, headers), // ヘッダー情報のセット
+    headers: {
+      Accept: "application/json",
+      "Content-Type": "application/json",
+      ...(bearerToken != null ? { Authorization: `Bearer ${bearerToken}` } : {}),
+      ...headers,
+    },
   };
 
   try {
-    return await axios.request<TResponse>(requestConfig);
+    return await axios.request<TResponse>(requestConfig); // リクエスト実行
   } catch (err) {
     const failed_message = "API request failed";
 
@@ -113,7 +106,7 @@ export const testPostApi = (data: TypeFormExampleValues) => {
  * export const postXXXXApi = (params, baseURL, headers, requestData, accessToken, isLoading) => {
  *  const options = {
  *    params, // クエリパラム
- *    baseURL, // DEFAULT_BASE_URL を使わない際のベースURLの指定
+ *    baseURL, // DEFAULT_BASE_URL を使わない際のベースURL
  *    headers, // 追加ヘッダー情報を付与
  *    requestData, // リクエストデータ（リクエストボディ）
  *    accessToken, // アクセストークン
