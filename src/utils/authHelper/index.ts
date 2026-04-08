@@ -25,7 +25,7 @@ Amplify.configure({
 });
 
 /*
- * サインイン 済 or 未 フラグ
+ * サインイン状態の更新・取得など
  */
 export const useAuth = () => {
   const context = useContext(AuthContext);
