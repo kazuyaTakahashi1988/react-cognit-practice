@@ -1,4 +1,4 @@
-import { forwardRef, useEffect, useState } from "react";
+import { forwardRef, useEffect, useId, useState } from "react";
 import styled from "styled-components";
 
 import { color } from "../../lib/style";
@@ -18,6 +18,7 @@ export const AccordionField: React.ForwardRefRenderFunction<HTMLDivElement, Prop
 ) => {
   const { title, visible = false, children, ...rest } = props;
   const [isVisible, setIsVisible] = useState(visible);
+  const contentId = useId();
 
   useEffect(() => {
     setIsVisible(visible);
@@ -26,11 +27,21 @@ export const AccordionField: React.ForwardRefRenderFunction<HTMLDivElement, Prop
   return (
     <Styled ref={ref} {...rest}>
       <div className={["accordion", `${isVisible ? "is-visible" : ""}`].join(" ")}>
-        <div className="accordion__title" onClick={() => setIsVisible(!isVisible)}>
+        <button
+          aria-controls={contentId}
+          aria-expanded={isVisible}
+          className="accordion__title"
+          onClick={() => setIsVisible(!isVisible)}
+          type="button"
+        >
           {title}
-        </div>
+        </button>
 
-        {isVisible && <div className="accordion__container">{children}</div>}
+        {isVisible && (
+          <div className="accordion__container" id={contentId}>
+            {children}
+          </div>
+        )}
       </div>
     </Styled>
   );
@@ -54,12 +65,18 @@ const Styled = styled.div`
       animation: fadeTranslateY 0.2s linear forwards;
     }
     &__title {
+      appearance: none;
+      background: none;
+      border: 0;
+      color: inherit;
       font-size: 16px;
       line-height: 28px;
       cursor: pointer;
       display: block;
       position: relative;
       padding: 10px;
+      text-align: left;
+      width: 100%;
       &:before {
         content: "";
         position: absolute;
