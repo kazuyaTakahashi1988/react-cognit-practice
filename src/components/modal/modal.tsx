@@ -17,17 +17,28 @@ export const ModalField: React.ForwardRefRenderFunction<HTMLDivElement, Props> =
   const { children, title, visible = false, onEvent, onClose, ...rest } = props;
   if (!visible) return null;
 
+  const handleOverlayClick: React.MouseEventHandler<HTMLDivElement> = (event) => {
+    if (event.target === event.currentTarget) {
+      onClose?.onClick?.(event);
+    }
+  };
+
   return (
     <Styled
       {...rest}
       className={["modal", `${rest.className ? rest.className : ""}`].join(" ")}
-      onClick={onClose?.onClick}
+      onClick={handleOverlayClick}
       ref={ref}
     >
-      <div className="modal__inner" onClick={(e) => e.stopPropagation()}>
+      <div className="modal__inner">
         <div className="modal__header">
           <p className="title">{title}</p>
-          <span className="close" onClick={onClose.onClick}></span>
+          <button
+            aria-label="Close modal"
+            className="close"
+            onClick={onClose.onClick}
+            type="button"
+          ></button>
         </div>
         <div className="modal__container">{children}</div>
         {(onClose.text || onEvent) && (
@@ -101,12 +112,16 @@ const Styled = styled.div`
         max-width: calc(100% - 40px);
       }
       .close {
+        appearance: none;
+        background: none;
+        border: 0;
         position: relative;
         z-index: 0;
         width: 20px;
         height: 20px;
         display: block;
         cursor: pointer;
+        padding: 0;
         &:before,
         &:after {
           content: "";
