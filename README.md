@@ -83,6 +83,11 @@ $ yarn dev
 Open <a href="http://localhost:3000" target="_blank">http://localhost:3000</a> in your browser<br>
 <br>
 
+## Analysis with SonarQube
+
+Link to <a href="https://sonarcloud.io/project/overview?id=kazuyaTakahashi1988_react-cognit-practice" target="_blank">SonarQube</a><br>
+<br>
+
 ## Project Structure
 
 ```
