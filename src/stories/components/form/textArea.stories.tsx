@@ -41,7 +41,7 @@ export const Disabled: Story = {
   },
 };
 
-export const Error: Story = {
+export const ErrorText: Story = {
   args: {
     placeholder: "Error：入力をお願いします。",
     label: { text: "Error：TextAreaラベルテキスト", required: true },

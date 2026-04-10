@@ -56,7 +56,7 @@ export const Disabled: Story = {
   },
 };
 
-export const Error: Story = {
+export const ErrorText: Story = {
   args: {
     placeholder: "選択してください。",
     label: { text: "Error：Selectラベルテキスト", required: true },

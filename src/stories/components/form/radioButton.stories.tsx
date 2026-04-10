@@ -46,7 +46,7 @@ export const Required: Story = {
   },
 };
 
-export const Error: Story = {
+export const ErrorText: Story = {
   args: {
     label: { text: "Error：RadioButtonラベルテキスト", required: true },
     options: [

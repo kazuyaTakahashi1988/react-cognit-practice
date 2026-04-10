@@ -46,7 +46,7 @@ export const Disabled: Story = {
   },
 };
 
-export const Error: Story = {
+export const ErrorText: Story = {
   args: {
     label: { text: "Error：SwitchButtonラベルテキスト", required: true },
     options: [

@@ -43,7 +43,7 @@ export const Required: Story = {
   },
 };
 
-export const Error: Story = {
+export const ErrorText: Story = {
   args: {
     placeholder: "Error：入力をお願いします。",
     label: { text: "Error：Inputラベルテキスト", required: true },
