@@ -1,4 +1,4 @@
-import { forwardRef, useEffect, useRef, useState } from "react";
+import { forwardRef, useEffect, useId, useRef, useState } from "react";
 import styled from "styled-components";
 
 import { color } from "../../lib/style";
@@ -21,6 +21,7 @@ export const DropdownMenuField: React.ForwardRefRenderFunction<HTMLSpanElement, 
   const [isOpen, setIsOpen] = useState(false);
   const [isClientBottom, setIsClientBottom] = useState(false);
   const [isClientLeft, setIsClientLeft] = useState(false);
+  const menuId = useId();
 
   const dropdownMenuRef = useRef<HTMLDivElement>(null);
   const dropdownMenuInnerRef = useRef<HTMLUListElement>(null);
@@ -53,8 +54,16 @@ export const DropdownMenuField: React.ForwardRefRenderFunction<HTMLSpanElement, 
 
   return (
     <Styled ref={ref} {...rest}>
-      <div className="dropdown-menu" onClick={() => setIsOpen(!isOpen)} ref={dropdownMenuRef}>
-        {children}
+      <div className="dropdown-menu" ref={dropdownMenuRef}>
+        <button
+          aria-controls={menuId}
+          aria-expanded={isOpen}
+          className="dropdown-menu__trigger"
+          onClick={() => setIsOpen(!isOpen)}
+          type="button"
+        >
+          {children}
+        </button>
 
         {isOpen && (
           <ul
@@ -63,12 +72,21 @@ export const DropdownMenuField: React.ForwardRefRenderFunction<HTMLSpanElement, 
               `${isClientBottom ? "bottom" : ""}`,
               `${isClientLeft ? "left" : ""}`,
             ].join(" ")}
-            onClick={(e) => e.stopPropagation()}
+            id={menuId}
             ref={dropdownMenuInnerRef}
           >
-            {menuList.map((menu, index) => (
-              <li key={index} onClick={menu.onClick}>
-                {menu.text}
+            {menuList.map((menu) => (
+              <li key={menu.text}>
+                <button
+                  className="dropdown-menu__item"
+                  onClick={(event) => {
+                    menu.onClick?.(event);
+                    setIsOpen(false);
+                  }}
+                  type="button"
+                >
+                  {menu.text}
+                </button>
               </li>
             ))}
           </ul>
@@ -82,7 +100,18 @@ const Styled = styled.span`
   .dropdown-menu {
     display: inline-block;
     position: relative;
-    cursor: pointer;
+    &__trigger {
+      appearance: none;
+      background: none;
+      border: 0;
+      color: inherit;
+      cursor: pointer;
+      display: inline-block;
+      font: inherit;
+      margin: 0;
+      padding: 0;
+      text-align: inherit;
+    }
     &__inner {
       position: absolute;
       z-index: 10;
@@ -125,11 +154,21 @@ const Styled = styled.span`
         }
       }
       > li {
-        font-size: 16px;
-        line-height: 28px;
-        padding: 5px 0;
-        cursor: pointer;
+        display: block;
       }
+    }
+    &__item {
+      appearance: none;
+      background: none;
+      border: 0;
+      color: inherit;
+      cursor: pointer;
+      display: block;
+      font-size: 16px;
+      line-height: 28px;
+      padding: 5px 0;
+      text-align: left;
+      width: 100%;
     }
   }
   @keyframes fadeIn {
