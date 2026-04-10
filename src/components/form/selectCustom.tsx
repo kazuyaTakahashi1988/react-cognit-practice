@@ -52,6 +52,9 @@ export const SelectCustomField: React.ForwardRefRenderFunction<HTMLInputElement,
     }
   }, [selectedIndex, isOpen]);
 
+  const getOptionKey = (option: TypeSelectCustom["options"][number]) =>
+    `${option.value}-${option.label}`;
+
   return (
     <Styled className={rest.className}>
       <Label label={label} />
@@ -64,28 +67,38 @@ export const SelectCustomField: React.ForwardRefRenderFunction<HTMLInputElement,
             `${isDisabled ? DISABLED_CLASS : ""}`,
           ].join(" ")}
         >
-          <span className="placeholder" onClick={() => onOpenToggle(null)}>
+          <button className="placeholder" onClick={() => onOpenToggle(null)} type="button">
             {rest.placeholder ? rest.placeholder : ""}
-          </span>
+          </button>
           {options.map((option, index) => (
-            <div
-              className={["selected__label", `${option.disabled ? DISABLED_CLASS : ""}`].join(" ")}
-              key={index}
-              onClick={() => {
-                if (option.disabled || isDisabled) return;
-                onOpenToggle(index);
-              }}
-            >
+            <div className="selected__option" key={getOptionKey(option)}>
               <input
                 {...rest}
                 className=""
                 disabled={isDisabled || option.disabled}
                 id={rest.name + option.value}
+                onChange={(event) => {
+                  rest.onChange?.(event);
+                  setSelectedIndex(index);
+                  setIsOpen(false);
+                }}
                 ref={ref}
                 type="radio"
                 value={option.value}
               />
-              <span>{option.label}</span>
+              <button
+                className={["selected__label", `${option.disabled ? DISABLED_CLASS : ""}`].join(
+                  " ",
+                )}
+                disabled={option.disabled || isDisabled}
+                onClick={() => {
+                  if (option.disabled || isDisabled) return;
+                  onOpenToggle(index);
+                }}
+                type="button"
+              >
+                <span>{option.label}</span>
+              </button>
             </div>
           ))}
         </div>
@@ -100,10 +113,7 @@ export const SelectCustomField: React.ForwardRefRenderFunction<HTMLInputElement,
                   `${option.disabled || isDisabled ? DISABLED_CLASS : ""}`,
                 ].join(" ")}
                 htmlFor={rest.name + option.value}
-                key={index}
-                onClick={(e) => {
-                  if (isDisabled || option.disabled) e.preventDefault();
-                }}
+                key={getOptionKey(option)}
                 ref={labelRefs.current[index]}
               >
                 {option.label}
@@ -163,6 +173,12 @@ const Styled = styled.div`
         border-right: 2px solid ${color.gray50};
       }
       > .placeholder {
+        appearance: none;
+        background: none;
+        border: 0;
+        color: inherit;
+        cursor: pointer;
+        font: inherit;
         overflow: hidden;
         text-overflow: ellipsis;
         white-space: nowrap;
@@ -175,13 +191,11 @@ const Styled = styled.div`
         width: 100%;
         height: 2.4em;
         padding: 0 10px;
+        text-align: left;
       }
-      &__label {
+      &__option {
         width: 0px;
         height: 0px;
-        &.is-disabled {
-          cursor: not-allowed;
-        }
         > input {
           position: absolute;
           top: 0;
@@ -189,8 +203,6 @@ const Styled = styled.div`
           width: 0px;
           height: 0px;
           white-space: nowrap;
-          width: 0px;
-          height: 0px;
           overflow: hidden;
           border: 0;
           padding: 0;
@@ -199,9 +211,28 @@ const Styled = styled.div`
           margin: -1px;
           pointer-events: none;
           opacity: 0;
-          &:checked + span {
+          &:checked + .selected__label > span {
             display: block;
           }
+        }
+      }
+      &__label {
+        appearance: none;
+        background: none;
+        border: 0;
+        color: inherit;
+        cursor: pointer;
+        display: block;
+        font: inherit;
+        padding: 0;
+        text-align: left;
+        width: 0px;
+        height: 0px;
+        &.is-disabled {
+          cursor: not-allowed;
+        }
+        &:disabled {
+          cursor: not-allowed;
         }
         > span {
           padding: 0 25px 0 8px;
