@@ -22,7 +22,6 @@ module.exports = {
     "@typescript-eslint",
     "react",
     "react-hooks",
-    "react-refresh",
     "jsx-a11y",
     "total-functions",
     "import",
@@ -122,7 +121,6 @@ module.exports = {
         complexity: ["error", { max: 15 }], // 関数内の分岐複雑度
         "max-depth": ["error", 15], // ネストの深さ制限
         "no-else-return": ["error"], // 不要な else の排除
-        "react-refresh/only-export-components": ["warn", { allowConstantExport: true }],
 
         /* -------------------------------------------------------
           なぜか上手く機能しない設定
@@ -134,9 +132,7 @@ module.exports = {
     {
       files: [".storybook/**/*.ts", "src/**/*.stories.@(js|jsx|mjs|ts|tsx)", "src/**/*.mdx"],
       extends: ["plugin:storybook/recommended"],
-      rules: {
-        "storybook/no-renderer-packages": "off",
-      },
+      rules: { "storybook/no-renderer-packages": "off" },
     },
     /* -----------------------------------------------------------
       src/features 配下の実装は src/router 配下でのみ import 可能です。
