@@ -18,10 +18,20 @@ module.exports = {
       },
     },
   },
-  plugins: ["@typescript-eslint", "react", "react-hooks", "total-functions", "import", "sonarjs"],
+  plugins: [
+    "@typescript-eslint",
+    "react",
+    "react-hooks",
+    "react-refresh",
+    "jsx-a11y",
+    "total-functions",
+    "import",
+    "sonarjs",
+  ],
   extends: [
     "eslint:recommended",
     "plugin:react/recommended",
+    "plugin:jsx-a11y/recommended",
     "plugin:@typescript-eslint/recommended",
     "plugin:import/recommended",
     "plugin:import/typescript",
@@ -112,12 +122,20 @@ module.exports = {
         complexity: ["error", { max: 15 }], // 関数内の分岐複雑度
         "max-depth": ["error", 15], // ネストの深さ制限
         "no-else-return": ["error"], // 不要な else の排除
+        "react-refresh/only-export-components": ["warn", { allowConstantExport: true }],
 
         /* -------------------------------------------------------
           なぜか上手く機能しない設定
         ---------------------------------------------------------- */
         /* 変数や関数を定義前に使うのを禁止するルールを"off" */
         // "no-use-before-define": "off",
+      },
+    },
+    {
+      files: [".storybook/**/*.ts", "src/**/*.stories.@(js|jsx|mjs|ts|tsx)", "src/**/*.mdx"],
+      extends: ["plugin:storybook/recommended"],
+      rules: {
+        "storybook/no-renderer-packages": "off",
       },
     },
     /* -----------------------------------------------------------
