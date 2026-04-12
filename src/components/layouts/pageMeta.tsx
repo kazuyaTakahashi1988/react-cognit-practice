@@ -27,8 +27,9 @@ const PageMeta: React.FC<TypePageMetaProps> = ({
     const normalizedTitle = title?.trim() ? title.trim() : DEFAULT_TITLE;
     const normalizedDescription = description?.trim() ? description.trim() : DEFAULT_DESCRIPTION;
     const normalizedOgImage = ogImage?.trim() ? ogImage.trim() : DEFAULT_OG_IMAGE;
-    const fullTitle = normalizedTitle === DEFAULT_TITLE ? DEFAULT_TITLE : `${normalizedTitle} | ${SITE_NAME}`;
-    const url = window.location.href;
+    const fullTitle =
+      normalizedTitle === DEFAULT_TITLE ? DEFAULT_TITLE : `${normalizedTitle} | ${SITE_NAME}`;
+    const url = globalThis.location.href;
     const ogImageUrl = normalizedOgImage.startsWith("http")
       ? normalizedOgImage
       : `${BASE_URL}${normalizedOgImage}`;
@@ -36,11 +37,7 @@ const PageMeta: React.FC<TypePageMetaProps> = ({
 
     document.title = fullTitle;
 
-    const upsertMeta = (
-      key: "name" | "property",
-      value: string,
-      content: string,
-    ) => {
+    const upsertMeta = (key: "name" | "property", value: string, content: string) => {
       let tag = document.head.querySelector(`meta[${key}="${value}"]`);
 
       if (!tag) {

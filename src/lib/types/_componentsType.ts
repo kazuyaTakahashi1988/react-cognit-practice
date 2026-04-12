@@ -2,7 +2,7 @@
     ▽ 型定義 (コンポーネント編) ▽
 ---------------------------------------------------------- */
 
-import type { TypePageMetaProps } from "../../components/seo/pageMeta";
+import type { TypePageMetaProps } from "../../components/layouts/pageMeta";
 import type { UseFormRegister } from "react-hook-form";
 
 // Header

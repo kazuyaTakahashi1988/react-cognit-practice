@@ -4,7 +4,7 @@ import styled from "styled-components";
 import { Footer } from "./footer";
 import { Header } from "./header";
 import { Loading } from "./loading";
-import PageMeta from "../seo/pageMeta";
+import PageMeta from "./pageMeta";
 
 import type { TypeLayout, TypeSelectorState } from "../../lib/types";
 import type React from "react";
