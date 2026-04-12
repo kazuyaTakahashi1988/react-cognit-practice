@@ -49,7 +49,7 @@ const FormExample: React.FC = () => {
 
   return (
     <Layout
-      meta={{
+      pageMeta={{
         title: "Form Example",
         description: "react-hook-form を使った入力フォームコンポーネントのサンプルページです。",
         shareText: "フォーム実装サンプルをまとめたページです。",

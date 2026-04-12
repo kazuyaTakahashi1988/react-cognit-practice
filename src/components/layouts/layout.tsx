@@ -14,14 +14,15 @@ import type React from "react";
  * ----------------------------------------------- */
 
 export const Layout: React.FC<TypeLayout> = (props) => {
-  const { type, meta, children } = props;
+  const { type, pageMeta, children } = props;
 
   // ローディングフラグ
   const loadingFlagCount = useSelector((state: TypeSelectorState) => state.loadingFlagCount);
 
   return (
     <Styled>
-      <PageMeta {...meta} />
+      {/* メタ情報 */}
+      <PageMeta {...pageMeta} />
 
       {/* 共通ローディング */}
       <Loading visible={loadingFlagCount > 0} />

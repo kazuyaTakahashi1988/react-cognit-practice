@@ -31,7 +31,7 @@ const SignIn: React.FC = () => {
 
   return (
     <Layout
-      meta={{
+      pageMeta={{
         title: "Sign In",
         description: "メールアドレスとパスワードでログインするページです。",
         shareText: "React Cognito Practice のサインインページです。",

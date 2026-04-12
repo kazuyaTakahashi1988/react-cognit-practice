@@ -1,14 +1,7 @@
 import { useEffect } from "react";
 
+import type { TypePageMeta } from "../../lib/types";
 import type React from "react";
-
-export type TypePageMetaProps = {
-  title?: string;
-  description?: string;
-  ogImage?: string;
-  ogType?: "website" | "article";
-  shareText?: string;
-};
 
 const SITE_NAME = "React Cognito Practice";
 const BASE_URL = "http://react-cognito.empty-service.com";
@@ -16,7 +9,7 @@ const DEFAULT_TITLE = "React Cognito Practice";
 const DEFAULT_DESCRIPTION = "React と Cognito の検証用サンプルアプリです。";
 const DEFAULT_OG_IMAGE = "/ogp.jpg";
 
-const PageMeta: React.FC<TypePageMetaProps> = ({
+const PageMeta: React.FC<TypePageMeta> = ({
   title,
   description,
   ogImage,

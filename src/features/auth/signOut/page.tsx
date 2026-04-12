@@ -23,7 +23,7 @@ const SignOut: React.FC = () => {
 
   return (
     <Layout
-      meta={{
+      pageMeta={{
         title: "Sign Out",
         description: "現在のセッションからサインアウトするページです。",
         shareText: "React Cognito Practice のサインアウトページです。",

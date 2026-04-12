@@ -30,7 +30,7 @@ const Verification: React.FC = () => {
 
   return (
     <Layout
-      meta={{
+      pageMeta={{
         title: "Verification",
         description: "確認コードを入力してアカウント認証を完了するページです。",
         shareText: "React Cognito Practice の認証ページです。",

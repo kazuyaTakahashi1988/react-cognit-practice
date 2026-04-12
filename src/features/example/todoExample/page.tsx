@@ -48,7 +48,7 @@ const TodoExample: React.FC = () => {
 
   return (
     <Layout
-      meta={{
+      pageMeta={{
         title: "Todo Example",
         description: "動的に項目追加できる TODO フォームのサンプルページです。",
         shareText: "TODO 管理 UI のサンプルを確認できます。",
