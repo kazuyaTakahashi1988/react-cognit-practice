@@ -4,6 +4,7 @@ import styled from "styled-components";
 import Button from "../../../components/button/button";
 import TodoItems from "../../../components/form/todoItems";
 import Layout from "../../../components/layouts/layout";
+import PageMeta from "../../../components/seo/pageMeta";
 import { color, media } from "../../../lib/style";
 
 import type { TypeTodoExampleValues } from "./type";
@@ -47,11 +48,18 @@ const TodoExample: React.FC = () => {
   });
 
   return (
-    <Layout type="example">
-      <Styled>
-        <h1>
-          <span>TodoExample</span>
-        </h1>
+    <>
+      <PageMeta
+        description="動的に項目追加できる TODO フォームのサンプルページです。"
+        ogImage="/vite.svg"
+        shareText="TODO 管理 UI のサンプルを確認できます。"
+        title="Todo Example"
+      />
+      <Layout type="example">
+        <Styled>
+          <h1>
+            <span>TodoExample</span>
+          </h1>
 
         {/* TODO項目 */}
         <TodoItems
@@ -73,8 +81,9 @@ const TodoExample: React.FC = () => {
           </Button>
           <Button onClick={() => onSubmit()}>送信する</Button>
         </div>
-      </Styled>
-    </Layout>
+        </Styled>
+      </Layout>
+    </>
   );
 };
 

@@ -10,6 +10,7 @@ import SelectCustom from "../../../components/form/selectCustom";
 import SwitchButton from "../../../components/form/switchButton";
 import TextArea from "../../../components/form/textArea";
 import Layout from "../../../components/layouts/layout";
+import PageMeta from "../../../components/seo/pageMeta";
 import { color, media } from "../../../lib/style";
 import { testPostApi } from "../../../utils/apiHelper";
 
@@ -48,15 +49,22 @@ const FormExample: React.FC = () => {
   });
 
   return (
-    <Layout type="example">
-      <Styled>
-        <h1>
-          <span>
-            FormExample
-            <br />
-            <small>：react-hook-form</small>
-          </span>
-        </h1>
+    <>
+      <PageMeta
+        description="react-hook-form を使った入力フォームコンポーネントのサンプルページです。"
+        ogImage="/vite.svg"
+        shareText="フォーム実装サンプルをまとめたページです。"
+        title="Form Example"
+      />
+      <Layout type="example">
+        <Styled>
+          <h1>
+            <span>
+              FormExample
+              <br />
+              <small>：react-hook-form</small>
+            </span>
+          </h1>
 
         {/* インプット項目 */}
         <Input
@@ -179,8 +187,9 @@ const FormExample: React.FC = () => {
           </Button>
           <Button onClick={() => onSubmit()}>送信する</Button>
         </div>
-      </Styled>
-    </Layout>
+        </Styled>
+      </Layout>
+    </>
   );
 };
 

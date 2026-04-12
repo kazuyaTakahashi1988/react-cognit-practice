@@ -4,6 +4,7 @@ import styled from "styled-components";
 import Button from "../../../components/button/button";
 import Input from "../../../components/form/input";
 import Layout from "../../../components/layouts/layout";
+import PageMeta from "../../../components/seo/pageMeta";
 import { signInHelper, useAuth } from "../../../utils/authHelper";
 
 import type { TypeSignInValues } from "../../../lib/types";
@@ -30,9 +31,16 @@ const SignIn: React.FC = () => {
   });
 
   return (
-    <Layout type="auth">
-      <Styled>
-        <h1>SignIn</h1>
+    <>
+      <PageMeta
+        description="メールアドレスとパスワードでログインするページです。"
+        ogImage="/vite.svg"
+        shareText="React Cognito Practice のサインインページです。"
+        title="Sign In"
+      />
+      <Layout type="auth">
+        <Styled>
+          <h1>SignIn</h1>
 
         {/* インプット項目 - E-mail */}
         <Input
@@ -61,8 +69,9 @@ const SignIn: React.FC = () => {
           </Button>
           <Button onClick={() => onSubmit()}>送信する</Button>
         </div>
-      </Styled>
-    </Layout>
+        </Styled>
+      </Layout>
+    </>
   );
 };
 

@@ -4,6 +4,7 @@ import styled from "styled-components";
 import Button from "../../../components/button/button";
 import Layout from "../../../components/layouts/layout";
 import Modal from "../../../components/modal/modal";
+import PageMeta from "../../../components/seo/pageMeta";
 import { color, media } from "../../../lib/style";
 
 import type React from "react";
@@ -23,11 +24,18 @@ const ModalExample: React.FC = () => {
   };
 
   return (
-    <Layout type="example">
-      <Styled>
-        <h1>
-          <span>ModalExample</span>
-        </h1>
+    <>
+      <PageMeta
+        description="モーダルダイアログの表示と操作を確認できるサンプルページです。"
+        ogImage="/vite.svg"
+        shareText="モーダル UI の挙動を確認できるページです。"
+        title="Modal Example"
+      />
+      <Layout type="example">
+        <Styled>
+          <h1>
+            <span>ModalExample</span>
+          </h1>
 
         {/* ボタン */}
         <div className="button-clm">
@@ -55,8 +63,9 @@ const ModalExample: React.FC = () => {
         >
           ダミーテキスト・ダミーテキスト・ダミーテキスト・ダミーテキスト・ダミーテキスト・ダミーテキスト・ダミーテキスト・ダミーテキスト・ダミーテキスト・ダミーテキスト・ダミーテキスト・ダミーテキスト・ダミーテキスト・ダミーテキスト・ダミーテキスト・ダミーテキスト・ダミーテキスト・ダミーテキスト・ダミーテキスト・ダミーテキスト・ダミーテキスト・ダミーテキスト・ダミーテキスト・ダミーテキスト・ダミーテキスト・ダミーテキスト・ダミーテキスト・ダミーテキスト・ダミーテキスト・ダミーテキスト・ダミーテキスト・ダミーテキスト・ダミーテキスト・ダミーテキスト・ダミーテキスト・ダミーテキスト・ダミーテキスト・ダミーテキスト・ダミーテキスト・ダミーテキスト・ダミーテキスト・ダミーテキスト・ダミーテキスト・ダミーテキスト・ダミーテキスト・ダミーテキスト・ダミーテキスト・ダミーテキスト・ダミーテキスト・ダミーテキスト・ダミーテキスト・ダミーテキスト・ダミーテキスト・ダミーテキスト・ダミーテキスト・ダミーテキスト・ダミーテキスト・ダミーテキスト・ダミーテキスト・ダミーテキスト・ダミーテキスト・ダミーテキスト・ダミーテキスト・ダミーテキスト・ダミーテキスト・ダミーテキスト・ダミーテキスト・ダミーテキスト・ダミーテキスト・ダミーテキスト・ダミーテキスト・ダミーテキスト・ダミーテキスト・ダミーテキスト・ダミーテキスト・ダミーテキスト・ダミーテキスト・ダミーテキスト・ダミーテキスト・ダミーテキスト・ダミーテキスト・ダミーテキスト・ダミーテキスト・ダミーテキスト・ダミーテキスト・ダミーテキスト
         </Modal>
-      </Styled>
-    </Layout>
+        </Styled>
+      </Layout>
+    </>
   );
 };
 

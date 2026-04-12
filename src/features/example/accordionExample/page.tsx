@@ -2,6 +2,7 @@ import styled from "styled-components";
 
 import Accordion from "../../../components/accordion/accordion";
 import Layout from "../../../components/layouts/layout";
+import PageMeta from "../../../components/seo/pageMeta";
 import { color, media } from "../../../lib/style";
 
 import type React from "react";
@@ -12,11 +13,18 @@ import type React from "react";
 
 const AccordionExample: React.FC = () => {
   return (
-    <Layout type="example">
-      <Styled>
-        <h1>
-          <span>AccordionExample</span>
-        </h1>
+    <>
+      <PageMeta
+        description="アコーディオンコンポーネントの利用例を確認できるサンプルページです。"
+        ogImage="/vite.svg"
+        shareText="アコーディオン UI サンプルページです。"
+        title="Accordion Example"
+      />
+      <Layout type="example">
+        <Styled>
+          <h1>
+            <span>AccordionExample</span>
+          </h1>
 
         {/* アコーディオン */}
         <Accordion className="mt-30" title="アコーディオンタイトル">
@@ -41,8 +49,9 @@ const AccordionExample: React.FC = () => {
             ダミーテキスト・ダミーテキスト・ダミーテキスト・ダミーテキスト・ダミーテキスト・ダミーテキスト・ダミーテキスト・ダミーテキスト・ダミーテキスト・ダミーテキスト・ダミーテキスト・ダミーテキスト・ダミーテキスト・ダミーテキスト・ダミーテキスト・ダミーテキスト・ダミーテキスト・ダミーテキスト・ダミーテキスト・ダミーテキスト・ダミーテキスト・ダミーテキスト・ダミーテキスト・ダミーテキスト・
           </p>
         </Accordion>
-      </Styled>
-    </Layout>
+        </Styled>
+      </Layout>
+    </>
   );
 };
 

@@ -2,6 +2,7 @@ import styled from "styled-components";
 
 import DropdownMenu from "../../../components/dropdownMenu/dropdownMenu";
 import Layout from "../../../components/layouts/layout";
+import PageMeta from "../../../components/seo/pageMeta";
 import { color, media } from "../../../lib/style";
 
 import type React from "react";
@@ -12,11 +13,18 @@ import type React from "react";
 
 const DropdownMenuExample: React.FC = () => {
   return (
-    <Layout type="example">
-      <Styled>
-        <h1>
-          <span>DropdownMenuExample</span>
-        </h1>
+    <>
+      <PageMeta
+        description="ドロップダウンメニューの表示パターンを確認できるサンプルページです。"
+        ogImage="/vite.svg"
+        shareText="ドロップダウンメニュー UI のサンプルページです。"
+        title="Dropdown Menu Example"
+      />
+      <Layout type="example">
+        <Styled>
+          <h1>
+            <span>DropdownMenuExample</span>
+          </h1>
 
         {/* ドロップダウンメニュー */}
         <DropdownMenu
@@ -65,8 +73,9 @@ const DropdownMenuExample: React.FC = () => {
         >
           ドロップダウンメニュー_D
         </DropdownMenu>
-      </Styled>
-    </Layout>
+        </Styled>
+      </Layout>
+    </>
   );
 };
 
