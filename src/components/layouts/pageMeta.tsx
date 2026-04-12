@@ -11,10 +11,10 @@ export type TypePageMetaProps = {
 };
 
 const SITE_NAME = "React Cognito Practice";
-const BASE_URL = "https://example.com";
+const BASE_URL = "http://react-cognito.empty-service.com";
 const DEFAULT_TITLE = "React Cognito Practice";
 const DEFAULT_DESCRIPTION = "React と Cognito の検証用サンプルアプリです。";
-const DEFAULT_OG_IMAGE = "/vite.svg";
+const DEFAULT_OG_IMAGE = "/ogp.jpg";
 
 const PageMeta: React.FC<TypePageMetaProps> = ({
   title,
