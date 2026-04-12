@@ -31,7 +31,6 @@ const SignUp: React.FC = () => {
       meta={{
         title: "Sign Up",
         description: "メールアドレスとパスワードでアカウントを作成するページです。",
-        ogImage: "/vite.svg",
         shareText: "React Cognito Practice のサインアップページです。",
       }}
       type="auth"

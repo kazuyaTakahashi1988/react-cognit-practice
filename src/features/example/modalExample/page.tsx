@@ -27,7 +27,6 @@ const ModalExample: React.FC = () => {
       meta={{
         title: "Modal Example",
         description: "モーダルダイアログの表示と操作を確認できるサンプルページです。",
-        ogImage: "/vite.svg",
         shareText: "モーダル UI の挙動を確認できるページです。",
       }}
       type="example"

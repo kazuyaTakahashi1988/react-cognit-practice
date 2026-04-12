@@ -34,7 +34,6 @@ const SignIn: React.FC = () => {
       meta={{
         title: "Sign In",
         description: "メールアドレスとパスワードでログインするページです。",
-        ogImage: "/vite.svg",
         shareText: "React Cognito Practice のサインインページです。",
       }}
       type="auth"

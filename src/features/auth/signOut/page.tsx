@@ -26,7 +26,6 @@ const SignOut: React.FC = () => {
       meta={{
         title: "Sign Out",
         description: "現在のセッションからサインアウトするページです。",
-        ogImage: "/vite.svg",
         shareText: "React Cognito Practice のサインアウトページです。",
       }}
       type="auth"

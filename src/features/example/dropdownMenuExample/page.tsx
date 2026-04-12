@@ -16,7 +16,6 @@ const DropdownMenuExample: React.FC = () => {
       meta={{
         title: "Dropdown Menu Example",
         description: "ドロップダウンメニューの表示パターンを確認できるサンプルページです。",
-        ogImage: "/vite.svg",
         shareText: "ドロップダウンメニュー UI のサンプルページです。",
       }}
       type="example"

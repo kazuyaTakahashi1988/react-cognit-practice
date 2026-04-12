@@ -16,7 +16,6 @@ const AccordionExample: React.FC = () => {
       meta={{
         title: "Accordion Example",
         description: "アコーディオンコンポーネントの利用例を確認できるサンプルページです。",
-        ogImage: "/vite.svg",
         shareText: "アコーディオン UI サンプルページです。",
       }}
       type="example"

@@ -33,7 +33,6 @@ const Verification: React.FC = () => {
       meta={{
         title: "Verification",
         description: "確認コードを入力してアカウント認証を完了するページです。",
-        ogImage: "/vite.svg",
         shareText: "React Cognito Practice の認証ページです。",
       }}
       type="auth"

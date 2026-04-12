@@ -51,7 +51,6 @@ const TodoExample: React.FC = () => {
       meta={{
         title: "Todo Example",
         description: "動的に項目追加できる TODO フォームのサンプルページです。",
-        ogImage: "/vite.svg",
         shareText: "TODO 管理 UI のサンプルを確認できます。",
       }}
       type="example"

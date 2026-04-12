@@ -52,7 +52,6 @@ const FormExample: React.FC = () => {
       meta={{
         title: "Form Example",
         description: "react-hook-form を使った入力フォームコンポーネントのサンプルページです。",
-        ogImage: "/vite.svg",
         shareText: "フォーム実装サンプルをまとめたページです。",
       }}
       type="example"
