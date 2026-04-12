@@ -2,13 +2,14 @@
     ▽ 型定義 (コンポーネント編) ▽
 ---------------------------------------------------------- */
 
+import type { TypePageMetaProps } from "../../components/seo/pageMeta";
 import type { UseFormRegister } from "react-hook-form";
 
 // Header
 export type TypeHeader = { type: string };
 
 // Layout
-export type TypeLayout = { type: string; children?: React.ReactNode };
+export type TypeLayout = { type: string; meta?: TypePageMetaProps; children?: React.ReactNode };
 
 // Loading
 export type TypeLoading = { visible: boolean };

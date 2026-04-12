@@ -2,7 +2,6 @@ import styled from "styled-components";
 
 import Button from "../../../components/button/button";
 import Layout from "../../../components/layouts/layout";
-import PageMeta from "../../../components/seo/pageMeta";
 import { signOutHelper, useAuth } from "../../../utils/authHelper";
 
 import type React from "react";
@@ -23,24 +22,24 @@ const SignOut: React.FC = () => {
   };
 
   return (
-    <>
-      <PageMeta
-        description="現在のセッションからサインアウトするページです。"
-        ogImage="/vite.svg"
-        shareText="React Cognito Practice のサインアウトページです。"
-        title="Sign Out"
-      />
-      <Layout type="auth">
-        <Styled>
-          <h1>サインアウト</h1>
+    <Layout
+      meta={{
+        title: "Sign Out",
+        description: "現在のセッションからサインアウトするページです。",
+        ogImage: "/vite.svg",
+        shareText: "React Cognito Practice のサインアウトページです。",
+      }}
+      type="auth"
+    >
+      <Styled>
+        <h1>サインアウト</h1>
 
         {/* ボタン */}
         <div className="mt-30">
           <Button onClick={signOut}>Sign Out</Button>
         </div>
-        </Styled>
-      </Layout>
-    </>
+      </Styled>
+    </Layout>
   );
 };
 

@@ -2,16 +2,19 @@ import { useEffect } from "react";
 
 import type React from "react";
 
-type TypePageMetaProps = {
-  title: string;
-  description: string;
-  ogImage: string;
+export type TypePageMetaProps = {
+  title?: string;
+  description?: string;
+  ogImage?: string;
   ogType?: "website" | "article";
   shareText?: string;
 };
 
 const SITE_NAME = "React Cognito Practice";
 const BASE_URL = "https://example.com";
+const DEFAULT_TITLE = "React Cognito Practice";
+const DEFAULT_DESCRIPTION = "React と Cognito の検証用サンプルアプリです。";
+const DEFAULT_OG_IMAGE = "/vite.svg";
 
 const PageMeta: React.FC<TypePageMetaProps> = ({
   title,
@@ -21,10 +24,15 @@ const PageMeta: React.FC<TypePageMetaProps> = ({
   shareText,
 }) => {
   useEffect(() => {
-    const fullTitle = `${title} | ${SITE_NAME}`;
+    const normalizedTitle = title?.trim() ? title.trim() : DEFAULT_TITLE;
+    const normalizedDescription = description?.trim() ? description.trim() : DEFAULT_DESCRIPTION;
+    const normalizedOgImage = ogImage?.trim() ? ogImage.trim() : DEFAULT_OG_IMAGE;
+    const fullTitle = normalizedTitle === DEFAULT_TITLE ? DEFAULT_TITLE : `${normalizedTitle} | ${SITE_NAME}`;
     const url = window.location.href;
-    const ogImageUrl = ogImage.startsWith("http") ? ogImage : `${BASE_URL}${ogImage}`;
-    const socialDescription = shareText ?? description;
+    const ogImageUrl = normalizedOgImage.startsWith("http")
+      ? normalizedOgImage
+      : `${BASE_URL}${normalizedOgImage}`;
+    const socialDescription = shareText?.trim() ? shareText.trim() : normalizedDescription;
 
     document.title = fullTitle;
 
@@ -44,7 +52,7 @@ const PageMeta: React.FC<TypePageMetaProps> = ({
       tag.setAttribute("content", content);
     };
 
-    upsertMeta("name", "description", description);
+    upsertMeta("name", "description", normalizedDescription);
     upsertMeta("property", "og:title", fullTitle);
     upsertMeta("property", "og:description", socialDescription);
     upsertMeta("property", "og:type", ogType);
