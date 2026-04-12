@@ -30,7 +30,15 @@ const SignIn: React.FC = () => {
   });
 
   return (
-    <Layout type="auth">
+    <Layout
+      meta={{
+        title: "Sign In",
+        description: "メールアドレスとパスワードでログインするページです。",
+        ogImage: "/vite.svg",
+        shareText: "React Cognito Practice のサインインページです。",
+      }}
+      type="auth"
+    >
       <Styled>
         <h1>SignIn</h1>
 

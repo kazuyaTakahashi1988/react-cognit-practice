@@ -27,7 +27,15 @@ const SignUp: React.FC = () => {
   });
 
   return (
-    <Layout type="auth">
+    <Layout
+      meta={{
+        title: "Sign Up",
+        description: "メールアドレスとパスワードでアカウントを作成するページです。",
+        ogImage: "/vite.svg",
+        shareText: "React Cognito Practice のサインアップページです。",
+      }}
+      type="auth"
+    >
       <Styled>
         <form>
           <h1>SignUp</h1>

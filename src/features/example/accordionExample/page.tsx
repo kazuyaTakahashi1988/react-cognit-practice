@@ -12,7 +12,15 @@ import type React from "react";
 
 const AccordionExample: React.FC = () => {
   return (
-    <Layout type="example">
+    <Layout
+      meta={{
+        title: "Accordion Example",
+        description: "アコーディオンコンポーネントの利用例を確認できるサンプルページです。",
+        ogImage: "/vite.svg",
+        shareText: "アコーディオン UI サンプルページです。",
+      }}
+      type="example"
+    >
       <Styled>
         <h1>
           <span>AccordionExample</span>

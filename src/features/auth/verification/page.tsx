@@ -29,7 +29,15 @@ const Verification: React.FC = () => {
   });
 
   return (
-    <Layout type="auth">
+    <Layout
+      meta={{
+        title: "Verification",
+        description: "確認コードを入力してアカウント認証を完了するページです。",
+        ogImage: "/vite.svg",
+        shareText: "React Cognito Practice の認証ページです。",
+      }}
+      type="auth"
+    >
       <Styled>
         <h1>Verification</h1>
 

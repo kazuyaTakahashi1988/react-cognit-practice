@@ -22,7 +22,15 @@ const SignOut: React.FC = () => {
   };
 
   return (
-    <Layout type="auth">
+    <Layout
+      meta={{
+        title: "Sign Out",
+        description: "現在のセッションからサインアウトするページです。",
+        ogImage: "/vite.svg",
+        shareText: "React Cognito Practice のサインアウトページです。",
+      }}
+      type="auth"
+    >
       <Styled>
         <h1>サインアウト</h1>
 

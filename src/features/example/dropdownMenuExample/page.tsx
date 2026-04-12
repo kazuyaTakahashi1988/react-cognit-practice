@@ -12,7 +12,15 @@ import type React from "react";
 
 const DropdownMenuExample: React.FC = () => {
   return (
-    <Layout type="example">
+    <Layout
+      meta={{
+        title: "Dropdown Menu Example",
+        description: "ドロップダウンメニューの表示パターンを確認できるサンプルページです。",
+        ogImage: "/vite.svg",
+        shareText: "ドロップダウンメニュー UI のサンプルページです。",
+      }}
+      type="example"
+    >
       <Styled>
         <h1>
           <span>DropdownMenuExample</span>
