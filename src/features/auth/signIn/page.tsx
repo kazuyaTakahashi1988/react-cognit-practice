@@ -13,6 +13,12 @@ import type React from "react";
  * signIn ページ
  * ----------------------------------------------- */
 
+export const pageMeta = {
+  title: "Sign In",
+  description: "メールアドレスとパスワードでログインするページです。",
+  sharePath: "/auth/signin",
+};
+
 const SignIn: React.FC = () => {
   const { refreshAuthState } = useAuth();
 
@@ -30,14 +36,7 @@ const SignIn: React.FC = () => {
   });
 
   return (
-    <Layout
-      pageMeta={{
-        title: "Sign In",
-        description: "メールアドレスとパスワードでログインするページです。",
-        shareText: "React Cognito Practice のサインインページです。",
-      }}
-      type="auth"
-    >
+    <Layout pageMeta={pageMeta} type="auth">
       <Styled>
         <h1>SignIn</h1>
 

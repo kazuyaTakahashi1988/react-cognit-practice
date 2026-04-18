@@ -12,6 +12,12 @@ import type React from "react";
  * ModalExample ページ
  * ----------------------------------------------- */
 
+export const pageMeta = {
+  title: "Modal Example",
+  description: "モーダルダイアログの表示と操作を確認できるサンプルページです。",
+  sharePath: "/example/modal_example",
+};
+
 const ModalExample: React.FC = () => {
   const [isVisible, setIsVisible] = useState({ modal01: false, modal02: false });
 
@@ -23,14 +29,7 @@ const ModalExample: React.FC = () => {
   };
 
   return (
-    <Layout
-      pageMeta={{
-        title: "Modal Example",
-        description: "モーダルダイアログの表示と操作を確認できるサンプルページです。",
-        shareText: "モーダル UI の挙動を確認できるページです。",
-      }}
-      type="example"
-    >
+    <Layout pageMeta={pageMeta} type="example">
       <Styled>
         <h1>
           <span>ModalExample</span>

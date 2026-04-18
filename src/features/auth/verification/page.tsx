@@ -13,6 +13,12 @@ import type React from "react";
  * Verification ページ
  * ----------------------------------------------- */
 
+export const pageMeta = {
+  title: "Verification",
+  description: "確認コードを入力してアカウント認証を完了するページです。",
+  sharePath: "/auth/verification",
+};
+
 const Verification: React.FC = () => {
   /*
    * RHForm 使用設定
@@ -29,14 +35,7 @@ const Verification: React.FC = () => {
   });
 
   return (
-    <Layout
-      pageMeta={{
-        title: "Verification",
-        description: "確認コードを入力してアカウント認証を完了するページです。",
-        shareText: "React Cognito Practice の認証ページです。",
-      }}
-      type="auth"
-    >
+    <Layout pageMeta={pageMeta} type="auth">
       <Styled>
         <h1>Verification</h1>
 
