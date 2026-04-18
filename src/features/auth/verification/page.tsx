@@ -13,6 +13,7 @@ import type React from "react";
  * Verification ページ
  * ----------------------------------------------- */
 
+// ページメタ情報
 export const pageMeta = {
   title: "Verification",
   description: "確認コードを入力してアカウント認証を完了するページです。",

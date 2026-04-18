@@ -20,6 +20,7 @@ import type React from "react";
  * FormExample ページ
  * ----------------------------------------------- */
 
+// ページメタ情報
 export const pageMeta = {
   title: "Form Example",
   description: "react-hook-form を使った入力フォームコンポーネントのサンプルページです。",

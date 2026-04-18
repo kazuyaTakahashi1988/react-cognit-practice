@@ -13,6 +13,7 @@ import type React from "react";
  * signIn ページ
  * ----------------------------------------------- */
 
+// ページメタ情報
 export const pageMeta = {
   title: "Sign In",
   description: "メールアドレスとパスワードでログインするページです。",

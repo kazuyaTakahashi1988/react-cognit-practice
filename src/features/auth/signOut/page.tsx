@@ -10,6 +10,7 @@ import type React from "react";
  * SignOut ページ
  * ----------------------------------------------- */
 
+// ページメタ情報
 export const pageMeta = {
   title: "Sign Out",
   description: "現在のセッションからサインアウトするページです。",

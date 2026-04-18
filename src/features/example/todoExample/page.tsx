@@ -13,6 +13,7 @@ import type React from "react";
  * TodoExample ページ
  * ----------------------------------------------- */
 
+// ページメタ情報
 export const pageMeta = {
   title: "Todo Example",
   description: "動的に項目追加できる TODO フォームのサンプルページです。",

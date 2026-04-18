@@ -10,6 +10,7 @@ import type React from "react";
  * DropdownMenuExample ページ
  * ----------------------------------------------- */
 
+// ページメタ情報
 export const pageMeta = {
   title: "Dropdown Menu Example",
   description: "ドロップダウンメニューの表示パターンを確認できるサンプルページです。",
