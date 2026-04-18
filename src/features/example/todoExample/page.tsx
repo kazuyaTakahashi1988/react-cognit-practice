@@ -9,6 +9,8 @@ import { color, media } from "../../../lib/style";
 import type { TypeTodoExampleValues } from "./type";
 import type React from "react";
 
+export const sharePath = "/example/todo_example";
+
 /* -----------------------------------------------
  * TodoExample ページ
  * ----------------------------------------------- */

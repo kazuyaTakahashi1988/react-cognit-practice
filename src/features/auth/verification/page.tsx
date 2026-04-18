@@ -9,6 +9,8 @@ import { verifyHelper } from "../../../utils/authHelper";
 import type { TypeVerifyValues } from "../../../lib/types";
 import type React from "react";
 
+export const sharePath = "/auth/verification";
+
 /* -----------------------------------------------
  * Verification ページ
  * ----------------------------------------------- */

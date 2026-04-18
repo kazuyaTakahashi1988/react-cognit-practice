@@ -100,7 +100,7 @@ $ yarn build:prerender
   - `/auth/signup`
   - `/auth/verification`
 - 各ページに `title` / `description` / OGP / Twitter Card / canonical を埋め込みます。
-- 各 `page.tsx` で `export const pageMeta` を定義し、プリレンダでも同じ値を参照します。
+- 各 `page.tsx` で `export const sharePath` と `export const pageMeta` を定義し、プリレンダでも同じ値を参照します。
 
 ## Analysis with SonarQube
 

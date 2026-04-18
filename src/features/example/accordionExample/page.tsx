@@ -6,6 +6,8 @@ import { color, media } from "../../../lib/style";
 
 import type React from "react";
 
+export const sharePath = "/example/accordion_example";
+
 /* -----------------------------------------------
  * AccordionExample ページ
  * ----------------------------------------------- */

@@ -6,28 +6,33 @@ const SITE_URL = process.env.VITE_SITE_URL ?? "http://react-cognito.empty-servic
 const DEFAULT_OG_IMAGE = `${SITE_URL}/ogp.jpg`;
 
 const prerenderTargets = [
-  { route: "/example/form_example", pagePath: "src/features/example/formExample/page.tsx" },
-  { route: "/example/todo_example", pagePath: "src/features/example/todoExample/page.tsx" },
-  { route: "/example/modal_example", pagePath: "src/features/example/modalExample/page.tsx" },
-  { route: "/example/accordion_example", pagePath: "src/features/example/accordionExample/page.tsx" },
-  {
-    route: "/example/dropdownmenu_example",
-    pagePath: "src/features/example/dropdownMenuExample/page.tsx",
-  },
-  { route: "/auth/signin", pagePath: "src/features/auth/signIn/page.tsx" },
-  { route: "/auth/signup", pagePath: "src/features/auth/signUp/page.tsx" },
-  { route: "/auth/verification", pagePath: "src/features/auth/verification/page.tsx" },
+  "src/features/example/formExample/page.tsx",
+  "src/features/example/todoExample/page.tsx",
+  "src/features/example/modalExample/page.tsx",
+  "src/features/example/accordionExample/page.tsx",
+  "src/features/example/dropdownMenuExample/page.tsx",
+  "src/features/auth/signIn/page.tsx",
+  "src/features/auth/signUp/page.tsx",
+  "src/features/auth/verification/page.tsx",
 ];
 
-const extractPageMeta = async (pagePath) => {
+const extractPageConfig = async (pagePath) => {
   const source = await readFile(path.resolve(process.cwd(), pagePath), "utf8");
-  const match = source.match(/export\s+const\s+pageMeta\s*=\s*(\{[\s\S]*?\});/);
+  const sharePathMatch = source.match(/export\s+const\s+sharePath\s*=\s*"([^"]+)";/);
+  const pageMetaMatch = source.match(/export\s+const\s+pageMeta\s*=\s*(\{[\s\S]*?\});/);
 
-  if (!match?.[1]) {
+  if (!sharePathMatch?.[1]) {
+    throw new Error(`sharePath export not found in ${pagePath}`);
+  }
+
+  if (!pageMetaMatch?.[1]) {
     throw new Error(`pageMeta export not found in ${pagePath}`);
   }
 
-  return Function(`"use strict"; return (${match[1]});`)();
+  return {
+    route: sharePathMatch[1],
+    pageMeta: Function(`"use strict"; return (${pageMetaMatch[1]});`)(),
+  };
 };
 
 const upsertMeta = (html, key, value, content) => {
@@ -88,8 +93,8 @@ const run = async () => {
   const indexPath = path.join(distDir, "index.html");
   const template = await readFile(indexPath, "utf8");
 
-  for (const { route, pagePath } of prerenderTargets) {
-    const pageMeta = await extractPageMeta(pagePath);
+  for (const pagePath of prerenderTargets) {
+    const { route, pageMeta } = await extractPageConfig(pagePath);
     const routeTemplate = withMeta(template, route, pageMeta).replace(
       '<div id="root"></div>',
       prerenderRootMarkup(pageMeta),

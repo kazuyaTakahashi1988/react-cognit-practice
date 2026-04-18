@@ -16,6 +16,8 @@ import { testPostApi } from "../../../utils/apiHelper";
 import type { TypeFormExampleValues } from "../../../lib/types";
 import type React from "react";
 
+export const sharePath = "/example/form_example";
+
 /* -----------------------------------------------
  * FormExample ページ
  * ----------------------------------------------- */

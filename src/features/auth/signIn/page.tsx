@@ -9,6 +9,8 @@ import { signInHelper, useAuth } from "../../../utils/authHelper";
 import type { TypeSignInValues } from "../../../lib/types";
 import type React from "react";
 
+export const sharePath = "/auth/signin";
+
 /* -----------------------------------------------
  * signIn ページ
  * ----------------------------------------------- */

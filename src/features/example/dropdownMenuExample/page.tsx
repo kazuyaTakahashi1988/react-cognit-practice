@@ -6,6 +6,8 @@ import { color, media } from "../../../lib/style";
 
 import type React from "react";
 
+export const sharePath = "/example/dropdownmenu_example";
+
 /* -----------------------------------------------
  * DropdownMenuExample ページ
  * ----------------------------------------------- */

@@ -6,6 +6,8 @@ import { signOutHelper, useAuth } from "../../../utils/authHelper";
 
 import type React from "react";
 
+export const sharePath = "/auth/signout";
+
 /* -----------------------------------------------
  * SignOut ページ
  * ----------------------------------------------- */
