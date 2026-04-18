@@ -20,6 +20,12 @@ import type React from "react";
  * FormExample ページ
  * ----------------------------------------------- */
 
+export const pageMeta = {
+  title: "Form Example",
+  description: "react-hook-form を使った入力フォームコンポーネントのサンプルページです。",
+  shareText: "フォーム実装サンプルをまとめたページです。",
+};
+
 const FormExample: React.FC = () => {
   /*
    * RHForm 使用設定
@@ -49,11 +55,7 @@ const FormExample: React.FC = () => {
 
   return (
     <Layout
-      pageMeta={{
-        title: "Form Example",
-        description: "react-hook-form を使った入力フォームコンポーネントのサンプルページです。",
-        shareText: "フォーム実装サンプルをまとめたページです。",
-      }}
+      pageMeta={pageMeta}
       type="example"
     >
       <Styled>

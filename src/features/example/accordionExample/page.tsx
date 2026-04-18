@@ -10,14 +10,16 @@ import type React from "react";
  * AccordionExample ページ
  * ----------------------------------------------- */
 
+export const pageMeta = {
+  title: "Accordion Example",
+  description: "アコーディオンコンポーネントの利用例を確認できるサンプルページです。",
+  shareText: "アコーディオン UI サンプルページです。",
+};
+
 const AccordionExample: React.FC = () => {
   return (
     <Layout
-      pageMeta={{
-        title: "Accordion Example",
-        description: "アコーディオンコンポーネントの利用例を確認できるサンプルページです。",
-        shareText: "アコーディオン UI サンプルページです。",
-      }}
+      pageMeta={pageMeta}
       type="example"
     >
       <Styled>

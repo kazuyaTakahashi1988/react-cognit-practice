@@ -14,12 +14,14 @@ import type { TypeSignInValues, TypeSignUpValues, TypeVerifyValues } from "../..
 /*
  * Amplify 設定
  */
+const viteEnv = (import.meta as ImportMeta & { env?: Record<string, string | undefined> }).env ?? {};
+
 Amplify.configure({
   Auth: {
     Cognito: {
-      userPoolId: `${import.meta.env.VITE_APP_AWS_COGNITO_USER_POOL_ID}`,
-      userPoolClientId: `${import.meta.env.VITE_APP_AWS_COGNITO_CLIENT_ID}`,
-      identityPoolId: `${import.meta.env.VITE_APP_AWS_COGNITO_IDENTITY_POOL_ID}`,
+      userPoolId: viteEnv.VITE_APP_AWS_COGNITO_USER_POOL_ID ?? "",
+      userPoolClientId: viteEnv.VITE_APP_AWS_COGNITO_CLIENT_ID ?? "",
+      identityPoolId: viteEnv.VITE_APP_AWS_COGNITO_IDENTITY_POOL_ID ?? "",
     },
   },
 });

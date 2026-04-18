@@ -13,6 +13,12 @@ import type React from "react";
  * SignUp ページ
  * ----------------------------------------------- */
 
+export const pageMeta = {
+  title: "Sign Up",
+  description: "メールアドレスとパスワードでアカウントを作成するページです。",
+  shareText: "React Cognito Practice のサインアップページです。",
+};
+
 const SignUp: React.FC = () => {
   /*
    * RHForm 使用設定
@@ -28,11 +34,7 @@ const SignUp: React.FC = () => {
 
   return (
     <Layout
-      pageMeta={{
-        title: "Sign Up",
-        description: "メールアドレスとパスワードでアカウントを作成するページです。",
-        shareText: "React Cognito Practice のサインアップページです。",
-      }}
+      pageMeta={pageMeta}
       type="auth"
     >
       <Styled>

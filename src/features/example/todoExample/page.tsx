@@ -13,6 +13,12 @@ import type React from "react";
  * TodoExample ページ
  * ----------------------------------------------- */
 
+export const pageMeta = {
+  title: "Todo Example",
+  description: "動的に項目追加できる TODO フォームのサンプルページです。",
+  shareText: "TODO 管理 UI のサンプルを確認できます。",
+};
+
 const TodoExample: React.FC = () => {
   /*
    * RHForm 使用設定
@@ -48,11 +54,7 @@ const TodoExample: React.FC = () => {
 
   return (
     <Layout
-      pageMeta={{
-        title: "Todo Example",
-        description: "動的に項目追加できる TODO フォームのサンプルページです。",
-        shareText: "TODO 管理 UI のサンプルを確認できます。",
-      }}
+      pageMeta={pageMeta}
       type="example"
     >
       <Styled>

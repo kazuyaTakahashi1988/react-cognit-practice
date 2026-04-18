@@ -10,6 +10,12 @@ import type React from "react";
  * SignOut ページ
  * ----------------------------------------------- */
 
+export const pageMeta = {
+  title: "Sign Out",
+  description: "現在のセッションからサインアウトするページです。",
+  shareText: "React Cognito Practice のサインアウトページです。",
+};
+
 const SignOut: React.FC = () => {
   const { refreshAuthState } = useAuth();
 
@@ -23,11 +29,7 @@ const SignOut: React.FC = () => {
 
   return (
     <Layout
-      pageMeta={{
-        title: "Sign Out",
-        description: "現在のセッションからサインアウトするページです。",
-        shareText: "React Cognito Practice のサインアウトページです。",
-      }}
+      pageMeta={pageMeta}
       type="auth"
     >
       <Styled>
