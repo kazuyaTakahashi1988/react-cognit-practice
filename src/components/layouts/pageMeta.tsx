@@ -45,6 +45,11 @@ const PageMeta: React.FC<TypePageMeta> = ({ title, description, ogImage, ogType 
     upsertMeta("property", "og:type", ogType);
     upsertMeta("property", "og:url", canonicalUrl);
     upsertMeta("property", "og:site_name", SITE_NAME);
+    upsertMeta("property", "og:image", ogImageUrl);
+    upsertMeta("name", "twitter:card", "summary_large_image");
+    upsertMeta("name", "twitter:title", fullTitle);
+    upsertMeta("name", "twitter:description", normalizedDescription);
+    upsertMeta("name", "twitter:image", ogImageUrl);
 
     let canonicalTag = document.head.querySelector('link[rel="canonical"]');
 
@@ -55,11 +60,6 @@ const PageMeta: React.FC<TypePageMeta> = ({ title, description, ogImage, ogType 
     }
 
     canonicalTag.setAttribute("href", canonicalUrl);
-    upsertMeta("property", "og:image", ogImageUrl);
-    upsertMeta("name", "twitter:card", "summary_large_image");
-    upsertMeta("name", "twitter:title", fullTitle);
-    upsertMeta("name", "twitter:description", normalizedDescription);
-    upsertMeta("name", "twitter:image", ogImageUrl);
   }, [description, ogImage, ogType, title]);
 
   return null;
