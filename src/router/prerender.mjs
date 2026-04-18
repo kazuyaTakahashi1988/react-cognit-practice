@@ -18,7 +18,6 @@ const DEFAULT_OG_IMAGE = `${SITE_URL}${viteEnv.VITE_APP_DEFAULT_OG_IMAGE ?? ""}`
 
 /*
  * プリレンダリング対象のページコンポーネントのパス
- * src/features/ 配下のパスを指定すること
  */
 const prerenderTargets = [
   /* example ページ */
