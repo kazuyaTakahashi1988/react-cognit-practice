@@ -1,7 +1,8 @@
 import { mkdir, readdir, readFile, writeFile } from "node:fs/promises";
 import path from "node:path";
 
-import { createServer, loadEnv } from "vite";
+import ts from "typescript";
+import { loadEnv } from "vite";
 
 /* -----------------------------------------------
  * ◻︎◻︎◻︎ SEO対応 ◻︎◻︎◻︎
@@ -36,9 +37,34 @@ const findPageModules = async (dirPath) => {
   return pageModules;
 };
 
-const extractPageConfig = async (viteServer, pagePath) => {
-  const module = await viteServer.ssrLoadModule(`/${pagePath}`);
-  const pageMeta = module.pageMeta;
+const findPageMetaNode = (sourceFile) => {
+  for (const statement of sourceFile.statements) {
+    if (!ts.isVariableStatement(statement)) continue;
+
+    const hasExport = statement.modifiers?.some((modifier) => modifier.kind === ts.SyntaxKind.ExportKeyword);
+    if (!hasExport) continue;
+
+    for (const declaration of statement.declarationList.declarations) {
+      if (!ts.isIdentifier(declaration.name) || declaration.name.text !== "pageMeta") continue;
+      if (!declaration.initializer) continue;
+      return declaration.initializer;
+    }
+  }
+
+  return null;
+};
+
+const extractPageConfig = async (pagePath) => {
+  const source = await readFile(path.resolve(process.cwd(), pagePath), "utf8");
+  const sourceFile = ts.createSourceFile(pagePath, source, ts.ScriptTarget.Latest, true, ts.ScriptKind.TSX);
+  const pageMetaNode = findPageMetaNode(sourceFile);
+
+  if (!pageMetaNode) {
+    throw new Error(`pageMeta export not found in ${pagePath}`);
+  }
+
+  const pageMetaSource = sourceFile.text.slice(pageMetaNode.pos, pageMetaNode.end).trim();
+  const pageMeta = Function(`"use strict"; return (${pageMetaSource});`)();
 
   if (!pageMeta) {
     throw new Error(`pageMeta export not found in ${pagePath}`);
@@ -114,30 +140,20 @@ const prerenderRootMarkup = (pageMeta) => {
 
 const run = async () => {
   const pageModules = await findPageModules(path.resolve(process.cwd(), "src/features"));
-  const viteServer = await createServer({
-    logLevel: "silent",
-    appType: "custom",
-    server: { middlewareMode: true },
-  });
-
   const distDir = path.resolve(process.cwd(), "dist");
   const indexPath = path.join(distDir, "index.html");
   const template = await readFile(indexPath, "utf8");
 
-  try {
-    for (const pagePath of pageModules) {
-      const { route, pageMeta } = await extractPageConfig(viteServer, pagePath);
-      const routeTemplate = withMeta(template, route, pageMeta).replace(
-        '<div id="root"></div>',
-        prerenderRootMarkup(pageMeta),
-      );
+  for (const pagePath of pageModules) {
+    const { route, pageMeta } = await extractPageConfig(pagePath);
+    const routeTemplate = withMeta(template, route, pageMeta).replace(
+      '<div id="root"></div>',
+      prerenderRootMarkup(pageMeta),
+    );
 
-      const outputDir = path.join(distDir, route.replace(/^\//, ""));
-      await mkdir(outputDir, { recursive: true });
-      await writeFile(path.join(outputDir, "index.html"), routeTemplate, "utf8");
-    }
-  } finally {
-    await viteServer.close();
+    const outputDir = path.join(distDir, route.replace(/^\//, ""));
+    await mkdir(outputDir, { recursive: true });
+    await writeFile(path.join(outputDir, "index.html"), routeTemplate, "utf8");
   }
 
   console.info(`Prerender completed for ${pageModules.length} routes.`);
