@@ -1,9 +1,14 @@
 import { mkdir, readFile, writeFile } from "node:fs/promises";
 import path from "node:path";
 
-const SITE_NAME = "React Cognito Practice";
-const SITE_URL = process.env.VITE_SITE_URL ?? "http://react-cognito.empty-service.com";
-const DEFAULT_OG_IMAGE = `${SITE_URL}/ogp.jpg`;
+import { loadEnv } from "vite";
+
+const mode = process.env.VITE_ENV_MODE ?? process.env.NODE_ENV ?? "production";
+const viteEnv = loadEnv(mode, process.cwd(), "VITE_APP_");
+
+const SITE_NAME = viteEnv.VITE_APP_SITE_NAME ?? "React Cognito Practice";
+const SITE_URL = viteEnv.VITE_APP_BASE_URL ?? "http://react-cognito.empty-service.com";
+const DEFAULT_OG_IMAGE = `${SITE_URL}${viteEnv.VITE_APP_DEFAULT_OG_IMAGE ?? "/ogp.jpg"}`;
 
 const prerenderTargets = [
   "src/features/example/formExample/page.tsx",
@@ -62,9 +67,7 @@ const upsertCanonical = (html, href) => {
 
 const withMeta = (template, route, pageMeta) => {
   const canonicalUrl = `${SITE_URL}${route}`;
-  const pageTitle = pageMeta.title.includes("React Cognito Practice")
-    ? pageMeta.title
-    : `${pageMeta.title} | React Cognito Practice`;
+  const pageTitle = pageMeta.title.includes(SITE_NAME) ? pageMeta.title : `${pageMeta.title} | ${SITE_NAME}`;
 
   let nextHtml = template.replace(/<title>.*<\/title>/i, `<title>${pageTitle}</title>`);
 

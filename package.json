@@ -16,7 +16,7 @@
     "fix": "yarn format && yarn lint:fix",
     "checker": "prettier --check . && yarn lint",
     "prepare": "husky install",
-    "build:prerender": "npm run build && node scripts/prerender.mjs"
+    "build:prerender": "npm run build && node src/utils/seoHelper/prerender.mjs"
   },
   "dependencies": {
     "@reduxjs/toolkit": "^2.11.2",

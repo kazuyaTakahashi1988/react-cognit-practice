@@ -3,11 +3,14 @@ import { useEffect } from "react";
 import type { TypePageMeta } from "../../lib/types";
 import type React from "react";
 
-const SITE_NAME = "React Cognito Practice";
-const BASE_URL = "http://react-cognito.empty-service.com";
-const DEFAULT_TITLE = "React Cognito Practice";
-const DEFAULT_DESCRIPTION = "React と Cognito の検証用サンプルアプリです。";
-const DEFAULT_OG_IMAGE = "/ogp.jpg";
+const viteEnv = (import.meta as ImportMeta & { env?: Record<string, string | undefined> }).env ?? {};
+
+const SITE_NAME = viteEnv.VITE_APP_SITE_NAME ?? "React Cognito Practice";
+const BASE_URL = viteEnv.VITE_APP_BASE_URL ?? "http://react-cognito.empty-service.com";
+const DEFAULT_TITLE = viteEnv.VITE_APP_DEFAULT_TITLE ?? "React Cognito Practice";
+const DEFAULT_DESCRIPTION =
+  viteEnv.VITE_APP_DEFAULT_DESCRIPTION ?? "React と Cognito の検証用サンプルアプリです。";
+const DEFAULT_OG_IMAGE = viteEnv.VITE_APP_DEFAULT_OG_IMAGE ?? "/ogp.jpg";
 
 const PageMeta: React.FC<TypePageMeta> = ({
   title,
