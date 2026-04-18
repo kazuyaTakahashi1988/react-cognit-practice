@@ -1,13 +1,12 @@
 import { mkdir, readdir, readFile, writeFile } from "node:fs/promises";
 import path from "node:path";
 
-import ts from "typescript";
+import * as ts from "typescript";
 import { loadEnv } from "vite";
 
 /* -----------------------------------------------
- * ◻︎◻︎◻︎ SEO対応 ◻︎◻︎◻︎
- * yarn build:prerender コマンドで
- * 実行されるプリレンダリングスクリプト
+ * SEO、主にSNSシェア用のプリレンダリング対応
+ * yarn build:prerender コマンドで実行されるスクリプト
  * ----------------------------------------------- */
 
 const mode = process.env.VITE_ENV_MODE ?? process.env.NODE_ENV ?? "production";
@@ -41,7 +40,9 @@ const findPageMetaNode = (sourceFile) => {
   for (const statement of sourceFile.statements) {
     if (!ts.isVariableStatement(statement)) continue;
 
-    const hasExport = statement.modifiers?.some((modifier) => modifier.kind === ts.SyntaxKind.ExportKeyword);
+    const hasExport = statement.modifiers?.some(
+      (modifier) => modifier.kind === ts.SyntaxKind.ExportKeyword,
+    );
     if (!hasExport) continue;
 
     for (const declaration of statement.declarationList.declarations) {
@@ -56,7 +57,13 @@ const findPageMetaNode = (sourceFile) => {
 
 const extractPageConfig = async (pagePath) => {
   const source = await readFile(path.resolve(process.cwd(), pagePath), "utf8");
-  const sourceFile = ts.createSourceFile(pagePath, source, ts.ScriptTarget.Latest, true, ts.ScriptKind.TSX);
+  const sourceFile = ts.createSourceFile(
+    pagePath,
+    source,
+    ts.ScriptTarget.Latest,
+    true,
+    ts.ScriptKind.TSX,
+  );
   const pageMetaNode = findPageMetaNode(sourceFile);
 
   if (!pageMetaNode) {
