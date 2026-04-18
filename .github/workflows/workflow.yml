@@ -55,15 +55,6 @@ jobs:
       - name: React-static Building
         run: yarn build
 
-      - name: FTP-Deploy-Action
-        uses: SamKirkland/FTP-Deploy-Action@v4.3.6 # FTPを使ってサーバーにDeployするアクションを実行
-        with:
-          server: ${{ secrets.FTP_SERVER }} # FTPサーバーのURLを設定
-          username: ${{ secrets.FTP_USERNAME }} # FTPのユーザー名を設定
-          password: ${{ secrets.FTP_PASSWORD }} # FTPのパスワードを設定
-          local-dir: ./dist/ # どのディレクトリのデータをアップロードするか
-          server-dir: /react-cognito/ # リモートのどのディレクトリにアップロードするか
-
       - name: React-static Building:prerender
         run: yarn build:prerender
 
