@@ -10,7 +10,7 @@ export type TypePageMeta = {
   description?: string;
   ogImage?: string;
   ogType?: "website" | "article";
-  shareText?: string;
+  sharePath?: string;
 };
 
 // Header

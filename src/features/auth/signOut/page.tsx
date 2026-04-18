@@ -11,10 +11,9 @@ import type React from "react";
  * ----------------------------------------------- */
 
 export const pageMeta = {
-  sharePath: "/auth/signout",
   title: "Sign Out",
   description: "現在のセッションからサインアウトするページです。",
-  shareText: "React Cognito Practice のサインアウトページです。",
+  sharePath: "/auth/signout",
 };
 
 const SignOut: React.FC = () => {

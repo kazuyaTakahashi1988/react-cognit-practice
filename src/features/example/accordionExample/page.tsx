@@ -11,10 +11,9 @@ import type React from "react";
  * ----------------------------------------------- */
 
 export const pageMeta = {
-  sharePath: "/example/accordion_example",
   title: "Accordion Example",
   description: "アコーディオンコンポーネントの利用例を確認できるサンプルページです。",
-  shareText: "アコーディオン UI サンプルページです。",
+  sharePath: "/example/accordion_example",
 };
 
 const AccordionExample: React.FC = () => {

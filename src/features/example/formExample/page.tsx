@@ -21,10 +21,10 @@ import type React from "react";
  * ----------------------------------------------- */
 
 export const pageMeta = {
-  sharePath: "/example/form_example",
   title: "Form Example",
   description: "react-hook-form を使った入力フォームコンポーネントのサンプルページです。",
-  shareText: "フォーム実装サンプルをまとめたページです。",
+  sharePath: "/example/form_example",
+  ogImage: "/ogp.jpg",
 };
 
 const FormExample: React.FC = () => {

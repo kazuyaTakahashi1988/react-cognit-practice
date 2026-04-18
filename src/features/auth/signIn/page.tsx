@@ -14,10 +14,9 @@ import type React from "react";
  * ----------------------------------------------- */
 
 export const pageMeta = {
-  sharePath: "/auth/signin",
   title: "Sign In",
   description: "メールアドレスとパスワードでログインするページです。",
-  shareText: "React Cognito Practice のサインインページです。",
+  sharePath: "/auth/signin",
 };
 
 const SignIn: React.FC = () => {

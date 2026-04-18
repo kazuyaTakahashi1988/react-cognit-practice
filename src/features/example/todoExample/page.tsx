@@ -14,10 +14,9 @@ import type React from "react";
  * ----------------------------------------------- */
 
 export const pageMeta = {
-  sharePath: "/example/todo_example",
   title: "Todo Example",
   description: "動的に項目追加できる TODO フォームのサンプルページです。",
-  shareText: "TODO 管理 UI のサンプルを確認できます。",
+  sharePath: "/example/todo_example",
 };
 
 const TodoExample: React.FC = () => {

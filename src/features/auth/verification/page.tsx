@@ -14,10 +14,9 @@ import type React from "react";
  * ----------------------------------------------- */
 
 export const pageMeta = {
-  sharePath: "/auth/verification",
   title: "Verification",
   description: "確認コードを入力してアカウント認証を完了するページです。",
-  shareText: "React Cognito Practice の認証ページです。",
+  sharePath: "/auth/verification",
 };
 
 const Verification: React.FC = () => {

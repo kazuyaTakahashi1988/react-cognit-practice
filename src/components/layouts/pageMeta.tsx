@@ -14,7 +14,6 @@ const PageMeta: React.FC<TypePageMeta> = ({
   description,
   ogImage,
   ogType = "website",
-  shareText,
 }) => {
   useEffect(() => {
     const normalizedTitle = title?.trim() ? title.trim() : DEFAULT_TITLE;
@@ -26,8 +25,6 @@ const PageMeta: React.FC<TypePageMeta> = ({
     const ogImageUrl = normalizedOgImage.startsWith("http")
       ? normalizedOgImage
       : `${BASE_URL}${normalizedOgImage}`;
-    const socialDescription = shareText?.trim() ? shareText.trim() : normalizedDescription;
-
     document.title = fullTitle;
 
     const upsertMeta = (key: "name" | "property", value: string, content: string) => {
@@ -44,16 +41,16 @@ const PageMeta: React.FC<TypePageMeta> = ({
 
     upsertMeta("name", "description", normalizedDescription);
     upsertMeta("property", "og:title", fullTitle);
-    upsertMeta("property", "og:description", socialDescription);
+    upsertMeta("property", "og:description", normalizedDescription);
     upsertMeta("property", "og:type", ogType);
     upsertMeta("property", "og:url", url);
     upsertMeta("property", "og:site_name", SITE_NAME);
     upsertMeta("property", "og:image", ogImageUrl);
     upsertMeta("name", "twitter:card", "summary_large_image");
     upsertMeta("name", "twitter:title", fullTitle);
-    upsertMeta("name", "twitter:description", socialDescription);
+    upsertMeta("name", "twitter:description", normalizedDescription);
     upsertMeta("name", "twitter:image", ogImageUrl);
-  }, [description, ogImage, ogType, shareText, title]);
+  }, [description, ogImage, ogType, title]);
 
   return null;
 };

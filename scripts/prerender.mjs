@@ -62,24 +62,29 @@ const upsertCanonical = (html, href) => {
 
 const withMeta = (template, route, pageMeta) => {
   const canonicalUrl = `${SITE_URL}${route}`;
-  const socialDescription = pageMeta.shareText ?? pageMeta.description;
   const pageTitle = pageMeta.title.includes("React Cognito Practice")
     ? pageMeta.title
     : `${pageMeta.title} | React Cognito Practice`;
 
   let nextHtml = template.replace(/<title>.*<\/title>/i, `<title>${pageTitle}</title>`);
 
+  const ogImageUrl = pageMeta.ogImage
+    ? pageMeta.ogImage.startsWith("http")
+      ? pageMeta.ogImage
+      : `${SITE_URL}${pageMeta.ogImage}`
+    : DEFAULT_OG_IMAGE;
+
   nextHtml = upsertMeta(nextHtml, "name", "description", pageMeta.description);
   nextHtml = upsertMeta(nextHtml, "property", "og:title", pageTitle);
-  nextHtml = upsertMeta(nextHtml, "property", "og:description", socialDescription);
+  nextHtml = upsertMeta(nextHtml, "property", "og:description", pageMeta.description);
   nextHtml = upsertMeta(nextHtml, "property", "og:type", pageMeta.ogType ?? "website");
   nextHtml = upsertMeta(nextHtml, "property", "og:url", canonicalUrl);
   nextHtml = upsertMeta(nextHtml, "property", "og:site_name", SITE_NAME);
-  nextHtml = upsertMeta(nextHtml, "property", "og:image", DEFAULT_OG_IMAGE);
+  nextHtml = upsertMeta(nextHtml, "property", "og:image", ogImageUrl);
   nextHtml = upsertMeta(nextHtml, "name", "twitter:card", "summary_large_image");
   nextHtml = upsertMeta(nextHtml, "name", "twitter:title", pageTitle);
-  nextHtml = upsertMeta(nextHtml, "name", "twitter:description", socialDescription);
-  nextHtml = upsertMeta(nextHtml, "name", "twitter:image", DEFAULT_OG_IMAGE);
+  nextHtml = upsertMeta(nextHtml, "name", "twitter:description", pageMeta.description);
+  nextHtml = upsertMeta(nextHtml, "name", "twitter:image", ogImageUrl);
   nextHtml = upsertCanonical(nextHtml, canonicalUrl);
 
   return nextHtml;

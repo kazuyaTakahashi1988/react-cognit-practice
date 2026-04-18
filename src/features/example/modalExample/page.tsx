@@ -13,10 +13,9 @@ import type React from "react";
  * ----------------------------------------------- */
 
 export const pageMeta = {
-  sharePath: "/example/modal_example",
   title: "Modal Example",
   description: "モーダルダイアログの表示と操作を確認できるサンプルページです。",
-  shareText: "モーダル UI の挙動を確認できるページです。",
+  sharePath: "/example/modal_example",
 };
 
 const ModalExample: React.FC = () => {
