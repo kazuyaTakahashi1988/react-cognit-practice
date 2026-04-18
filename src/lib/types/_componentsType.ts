@@ -6,18 +6,18 @@ import type { UseFormRegister } from "react-hook-form";
 
 // Header
 export type TypePageMeta = {
-  title?: string;
-  description?: string;
+  title: string;
+  description: string;
+  sharePath: string;
   ogImage?: string;
   ogType?: "website" | "article";
-  sharePath?: string;
 };
 
 // Header
 export type TypeHeader = { type: string };
 
 // Layout
-export type TypeLayout = { type: string; pageMeta?: TypePageMeta; children?: React.ReactNode };
+export type TypeLayout = { type: string; pageMeta: TypePageMeta; children?: React.ReactNode };
 
 // Loading
 export type TypeLoading = { visible: boolean };
