@@ -3,21 +3,13 @@ import { useEffect } from "react";
 import type { TypePageMeta } from "../../lib/types";
 import type React from "react";
 
-const viteEnv = (import.meta as ImportMeta & { env?: Record<string, string | undefined> }).env ?? {};
+const SITE_NAME = import.meta.env.VITE_APP_SITE_NAME ?? "";
+const BASE_URL = import.meta.env.VITE_APP_BASE_URL ?? "";
+const DEFAULT_TITLE = import.meta.env.VITE_APP_DEFAULT_TITLE ?? "";
+const DEFAULT_DESCRIPTION = import.meta.env.VITE_APP_DEFAULT_DESCRIPTION ?? "";
+const DEFAULT_OG_IMAGE = import.meta.env.VITE_APP_DEFAULT_OG_IMAGE ?? "";
 
-const SITE_NAME = viteEnv.VITE_APP_SITE_NAME ?? "React Cognito Practice";
-const BASE_URL = viteEnv.VITE_APP_BASE_URL ?? "http://react-cognito.empty-service.com";
-const DEFAULT_TITLE = viteEnv.VITE_APP_DEFAULT_TITLE ?? "React Cognito Practice";
-const DEFAULT_DESCRIPTION =
-  viteEnv.VITE_APP_DEFAULT_DESCRIPTION ?? "React と Cognito の検証用サンプルアプリです。";
-const DEFAULT_OG_IMAGE = viteEnv.VITE_APP_DEFAULT_OG_IMAGE ?? "/ogp.jpg";
-
-const PageMeta: React.FC<TypePageMeta> = ({
-  title,
-  description,
-  ogImage,
-  ogType = "website",
-}) => {
+const PageMeta: React.FC<TypePageMeta> = ({ title, description, ogImage, ogType = "website" }) => {
   useEffect(() => {
     const normalizedTitle = title?.trim() ? title.trim() : DEFAULT_TITLE;
     const normalizedDescription = description?.trim() ? description.trim() : DEFAULT_DESCRIPTION;
@@ -25,7 +17,7 @@ const PageMeta: React.FC<TypePageMeta> = ({
     const fullTitle =
       normalizedTitle === DEFAULT_TITLE ? DEFAULT_TITLE : `${normalizedTitle} | ${SITE_NAME}`;
     const url = globalThis.location.href;
-    const ogImageUrl = normalizedOgImage.startsWith("http")
+    const ogImageUrl = String(normalizedOgImage).startsWith("http")
       ? normalizedOgImage
       : `${BASE_URL}${normalizedOgImage}`;
     document.title = fullTitle;

@@ -28,10 +28,7 @@ const SignOut: React.FC = () => {
   };
 
   return (
-    <Layout
-      pageMeta={pageMeta}
-      type="auth"
-    >
+    <Layout pageMeta={pageMeta} type="auth">
       <Styled>
         <h1>サインアウト</h1>
 

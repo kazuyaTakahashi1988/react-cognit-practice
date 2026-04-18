@@ -18,10 +18,7 @@ export const pageMeta = {
 
 const AccordionExample: React.FC = () => {
   return (
-    <Layout
-      pageMeta={pageMeta}
-      type="example"
-    >
+    <Layout pageMeta={pageMeta} type="example">
       <Styled>
         <h1>
           <span>AccordionExample</span>

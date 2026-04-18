@@ -6,9 +6,9 @@ import { loadEnv } from "vite";
 const mode = process.env.VITE_ENV_MODE ?? process.env.NODE_ENV ?? "production";
 const viteEnv = loadEnv(mode, process.cwd(), "VITE_APP_");
 
-const SITE_NAME = viteEnv.VITE_APP_SITE_NAME ?? "React Cognito Practice";
-const SITE_URL = viteEnv.VITE_APP_BASE_URL ?? "http://react-cognito.empty-service.com";
-const DEFAULT_OG_IMAGE = `${SITE_URL}${viteEnv.VITE_APP_DEFAULT_OG_IMAGE ?? "/ogp.jpg"}`;
+const SITE_NAME = viteEnv.VITE_APP_SITE_NAME ?? "";
+const SITE_URL = viteEnv.VITE_APP_BASE_URL ?? "";
+const DEFAULT_OG_IMAGE = `${SITE_URL}${viteEnv.VITE_APP_DEFAULT_OG_IMAGE ?? ""}`;
 
 const prerenderTargets = [
   "src/features/example/formExample/page.tsx",
@@ -35,15 +35,15 @@ const extractPageConfig = async (pagePath) => {
     throw new Error(`sharePath missing in pageMeta of ${pagePath}`);
   }
 
-  return {
-    route: pageMeta.sharePath,
-    pageMeta,
-  };
+  return { route: pageMeta.sharePath, pageMeta };
 };
 
 const upsertMeta = (html, key, value, content) => {
   const escapedContent = content.replaceAll('"', "&quot;");
-  const tagPattern = new RegExp(`<meta\\s+${key}=["']${value}["']\\s+content=["'][^"']*["']\\s*/?>`, "i");
+  const tagPattern = new RegExp(
+    `<meta\\s+${key}=["']${value}["']\\s+content=["'][^"']*["']\\s*/?>`,
+    "i",
+  );
   const newTag = `<meta ${key}="${value}" content="${escapedContent}" />`;
 
   if (tagPattern.test(html)) {
@@ -67,7 +67,9 @@ const upsertCanonical = (html, href) => {
 
 const withMeta = (template, route, pageMeta) => {
   const canonicalUrl = `${SITE_URL}${route}`;
-  const pageTitle = pageMeta.title.includes(SITE_NAME) ? pageMeta.title : `${pageMeta.title} | ${SITE_NAME}`;
+  const pageTitle = pageMeta.title.includes(SITE_NAME)
+    ? pageMeta.title
+    : `${pageMeta.title} | ${SITE_NAME}`;
 
   let nextHtml = template.replace(/<title>.*<\/title>/i, `<title>${pageTitle}</title>`);
 

@@ -55,10 +55,7 @@ const FormExample: React.FC = () => {
   });
 
   return (
-    <Layout
-      pageMeta={pageMeta}
-      type="example"
-    >
+    <Layout pageMeta={pageMeta} type="example">
       <Styled>
         <h1>
           <span>

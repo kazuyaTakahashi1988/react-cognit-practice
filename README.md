@@ -83,7 +83,6 @@ $ yarn dev
 Open <a href="http://localhost:3000" target="_blank">http://localhost:3000</a> in your browser<br>
 <br>
 
-
 # ④ 主要ページの静的プリレンダ（SEO/SNS向け）
 
 ```

@@ -33,10 +33,7 @@ const SignUp: React.FC = () => {
   });
 
   return (
-    <Layout
-      pageMeta={pageMeta}
-      type="auth"
-    >
+    <Layout pageMeta={pageMeta} type="auth">
       <Styled>
         <form>
           <h1>SignUp</h1>
