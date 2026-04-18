@@ -10,11 +10,13 @@ import type React from "react";
  * AccordionExample ページ
  * ----------------------------------------------- */
 
-// ページメタ情報
+// メタ情報
 export const pageMeta = {
   title: "Accordion Example",
   description: "アコーディオンコンポーネントの利用例を確認できるサンプルページです。",
   sharePath: "/example/accordion_example",
+  // ogImage: "/xxxx/xxxx.jpg",
+  // ogType: "website" or "article",
 };
 
 const AccordionExample: React.FC = () => {

@@ -13,11 +13,13 @@ import type React from "react";
  * SignUp ページ
  * ----------------------------------------------- */
 
-// ページメタ情報
+// メタ情報
 export const pageMeta = {
   title: "Sign Up",
   description: "メールアドレスとパスワードでアカウントを作成するページです。",
   sharePath: "/auth/signup",
+  // ogImage: "/xxxx/xxxx.jpg",
+  // ogType: "website" or "article",
 };
 
 const SignUp: React.FC = () => {

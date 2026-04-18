@@ -13,11 +13,13 @@ import type React from "react";
  * Verification ページ
  * ----------------------------------------------- */
 
-// ページメタ情報
+// メタ情報
 export const pageMeta = {
   title: "Verification",
   description: "確認コードを入力してアカウント認証を完了するページです。",
   sharePath: "/auth/verification",
+  // ogImage: "/xxxx/xxxx.jpg",
+  // ogType: "website" or "article",
 };
 
 const Verification: React.FC = () => {

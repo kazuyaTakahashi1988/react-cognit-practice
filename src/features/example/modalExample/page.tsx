@@ -12,11 +12,13 @@ import type React from "react";
  * ModalExample ページ
  * ----------------------------------------------- */
 
-// ページメタ情報
+// メタ情報
 export const pageMeta = {
   title: "Modal Example",
   description: "モーダルダイアログの表示と操作を確認できるサンプルページです。",
   sharePath: "/example/modal_example",
+  // ogImage: "/xxxx/xxxx.jpg",
+  // ogType: "website" or "article",
 };
 
 const ModalExample: React.FC = () => {

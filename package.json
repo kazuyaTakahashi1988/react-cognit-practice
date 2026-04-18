@@ -6,6 +6,7 @@
   "scripts": {
     "dev": "vite",
     "build": "tsc && vite build",
+    "build:prerender": "yarn build && node src/router/prerender.mjs",
     "preview": "vite preview",
     "storybook": "storybook dev -p 6006",
     "build-storybook": "storybook build",
@@ -15,8 +16,7 @@
     "format": "prettier --write .",
     "fix": "yarn format && yarn lint:fix",
     "checker": "prettier --check . && yarn lint",
-    "prepare": "husky install",
-    "build:prerender": "npm run build && node src/router/prerender.mjs"
+    "prepare": "husky install"
   },
   "dependencies": {
     "@reduxjs/toolkit": "^2.11.2",

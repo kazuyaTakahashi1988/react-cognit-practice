@@ -10,11 +10,13 @@ import type React from "react";
  * SignOut ページ
  * ----------------------------------------------- */
 
-// ページメタ情報
+// メタ情報
 export const pageMeta = {
   title: "Sign Out",
   description: "現在のセッションからサインアウトするページです。",
   sharePath: "/auth/signout",
+  // ogImage: "/xxxx/xxxx.jpg",
+  // ogType: "website" or "article",
 };
 
 const SignOut: React.FC = () => {

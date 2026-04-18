@@ -5,8 +5,8 @@ import * as ts from "typescript";
 import { loadEnv } from "vite";
 
 /* -----------------------------------------------
- * SEO、主にSNSシェア用のプリレンダリング対応
  * yarn build:prerender コマンドで実行されるスクリプト
+ * （SEO、主にSNSシェア用のプリレンダリング対応）
  * ----------------------------------------------- */
 
 const mode = process.env.VITE_ENV_MODE ?? process.env.NODE_ENV ?? "production";

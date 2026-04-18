@@ -52,8 +52,8 @@ jobs:
           path: "**/node_modules"
           key: node-modules-key-${{ hashFiles('**/yarn.lock') }}
 
-      - name: React-static Building
-        run: yarn build
+      # - name: React-static Building
+      #   run: yarn build
 
       - name: React-static Building:prerender
         run: yarn build:prerender

@@ -13,11 +13,13 @@ import type React from "react";
  * TodoExample ページ
  * ----------------------------------------------- */
 
-// ページメタ情報
+// メタ情報
 export const pageMeta = {
   title: "Todo Example",
   description: "動的に項目追加できる TODO フォームのサンプルページです。",
   sharePath: "/example/todo_example",
+  // ogImage: "/xxxx/xxxx.jpg",
+  // ogType: "website" or "article",
 };
 
 const TodoExample: React.FC = () => {

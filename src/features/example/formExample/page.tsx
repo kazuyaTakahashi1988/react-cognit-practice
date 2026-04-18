@@ -20,12 +20,13 @@ import type React from "react";
  * FormExample ページ
  * ----------------------------------------------- */
 
-// ページメタ情報
+// メタ情報
 export const pageMeta = {
   title: "Form Example",
   description: "react-hook-form を使った入力フォームコンポーネントのサンプルページです。",
   sharePath: "/example/form_example",
-  ogImage: "/ogp.jpg",
+  // ogImage: "/xxxx/xxxx.jpg",
+  // ogType: "website" or "article",
 };
 
 const FormExample: React.FC = () => {
