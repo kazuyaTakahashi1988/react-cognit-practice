@@ -71,7 +71,7 @@ const extractPageConfig = async (pagePath) => {
   }
 
   const pageMetaSource = sourceFile.text.slice(pageMetaNode.pos, pageMetaNode.end).trim();
-  const pageMeta = Function(`"use strict"; return (${pageMetaSource});`)();
+  const pageMeta = new Function(`"use strict"; return (${pageMetaSource});`)();
 
   if (!pageMeta) {
     throw new Error(`pageMeta export not found in ${pagePath}`);
