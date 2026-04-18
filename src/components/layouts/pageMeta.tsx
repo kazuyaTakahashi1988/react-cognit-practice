@@ -20,7 +20,8 @@ const PageMeta: React.FC<TypePageMeta> = ({ title, description, ogImage, ogType 
     const normalizedOgImage = ogImage?.trim() ? ogImage.trim() : DEFAULT_OG_IMAGE;
     const fullTitle =
       normalizedTitle === DEFAULT_TITLE ? DEFAULT_TITLE : `${normalizedTitle} | ${SITE_NAME}`;
-    const url = globalThis.location.href;
+    const currentUrl = new URL(globalThis.location.href);
+    const canonicalUrl = `${currentUrl.origin}${currentUrl.pathname}`;
     const ogImageUrl = String(normalizedOgImage).startsWith("http")
       ? normalizedOgImage
       : `${BASE_URL}${normalizedOgImage}`;
@@ -42,13 +43,23 @@ const PageMeta: React.FC<TypePageMeta> = ({ title, description, ogImage, ogType 
     upsertMeta("property", "og:title", fullTitle);
     upsertMeta("property", "og:description", normalizedDescription);
     upsertMeta("property", "og:type", ogType);
-    upsertMeta("property", "og:url", url);
+    upsertMeta("property", "og:url", canonicalUrl);
     upsertMeta("property", "og:site_name", SITE_NAME);
     upsertMeta("property", "og:image", ogImageUrl);
     upsertMeta("name", "twitter:card", "summary_large_image");
     upsertMeta("name", "twitter:title", fullTitle);
     upsertMeta("name", "twitter:description", normalizedDescription);
     upsertMeta("name", "twitter:image", ogImageUrl);
+
+    let canonicalTag = document.head.querySelector('link[rel="canonical"]');
+
+    if (!canonicalTag) {
+      canonicalTag = document.createElement("link");
+      canonicalTag.setAttribute("rel", "canonical");
+      document.head.appendChild(canonicalTag);
+    }
+
+    canonicalTag.setAttribute("href", canonicalUrl);
   }, [description, ogImage, ogType, title]);
 
   return null;
