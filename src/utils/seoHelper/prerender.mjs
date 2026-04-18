@@ -3,6 +3,12 @@ import path from "node:path";
 
 import { loadEnv } from "vite";
 
+/* -----------------------------------------------
+ * ◻︎◻︎◻︎ SEO対応 ◻︎◻︎◻︎
+ * yarn build:prerender コマンドで
+ * 実行されるプリレンダリングスクリプト
+ * ----------------------------------------------- */
+
 const mode = process.env.VITE_ENV_MODE ?? process.env.NODE_ENV ?? "production";
 const viteEnv = loadEnv(mode, process.cwd(), "VITE_APP_");
 
@@ -10,13 +16,20 @@ const SITE_NAME = viteEnv.VITE_APP_SITE_NAME ?? "";
 const SITE_URL = viteEnv.VITE_APP_BASE_URL ?? "";
 const DEFAULT_OG_IMAGE = `${SITE_URL}${viteEnv.VITE_APP_DEFAULT_OG_IMAGE ?? ""}`;
 
+/*
+ * プリレンダリング対象のページコンポーネントのパス
+ * src/features/ 配下のパスを指定すること
+ */
 const prerenderTargets = [
+  /* example ページ */
   "src/features/example/formExample/page.tsx",
   "src/features/example/todoExample/page.tsx",
   "src/features/example/modalExample/page.tsx",
   "src/features/example/accordionExample/page.tsx",
   "src/features/example/dropdownMenuExample/page.tsx",
+  /* auth ページ */
   "src/features/auth/signIn/page.tsx",
+  "src/features/auth/signOut/page.tsx",
   "src/features/auth/signUp/page.tsx",
   "src/features/auth/verification/page.tsx",
 ];

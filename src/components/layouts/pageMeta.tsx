@@ -3,6 +3,10 @@ import { useEffect } from "react";
 import type { TypePageMeta } from "../../lib/types";
 import type React from "react";
 
+/* -----------------------------------------------
+ * 共通ページメタ
+ * ----------------------------------------------- */
+
 const SITE_NAME = import.meta.env.VITE_APP_SITE_NAME ?? "";
 const BASE_URL = import.meta.env.VITE_APP_BASE_URL ?? "";
 const DEFAULT_TITLE = import.meta.env.VITE_APP_DEFAULT_TITLE ?? "";
