@@ -1,12 +1,12 @@
-import { mkdir, readFile, writeFile } from "node:fs/promises";
+import { mkdir, readdir, readFile, writeFile } from "node:fs/promises";
 import path from "node:path";
 
+import * as ts from "typescript";
 import { loadEnv } from "vite";
 
 /* -----------------------------------------------
- * ◻︎◻︎◻︎ SEO対応 ◻︎◻︎◻︎
- * yarn build:prerender コマンドで
- * 実行されるプリレンダリングスクリプト
+ * SEO、主にSNSシェア用のプリレンダリング対応
+ * yarn build:prerender コマンドで実行されるスクリプト
  * ----------------------------------------------- */
 
 const mode = process.env.VITE_ENV_MODE ?? process.env.NODE_ENV ?? "production";
@@ -16,32 +16,66 @@ const SITE_NAME = viteEnv.VITE_APP_SITE_NAME ?? "";
 const SITE_URL = viteEnv.VITE_APP_BASE_URL ?? "";
 const DEFAULT_OG_IMAGE = `${SITE_URL}${viteEnv.VITE_APP_DEFAULT_OG_IMAGE ?? ""}`;
 
-/*
- * プリレンダリング対象のページコンポーネントのパス
- */
-const prerenderTargets = [
-  /* example ページ */
-  "src/features/example/formExample/page.tsx",
-  "src/features/example/todoExample/page.tsx",
-  "src/features/example/modalExample/page.tsx",
-  "src/features/example/accordionExample/page.tsx",
-  "src/features/example/dropdownMenuExample/page.tsx",
-  /* auth ページ */
-  "src/features/auth/signIn/page.tsx",
-  "src/features/auth/signOut/page.tsx",
-  "src/features/auth/signUp/page.tsx",
-  "src/features/auth/verification/page.tsx",
-];
+const findPageModules = async (dirPath) => {
+  const entries = await readdir(dirPath, { withFileTypes: true });
+  const pageModules = [];
+
+  for (const entry of entries) {
+    const fullPath = path.join(dirPath, entry.name);
+
+    if (entry.isDirectory()) {
+      pageModules.push(...(await findPageModules(fullPath)));
+      continue;
+    }
+
+    if (entry.isFile() && entry.name === "page.tsx") {
+      pageModules.push(path.relative(process.cwd(), fullPath));
+    }
+  }
+
+  return pageModules;
+};
+
+const findPageMetaNode = (sourceFile) => {
+  for (const statement of sourceFile.statements) {
+    if (!ts.isVariableStatement(statement)) continue;
+
+    const hasExport = statement.modifiers?.some(
+      (modifier) => modifier.kind === ts.SyntaxKind.ExportKeyword,
+    );
+    if (!hasExport) continue;
+
+    for (const declaration of statement.declarationList.declarations) {
+      if (!ts.isIdentifier(declaration.name) || declaration.name.text !== "pageMeta") continue;
+      if (!declaration.initializer) continue;
+      return declaration.initializer;
+    }
+  }
+
+  return null;
+};
 
 const extractPageConfig = async (pagePath) => {
   const source = await readFile(path.resolve(process.cwd(), pagePath), "utf8");
-  const pageMetaMatch = source.match(/export\s+const\s+pageMeta\s*=\s*(\{[\s\S]*?\});/);
+  const sourceFile = ts.createSourceFile(
+    pagePath,
+    source,
+    ts.ScriptTarget.Latest,
+    true,
+    ts.ScriptKind.TSX,
+  );
+  const pageMetaNode = findPageMetaNode(sourceFile);
 
-  if (!pageMetaMatch?.[1]) {
+  if (!pageMetaNode) {
     throw new Error(`pageMeta export not found in ${pagePath}`);
   }
 
-  const pageMeta = Function(`"use strict"; return (${pageMetaMatch[1]});`)();
+  const pageMetaSource = sourceFile.text.slice(pageMetaNode.pos, pageMetaNode.end).trim();
+  const pageMeta = new Function(`"use strict"; return (${pageMetaSource});`)();
+
+  if (!pageMeta) {
+    throw new Error(`pageMeta export not found in ${pagePath}`);
+  }
 
   if (!pageMeta.sharePath) {
     throw new Error(`sharePath missing in pageMeta of ${pagePath}`);
@@ -112,11 +146,12 @@ const prerenderRootMarkup = (pageMeta) => {
 };
 
 const run = async () => {
+  const pageModules = await findPageModules(path.resolve(process.cwd(), "src/features"));
   const distDir = path.resolve(process.cwd(), "dist");
   const indexPath = path.join(distDir, "index.html");
   const template = await readFile(indexPath, "utf8");
 
-  for (const pagePath of prerenderTargets) {
+  for (const pagePath of pageModules) {
     const { route, pageMeta } = await extractPageConfig(pagePath);
     const routeTemplate = withMeta(template, route, pageMeta).replace(
       '<div id="root"></div>',
@@ -128,7 +163,7 @@ const run = async () => {
     await writeFile(path.join(outputDir, "index.html"), routeTemplate, "utf8");
   }
 
-  console.info(`Prerender completed for ${prerenderTargets.length} routes.`);
+  console.info(`Prerender completed for ${pageModules.length} routes.`);
 };
 
 void run();
