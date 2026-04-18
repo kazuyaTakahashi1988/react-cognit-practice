@@ -9,13 +9,12 @@ import { verifyHelper } from "../../../utils/authHelper";
 import type { TypeVerifyValues } from "../../../lib/types";
 import type React from "react";
 
-export const sharePath = "/auth/verification";
-
 /* -----------------------------------------------
  * Verification ページ
  * ----------------------------------------------- */
 
 export const pageMeta = {
+  sharePath: "/auth/verification",
   title: "Verification",
   description: "確認コードを入力してアカウント認証を完了するページです。",
   shareText: "React Cognito Practice の認証ページです。",

@@ -9,13 +9,12 @@ import { color, media } from "../../../lib/style";
 import type { TypeTodoExampleValues } from "./type";
 import type React from "react";
 
-export const sharePath = "/example/todo_example";
-
 /* -----------------------------------------------
  * TodoExample ページ
  * ----------------------------------------------- */
 
 export const pageMeta = {
+  sharePath: "/example/todo_example",
   title: "Todo Example",
   description: "動的に項目追加できる TODO フォームのサンプルページです。",
   shareText: "TODO 管理 UI のサンプルを確認できます。",

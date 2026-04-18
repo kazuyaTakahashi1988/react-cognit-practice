@@ -6,13 +6,12 @@ import { color, media } from "../../../lib/style";
 
 import type React from "react";
 
-export const sharePath = "/example/accordion_example";
-
 /* -----------------------------------------------
  * AccordionExample ページ
  * ----------------------------------------------- */
 
 export const pageMeta = {
+  sharePath: "/example/accordion_example",
   title: "Accordion Example",
   description: "アコーディオンコンポーネントの利用例を確認できるサンプルページです。",
   shareText: "アコーディオン UI サンプルページです。",

@@ -18,20 +18,21 @@ const prerenderTargets = [
 
 const extractPageConfig = async (pagePath) => {
   const source = await readFile(path.resolve(process.cwd(), pagePath), "utf8");
-  const sharePathMatch = source.match(/export\s+const\s+sharePath\s*=\s*"([^"]+)";/);
   const pageMetaMatch = source.match(/export\s+const\s+pageMeta\s*=\s*(\{[\s\S]*?\});/);
-
-  if (!sharePathMatch?.[1]) {
-    throw new Error(`sharePath export not found in ${pagePath}`);
-  }
 
   if (!pageMetaMatch?.[1]) {
     throw new Error(`pageMeta export not found in ${pagePath}`);
   }
 
+  const pageMeta = Function(`"use strict"; return (${pageMetaMatch[1]});`)();
+
+  if (!pageMeta.sharePath) {
+    throw new Error(`sharePath missing in pageMeta of ${pagePath}`);
+  }
+
   return {
-    route: sharePathMatch[1],
-    pageMeta: Function(`"use strict"; return (${pageMetaMatch[1]});`)(),
+    route: pageMeta.sharePath,
+    pageMeta,
   };
 };
 

@@ -6,13 +6,12 @@ import { color, media } from "../../../lib/style";
 
 import type React from "react";
 
-export const sharePath = "/example/dropdownmenu_example";
-
 /* -----------------------------------------------
  * DropdownMenuExample ページ
  * ----------------------------------------------- */
 
 export const pageMeta = {
+  sharePath: "/example/dropdownmenu_example",
   title: "Dropdown Menu Example",
   description: "ドロップダウンメニューの表示パターンを確認できるサンプルページです。",
   shareText: "ドロップダウンメニュー UI のサンプルページです。",

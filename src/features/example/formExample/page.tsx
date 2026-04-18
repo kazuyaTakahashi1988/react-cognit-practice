@@ -16,13 +16,12 @@ import { testPostApi } from "../../../utils/apiHelper";
 import type { TypeFormExampleValues } from "../../../lib/types";
 import type React from "react";
 
-export const sharePath = "/example/form_example";
-
 /* -----------------------------------------------
  * FormExample ページ
  * ----------------------------------------------- */
 
 export const pageMeta = {
+  sharePath: "/example/form_example",
   title: "Form Example",
   description: "react-hook-form を使った入力フォームコンポーネントのサンプルページです。",
   shareText: "フォーム実装サンプルをまとめたページです。",

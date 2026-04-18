@@ -6,13 +6,12 @@ import { signOutHelper, useAuth } from "../../../utils/authHelper";
 
 import type React from "react";
 
-export const sharePath = "/auth/signout";
-
 /* -----------------------------------------------
  * SignOut ページ
  * ----------------------------------------------- */
 
 export const pageMeta = {
+  sharePath: "/auth/signout",
   title: "Sign Out",
   description: "現在のセッションからサインアウトするページです。",
   shareText: "React Cognito Practice のサインアウトページです。",

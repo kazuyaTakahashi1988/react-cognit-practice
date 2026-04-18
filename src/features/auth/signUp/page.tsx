@@ -9,13 +9,12 @@ import { signUpHelper } from "../../../utils/authHelper";
 import type { TypeSignUpValues } from "../../../lib/types";
 import type React from "react";
 
-export const sharePath = "/auth/signup";
-
 /* -----------------------------------------------
  * SignUp ページ
  * ----------------------------------------------- */
 
 export const pageMeta = {
+  sharePath: "/auth/signup",
   title: "Sign Up",
   description: "メールアドレスとパスワードでアカウントを作成するページです。",
   shareText: "React Cognito Practice のサインアップページです。",
