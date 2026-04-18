@@ -83,24 +83,6 @@ $ yarn dev
 Open <a href="http://localhost:3000" target="_blank">http://localhost:3000</a> in your browser<br>
 <br>
 
-# ④ 主要ページの静的プリレンダ（SEO/SNS向け）
-
-```
-$ yarn build:prerender
-```
-
-- `dist/` の通常ビルド成果物に加え、以下ルートの `index.html` を静的出力します。
-  - `/example/form_example`
-  - `/example/todo_example`
-  - `/example/modal_example`
-  - `/example/accordion_example`
-  - `/example/dropdownmenu_example`
-  - `/auth/signin`
-  - `/auth/signup`
-  - `/auth/verification`
-- 各ページに `title` / `description` / OGP / Twitter Card / canonical を埋め込みます。
-- 各 `page.tsx` の `export const pageMeta` 内で `sharePath` を定義し、プリレンダでも同じ値を参照します。
-
 ## Analysis with SonarQube
 
 Link to <a href="https://sonarcloud.io/project/overview?id=kazuyaTakahashi1988_react-cognit-practice" target="_blank">SonarQube</a><br>
