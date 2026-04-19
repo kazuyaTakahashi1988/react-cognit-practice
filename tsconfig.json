@@ -21,12 +21,7 @@
     "noUnusedParameters": true,
     "noFallthroughCasesInSwitch": true
   },
-  "include": [
-    "src/**/*",
-    "scripts/build/pageMeta.mjs",
-    "scripts/build/prerender.mjs",
-    "scripts/build/sitemap.mjs"
-  ],
+  "include": ["src/**/*", "scripts/**/*"],
   "exclude": ["node_modules", "dist"],
   "references": [{ "path": "./tsconfig.node.json" }]
 }

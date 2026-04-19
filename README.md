@@ -98,7 +98,7 @@ react-cognit-practice/
 ├── .vscode
 ├── cdk
 ├── public
-├── scripts          # 各scripts（ビルド成果物に sitemap.xml を自動生成する処理など.etc）
+├── scripts          # 各scripts
 ├── src/             # アプリ本体
 │   ├── components       # 各コンポーネント
 │   ├── features         # 各画面（コロケーション）
