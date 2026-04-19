@@ -6,8 +6,8 @@ import { loadEnv } from "vite";
 import { collectPageConfigs } from "./pageMeta.mjs";
 
 /* -----------------------------------------------
- * yarn build:prerender コマンドで実行されるスクリプト
- * （ビルド成果物に sitemap.xml を自動生成）
+ * yarn build:prerender コマンドのビルド成果物に
+ * sitemap.xml を自動生成する処理
  * ----------------------------------------------- */
 
 const mode = process.env.VITE_ENV_MODE ?? process.env.NODE_ENV ?? "production";

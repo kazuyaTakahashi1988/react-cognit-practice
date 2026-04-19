@@ -4,8 +4,8 @@ import path from "node:path";
 import * as ts from "typescript";
 
 /* -----------------------------------------------
- * features 配下の各 page.tsx から pageMeta 情報を抽出
- * （プリレンダリングや sitemap.xml 生成に利用）
+ * prerender.mjs や sitemap.mjs に適用する
+ * 各 page.tsx 内の pageMeta 情報を抽出する処理
  * ----------------------------------------------- */
 
 const findPageMetaNode = (sourceFile) => {
