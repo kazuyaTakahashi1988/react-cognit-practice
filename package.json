@@ -5,8 +5,8 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "build": "tsc && vite build",
-    "build:prerender": "yarn build && node src/router/prerender.mjs",
+    "build": "tsc && vite build && node src/router/sitemap.mjs",
+    "build:prerender": "npm run build && node src/router/prerender.mjs",
     "preview": "vite preview",
     "storybook": "storybook dev -p 6006",
     "build-storybook": "storybook build",
