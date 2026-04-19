@@ -6,7 +6,7 @@
   "scripts": {
     "dev": "vite",
     "build": "tsc && vite build",
-    "build:prerender": "yarn build && node src/router/prerender.mjs",
+    "build:scripts": "yarn build && node scripts/sitemap.mjs && node scripts/prerender.mjs",
     "preview": "vite preview",
     "storybook": "storybook dev -p 6006",
     "build-storybook": "storybook build",

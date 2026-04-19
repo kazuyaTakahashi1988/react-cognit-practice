@@ -55,8 +55,8 @@ jobs:
       # - name: React-static Building
       #   run: yarn build
 
-      - name: React-static Building:prerender
-        run: yarn build:prerender
+      - name: React-static build:scripts
+        run: yarn build:scripts
 
       - name: FTP-Deploy-Action
         uses: SamKirkland/FTP-Deploy-Action@v4.3.6 # FTPを使ってサーバーにDeployするアクションを実行
