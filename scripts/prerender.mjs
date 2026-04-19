@@ -7,7 +7,7 @@ import { collectPageConfigs } from "./pageMeta.mjs";
 
 /* -----------------------------------------------
  * yarn build:prerender コマンドで実行されるスクリプト
- * （SEO、主にSNSシェア用のプリレンダリング対応）
+ * （ビルド成果物にプリレンダリング用 index.html を自動生成）
  * ----------------------------------------------- */
 
 const mode = process.env.VITE_ENV_MODE ?? process.env.NODE_ENV ?? "production";

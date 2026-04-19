@@ -3,6 +3,11 @@ import path from "node:path";
 
 import * as ts from "typescript";
 
+/* -----------------------------------------------
+ * features 配下の各 page.tsx から pageMeta 情報を抽出
+ * （プリレンダリングや sitemap.xml 生成に利用）
+ * ----------------------------------------------- */
+
 const findPageMetaNode = (sourceFile) => {
   for (const statement of sourceFile.statements) {
     if (!ts.isVariableStatement(statement)) continue;

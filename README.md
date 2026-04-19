@@ -98,6 +98,7 @@ react-cognit-practice/
 ├── .vscode
 ├── cdk
 ├── public
+├── scripts          # 各scripts（ビルド成果物に sitemap.xml / プリレンダリング用 index.html を自動生成する処理.etc）
 ├── src/             # アプリ本体
 │   ├── components       # 各コンポーネント
 │   ├── features         # 各画面（コロケーション）

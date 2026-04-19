@@ -6,7 +6,7 @@ import { loadEnv } from "vite";
 import { collectPageConfigs } from "./pageMeta.mjs";
 
 /* -----------------------------------------------
- * yarn build コマンドで実行されるスクリプト
+ * yarn build:prerender コマンドで実行されるスクリプト
  * （ビルド成果物に sitemap.xml を自動生成）
  * ----------------------------------------------- */
 
@@ -33,7 +33,12 @@ const buildSitemapXml = (routes) => {
     })
     .join("\n");
 
-  return [`<?xml version="1.0" encoding="UTF-8"?>`, `<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">`, urlRows, `</urlset>`].join("\n");
+  return [
+    `<?xml version="1.0" encoding="UTF-8"?>`,
+    `<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">`,
+    urlRows,
+    `</urlset>`,
+  ].join("\n");
 };
 
 const run = async () => {
