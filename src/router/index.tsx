@@ -17,7 +17,9 @@ import type React from "react";
  * ルーティング設定
  * ----------------------------------------------- */
 
-// auth用：未サインイン時は SignIn ページへリダイレクトする処理
+/*
+ * auth用：未サインイン時は SignIn ページへリダイレクトする処理
+ */
 const ProtectedRoute: React.FC<{ children: React.ReactNode }> = ({ children }) => {
   const { isSignedIn } = useAuth(); // サインインフラグ
 
@@ -28,7 +30,9 @@ const ProtectedRoute: React.FC<{ children: React.ReactNode }> = ({ children }) =
   return <>{children}</>;
 };
 
-// auth用：サインイン時は SignOut ページへリダイレクトする処理
+/*
+ * auth用：サインイン時は SignOut ページへリダイレクトする処理
+ */
 const PublicRoute: React.FC<{ children: React.ReactNode }> = ({ children }) => {
   const { isSignedIn } = useAuth(); // サインインフラグ
 
@@ -47,30 +51,6 @@ export function Router() {
 
   return (
     <Routes>
-      {/* ----------------------------------------
-       * リダイレクト設定
-       * ----------------------------------------- */}
-      <Route
-        // 存在しないパス遷移時はトップへリダイレクト
-        element={<Navigate replace to="/" />}
-        path="/*"
-      />
-      <Route
-        // トップ遷移時は FormExampleページ へリダイレクト
-        element={<Navigate replace to="/example/form_example" />}
-        path="/"
-      />
-      <Route
-        // パス /example 遷移時は FormExampleページ へリダイレクト
-        element={<Navigate replace to="/example/form_example" />}
-        path="/example"
-      />
-      <Route
-        // パス /auth 遷移時はサインイン状態に応じ SignOut/SignInページ へリダイレクト
-        element={<Navigate replace to={isSignedIn ? "/auth/signout" : "/auth/signin"} />}
-        path="/auth"
-      />
-
       {/* ----------------------------------------
        * example 各ルート設定
        * ----------------------------------------- */}
@@ -114,6 +94,30 @@ export function Router() {
           </ProtectedRoute>
         }
         path="/auth/signout"
+      />
+
+      {/* ----------------------------------------
+       * リダイレクト設定
+       * ----------------------------------------- */}
+      <Route
+        // 存在しないパス遷移時はトップへリダイレクト
+        element={<Navigate replace to="/" />}
+        path="/*"
+      />
+      <Route
+        // トップ遷移時は FormExampleページ へリダイレクト
+        element={<Navigate replace to="/example/form_example" />}
+        path="/"
+      />
+      <Route
+        // パス /example 遷移時は FormExampleページ へリダイレクト
+        element={<Navigate replace to="/example/form_example" />}
+        path="/example"
+      />
+      <Route
+        // パス /auth 遷移時はサインイン状態に応じ SignOut/SignInページ へリダイレクト
+        element={<Navigate replace to={isSignedIn ? "/auth/signout" : "/auth/signin"} />}
+        path="/auth"
       />
     </Routes>
   );
