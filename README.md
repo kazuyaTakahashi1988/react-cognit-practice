@@ -98,7 +98,7 @@ react-cognit-practice/
 ├── .vscode
 ├── cdk
 ├── public
-├── scripts          # 各scripts
+├── scripts          # 各scripts（コマンド用途）
 ├── src/             # アプリ本体
 │   ├── components       # 各コンポーネント
 │   ├── features         # 各画面（コロケーション）
