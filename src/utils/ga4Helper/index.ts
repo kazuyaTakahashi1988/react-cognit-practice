@@ -14,6 +14,7 @@ const GA_MEASUREMENT_ID = import.meta.env.VITE_APP_GA_MEASUREMENT_ID ?? "";
  */
 export const initGA = () => {
   if (GA_MEASUREMENT_ID) {
+    // GA4 初期化
     ReactGA.initialize(GA_MEASUREMENT_ID);
   }
 };
@@ -31,6 +32,7 @@ export const usePageTracking = () => {
       return;
     }
 
+    // PVをGA4に送信
     ReactGA.send({ hitType: "pageview", page: location.pathname + location.search });
   }, [location]);
 };
