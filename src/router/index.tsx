@@ -10,6 +10,7 @@ import FormExample from "../features/example/formExample/page";
 import ModalExample from "../features/example/modalExample/page";
 import TodoExample from "../features/example/todoExample/page";
 import { useAuth } from "../utils/authHelper";
+import { usePageTracking } from "../utils/ga4Helper";
 
 import type React from "react";
 
@@ -48,6 +49,8 @@ const PublicRoute: React.FC<{ children: React.ReactNode }> = ({ children }) => {
  */
 export function Router() {
   const { isSignedIn } = useAuth(); // サインインフラグ
+
+  usePageTracking(); // GA4 PV計測処理
 
   return (
     <Routes>

@@ -4885,6 +4885,11 @@ react-docgen@^7.0.0:
   dependencies:
     scheduler "^0.27.0"
 
+react-ga4@^3.0.1:
+  version "3.0.1"
+  resolved "https://registry.yarnpkg.com/react-ga4/-/react-ga4-3.0.1.tgz#1512e0cdd1569e344a9d80b17b30288107a00e77"
+  integrity sha512-GyCc01bSheWXjzGDyHsXMOqk/SP5Cf/JrcJTg4hcpKx4eeSwaJKpJUc+ipF4ffLTZkmabmf3ZGBv4OKHTXNXyA==
+
 react-hook-form@^7.67.0:
   version "7.72.1"
   resolved "https://registry.yarnpkg.com/react-hook-form/-/react-hook-form-7.72.1.tgz#19a8bbeaf685934f4c9fc422294cc730ade2780e"
