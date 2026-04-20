@@ -7,7 +7,7 @@ import { useLocation } from "react-router-dom";
  * ----------------------------------------------- */
 
 // GA4 計測ID
-export const GA_MEASUREMENT_ID = import.meta.env.VITE_APP_GA_MEASUREMENT_ID ?? "";
+const GA_MEASUREMENT_ID = import.meta.env.VITE_APP_GA_MEASUREMENT_ID ?? "";
 
 /*
  * GA4 初期化処理（アプリ起動時に呼ぶ）
@@ -23,13 +23,14 @@ export const initGA = () => {
  */
 export const usePageTracking = () => {
   const location = useLocation();
-  const isFirst = useRef(true);
+  const isFirst = useRef(true); // 重複計測を防止するフラグ
 
   useEffect(() => {
     if (isFirst.current || !GA_MEASUREMENT_ID) {
       isFirst.current = false;
       return;
     }
+
     ReactGA.send({ hitType: "pageview", page: location.pathname + location.search });
   }, [location]);
 };
