@@ -1,4 +1,4 @@
 # https://www.robotstxt.org/robotstxt.html
 User-agent: *
 Disallow:
-Sitemap: http://react-cognito.empty-service.com/sitemap.xml
+Sitemap: https://react-cognito.empty-service.com/sitemap.xml

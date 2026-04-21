@@ -15,6 +15,7 @@ const viteEnv = loadEnv(mode, process.cwd(), "VITE_APP_");
 
 const SITE_NAME = viteEnv.VITE_APP_SITE_NAME ?? "";
 const SITE_URL = viteEnv.VITE_APP_BASE_URL ?? "";
+const LOCALE = "ja_JP";
 const DEFAULT_OG_IMAGE = `${SITE_URL}${viteEnv.VITE_APP_DEFAULT_OG_IMAGE ?? ""}`;
 
 const upsertMeta = (html, key, value, content) => {
@@ -44,6 +45,18 @@ const upsertCanonical = (html, href) => {
   return html.replace("</head>", `  ${newLink}\n  </head>`);
 };
 
+const upsertStructuredData = (html, content) => {
+  const scriptPattern =
+    /<script\s+id=["']structured-data["']\s+type=["']application\/ld\+json["'][^>]*>[\s\S]*?<\/script>/i;
+  const newScript = `<script id="structured-data" type="application/ld+json">${JSON.stringify(content)}</script>`;
+
+  if (scriptPattern.test(html)) {
+    return html.replace(scriptPattern, newScript);
+  }
+
+  return html.replace("</head>", `  ${newScript}\n  </head>`);
+};
+
 const withMeta = (template, route, pageMeta) => {
   const canonicalUrl = `${SITE_URL}${route}`;
   const pageTitle = pageMeta.title.includes(SITE_NAME)
@@ -64,6 +77,7 @@ const withMeta = (template, route, pageMeta) => {
   nextHtml = upsertMeta(nextHtml, "property", "og:type", pageMeta.ogType ?? "website");
   nextHtml = upsertMeta(nextHtml, "property", "og:url", canonicalUrl);
   nextHtml = upsertMeta(nextHtml, "property", "og:site_name", SITE_NAME);
+  nextHtml = upsertMeta(nextHtml, "property", "og:locale", LOCALE);
   nextHtml = upsertMeta(nextHtml, "property", "og:image", ogImageUrl);
   nextHtml = upsertMeta(nextHtml, "name", "twitter:card", "summary_large_image");
   nextHtml = upsertMeta(nextHtml, "name", "twitter:title", pageTitle);
@@ -75,7 +89,27 @@ const withMeta = (template, route, pageMeta) => {
     "robots",
     pageMeta.noindex ? "noindex, nofollow" : "index, follow",
   );
+  nextHtml = upsertMeta(
+    nextHtml,
+    "name",
+    "googlebot",
+    pageMeta.noindex ? "noindex, nofollow" : "index, follow",
+  );
   nextHtml = upsertCanonical(nextHtml, canonicalUrl);
+  nextHtml = nextHtml.replace(
+    /<html lang="[^"]*">/i,
+    `<html lang="${LOCALE.split("_")[0] ?? "ja"}">`,
+  );
+  nextHtml = upsertStructuredData(nextHtml, {
+    "@context": "https://schema.org",
+    "@type": "WebPage",
+    name: pageTitle,
+    description: pageMeta.description,
+    url: canonicalUrl,
+    image: ogImageUrl,
+    inLanguage: LOCALE.replace("_", "-"),
+    isPartOf: { "@type": "WebSite", name: SITE_NAME, url: SITE_URL },
+  });
 
   return nextHtml;
 };
