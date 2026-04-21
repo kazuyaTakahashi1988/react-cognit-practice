@@ -101,7 +101,6 @@ jobs:
           password: ${{ secrets.FTP_PASSWORD }} # FTPのパスワードを設定
           local-dir: ./storybook-static/ # どのディレクトリのデータをアップロードするか
           server-dir: /storybook/ # リモートのどのディレクトリにアップロードするか
-          dangerous-clean-slate: true # ハッシュ付きJSの残骸を消して、Storybook資産の不整合を防ぐ
 
   prettier-eslint-checker: # ジョブ名(名前は任意)
     runs-on: ubuntu-latest
