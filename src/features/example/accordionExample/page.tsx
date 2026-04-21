@@ -17,6 +17,7 @@ export const pageMeta = {
   sharePath: "/example/accordion_example",
   // ogImage: "/xxxx/xxxx.jpg",
   // ogType: "website" or "article",
+  // noindex: boolean,
 };
 
 const AccordionExample: React.FC = () => {

@@ -13,7 +13,13 @@ const DEFAULT_TITLE = import.meta.env.VITE_APP_DEFAULT_TITLE ?? "";
 const DEFAULT_DESCRIPTION = import.meta.env.VITE_APP_DEFAULT_DESCRIPTION ?? "";
 const DEFAULT_OG_IMAGE = import.meta.env.VITE_APP_DEFAULT_OG_IMAGE ?? "";
 
-const PageMeta: React.FC<TypePageMeta> = ({ title, description, ogImage, ogType = "website" }) => {
+const PageMeta: React.FC<TypePageMeta> = ({
+  title,
+  description,
+  noindex = false,
+  ogImage,
+  ogType = "website",
+}) => {
   useEffect(() => {
     const normalizedTitle = title?.trim() ? title.trim() : DEFAULT_TITLE;
     const normalizedDescription = description?.trim() ? description.trim() : DEFAULT_DESCRIPTION;
@@ -50,6 +56,7 @@ const PageMeta: React.FC<TypePageMeta> = ({ title, description, ogImage, ogType 
     upsertMeta("name", "twitter:title", fullTitle);
     upsertMeta("name", "twitter:description", normalizedDescription);
     upsertMeta("name", "twitter:image", ogImageUrl);
+    upsertMeta("name", "robots", noindex ? "noindex, nofollow" : "index, follow");
 
     let canonicalTag = document.head.querySelector('link[rel="canonical"]');
 
@@ -60,7 +67,7 @@ const PageMeta: React.FC<TypePageMeta> = ({ title, description, ogImage, ogType 
     }
 
     canonicalTag.setAttribute("href", canonicalUrl);
-  }, [description, ogImage, ogType, title]);
+  }, [description, noindex, ogImage, ogType, title]);
 
   return null;
 };

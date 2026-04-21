@@ -20,6 +20,7 @@ export const pageMeta = {
   sharePath: "/auth/signin",
   // ogImage: "/xxxx/xxxx.jpg",
   // ogType: "website" or "article",
+  // noindex: boolean,
 };
 
 const SignIn: React.FC = () => {

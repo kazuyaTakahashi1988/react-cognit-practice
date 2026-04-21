@@ -43,9 +43,9 @@ const buildSitemapXml = (routes) => {
 
 const run = async () => {
   const pageConfigs = await collectPageConfigs();
-  const routes = [...new Set(pageConfigs.map(({ route }) => route))].sort((a, b) =>
-    a.localeCompare(b),
-  );
+  const routes = [
+    ...new Set(pageConfigs.filter(({ pageMeta }) => !pageMeta.noindex).map(({ route }) => route)),
+  ].sort((a, b) => a.localeCompare(b));
   const sitemapXml = buildSitemapXml(routes);
   const outputPath = path.resolve(process.cwd(), "dist", "sitemap.xml");
 

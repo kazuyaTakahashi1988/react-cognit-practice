@@ -17,6 +17,7 @@ export const pageMeta = {
   sharePath: "/example/dropdownmenu_example",
   // ogImage: "/xxxx/xxxx.jpg",
   // ogType: "website" or "article",
+  // noindex: boolean,
 };
 
 const DropdownMenuExample: React.FC = () => {

@@ -9,6 +9,7 @@ export type TypePageMeta = {
   title: string;
   description: string;
   sharePath: string;
+  noindex?: boolean;
   ogImage?: string;
   ogType?: "website" | "article";
 };

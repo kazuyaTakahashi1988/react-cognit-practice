@@ -27,6 +27,7 @@ export const pageMeta = {
   sharePath: "/example/form_example",
   // ogImage: "/xxxx/xxxx.jpg",
   // ogType: "website" or "article",
+  // noindex: boolean,
 };
 
 const FormExample: React.FC = () => {

@@ -20,6 +20,7 @@ export const pageMeta = {
   sharePath: "/example/todo_example",
   // ogImage: "/xxxx/xxxx.jpg",
   // ogType: "website" or "article",
+  // noindex: boolean,
 };
 
 const TodoExample: React.FC = () => {
