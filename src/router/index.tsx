@@ -10,47 +10,16 @@ import FormExample from "../features/example/formExample/page";
 import ModalExample from "../features/example/modalExample/page";
 import TodoExample from "../features/example/todoExample/page";
 import { useAuth } from "../utils/authHelper";
-import { usePageTracking } from "../utils/ga4Helper";
-
-import type React from "react";
+import { usePVTracking } from "../utils/ga4Helper";
 
 /* -----------------------------------------------
  * ルーティング設定
  * ----------------------------------------------- */
 
-/*
- * auth用：未サインイン時は SignIn ページへリダイレクトする処理
- */
-const ProtectedRoute: React.FC<{ children: React.ReactNode }> = ({ children }) => {
-  const { isSignedIn } = useAuth(); // サインインフラグ
-
-  if (!isSignedIn) {
-    return <Navigate replace to="/auth/signin" />;
-  }
-
-  return <>{children}</>;
-};
-
-/*
- * auth用：サインイン時は SignOut ページへリダイレクトする処理
- */
-const PublicRoute: React.FC<{ children: React.ReactNode }> = ({ children }) => {
-  const { isSignedIn } = useAuth(); // サインインフラグ
-
-  if (isSignedIn) {
-    return <Navigate replace to="/auth/signout" />;
-  }
-
-  return <>{children}</>;
-};
-
-/*
- * ルーティング設定
- */
 export function Router() {
   const { isSignedIn } = useAuth(); // サインインフラグ
 
-  usePageTracking(); // GA4 PV計測処理
+  usePVTracking(); // GA4 PV計測処理
 
   return (
     <Routes>
@@ -67,35 +36,19 @@ export function Router() {
        * auth 各ルート設定
        * ----------------------------------------- */}
       <Route
-        element={
-          <PublicRoute>
-            <SignIn />
-          </PublicRoute>
-        }
+        element={!isSignedIn ? <SignIn /> : <Navigate replace to="/auth/signout" />}
         path="/auth/signin"
       />
       <Route
-        element={
-          <PublicRoute>
-            <SignUp />
-          </PublicRoute>
-        }
+        element={!isSignedIn ? <SignUp /> : <Navigate replace to="/auth/signout" />}
         path="/auth/signup"
       />
       <Route
-        element={
-          <PublicRoute>
-            <Verification />
-          </PublicRoute>
-        }
+        element={!isSignedIn ? <Verification /> : <Navigate replace to="/auth/signout" />}
         path="/auth/verification"
       />
       <Route
-        element={
-          <ProtectedRoute>
-            <SignOut />
-          </ProtectedRoute>
-        }
+        element={isSignedIn ? <SignOut /> : <Navigate replace to="/auth/signin" />}
         path="/auth/signout"
       />
 

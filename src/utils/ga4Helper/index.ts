@@ -22,7 +22,7 @@ export const initGA = () => {
 /*
  * GA4 PV計測処理（ルーティング設定で呼ぶ）
  */
-export const usePageTracking = () => {
+export const usePVTracking = () => {
   const location = useLocation();
   const isFirst = useRef(true); // 重複計測を防止するフラグ
 
