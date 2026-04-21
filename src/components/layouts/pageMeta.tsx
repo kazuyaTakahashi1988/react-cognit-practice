@@ -4,7 +4,7 @@ import type { TypePageMeta } from "../../lib/types";
 import type React from "react";
 
 /* -----------------------------------------------
- * 共通ページメタ
+ * メタ情報
  * ----------------------------------------------- */
 
 const SITE_NAME = import.meta.env.VITE_APP_SITE_NAME ?? "";
@@ -22,6 +22,9 @@ const PageMeta: React.FC<TypePageMeta> = ({
   ogType = "website",
 }) => {
   useEffect(() => {
+    /*
+     * タグ・構造化データ動的生成用 定数
+     */
     const normalizedBaseUrl = String(BASE_URL).endsWith("/")
       ? String(BASE_URL).slice(0, -1)
       : BASE_URL;
@@ -38,6 +41,9 @@ const PageMeta: React.FC<TypePageMeta> = ({
     document.title = fullTitle;
     document.documentElement.lang = LOCALE.split("_")[0] ?? "ja";
 
+    /*
+     * メタタグの動的生成 処理
+     */
     const upsertMeta = (key: "name" | "property", value: string, content: string) => {
       let tag = document.head.querySelector(`meta[${key}="${value}"]`);
 
@@ -65,6 +71,9 @@ const PageMeta: React.FC<TypePageMeta> = ({
     upsertMeta("name", "robots", noindex ? "noindex, nofollow" : "index, follow");
     upsertMeta("name", "googlebot", noindex ? "noindex, nofollow" : "index, follow");
 
+    /*
+     * カノニカルタグの動的生成 処理
+     */
     let canonicalTag = document.head.querySelector('link[rel="canonical"]');
 
     if (!canonicalTag) {
@@ -75,6 +84,9 @@ const PageMeta: React.FC<TypePageMeta> = ({
 
     canonicalTag.setAttribute("href", canonicalUrl);
 
+    /*
+     * 構造化データの動的生成 処理
+     */
     const structuredData = {
       "@context": "https://schema.org",
       "@type": "WebPage",
