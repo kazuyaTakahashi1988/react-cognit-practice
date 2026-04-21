@@ -18,7 +18,7 @@ export const pageMeta = {
   title: "Verification",
   description: "確認コードを入力してアカウント認証を完了するページです。",
   sharePath: "/auth/verification",
-  noindex: true,
+  noindex: true, // SEO評価が無用なためnoindexを指定
   // ogImage: "/xxxx/xxxx.jpg",
   // ogType: "website" or "article",
 };

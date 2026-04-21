@@ -18,9 +18,9 @@ export const pageMeta = {
   title: "Sign In",
   description: "メールアドレスとパスワードでログインするページです。",
   sharePath: "/auth/signin",
-  noindex: true,
   // ogImage: "/xxxx/xxxx.jpg",
   // ogType: "website" or "article",
+  // noindex: boolean,
 };
 
 const SignIn: React.FC = () => {

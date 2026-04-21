@@ -19,6 +19,7 @@ export const pageMeta = {
   sharePath: "/example/modal_example",
   // ogImage: "/xxxx/xxxx.jpg",
   // ogType: "website" or "article",
+  // noindex: boolean,
 };
 
 const ModalExample: React.FC = () => {
