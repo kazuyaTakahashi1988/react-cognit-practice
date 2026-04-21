@@ -18,6 +18,7 @@ export const pageMeta = {
   title: "Sign Up",
   description: "メールアドレスとパスワードでアカウントを作成するページです。",
   sharePath: "/auth/signup",
+  noindex: true,
   // ogImage: "/xxxx/xxxx.jpg",
   // ogType: "website" or "article",
 };

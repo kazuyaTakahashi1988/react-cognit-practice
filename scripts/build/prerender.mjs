@@ -69,6 +69,12 @@ const withMeta = (template, route, pageMeta) => {
   nextHtml = upsertMeta(nextHtml, "name", "twitter:title", pageTitle);
   nextHtml = upsertMeta(nextHtml, "name", "twitter:description", pageMeta.description);
   nextHtml = upsertMeta(nextHtml, "name", "twitter:image", ogImageUrl);
+  nextHtml = upsertMeta(
+    nextHtml,
+    "name",
+    "robots",
+    pageMeta.noindex ? "noindex, nofollow" : "index, follow",
+  );
   nextHtml = upsertCanonical(nextHtml, canonicalUrl);
 
   return nextHtml;

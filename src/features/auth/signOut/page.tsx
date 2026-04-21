@@ -15,6 +15,7 @@ export const pageMeta = {
   title: "Sign Out",
   description: "現在のセッションからサインアウトするページです。",
   sharePath: "/auth/signout",
+  noindex: true,
   // ogImage: "/xxxx/xxxx.jpg",
   // ogType: "website" or "article",
 };
