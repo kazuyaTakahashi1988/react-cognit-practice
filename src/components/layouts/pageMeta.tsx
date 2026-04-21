@@ -9,7 +9,7 @@ import type React from "react";
 
 const SITE_NAME = import.meta.env.VITE_APP_SITE_NAME ?? "";
 const BASE_URL = import.meta.env.VITE_APP_BASE_URL ?? "";
-const LOCALE = import.meta.env.VITE_APP_LOCALE ?? "ja_JP";
+const LOCALE = "ja_JP";
 const DEFAULT_TITLE = import.meta.env.VITE_APP_DEFAULT_TITLE ?? "";
 const DEFAULT_DESCRIPTION = import.meta.env.VITE_APP_DEFAULT_DESCRIPTION ?? "";
 const DEFAULT_OG_IMAGE = import.meta.env.VITE_APP_DEFAULT_OG_IMAGE ?? "";
@@ -22,7 +22,9 @@ const PageMeta: React.FC<TypePageMeta> = ({
   ogType = "website",
 }) => {
   useEffect(() => {
-    const normalizedBaseUrl = BASE_URL.endsWith("/") ? BASE_URL.slice(0, -1) : BASE_URL;
+    const normalizedBaseUrl = String(BASE_URL).endsWith("/")
+      ? String(BASE_URL).slice(0, -1)
+      : BASE_URL;
     const normalizedTitle = title?.trim() ? title.trim() : DEFAULT_TITLE;
     const normalizedDescription = description?.trim() ? description.trim() : DEFAULT_DESCRIPTION;
     const normalizedOgImage = ogImage?.trim() ? ogImage.trim() : DEFAULT_OG_IMAGE;

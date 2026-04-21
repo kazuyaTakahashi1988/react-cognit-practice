@@ -15,7 +15,7 @@ const viteEnv = loadEnv(mode, process.cwd(), "VITE_APP_");
 
 const SITE_NAME = viteEnv.VITE_APP_SITE_NAME ?? "";
 const SITE_URL = viteEnv.VITE_APP_BASE_URL ?? "";
-const LOCALE = viteEnv.VITE_APP_LOCALE ?? "ja_JP";
+const LOCALE = "ja_JP";
 const DEFAULT_OG_IMAGE = `${SITE_URL}${viteEnv.VITE_APP_DEFAULT_OG_IMAGE ?? ""}`;
 
 const upsertMeta = (html, key, value, content) => {
@@ -46,7 +46,8 @@ const upsertCanonical = (html, href) => {
 };
 
 const upsertStructuredData = (html, content) => {
-  const scriptPattern = /<script\s+id=["']structured-data["']\s+type=["']application\/ld\+json["'][^>]*>[\s\S]*?<\/script>/i;
+  const scriptPattern =
+    /<script\s+id=["']structured-data["']\s+type=["']application\/ld\+json["'][^>]*>[\s\S]*?<\/script>/i;
   const newScript = `<script id="structured-data" type="application/ld+json">${JSON.stringify(content)}</script>`;
 
   if (scriptPattern.test(html)) {
@@ -95,7 +96,10 @@ const withMeta = (template, route, pageMeta) => {
     pageMeta.noindex ? "noindex, nofollow" : "index, follow",
   );
   nextHtml = upsertCanonical(nextHtml, canonicalUrl);
-  nextHtml = nextHtml.replace(/<html lang="[^"]*">/i, `<html lang="${LOCALE.split("_")[0] ?? "ja"}">`);
+  nextHtml = nextHtml.replace(
+    /<html lang="[^"]*">/i,
+    `<html lang="${LOCALE.split("_")[0] ?? "ja"}">`,
+  );
   nextHtml = upsertStructuredData(nextHtml, {
     "@context": "https://schema.org",
     "@type": "WebPage",
@@ -104,11 +108,7 @@ const withMeta = (template, route, pageMeta) => {
     url: canonicalUrl,
     image: ogImageUrl,
     inLanguage: LOCALE.replace("_", "-"),
-    isPartOf: {
-      "@type": "WebSite",
-      name: SITE_NAME,
-      url: SITE_URL,
-    },
+    isPartOf: { "@type": "WebSite", name: SITE_NAME, url: SITE_URL },
   });
 
   return nextHtml;
