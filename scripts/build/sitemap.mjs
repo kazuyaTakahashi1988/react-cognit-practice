@@ -43,12 +43,6 @@ const buildSitemapXml = (routes) => {
 
 const run = async () => {
   const pageConfigs = await collectPageConfigs();
-  /*
-   * 動的ページ（例：blog記事）がある場合、それ用のAPIを作り、メタ情報一覧を取得する（以下、取得例）
-   * const staticPageConfigs = await collectPageConfigs();
-   * const blogPageConfigs = await getBlogPageConfigsApi(); // レスポンス型は TypePageMeta[] 固定
-   * const pageConfigs = [...staticPageConfigs, ...blogPageConfigs];
-   */
   const routes = [
     ...new Set(pageConfigs.filter(({ pageMeta }) => !pageMeta.noindex).map(({ route }) => route)),
   ].sort((a, b) => a.localeCompare(b));

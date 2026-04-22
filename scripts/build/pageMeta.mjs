@@ -79,5 +79,30 @@ const extractPageConfig = async (pagePath) => {
 export const collectPageConfigs = async () => {
   const pageModules = await findPageModules(path.resolve(process.cwd(), "src/features"));
 
-  return Promise.all(pageModules.map((pagePath) => extractPageConfig(pagePath)));
+  // 静的ページの pageMeta 情報を抽出・一覧化
+  const staticPageConfigs = await Promise.all(
+    pageModules.map((pagePath) => extractPageConfig(pagePath)),
+  );
+
+  /*
+   * 動的ページ（例：blog記事）がある場合、APIを用意し pageMeta 情報を一覧取得・追加する（以下は例）
+   *
+   * // 静的ページの pageMeta 情報の型定義（例）
+   * type TypeBlogPageConfigs = {
+   *  route: string,
+   *  pageMeta: {
+   *     title: string,
+   *     description: string,
+   *     sharePath: string,
+   *     ogType?: "website" | "article",
+   *     ogImage?: string,
+   *     noindex?: boolean,
+   *   },
+   * }[];
+   *
+   * // 静的ページの pageMeta 情報を一覧化するAPI（例）
+   * const blogPageConfigs: TypeBlogPageConfigs = await getBlogPageConfigs();
+   */
+
+  return [...staticPageConfigs /* , ...blogPageConfigs */];
 };
