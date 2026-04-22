@@ -1,4 +1,4 @@
-# Architecture Review (react-cognito-vite)
+# Architecture Review by Codex
 
 ## 概要
 
