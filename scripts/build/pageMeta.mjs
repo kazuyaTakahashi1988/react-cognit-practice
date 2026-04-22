@@ -85,9 +85,9 @@ export const collectPageConfigs = async () => {
   );
 
   /*
-   * 動的ページ（例：blog記事）がある場合、APIを用意し pageMeta 情報を一覧取得・追加する（以下は例）
+   * 動的ページ（例：blog記事）がある場合、APIを用意し pageMeta 情報を一覧取得・追加する（以下例）
    *
-   * // 静的ページの pageMeta 情報の型定義（例）
+   * // 動的ページの pageMeta 情報の型（例）
    * type TypeBlogPageConfigs = {
    *  route: string,
    *  pageMeta: {
@@ -100,7 +100,7 @@ export const collectPageConfigs = async () => {
    *   },
    * }[];
    *
-   * // 静的ページの pageMeta 情報を一覧化するAPI（例）
+   * // 動的ページの pageMeta 情報を一覧化するAPI（例）
    * const blogPageConfigs: TypeBlogPageConfigs = await getBlogPageConfigs();
    */
 
