@@ -1,6 +1,7 @@
 ※CSSは [ styled-components ] を使っているので<br>
 vs-code にプラグイン [ vscode-styled-components ] [ styled-components-snippets ] を<br>
-それぞれインストールすると便利
+それぞれインストールすると便利<br><br>
+※ vscode用推奨プラグイン一覧 → <a href="https://github.com/kazuyaTakahashi1988/react-cognit-practice/blob/main/.vscode/extensions.json" target="_blank">.vscode/extensions.json</a>
 <br>
 
 # ① node v24.x 下で yarn install & yarn dev
