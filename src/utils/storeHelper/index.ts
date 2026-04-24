@@ -39,3 +39,27 @@ export const {
 } = appSlice.actions;
 
 export const store = configureStore({ reducer: appSlice.reducer });
+
+/*
+ * グローバルローディングの開始・終了を1セットで保証するユーティリティ
+ */
+const createLoadingScope = () => {
+  store.dispatch(loadingFlagUp());
+
+  let isClosed = false;
+  return () => {
+    if (isClosed) return;
+    isClosed = true;
+    store.dispatch(loadingFlagDown());
+  };
+};
+
+export const withGlobalLoading = async <T>(task: () => Promise<T>): Promise<T> => {
+  const closeLoading = createLoadingScope();
+
+  try {
+    return await task();
+  } finally {
+    closeLoading();
+  }
+};
