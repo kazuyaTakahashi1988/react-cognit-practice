@@ -3,7 +3,7 @@ import { confirmSignUp, signIn, signOut, signUp } from "aws-amplify/auth";
 import { useContext } from "react";
 
 import { AuthContext } from "../providerHelper/authProvider";
-import { loadingFlagDown, loadingFlagUp, store } from "../storeHelper";
+import { withGlobalLoading } from "../storeHelper";
 
 import type { TypeSignInValues, TypeSignUpValues, TypeVerifyValues } from "../../lib/types";
 
@@ -39,73 +39,65 @@ export const useAuth = () => {
  * サインイン 処理
  */
 export const signInHelper = async (data: TypeSignInValues) => {
-  store.dispatch(loadingFlagUp());
-
-  try {
-    const result = await signIn({ username: data.email, password: data.password });
-    console.warn("SignIn succeeded", result);
-    return true;
-  } catch (err) {
-    console.error(err);
-    return false;
-  } finally {
-    store.dispatch(loadingFlagDown());
-  }
+  return withGlobalLoading(async () => {
+    try {
+      const result = await signIn({ username: data.email, password: data.password });
+      console.warn("SignIn succeeded", result);
+      return true;
+    } catch (err) {
+      console.error(err);
+      return false;
+    }
+  });
 };
 
 /*
  * サインアップ 処理
  */
 export const signUpHelper = async (data: TypeSignUpValues) => {
-  store.dispatch(loadingFlagUp());
-
-  try {
-    const result = await signUp({
-      username: data.email,
-      password: data.password,
-      options: { userAttributes: { email: data.email } },
-    });
-    console.warn(result);
-    console.warn("SignUp succeeded");
-  } catch (err) {
-    console.error(err);
-  } finally {
-    store.dispatch(loadingFlagDown());
-  }
+  return withGlobalLoading(async () => {
+    try {
+      const result = await signUp({
+        username: data.email,
+        password: data.password,
+        options: { userAttributes: { email: data.email } },
+      });
+      console.warn(result);
+      console.warn("SignUp succeeded");
+    } catch (err) {
+      console.error(err);
+    }
+  });
 };
 
 /*
  * ベリファイ 処理
  */
 export const verifyHelper = async (data: TypeVerifyValues) => {
-  store.dispatch(loadingFlagUp());
-
-  try {
-    await confirmSignUp({ username: data.email, confirmationCode: data.verificationCode });
-    console.warn("verification succeeded");
-  } catch (err) {
-    console.warn(err);
-  } finally {
-    store.dispatch(loadingFlagDown());
-  }
+  return withGlobalLoading(async () => {
+    try {
+      await confirmSignUp({ username: data.email, confirmationCode: data.verificationCode });
+      console.warn("verification succeeded");
+    } catch (err) {
+      console.warn(err);
+    }
+  });
 };
 
 /*
  * サインアウト 処理
  */
 export const signOutHelper = async () => {
-  store.dispatch(loadingFlagUp());
-
-  try {
-    await signOut();
-    localStorage.clear();
-    console.warn("signed out");
-    return true;
-  } catch (err) {
-    console.warn(err);
-    localStorage.clear();
-    return false;
-  } finally {
-    store.dispatch(loadingFlagDown());
-  }
+  return withGlobalLoading(async () => {
+    try {
+      await signOut();
+      localStorage.clear();
+      console.warn("signed out");
+      return true;
+    } catch (err) {
+      console.warn(err);
+      localStorage.clear();
+      return false;
+    }
+  });
 };
