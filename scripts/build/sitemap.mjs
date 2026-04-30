@@ -24,7 +24,10 @@ const buildSitemapXml = (routes) => {
   const today = new Date().toISOString().slice(0, 10);
   const urlRows = routes
     .map((route) => {
-      const routeWithTrailingSlash = route === "/" ? route : route.endsWith("/") ? route : `${route}/`;
+      let routeWithTrailingSlash = route;
+      if (route !== "/" && !route.endsWith("/")) {
+        routeWithTrailingSlash = `${route}/`;
+      }
 
       return [
         "  <url>",
