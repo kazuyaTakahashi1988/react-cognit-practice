@@ -1,11 +1,11 @@
 {
+  "js/ts.referencesCodeLens.enabled": true,
   "editor.defaultFormatter": "esbenp.prettier-vscode",
   "editor.formatOnSave": true,
   "editor.tabSize": 2,
   "files.insertFinalNewline": true,
   "redhat.telemetry.enabled": true,
   "editor.detectIndentation": false,
-  "typescript.referencesCodeLens.enabled": true,
   "[typescript]": {
     "editor.tabSize": 2,
     "editor.insertSpaces": true,
