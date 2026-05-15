@@ -1,6 +1,6 @@
 import axios from "axios";
 
-import { loadingFlagDown, loadingFlagUp, store } from "../storeHelper";
+import { withGlobalLoading } from "../storeHelper";
 
 import type { TypeApiError, TypeFormExampleValues, TypeOptions } from "../../lib/types";
 import type { AxiosRequestConfig, AxiosResponse, Method } from "axios";
@@ -29,8 +29,6 @@ const execute = async <TResponse = unknown, TRequest = unknown>(
     isLoading = true,
   } = options;
 
-  if (isLoading) store.dispatch(loadingFlagUp());
-
   const bearerToken =
     accessToken ??
     (typeof sessionStorage !== "undefined"
@@ -51,27 +49,29 @@ const execute = async <TResponse = unknown, TRequest = unknown>(
     },
   };
 
-  try {
-    return await axios.request<TResponse>(requestConfig); // リクエスト実行
-  } catch (err) {
-    const failed_message = "API request failed";
+  const executeRequest = async () => {
+    try {
+      return await axios.request<TResponse>(requestConfig); // リクエスト実行
+    } catch (err) {
+      const failed_message = "API request failed";
 
-    if (axios.isAxiosError(err)) {
-      const message = err.response?.data ?? err.message;
-      console.error(failed_message, message);
+      if (axios.isAxiosError(err)) {
+        const message = err.response?.data ?? err.message;
+        console.error(failed_message, message);
 
-      return {
-        message: typeof err.message === "string" ? err.message : failed_message,
-        status: err.response?.status,
-        data: err.response?.data,
-      };
+        return {
+          message: typeof err.message === "string" ? err.message : failed_message,
+          status: err.response?.status,
+          data: err.response?.data,
+        };
+      }
+
+      console.error(failed_message, err);
+      throw err;
     }
+  };
 
-    console.error(failed_message, err);
-    throw err;
-  } finally {
-    if (isLoading) store.dispatch(loadingFlagDown());
-  }
+  return isLoading ? withGlobalLoading(executeRequest) : executeRequest();
 };
 
 /*
