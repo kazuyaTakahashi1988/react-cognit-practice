@@ -134,48 +134,39 @@ export const Header: React.FC<TypeHeader> = (props) => {
           {/*
            * auth 各navigate()
            */}
-          {type === "auth" &&
-            (!isSignedIn ? (
-              <>
-                {/* 未サインイン時 */}
-                <li>
-                  <DropdownMenu
-                    menuList={[
-                      {
-                        text: "SighIn",
-                        onClick: () => navigate("/auth/signin", { replace: true }),
-                      },
-                      {
-                        text: "SighUp",
-                        onClick: () => navigate("/auth/signup", { replace: true }),
-                      },
-                      {
-                        text: "Verification",
-                        onClick: () => navigate("/auth/verification", { replace: true }),
-                      },
-                    ]}
-                  >
-                    <b>Auth</b>
-                  </DropdownMenu>
-                </li>
-              </>
-            ) : (
-              <>
-                {/* サインイン時 */}
-                <li>
-                  <DropdownMenu
-                    menuList={[
-                      {
-                        text: "SignOut",
-                        onClick: () => navigate("/auth/signout", { replace: true }),
-                      },
-                    ]}
-                  >
-                    <b>Auth</b>
-                  </DropdownMenu>
-                </li>
-              </>
-            ))}
+          {type === "auth" && (
+            <li>
+              <DropdownMenu
+                menuList={
+                  !isSignedIn
+                    ? [
+                        /* 未サインイン時 */
+                        {
+                          text: "SighIn",
+                          onClick: () => navigate("/auth/signin", { replace: true }),
+                        },
+                        {
+                          text: "SighUp",
+                          onClick: () => navigate("/auth/signup", { replace: true }),
+                        },
+                        {
+                          text: "Verification",
+                          onClick: () => navigate("/auth/verification", { replace: true }),
+                        },
+                      ]
+                    : [
+                        /* サインイン時 */
+                        {
+                          text: "SignOut",
+                          onClick: () => navigate("/auth/signout", { replace: true }),
+                        },
+                      ]
+                }
+              >
+                <b>Auth</b>
+              </DropdownMenu>
+            </li>
+          )}
         </ul>
       </nav>
     </Styled>

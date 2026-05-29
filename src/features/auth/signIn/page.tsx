@@ -10,7 +10,7 @@ import type { TypeSignInValues } from "../../../lib/types";
 import type React from "react";
 
 /* -----------------------------------------------
- * signIn ページ
+ * SignIn ページ
  * ----------------------------------------------- */
 
 // メタ情報
