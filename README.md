@@ -119,11 +119,10 @@ react-cognit-practice/
 │   ├── features         # 各画面（コロケーション）
 │   ├── lib              # 静的な値・処理
 │   ├── router           # ナビゲーション
-│   ├── stories          # ストーリーブック
 │   ├── utils            # 動的な処理
 │   ├── App.tsx          # アプリルートファイル
 │   └── main.tsx         # アプリメインファイル
-├── ...
+├── stories          # ストーリーブック
 ├── ...
 ├── ...
 └── README.md        # This file
