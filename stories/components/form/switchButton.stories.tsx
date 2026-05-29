@@ -1,4 +1,4 @@
-import { SwitchButton } from "../../../components/form/switchButton";
+import { SwitchButton } from "../../../src/components/form/switchButton";
 
 import type { Meta, StoryObj } from "@storybook/react";
 

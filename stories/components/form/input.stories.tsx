@@ -1,4 +1,4 @@
-import { Input } from "../../../components/form/input";
+import { Input } from "../../../src/components/form/input";
 
 import type { Meta, StoryObj } from "@storybook/react";
 

@@ -1,4 +1,4 @@
-import { color } from "../../../lib/style";
+import { color } from "../../../src/lib/style";
 
 import type { Meta, StoryObj } from "@storybook/react";
 

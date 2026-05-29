@@ -1,4 +1,4 @@
-import { ErrorMessage } from "../../../components/form/errorMessage";
+import { ErrorMessage } from "../../../src/components/form/errorMessage";
 
 import type { Meta, StoryObj } from "@storybook/react";
 

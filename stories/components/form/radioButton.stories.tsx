@@ -1,4 +1,4 @@
-import { RadioButton } from "../../../components/form/radioButton";
+import { RadioButton } from "../../../src/components/form/radioButton";
 
 import type { Meta, StoryObj } from "@storybook/react";
 

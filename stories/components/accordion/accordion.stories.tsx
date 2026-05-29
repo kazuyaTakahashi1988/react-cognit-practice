@@ -1,4 +1,4 @@
-import { Accordion } from "../../../components/accordion/accordion";
+import { Accordion } from "../../../src/components/accordion/accordion";
 
 import type { Meta, StoryObj } from "@storybook/react";
 
