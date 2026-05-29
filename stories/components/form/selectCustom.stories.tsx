@@ -1,4 +1,4 @@
-import { SelectCustom } from "../../../components/form/selectCustom";
+import { SelectCustom } from "../../../src/components/form/selectCustom";
 
 import type { Meta, StoryObj } from "@storybook/react";
 

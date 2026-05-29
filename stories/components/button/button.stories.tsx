@@ -1,4 +1,4 @@
-import { Button } from "../../../components/button/button";
+import { Button } from "../../../src/components/button/button";
 
 import type { Meta, StoryObj } from "@storybook/react";
 

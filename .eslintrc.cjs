@@ -41,7 +41,7 @@ module.exports = {
   ],
   overrides: [
     {
-      files: ["src/**/*.{ts,tsx}"], // eclintルールが適用される対象ファイル群
+      files: ["stories/**/*.{ts,tsx}", "src/**/*.{ts,tsx}"], // eclintルールが適用される対象ファイル群
       rules: {
         /* buttonタグにtype指定することを強制 */
         "react/button-has-type": "error",
@@ -128,7 +128,11 @@ module.exports = {
       },
     },
     {
-      files: [".storybook/**/*.ts", "src/**/*.stories.@(js|jsx|mjs|ts|tsx)", "src/**/*.mdx"],
+      files: [
+        ".storybook/**/*.ts",
+        "stories/**/*.stories.@(js|jsx|mjs|ts|tsx)",
+        "stories/**/*.mdx",
+      ],
       extends: ["plugin:storybook/recommended"],
       rules: { "storybook/no-renderer-packages": "off" },
     },

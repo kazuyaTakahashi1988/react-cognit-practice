@@ -1,4 +1,4 @@
-import { Label } from "../../../components/form/label";
+import { Label } from "../../../src/components/form/label";
 
 import type { Meta, StoryObj } from "@storybook/react";
 

@@ -1,4 +1,4 @@
-import { CheckBox } from "../../../components/form/checkBox";
+import { CheckBox } from "../../../src/components/form/checkBox";
 
 import type { Meta, StoryObj } from "@storybook/react";
 
