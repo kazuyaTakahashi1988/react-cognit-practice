@@ -53,7 +53,9 @@ const TodoExample: React.FC = () => {
    * 「送信する」ボタン 処理
    */
   const onSubmit = todoForm.handleSubmit((data) => {
-    console.warn(data);
+    // console.log はちゃんと消すこと
+    // eslint-disable-next-line no-console
+    console.log(data);
   });
 
   return (

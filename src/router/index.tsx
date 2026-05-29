@@ -4,6 +4,8 @@ import SignIn from "../features/auth/signIn/page";
 import SignOut from "../features/auth/signOut/page";
 import SignUp from "../features/auth/signUp/page";
 import Verification from "../features/auth/verification/page";
+import Error404 from "../features/error/404/page";
+import Error500 from "../features/error/500/page";
 import AccordionExample from "../features/example/accordionExample/page";
 import DropdownMenuExample from "../features/example/dropdownMenuExample/page";
 import FormExample from "../features/example/formExample/page";
@@ -53,25 +55,31 @@ export function Router() {
       />
 
       {/* ----------------------------------------
+       * error 各ルート設定
+       * ----------------------------------------- */}
+      <Route element={<Error404 />} path="/error/404" />
+      <Route element={<Error500 />} path="/error/500" />
+
+      {/* ----------------------------------------
        * リダイレクト設定
        * ----------------------------------------- */}
       <Route
-        // 存在しないパス遷移時はトップへリダイレクト
-        element={<Navigate replace to="/" />}
+        // 存在しないパス遷移時は404ページへリダイレクト
+        element={<Navigate replace to="/error/404" />}
         path="/*"
       />
       <Route
-        // トップ遷移時は FormExampleページ へリダイレクト
+        // ルート遷移時は FormExampleページ へリダイレクト
         element={<Navigate replace to="/example/form_example" />}
         path="/"
       />
       <Route
-        // パス /example 遷移時は FormExampleページ へリダイレクト
+        // example ルート遷移時は FormExampleページ へリダイレクト
         element={<Navigate replace to="/example/form_example" />}
         path="/example"
       />
       <Route
-        // パス /auth 遷移時はサインイン状態に応じ SignOut/SignInページ へリダイレクト
+        // auth ルート遷移時はサインイン状態に応じ SignOut/SignInページ へリダイレクト
         element={<Navigate replace to={isSignedIn ? "/auth/signout" : "/auth/signin"} />}
         path="/auth"
       />

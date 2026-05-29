@@ -47,8 +47,8 @@ module.exports = {
         "react/button-has-type": "error",
         /* TypeScriptで型定義している場合は、PropTypesで重ねて型検証する意味がないので"off" */
         "react/prop-types": "off",
-        /* console.warn, error, info以外に警告。開発中のLog消し忘れ対策 */
-        "no-console": ["warn", { allow: ["warn", "error", "info"] }],
+        /* console.warn, error, info以外にエラー警告。開発中のLog消し忘れ対策 */
+        "no-console": ["error", { allow: ["warn", "error", "info"] }],
         /* 未定義の変数を使うことを禁止するルールを"off" */
         "no-undef": "off",
         /* async 関数なのに await を使ってない場合の警告は"off"、"error"とする */

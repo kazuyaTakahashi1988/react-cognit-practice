@@ -1,4 +1,5 @@
 import { useForm } from "react-hook-form";
+import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 
 import Button from "../../../components/button/button";
@@ -31,6 +32,8 @@ export const pageMeta = {
 };
 
 const FormExample: React.FC = () => {
+  const navigate = useNavigate();
+
   /*
    * RHForm 使用設定
    */
@@ -54,7 +57,9 @@ const FormExample: React.FC = () => {
    */
   const onSubmit = form.handleSubmit(async (data) => {
     const responsePost = await testPostApi(data); // テストポストAPI（てきとーなやつ）処理
-    console.warn("API response:", responsePost);
+    if (responsePost.status !== 200) {
+      navigate("/error/500", { replace: true });
+    }
   });
 
   return (

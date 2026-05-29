@@ -43,7 +43,9 @@ export const signInHelper = async (data: TypeSignInValues) => {
 
   try {
     const result = await signIn({ username: data.email, password: data.password });
-    console.warn("SignIn succeeded", result);
+    // console.log はちゃんと消すこと
+    // eslint-disable-next-line no-console
+    console.log("SignIn succeeded", result);
     return true;
   } catch (err) {
     console.error(err);
@@ -65,8 +67,9 @@ export const signUpHelper = async (data: TypeSignUpValues) => {
       password: data.password,
       options: { userAttributes: { email: data.email } },
     });
-    console.warn(result);
-    console.warn("SignUp succeeded");
+    // console.log はちゃんと消すこと
+    // eslint-disable-next-line no-console
+    console.log("SignUp succeeded", result);
   } catch (err) {
     console.error(err);
   } finally {
@@ -82,9 +85,11 @@ export const verifyHelper = async (data: TypeVerifyValues) => {
 
   try {
     await confirmSignUp({ username: data.email, confirmationCode: data.verificationCode });
-    console.warn("verification succeeded");
+    // console.log はちゃんと消すこと
+    // eslint-disable-next-line no-console
+    console.log("verification succeeded");
   } catch (err) {
-    console.warn(err);
+    console.error(err);
   } finally {
     store.dispatch(loadingFlagDown());
   }
@@ -99,10 +104,12 @@ export const signOutHelper = async () => {
   try {
     await signOut();
     localStorage.clear();
-    console.warn("signed out");
+    // console.log はちゃんと消すこと
+    // eslint-disable-next-line no-console
+    console.log("signed out");
     return true;
   } catch (err) {
-    console.warn(err);
+    console.error(err);
     localStorage.clear();
     return false;
   } finally {
