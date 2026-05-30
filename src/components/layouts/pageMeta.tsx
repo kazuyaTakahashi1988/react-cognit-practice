@@ -7,6 +7,9 @@ import type React from "react";
  * メタ情報
  * ----------------------------------------------- */
 
+/*
+ * デフォルトのメタ情報
+ */
 const SITE_NAME = import.meta.env.VITE_APP_SITE_NAME ?? "";
 const BASE_URL = import.meta.env.VITE_APP_BASE_URL ?? "";
 const LOCALE = "ja_JP";
@@ -14,6 +17,9 @@ const DEFAULT_TITLE = import.meta.env.VITE_APP_DEFAULT_TITLE ?? "";
 const DEFAULT_DESCRIPTION = import.meta.env.VITE_APP_DEFAULT_DESCRIPTION ?? "";
 const DEFAULT_OG_IMAGE = import.meta.env.VITE_APP_DEFAULT_OG_IMAGE ?? "";
 
+/*
+ * PageMeta コンポーネント
+ */
 const PageMeta: React.FC<TypePageMeta> = ({
   title,
   description,
@@ -21,29 +27,18 @@ const PageMeta: React.FC<TypePageMeta> = ({
   ogImage,
   ogType = "website",
 }) => {
-  useEffect(() => {
-    /*
-     * タグ・構造化データ動的生成用 定数
-     */
-    const normalizedBaseUrl = String(BASE_URL).endsWith("/")
-      ? String(BASE_URL).slice(0, -1)
-      : BASE_URL;
-    const normalizedTitle = title?.trim() ? title.trim() : DEFAULT_TITLE;
-    const normalizedDescription = description?.trim() ? description.trim() : DEFAULT_DESCRIPTION;
-    const normalizedOgImage = ogImage?.trim() ? ogImage.trim() : DEFAULT_OG_IMAGE;
-    const fullTitle =
-      normalizedTitle === DEFAULT_TITLE ? DEFAULT_TITLE : `${normalizedTitle} | ${SITE_NAME}`;
-    const currentUrl = new URL(globalThis.location.href);
-    const canonicalUrl = `${currentUrl.origin}${currentUrl.pathname}`;
-    const ogImageUrl = String(normalizedOgImage).startsWith("http")
-      ? normalizedOgImage
-      : `${normalizedBaseUrl}${normalizedOgImage}`;
-    document.title = fullTitle;
-    document.documentElement.lang = LOCALE.split("_")[0] ?? "ja";
-
-    /*
-     * メタタグの動的生成 処理
-     */
+  /*
+   * メタタグの動的生成・更新 処理
+   */
+  const generateMetaTags = (
+    normalizedDescription: string,
+    fullTitle: string,
+    ogType: string,
+    canonicalUrl: string,
+    ogImageUrl: string,
+    noindex: boolean,
+  ) => {
+    // メタタグの生成・更新 処理
     const upsertMeta = (key: "name" | "property", value: string, content: string) => {
       let tag = document.head.querySelector(`meta[${key}="${value}"]`);
 
@@ -56,6 +51,7 @@ const PageMeta: React.FC<TypePageMeta> = ({
       tag.setAttribute("content", content);
     };
 
+    // メタタグの生成・更新
     upsertMeta("name", "description", normalizedDescription);
     upsertMeta("property", "og:title", fullTitle);
     upsertMeta("property", "og:description", normalizedDescription);
@@ -70,10 +66,12 @@ const PageMeta: React.FC<TypePageMeta> = ({
     upsertMeta("name", "twitter:image", ogImageUrl);
     upsertMeta("name", "robots", noindex ? "noindex, nofollow" : "index, follow");
     upsertMeta("name", "googlebot", noindex ? "noindex, nofollow" : "index, follow");
+  };
 
-    /*
-     * カノニカルタグの動的生成 処理
-     */
+  /*
+   * カノニカルタグの動的生成・更新 処理
+   */
+  const generateCanonicalTag = (canonicalUrl: string) => {
     let canonicalTag = document.head.querySelector('link[rel="canonical"]');
 
     if (!canonicalTag) {
@@ -83,10 +81,19 @@ const PageMeta: React.FC<TypePageMeta> = ({
     }
 
     canonicalTag.setAttribute("href", canonicalUrl);
+  };
 
-    /*
-     * 構造化データの動的生成 処理
-     */
+  /*
+   * 構造化データの動的生成・更新 処理
+   */
+  const generateStructuredDataTag = (
+    fullTitle: string,
+    normalizedDescription: string,
+    canonicalUrl: string,
+    ogImageUrl: string,
+    normalizedBaseUrl: string,
+    currentUrl: URL,
+  ) => {
     const structuredData = {
       "@context": "https://schema.org",
       "@type": "WebPage",
@@ -101,6 +108,7 @@ const PageMeta: React.FC<TypePageMeta> = ({
         url: normalizedBaseUrl || currentUrl.origin,
       },
     };
+
     let structuredDataTag = document.head.querySelector('script[id="structured-data"]');
 
     if (!structuredDataTag) {
@@ -111,6 +119,46 @@ const PageMeta: React.FC<TypePageMeta> = ({
     }
 
     structuredDataTag.textContent = JSON.stringify(structuredData);
+  };
+
+  /*
+   * ページ遷移ごとに発火するメタ情報の更新用 useEffect()
+   */
+  useEffect(() => {
+    // 更新ごとに使用する各種タグ・構造化データ 定数
+    const normalizedBaseUrl = String(BASE_URL).endsWith("/")
+      ? String(BASE_URL).slice(0, -1)
+      : BASE_URL;
+    const normalizedTitle = title?.trim() ? title.trim() : DEFAULT_TITLE;
+    const normalizedDescription = description?.trim() ? description.trim() : DEFAULT_DESCRIPTION;
+    const normalizedOgImage = ogImage?.trim() ? ogImage.trim() : DEFAULT_OG_IMAGE;
+    const fullTitle =
+      normalizedTitle === DEFAULT_TITLE ? DEFAULT_TITLE : `${normalizedTitle} | ${SITE_NAME}`;
+    const currentUrl = new URL(globalThis.location.href);
+    const canonicalUrl = `${currentUrl.origin}${currentUrl.pathname}`;
+    const ogImageUrl = String(normalizedOgImage).startsWith("http")
+      ? normalizedOgImage
+      : `${normalizedBaseUrl}${normalizedOgImage}`;
+
+    // ドキュメントのタイトルと言語属性を更新
+    document.title = fullTitle;
+    document.documentElement.lang = LOCALE.split("_")[0] ?? "ja";
+
+    // メタタグの動的生成・更新
+    generateMetaTags(normalizedDescription, fullTitle, ogType, canonicalUrl, ogImageUrl, noindex);
+
+    // カノニカルタグの動的生成・更新
+    generateCanonicalTag(canonicalUrl);
+
+    // 構造化データの動的生成・更新
+    generateStructuredDataTag(
+      fullTitle,
+      normalizedDescription,
+      canonicalUrl,
+      ogImageUrl,
+      normalizedBaseUrl,
+      currentUrl,
+    );
   }, [description, noindex, ogImage, ogType, title]);
 
   return null;
