@@ -113,11 +113,11 @@ module.exports = {
         /* -------------------------------------------------------
           認知的複雑度（sonarjs / total-functions / ESLintコア）
         ---------------------------------------------------------- */
-        "sonarjs/cognitive-complexity": ["error", 15],
+        "sonarjs/cognitive-complexity": ["error", 10],
         "sonarjs/no-small-switch": ["error"], // 無意味に小さい switch の警告
         "total-functions/no-unsafe-type-assertion": "error", // 危険なasアサーションを禁止
-        complexity: ["error", { max: 15 }], // 関数内の分岐複雑度
-        "max-depth": ["error", 15], // ネストの深さ制限
+        complexity: ["error", { max: 10 }], // 関数内の分岐複雑度
+        "max-depth": ["error", 5], // ネストの深さ制限
         "no-else-return": ["error"], // 不要な else の排除
 
         /* -------------------------------------------------------

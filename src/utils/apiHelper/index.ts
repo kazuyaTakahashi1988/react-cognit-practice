@@ -12,6 +12,25 @@ import type { AxiosRequestConfig, AxiosResponse, Method } from "axios";
 // デフォルトのベースURL
 const DEFAULT_BASE_URL = import.meta.env.VITE_APP_PUBLIC_API_BASE_URL ?? "";
 
+// ヘッダー情報のセット
+const setHeaders = (
+  accessToken?: string,
+  headers?: Record<string, string>,
+): Record<string, string> => {
+  const bearerToken =
+    accessToken ??
+    (typeof sessionStorage !== "undefined"
+      ? (sessionStorage.getItem("access_token") ?? undefined)
+      : undefined);
+
+  return {
+    Accept: "application/json",
+    "Content-Type": "application/json",
+    ...(bearerToken != null ? { Authorization: `Bearer ${bearerToken}` } : {}),
+    ...headers,
+  };
+};
+
 /*
  * APIリクエスト 実行処理
  */
@@ -31,24 +50,13 @@ const execute = async <TResponse = unknown, TRequest = unknown>(
 
   if (isLoading) store.dispatch(loadingFlagUp());
 
-  const bearerToken =
-    accessToken ??
-    (typeof sessionStorage !== "undefined"
-      ? (sessionStorage.getItem("access_token") ?? undefined)
-      : undefined);
-
   // リクエスト内容
   const requestConfig: AxiosRequestConfig = {
     method,
     url: `${baseURL}${apiPath}`,
     data: requestData,
     params,
-    headers: {
-      Accept: "application/json",
-      "Content-Type": "application/json",
-      ...(bearerToken != null ? { Authorization: `Bearer ${bearerToken}` } : {}),
-      ...headers,
-    },
+    headers: setHeaders(accessToken, headers), // ヘッダー情報のセット
   };
 
   try {
