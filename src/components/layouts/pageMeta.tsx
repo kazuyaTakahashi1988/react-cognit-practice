@@ -122,16 +122,16 @@ const PageMeta: React.FC<TypePageMeta> = ({
   };
 
   /*
-   * ページ遷移ごとに発火するメタ情報の更新用 useEffect()
+   * ページ遷移ごとにメタ情報を更新する useEffect() 処理
    */
   useEffect(() => {
     // メタ情報
     const normalizedBaseUrl = String(BASE_URL).endsWith("/")
       ? String(BASE_URL).slice(0, -1)
       : BASE_URL;
-    const normalizedTitle = title?.trim() ? title.trim() : DEFAULT_TITLE;
-    const normalizedDescription = description?.trim() ? description.trim() : DEFAULT_DESCRIPTION;
-    const normalizedOgImage = ogImage?.trim() ? ogImage.trim() : DEFAULT_OG_IMAGE;
+    const normalizedTitle = title?.trim() ?? DEFAULT_TITLE;
+    const normalizedDescription = description?.trim() ?? DEFAULT_DESCRIPTION;
+    const normalizedOgImage = ogImage?.trim() ?? DEFAULT_OG_IMAGE;
     const fullTitle =
       normalizedTitle === DEFAULT_TITLE ? DEFAULT_TITLE : `${normalizedTitle} | ${SITE_NAME}`;
     const currentUrl = new URL(globalThis.location.href);
