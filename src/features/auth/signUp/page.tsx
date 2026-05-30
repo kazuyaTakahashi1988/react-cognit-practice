@@ -73,43 +73,41 @@ const SignUp: React.FC = () => {
   return (
     <Layout pageMeta={pageMeta} type="auth">
       <Styled>
-        <form>
-          <h1>SignUp</h1>
+        <h1>SignUp</h1>
 
-          {/* エラーメッセージ */}
-          <ErrorMessage className="mt-30" errorMessage={errorMessage} />
+        {/* エラーメッセージ */}
+        <ErrorMessage className="mt-30" errorMessage={errorMessage} />
 
-          {/* 成功メッセージ */}
-          {successMessage ? <p className="mt-30 success">{successMessage}</p> : null}
+        {/* 成功メッセージ */}
+        {successMessage ? <p className="mt-30 success">{successMessage}</p> : null}
 
-          {/* インプット項目 - E-mail */}
-          <Input
-            className="mt-30"
-            errorMessage={signUpForm.formState.errors.email?.message}
-            label={{ text: "emailを入力してください", required: true }}
-            placeholder="○○○○＠○○○○.com"
-            type="email"
-            {...signUpForm.register("email", { required: "必須項目だよ。" })}
-          />
+        {/* インプット項目 - E-mail */}
+        <Input
+          className="mt-30"
+          errorMessage={signUpForm.formState.errors.email?.message}
+          label={{ text: "emailを入力してください", required: true }}
+          placeholder="○○○○＠○○○○.com"
+          type="email"
+          {...signUpForm.register("email", { required: "必須項目だよ。" })}
+        />
 
-          {/* インプット項目 - Password */}
-          <Input
-            className="mt-30"
-            errorMessage={signUpForm.formState.errors.password?.message}
-            label={{ text: "passwordを入力してください", required: true }}
-            placeholder="○○○○○○○○"
-            type="password"
-            {...signUpForm.register("password", { required: "必須項目だよ。" })}
-          />
+        {/* インプット項目 - Password */}
+        <Input
+          className="mt-30"
+          errorMessage={signUpForm.formState.errors.password?.message}
+          label={{ text: "passwordを入力してください", required: true }}
+          placeholder="○○○○○○○○"
+          type="password"
+          {...signUpForm.register("password", { required: "必須項目だよ。" })}
+        />
 
-          {/* ボタン */}
-          <div className="mt-30 button-clm">
-            <Button className="secondary" onClick={() => onReset()}>
-              リセット
-            </Button>
-            <Button onClick={() => onSubmit()}>送信する</Button>
-          </div>
-        </form>
+        {/* ボタン */}
+        <div className="mt-30 button-clm">
+          <Button className="secondary" onClick={() => onReset()}>
+            リセット
+          </Button>
+          <Button onClick={() => onSubmit()}>送信する</Button>
+        </div>
       </Styled>
     </Layout>
   );
