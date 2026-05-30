@@ -1,12 +1,15 @@
+import { useState } from "react";
 import { useForm } from "react-hook-form";
 import styled from "styled-components";
 
 import Button from "../../../components/button/button";
+import ErrorMessage from "../../../components/form/errorMessage";
 import Input from "../../../components/form/input";
 import Layout from "../../../components/layouts/layout";
 import { signInHelper, useAuth } from "../../../utils/authHelper";
+import { loadingFlagDown, loadingFlagUp, store } from "../../../utils/storeHelper";
 
-import type { TypeSignInValues } from "../../../lib/types";
+import type { TypeSignInResult, TypeSignInValues } from "../../../lib/types";
 import type React from "react";
 
 /* -----------------------------------------------
@@ -24,6 +27,7 @@ export const pageMeta = {
 };
 
 const SignIn: React.FC = () => {
+  const [errorMessage, setErrorMessage] = useState("");
   const { refreshAuthState } = useAuth();
 
   /*
@@ -32,17 +36,45 @@ const SignIn: React.FC = () => {
   const signInForm = useForm<TypeSignInValues>({ defaultValues: { email: "", password: "" } });
 
   /*
+   * 「リセット」ボタン 処理
+   */
+  const onReset = () => {
+    signInForm.reset();
+    setErrorMessage("");
+  };
+
+  /*
    * 「送信する」ボタン 処理
    */
-  const onSubmit = signInForm.handleSubmit(async (data) => {
-    await signInHelper(data); // サインイン処理
-    refreshAuthState(); // 認証状態を更新する処理
+  const onSubmit = signInForm.handleSubmit((data) => {
+    store.dispatch(loadingFlagUp()); // ローディングフラグを上げる
+
+    /* Sign In 処理 */
+    signInHelper(data)
+      .then((res: TypeSignInResult) => {
+        if (res.isSignedIn) {
+          refreshAuthState(); // 認証状態を更新する処理
+        } else {
+          onReset();
+          setErrorMessage("Sign In にはまだ追加手順（Verify）が必要だよ！");
+        }
+      })
+      .catch((err: unknown) => {
+        const message = err instanceof Error ? err.message : "Sign In に失敗したよ...";
+        setErrorMessage(message);
+      })
+      .finally(() => {
+        store.dispatch(loadingFlagDown()); // ローディングフラグを下げる
+      });
   });
 
   return (
     <Layout pageMeta={pageMeta} type="auth">
       <Styled>
         <h1>SignIn</h1>
+
+        {/* エラーメッセージ */}
+        <ErrorMessage className="mt-30" errorMessage={errorMessage} />
 
         {/* インプット項目 - E-mail */}
         <Input
@@ -66,7 +98,7 @@ const SignIn: React.FC = () => {
 
         {/* ボタン */}
         <div className="mt-30 button-clm">
-          <Button className="secondary" onClick={() => signInForm.reset()}>
+          <Button className="secondary" onClick={() => onReset()}>
             リセット
           </Button>
           <Button onClick={() => onSubmit()}>送信する</Button>
@@ -77,7 +109,7 @@ const SignIn: React.FC = () => {
 };
 
 const Styled = styled.div`
-  .mt-30 {
+  > .mt-30 {
     margin-top: 30px;
     &.button-clm {
       display: flex;

@@ -13,7 +13,7 @@ export const pageMeta = {
   title: "500 Internal Server Error",
   description: "サーバー内部エラーが発生しました。",
   sharePath: "/error/500",
-  noindex: true, // SEO評価が無用なためnoindexを指定
+  noindex: true, // SEO評価が無用なため noindex を指定
   // ogImage: "/xxxx/xxxx.jpg",
   // ogType: "website" or "article",
 };
@@ -31,7 +31,7 @@ const Error500: React.FC = () => {
 
 const Styled = styled.div`
   text-align: center;
-  .mt-30 {
+  > .mt-30 {
     margin-top: 30px;
   }
 `;

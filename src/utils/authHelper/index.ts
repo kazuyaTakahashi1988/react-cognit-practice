@@ -3,9 +3,23 @@ import { confirmSignUp, signIn, signOut, signUp } from "aws-amplify/auth";
 import { useContext } from "react";
 
 import { AuthContext } from "../providerHelper/authProvider";
-import { loadingFlagDown, loadingFlagUp, store } from "../storeHelper";
 
-import type { TypeSignInValues, TypeSignUpValues, TypeVerifyValues } from "../../lib/types";
+import type {
+  TypeSignInResult,
+  TypeSignInValues,
+  TypeSignUpResult,
+  TypeSignUpValues,
+  TypeVerifyValues,
+} from "../../lib/types";
+
+const isObject = (value: unknown): value is Record<string, unknown> =>
+  typeof value === "object" && value !== null;
+
+const isSignInResponse = (value: unknown): value is TypeSignInResult =>
+  isObject(value) && ("isSignedIn" in value || "nextStep" in value || "userId" in value);
+
+const isSignUpResponse = (value: unknown): value is TypeSignUpResult =>
+  isObject(value) && ("isSignUpComplete" in value || "nextStep" in value || "userId" in value);
 
 /* -----------------------------------------------
  * Amplify および Cognito Auth 処理
@@ -38,81 +52,45 @@ export const useAuth = () => {
 /*
  * サインイン 処理
  */
-export const signInHelper = async (data: TypeSignInValues) => {
-  store.dispatch(loadingFlagUp());
+export const signInHelper = async (data: TypeSignInValues): Promise<TypeSignInResult> => {
+  const result: unknown = await signIn({ username: data.email, password: data.password });
 
-  try {
-    const result = await signIn({ username: data.email, password: data.password });
-    // console.log はちゃんと消すこと
-    // eslint-disable-next-line no-console
-    console.log("SignIn succeeded", result);
-    return true;
-  } catch (err) {
-    console.error(err);
-    return false;
-  } finally {
-    store.dispatch(loadingFlagDown());
+  if (!isSignInResponse(result)) {
+    throw new Error("Unexpected sign in response");
   }
+
+  return result;
 };
 
 /*
  * サインアップ 処理
  */
-export const signUpHelper = async (data: TypeSignUpValues) => {
-  store.dispatch(loadingFlagUp());
+export const signUpHelper = async (data: TypeSignUpValues): Promise<TypeSignUpResult> => {
+  const result: unknown = await signUp({
+    username: data.email,
+    password: data.password,
+    options: { userAttributes: { email: data.email } },
+  });
 
-  try {
-    const result = await signUp({
-      username: data.email,
-      password: data.password,
-      options: { userAttributes: { email: data.email } },
-    });
-    // console.log はちゃんと消すこと
-    // eslint-disable-next-line no-console
-    console.log("SignUp succeeded", result);
-  } catch (err) {
-    console.error(err);
-  } finally {
-    store.dispatch(loadingFlagDown());
+  if (!isSignUpResponse(result)) {
+    throw new Error("Unexpected sign up response");
   }
+
+  return result;
 };
 
 /*
  * ベリファイ 処理
  */
-export const verifyHelper = async (data: TypeVerifyValues) => {
-  store.dispatch(loadingFlagUp());
-
-  try {
-    await confirmSignUp({ username: data.email, confirmationCode: data.verificationCode });
-    // console.log はちゃんと消すこと
-    // eslint-disable-next-line no-console
-    console.log("verification succeeded");
-  } catch (err) {
-    console.error(err);
-  } finally {
-    store.dispatch(loadingFlagDown());
-  }
+export const verifyHelper = async (data: TypeVerifyValues): Promise<void> => {
+  await confirmSignUp({ username: data.email, confirmationCode: data.verificationCode });
 };
 
 /*
  * サインアウト 処理
  */
-export const signOutHelper = async () => {
-  store.dispatch(loadingFlagUp());
 
-  try {
-    await signOut();
-    localStorage.clear();
-    // console.log はちゃんと消すこと
-    // eslint-disable-next-line no-console
-    console.log("signed out");
-    return true;
-  } catch (err) {
-    console.error(err);
-    localStorage.clear();
-    return false;
-  } finally {
-    store.dispatch(loadingFlagDown());
-  }
+export const signOutHelper = async (): Promise<void> => {
+  await signOut();
+  localStorage.clear();
 };
