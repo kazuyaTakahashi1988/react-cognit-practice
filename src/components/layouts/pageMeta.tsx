@@ -125,7 +125,7 @@ const PageMeta: React.FC<TypePageMeta> = ({
    * ページ遷移ごとに発火するメタ情報の更新用 useEffect()
    */
   useEffect(() => {
-    // 更新ごとに使用する各種タグ・構造化データ 定数
+    // メタ情報
     const normalizedBaseUrl = String(BASE_URL).endsWith("/")
       ? String(BASE_URL).slice(0, -1)
       : BASE_URL;
