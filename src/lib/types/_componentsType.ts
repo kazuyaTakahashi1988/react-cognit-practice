@@ -15,10 +15,10 @@ export type TypePageMeta = {
 };
 
 // Header
-export type TypeHeader = { type: string };
+export type TypeHeader = { type?: string };
 
 // Layout
-export type TypeLayout = { type: string; pageMeta: TypePageMeta; children?: React.ReactNode };
+export type TypeLayout = { type?: string; pageMeta: TypePageMeta; children?: React.ReactNode };
 
 // Loading
 export type TypeLoading = { visible: boolean };

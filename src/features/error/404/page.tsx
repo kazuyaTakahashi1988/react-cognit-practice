@@ -20,7 +20,7 @@ export const pageMeta = {
 
 const Error404: React.FC = () => {
   return (
-    <Layout pageMeta={pageMeta} type="example">
+    <Layout pageMeta={pageMeta}>
       <Styled>
         <h1>404 Not Found</h1>
         <p className="mt-30">お探しのページは見つかりませんでした。</p>

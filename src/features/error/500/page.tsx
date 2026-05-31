@@ -20,7 +20,7 @@ export const pageMeta = {
 
 const Error500: React.FC = () => {
   return (
-    <Layout pageMeta={pageMeta} type="example">
+    <Layout pageMeta={pageMeta}>
       <Styled>
         <h1>500 Internal Server Error</h1>
         <p className="mt-30">サーバー内部エラーが発生しました。</p>
