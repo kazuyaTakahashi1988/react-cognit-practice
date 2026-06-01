@@ -7,9 +7,7 @@ import type React from "react";
  * メタ情報
  * ----------------------------------------------- */
 
-/*
- * デフォルトのメタ情報
- */
+// デフォルトのメタ情報
 const SITE_NAME = import.meta.env.VITE_APP_SITE_NAME ?? "";
 const BASE_URL = import.meta.env.VITE_APP_BASE_URL ?? "";
 const LOCALE = "ja_JP";
@@ -17,9 +15,6 @@ const DEFAULT_TITLE = import.meta.env.VITE_APP_DEFAULT_TITLE ?? "";
 const DEFAULT_DESCRIPTION = import.meta.env.VITE_APP_DEFAULT_DESCRIPTION ?? "";
 const DEFAULT_OG_IMAGE = import.meta.env.VITE_APP_DEFAULT_OG_IMAGE ?? "";
 
-/*
- * PageMeta コンポーネント
- */
 const PageMeta: React.FC<TypePageMeta> = ({
   title,
   description,
@@ -125,7 +120,7 @@ const PageMeta: React.FC<TypePageMeta> = ({
    * ページ遷移ごとにメタ情報を更新する useEffect() 処理
    */
   useEffect(() => {
-    // メタ情報
+    // 使用するメタ情報
     const normalizedBaseUrl = String(BASE_URL).endsWith("/")
       ? String(BASE_URL).slice(0, -1)
       : BASE_URL;
