@@ -2,7 +2,7 @@ import { Amplify } from "aws-amplify";
 import { confirmSignUp, signIn, signOut, signUp } from "aws-amplify/auth";
 import { useContext } from "react";
 
-import { AuthContext } from "../providerHelper/authProvider";
+import { AuthContext } from "./authProvider";
 
 import type {
   TypeSignInResult,

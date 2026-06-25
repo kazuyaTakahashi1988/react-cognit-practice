@@ -2,12 +2,12 @@ import React from "react";
 import { createRoot } from "react-dom/client";
 
 import App from "./App.tsx";
+import { AuthProvider } from "./utils/authHelper/authProvider";
 import { initGA } from "./utils/ga4Helper";
-import { AuthProvider } from "./utils/providerHelper/authProvider";
-import { StoreProvider } from "./utils/providerHelper/storeProvider";
+import { StoreProvider } from "./utils/storeHelper/storeProvider";
 
 /* -----------------------------------------------
- * アプリメインファイル（Providerなどを纒める箇所）
+ * メインファイル（AppRoot用の処理やProviderまとめ）
  * ----------------------------------------------- */
 
 initGA(); // GA4 初期化処理
