@@ -121,6 +121,7 @@ react-cognit-practice/
 │   ├── router           # ナビゲーション
 │   ├── utils            # 動的な処理
 │   ├── App.tsx          # アプリルートファイル
+│   └── main.tsx         # アプリメインファイル
 ├── stories          # ストーリーブック
 ├── ...
 ├── ...
