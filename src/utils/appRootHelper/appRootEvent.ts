@@ -1,4 +1,4 @@
-import { initGA } from "../ga4Helper";
+import { initGA } from "../gaHelper";
 
 /* -----------------------------------------------
  * AppRoot（App.tsx）用の処理まとめ

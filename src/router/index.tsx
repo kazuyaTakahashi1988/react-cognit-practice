@@ -12,7 +12,7 @@ import FormExample from "../features/example/formExample/page";
 import ModalExample from "../features/example/modalExample/page";
 import TodoExample from "../features/example/todoExample/page";
 import { useAuth } from "../utils/authHelper";
-import { usePVTracking } from "../utils/ga4Helper";
+import { usePVTracking } from "../utils/gaHelper";
 
 /* -----------------------------------------------
  * ルーティング設定
