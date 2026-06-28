@@ -1,6 +1,7 @@
 import { useEffect } from "react";
 import { BrowserRouter } from "react-router-dom";
 
+import GlobalLoading from "./components/loading/globalLoading";
 import { GlobalStyle } from "./lib/style";
 import { Router } from "./router";
 import { AppRootEvent } from "./utils/appRootHelper/appRootEvent";
@@ -19,6 +20,7 @@ const App = () => {
     <AppRootProvider>
       <BrowserRouter>
         <GlobalStyle />
+        <GlobalLoading />
         <Router />
       </BrowserRouter>
     </AppRootProvider>

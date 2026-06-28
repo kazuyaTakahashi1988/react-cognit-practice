@@ -1,12 +1,10 @@
-import { useSelector } from "react-redux";
 import styled from "styled-components";
 
 import { Footer } from "./footer";
 import { Header } from "./header";
-import { Loading } from "./loading";
 import PageMeta from "./pageMeta";
 
-import type { TypeLayout, TypeSelectorState } from "../../lib/types";
+import type { TypeLayout } from "../../lib/types";
 import type React from "react";
 
 /* -----------------------------------------------
@@ -16,16 +14,10 @@ import type React from "react";
 export const Layout: React.FC<TypeLayout> = (props) => {
   const { type, pageMeta, children } = props;
 
-  // ローディングフラグ
-  const loadingFlagCount = useSelector((state: TypeSelectorState) => state.loadingFlagCount);
-
   return (
     <Styled>
       {/* メタ情報 */}
       <PageMeta {...pageMeta} />
-
-      {/* 共通ローディング */}
-      <Loading visible={loadingFlagCount > 0} />
 
       {/* 共通ヘッダー */}
       <Header type={type} />

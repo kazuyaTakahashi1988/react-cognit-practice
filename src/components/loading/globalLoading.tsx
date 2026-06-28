@@ -1,16 +1,21 @@
+import { useSelector } from "react-redux";
 import styled from "styled-components";
 
 import { color } from "../../lib/style";
 
-import type { TypeLoading } from "../../lib/types";
+import type { TypeSelectorState } from "../../lib/types";
 import type React from "react";
 
 /* -----------------------------------------------
- * 共通ローディング
+ * グローバルローディング
  * ----------------------------------------------- */
 
-export const Loading: React.FC<TypeLoading> = (props) => {
-  const { visible } = props;
+export const GlobalLoading: React.FC = () => {
+  /*
+   * ローディングフラグ
+   */
+  const loadingFlagCount = useSelector((state: TypeSelectorState) => state.loadingFlagCount);
+  const visible = loadingFlagCount > 0;
 
   if (!visible) {
     return null;
@@ -70,4 +75,4 @@ const Styled = styled.div`
   }
 `;
 
-export default Loading;
+export default GlobalLoading;
