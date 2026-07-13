@@ -6,11 +6,7 @@ import type { TypeState } from "../../lib/types";
  * Store管理（Redux）処理
  * ----------------------------------------------- */
 
-const initialState: TypeState = {
-  loadingFlagCount: 0,
-  // xxxxString: "",
-  // xxxxFlag: false,
-};
+const initialState: TypeState = { loadingFlagCount: 0, exampleString: "", exampleFlag: false };
 
 const appSlice = createSlice({
   name: "app",
@@ -22,20 +18,16 @@ const appSlice = createSlice({
     loadingFlagDown: (state: TypeState) => {
       state.loadingFlagCount = Math.max(0, state.loadingFlagCount - 1);
     },
-    // xxxxStringSet: (state: TypeState, action: { payload: string }) => {
-    //   state.xxxxString = action.payload;
-    // },
-    // xxxxFlagSet: (state: TypeStat,  action: { payload: boolean }) => {
-    //   state.xxxxFlag = action.payload;
-    // },
+    exampleStringSet: (state: TypeState, action: { payload: string }) => {
+      state.exampleString = action.payload;
+    },
+    exampleFlagSet: (state: TypeState, action: { payload: boolean }) => {
+      state.exampleFlag = action.payload;
+    },
   },
 });
 
-export const {
-  loadingFlagUp,
-  loadingFlagDown,
-  // xxxxStringSet,
-  // xxxxFlagSet,
-} = appSlice.actions;
+export const { loadingFlagUp, loadingFlagDown, exampleStringSet, exampleFlagSet } =
+  appSlice.actions;
 
 export const store = configureStore({ reducer: appSlice.reducer });

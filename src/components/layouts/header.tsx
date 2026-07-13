@@ -55,6 +55,11 @@ export const Header: React.FC<TypeHeader> = (props) => {
                   DropdownMenu
                 </NavLink>
               </li>
+              <li>
+                <NavLink end to="/example/store_example">
+                  Store
+                </NavLink>
+              </li>
             </>
           )}
 
@@ -123,6 +128,10 @@ export const Header: React.FC<TypeHeader> = (props) => {
                   {
                     text: "DropdownMenu",
                     onClick: () => navigate("/example/dropdownmenu_example", { replace: true }),
+                  },
+                  {
+                    text: "Store",
+                    onClick: () => navigate("/example/store_example", { replace: true }),
                   },
                 ]}
               >

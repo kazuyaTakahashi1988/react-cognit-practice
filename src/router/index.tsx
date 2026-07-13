@@ -10,6 +10,7 @@ import AccordionExample from "../features/example/accordionExample/page";
 import DropdownMenuExample from "../features/example/dropdownMenuExample/page";
 import FormExample from "../features/example/formExample/page";
 import ModalExample from "../features/example/modalExample/page";
+import StoreExample from "../features/example/storeExample/page";
 import TodoExample from "../features/example/todoExample/page";
 import { useAuth } from "../utils/authHelper";
 import { usePVTracking } from "../utils/gaHelper";
@@ -33,6 +34,7 @@ export function Router() {
       <Route element={<ModalExample />} path="/example/modal_example" />
       <Route element={<AccordionExample />} path="/example/accordion_example" />
       <Route element={<DropdownMenuExample />} path="/example/dropdownmenu_example" />
+      <Route element={<StoreExample />} path="/example/store_example" />
 
       {/* ----------------------------------------
        * auth 各ルート設定
