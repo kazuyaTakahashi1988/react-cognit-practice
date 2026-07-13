@@ -85,18 +85,6 @@ const StoreExample: React.FC = () => {
 const Styled = styled.div`
   .mt-30 {
     margin-top: 30px;
-    &.button-clm {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: center;
-      align-items: center;
-      > * {
-        margin-right: 20px;
-        &:last-child {
-          margin-right: 0;
-        }
-      }
-    }
   }
   .clm {
     padding: 40px;
