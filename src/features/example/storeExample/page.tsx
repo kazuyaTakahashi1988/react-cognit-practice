@@ -39,7 +39,7 @@ const StoreExample: React.FC = () => {
         {/* --------------------------------------
          * ストア - exampleString のテスト
          * --------------------------------------- */}
-        <div className="mt-30 pad">
+        <div className="mt-30 clm">
           <h4>ストア - exampleString の更新</h4>
 
           {/* インプット項目 */}
@@ -60,7 +60,7 @@ const StoreExample: React.FC = () => {
         {/* --------------------------------------
          * ストア - exampleFlag のテスト
          * --------------------------------------- */}
-        <div className="mt-30 pad">
+        <div className="mt-30 clm">
           <h4>ストア - exampleFlag の更新</h4>
 
           {/* スイッチボタン項目 */}
@@ -98,7 +98,7 @@ const Styled = styled.div`
       }
     }
   }
-  .pad {
+  .clm {
     padding: 40px;
     border-radius: 12px;
     border: 1px solid ${color.gray200};
