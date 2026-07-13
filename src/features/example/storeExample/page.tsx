@@ -33,7 +33,11 @@ const StoreExample: React.FC = () => {
     <Layout pageMeta={pageMeta} type="example">
       <Styled>
         <h1>
-          <span>StoreExample</span>
+          <span>
+            StoreExample
+            <br />
+            <small>：redux-toolkit</small>
+          </span>
         </h1>
 
         {/* --------------------------------------
