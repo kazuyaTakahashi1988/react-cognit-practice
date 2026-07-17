@@ -29,19 +29,14 @@ const TodoExample: React.FC = () => {
    */
   const todoForm = useForm<TypeTodoExampleValues>({
     mode: "onSubmit",
-    defaultValues: { todoItems: [{ check: false, task: "" }] },
+    defaultValues: { taskList: [{ isCompleted: false, task: "" }] },
   });
 
-  /*
-   * TODO項目 使用設定
-   */
-  const { fields, append, remove } = useFieldArray({
-    name: "todoItems",
-    control: todoForm.control,
-  });
+  // TODO項目 使用設定
+  const { fields, append, remove } = useFieldArray({ name: "taskList", control: todoForm.control });
 
   // 「追加」ボタン 処理
-  const onAppend = () => append({ check: false, task: "" });
+  const onAppend = () => append({ isCompleted: false, task: "" });
 
   // 「削除」ボタン 処理
   const onRemove = (e: React.MouseEvent<HTMLElement, MouseEvent>) => {
@@ -68,11 +63,11 @@ const TodoExample: React.FC = () => {
         {/* TODO項目 */}
         <TodoItems
           className="mt-30"
-          errors={todoForm.formState.errors.todoItems}
+          errors={todoForm.formState.errors.taskList}
           fields={fields}
-          itemsName={{ checkBoxName: "check", inputName: "task" }}
-          name="todoItems"
-          onAppend={onAppend}
+          itemsName={{ checkBoxName: "isCompleted", inputName: "task" }}
+          name="taskList"
+          onAppend={() => onAppend()}
           onRemove={(e) => onRemove(e)}
           placeholder="タスクを入力してください。"
           register={todoForm.register}

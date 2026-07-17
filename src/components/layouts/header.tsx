@@ -200,7 +200,7 @@ const Styled = styled.header`
       display: flex;
       justify-content: space-between;
       width: 100%;
-      padding: 0 10px;
+      padding: 0 20px;
       > li {
         a {
           display: block;

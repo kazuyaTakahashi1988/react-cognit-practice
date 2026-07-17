@@ -22,11 +22,11 @@ export type TypeApiError = { message: string; status?: number; data?: unknown };
  * ----------------------------------------------- */
 // テストポストAPI（てきとーなやつ）
 export type TypeFormExampleValues = {
-  inputName: string;
-  checkBoxName: string[];
-  radioButtonName: string;
-  switchButtonName: string;
-  selectName: string;
-  selectCustomName: string;
-  textAreaName: string;
+  name: string;
+  genres: string[];
+  inquiry: string;
+  payment: string;
+  theme: string;
+  address: string;
+  description: string;
 };

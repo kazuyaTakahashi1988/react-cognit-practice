@@ -9,7 +9,7 @@ import type { TypeTodoItems } from "../../lib/types";
 import type React from "react";
 
 type Props = Omit<React.InputHTMLAttributes<HTMLInputElement>, "name"> &
-  TypeTodoItems & { name: "todoItems" };
+  TypeTodoItems & { name: string };
 
 /* -----------------------------------------------
  * TODO項目

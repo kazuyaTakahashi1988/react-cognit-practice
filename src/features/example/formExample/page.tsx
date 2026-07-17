@@ -42,13 +42,13 @@ const FormExample: React.FC = () => {
     reValidateMode: "onChange", // 'onChange' or 'onBlur' or 'onSubmit'
     criteriaMode: "all", // 'firstError' or 'all'
     defaultValues: {
-      inputName: "",
-      checkBoxName: [],
-      radioButtonName: "",
-      switchButtonName: "",
-      selectName: "",
-      selectCustomName: "",
-      textAreaName: "",
+      name: "",
+      genres: [],
+      inquiry: "",
+      payment: "",
+      theme: "",
+      address: "",
+      description: "",
     },
   });
 
@@ -76,31 +76,27 @@ const FormExample: React.FC = () => {
         {/* インプット項目 */}
         <Input
           className="mt-30"
-          errorMessage={form.formState.errors.inputName?.message}
-          label={{ text: "Inputラベルテキスト", required: true }}
-          placeholder="入力をお願いします。"
-          {...form.register("inputName", {
+          errorMessage={form.formState.errors.name?.message}
+          label={{ text: "お名前", required: true }}
+          placeholder="プレイスホルダー テキスト"
+          {...form.register("name", {
             required: { value: true, message: "必須項目だよ。" },
             minLength: { value: 2, message: "2文字以上にしてね" },
             maxLength: { value: 50, message: "最大50文字だよ" },
-            // pattern: {
-            //   value: /^[A-Za-z0-9]{1}[A-Za-z0-9_.-]*@{1}[A-Za-z0-9_.-]+.[A-Za-z0-9]+$/,
-            //   message: `英数文字のみにしてね`
-            // },
           })}
         />
 
         {/* チェックボックス項目 */}
         <CheckBox
           className="mt-30"
-          errorMessage={form.formState.errors.checkBoxName?.message}
-          label={{ text: "CheckBoxラベルテキスト", required: true }}
+          errorMessage={form.formState.errors.genres?.message}
+          label={{ text: "よく視聴するジャンル", required: true }}
           options={[
-            { value: "Check_Value_A", label: "Check_Label_A" },
-            { value: "Check_Value_B", label: "Check_Label_B" },
-            { value: "Check_Value_C", label: "Check_Label_C" },
+            { label: "アクション", value: "action" },
+            { label: "コメディ", value: "comedy" },
+            { label: "ドラマ", value: "drama" },
           ]}
-          {...form.register("checkBoxName", {
+          {...form.register("genres", {
             required: { value: true, message: "必須項目だよ。" },
             validate: (checkedValues: string[]) => {
               if (checkedValues.length < 2) return "２つ以上選択してください。";
@@ -111,79 +107,73 @@ const FormExample: React.FC = () => {
         {/* ラジオボタン項目 */}
         <RadioButton
           className="mt-30"
-          errorMessage={form.formState.errors.radioButtonName?.message}
-          label={{ text: "RadioButtonラベルテキスト", required: true }}
+          errorMessage={form.formState.errors.inquiry?.message}
+          label={{ text: "お問い合わせ方法", required: true }}
           options={[
-            { value: "Radio_Value_A", label: "Radio_Label_A" },
-            { value: "Radio_Value_B", label: "Radio_Label_B" },
-            { value: "Radio_Value_C", label: "Radio_Label_C" },
+            { label: "メール", value: "email" },
+            { label: "SMS", value: "sms" },
+            { label: "アプリ通知", value: "push" },
           ]}
-          {...form.register("radioButtonName", {
-            required: { value: true, message: "必須項目だよ。" },
-          })}
+          {...form.register("inquiry", { required: { value: true, message: "必須項目だよ。" } })}
         />
 
         {/* スイッチボタン項目 */}
         <SwitchButton
           className="mt-30"
-          errorMessage={form.formState.errors.switchButtonName?.message}
-          label={{ text: "SwitchButtonラベルテキスト", required: true }}
+          errorMessage={form.formState.errors.payment?.message}
+          label={{ text: "お支払い方法", required: true }}
           options={[
-            { value: "Switch_Value_A", label: "noActive_A", labelActived: "Actived_A" },
-            { value: "Switch_Value_B", label: "noActive_B", labelActived: "Actived_B" },
-            { value: "Switch_Value_C", label: "----------" },
+            { label: "クレジットカード", value: "card" },
+            { label: "銀行振込", value: "bank" },
+            { label: "電子マネー", value: "wallet" },
           ]}
-          {...form.register("switchButtonName", {
-            required: { value: true, message: "必須項目だよ。" },
-          })}
+          type="radio" // or "checkbox"
+          {...form.register("payment", { required: { value: true, message: "必須項目だよ。" } })}
         />
 
         {/* セレクトボックス項目 */}
         <Select
           className="mt-30"
-          errorMessage={form.formState.errors.selectName?.message}
-          label={{ text: "Selectラベルテキスト", required: true }}
+          errorMessage={form.formState.errors.theme?.message}
+          label={{ text: "テーマ色の選択", required: true }}
           options={[
-            { value: "Select_Value_A", label: "Select_Label_A" },
-            { value: "Select_Value_B", label: "Select_Label_B" },
-            { value: "Select_Value_C", label: "Select_Label_C" },
+            { label: "シアン", value: "cyan" },
+            { label: "マゼンタ", value: "magenta" },
+            { label: "イエロー", value: "yellow" },
           ]}
           placeholder="選択してください。"
-          {...form.register("selectName", { required: { value: true, message: "必須項目だよ。" } })}
+          {...form.register("theme", { required: { value: true, message: "必須項目だよ。" } })}
         />
 
         {/* セレクトカスタムボックス項目 */}
         <SelectCustom
           className="mt-30"
-          errorMessage={form.formState.errors.selectCustomName?.message}
-          label={{ text: "SelectCustomラベルテキスト", required: true }}
+          errorMessage={form.formState.errors.address?.message}
+          label={{ text: "都道府県", required: true }}
           options={[
-            { value: "Select_Value_A", label: "Select_Label_A" },
-            { value: "Select_Value_B", label: "Select_Label_B" },
-            { value: "Select_Value_C", label: "Select_Label_C" },
-            { value: "Select_Value_D", label: "Select_Label_D" },
-            { value: "Select_Value_E", label: "Select_Label_E" },
+            { label: "東京都", value: "tokyo" },
+            { label: "大阪府", value: "osaka" },
+            { label: "愛知県", value: "aichi" },
+            { label: "埼玉県", value: "saitama" },
+            { label: "千葉県", value: "chiba" },
+            { label: "栃木県", value: "tochigi" },
+            { label: "茨城県", value: "ibaraki" },
+            { label: "静岡県", value: "shizuoka" },
           ]}
           placeholder="選択してください。"
-          {...form.register("selectCustomName", {
-            required: { value: true, message: "必須項目だよ。" },
-          })}
+          {...form.register("address", { required: { value: true, message: "必須項目だよ。" } })}
         />
 
         {/* テキストエリア項目 */}
         <TextArea
           className="mt-30"
-          errorMessage={form.formState.errors.textAreaName?.message}
-          label={{ text: "TextAreaラベルテキスト", required: true }}
+          errorMessage={form.formState.errors.description?.message}
+          label={{ text: "ご相談の内容", required: true }}
           placeholder="入力をお願いします。"
-          {...form.register("textAreaName", {
+          {...form.register("description", {
             required: { value: true, message: "必須項目だよ。" },
             minLength: { value: 2, message: "2文字以上にしてね" },
             maxLength: { value: 50, message: "最大50文字だよ" },
-            // pattern: {
-            //   value: /^[A-Za-z0-9]{1}[A-Za-z0-9_.-]*@{1}[A-Za-z0-9_.-]+.[A-Za-z0-9]+$/,
-            //   message: `英数文字のみにしてね`
-            // },
           })}
         />
 
