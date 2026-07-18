@@ -2,16 +2,40 @@
 vscode にプラグイン [ vscode-styled-components ] [ styled-components-snippets ] を<br>
 それぞれインストールすると便利<br><br>
 ※ 他、vscode用推奨プラグイン一覧 → <a href="https://github.com/kazuyaTakahashi1988/react-cognit-practice/blob/main/.vscode/extensions.json" target="_blank">.vscode/extensions.json</a>
+
 <br>
 
-# ① node v24.x 下で yarn install & yarn dev
+# ① 初回セットアップ ( node v24.x )
 
+<sub># git clone でこのアプリのソースをダウンロードするコマンド</sub>
+
+```bash
+git clone https://github.com/kazuyaTakahashi1988/react-cognit-practice.git
 ```
-$ node -v
-v24.x
 
-$ yarn install
-$ yarn dev
+<sub># このアプリのソースがある階層に移動するコマンド</sub>
+
+```bash
+cd react-cognit-practice
+```
+
+<sub># node バージョンを確認するコマンド</sub>
+
+```bash
+node -v
+# v24.x であることを確認する
+```
+
+<sub># node モジュールをDLするコマンド</sub>
+
+```bash
+yarn install
+```
+
+<sub># アプリを起動するコマンド</sub>
+
+```bash
+yarn dev
 ```
 
 ↓↓↓↓<br>
@@ -21,9 +45,16 @@ Open <a href="http://localhost:3000" target="_blank">http://localhost:3000</a> i
 
 # ② storybook を利用する場合
 
+<sub># node モジュールをDLするコマンド</sub>
+
+```bash
+yarn install # 上述 ① の手順を終えてるなら必要なし
 ```
-$ yarn install // ←上述①の手順を終えてるなら必要なし
-$ yarn storybook
+
+<sub># storybook を起動するコマンド</sub>
+
+```bash
+yarn storybook
 ```
 
 ↓↓↓↓<br>
@@ -31,57 +62,51 @@ $ yarn storybook
 Open <a href="http://localhost:6006" target="_blank">http://localhost:6006</a> in your browser<br>
 <br>
 
-# ③ cdk コマンドで aws cognitoを環境構築する場合
+# ③ CDK で aws cognito を環境構築する場合
 
-以下のローカル環境設定を事前に準備する<br>
+以下ローカル環境設定を事前に準備する<br>
 ・aws CLI のインストール<br>
 ・IAMクレデンシャルの設定<br>
 ・node ver 20.x<br>
 
+<sub># cdk ディレクトリに移動するコマンド</sub>
+
+```bash
+cd cdk
 ```
-$ cd cdk // ← cdk ディレクトリに移動する
 
-$ npm i
-$ npx cdk synth
-$ npx cdk bootstrap // ← 必要なら
-$ npx cdk deploy
+<sub># node バージョンを確認するコマンド</sub>
 
+```bash
+node -v
+# v20.x であることを確認する
+```
+
+<sub># CDK用の node モジュールをDLするコマンド</sub>
+
+```bash
+npm i
+```
+
+<sub># CDK で aws cognito を環境構築するコマンド</sub>
+
+```bash
+npx cdk synth
+npx cdk bootstrap # ← 必要なら
+npx cdk deploy
 ```
 
 ↓↓↓↓
 
-.env.development ファイルを編集する（cognito環境変数を設定する）
+<sub># ルートに戻り .env.development ファイルを編集する（cognito環境変数を設定する）</sub>
 
-※ exsample
-
-```
+```bash
 VITE_APP_AWS_COGNITO_REGION='ap-northeast-1'
-VITE_APP_AWS_COGNITO_IDENTITY_POOL_ID='xxxxxxxxx'
-VITE_APP_AWS_COGNITO_USER_POOL_ID='ap-northeast-1_xxxxxxxxx'
-VITE_APP_AWS_COGNITO_CLIENT_ID='xxxxxxxxx'
+VITE_APP_AWS_COGNITO_IDENTITY_POOL_ID='xxxxxxxxx' # ここは設定の必要なし
+VITE_APP_AWS_COGNITO_USER_POOL_ID='ap-northeast-1_xxxxxxxxx' # ユーザープールIDを設定する
+VITE_APP_AWS_COGNITO_CLIENT_ID='xxxxxxxxx' # クライアントIDを設定する
 ```
 
-↓↓↓↓
-
-```
-VITE_APP_AWS_COGNITO_REGION='ap-northeast-1'
-VITE_APP_AWS_COGNITO_IDENTITY_POOL_ID='************'
-VITE_APP_AWS_COGNITO_USER_POOL_ID='ap-northeast-1_rKjlyQsbS'
-VITE_APP_AWS_COGNITO_CLIENT_ID='40oec5o56lukbe6ch1s9al1qh'
-```
-
-↓↓↓↓
-
-ルートに戻ってyarn install & yarn dev (node ver 24.x)
-
-```
-$ yarn install // ←上述①の手順を終えてるなら必要なし
-$ yarn dev
-```
-
-↓↓↓↓<br>
-
-Open <a href="http://localhost:3000" target="_blank">http://localhost:3000</a> in your browser<br>
 <br>
 
 ## Analysis with SonarQube
