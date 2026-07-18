@@ -64,7 +64,7 @@ Open <a href="http://localhost:6006" target="_blank">http://localhost:6006</a> i
 
 # ③ CDK で aws cognito を環境構築する場合
 
-以下ローカル環境設定を事前に準備する<br>
+以下、要必須<br>
 ・aws CLI のインストール<br>
 ・IAMクレデンシャルの設定<br>
 ・node ver 20.x<br>
