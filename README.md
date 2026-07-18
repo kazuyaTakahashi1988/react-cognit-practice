@@ -22,8 +22,8 @@ cd react-cognit-practice
 <sub># node バージョンを確認するコマンド</sub>
 
 ```bash
-node -v
 # v24.x であることを確認する
+node -v
 ```
 
 <sub># node モジュールをDLするコマンド</sub>
@@ -48,7 +48,8 @@ Open <a href="http://localhost:3000" target="_blank">http://localhost:3000</a> i
 <sub># node モジュールをDLするコマンド</sub>
 
 ```bash
-yarn install # 上述 ① の手順を終えてるなら必要なし
+# 上述 ① の手順を終えてるなら必要なし
+yarn install
 ```
 
 <sub># storybook を起動するコマンド</sub>
@@ -78,8 +79,8 @@ cd cdk
 <sub># node バージョンを確認するコマンド</sub>
 
 ```bash
-node -v
 # v20.x であることを確認する
+node -v
 ```
 
 <sub># CDK用の node モジュールをDLするコマンド</sub>
@@ -92,7 +93,7 @@ npm i
 
 ```bash
 npx cdk synth
-npx cdk bootstrap # ← 必要なら
+npx cdk bootstrap
 npx cdk deploy
 ```
 
