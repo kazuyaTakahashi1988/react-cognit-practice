@@ -4,7 +4,7 @@
   "version": "0.0.0",
   "type": "module",
   "scripts": {
-    "dev": "vite",
+    "dev": "vite --mode local-dev",
     "build": "tsc && vite build",
     "build:scripts": "yarn build && node scripts/build/sitemap.mjs && node scripts/build/prerender.mjs",
     "preview": "vite preview",

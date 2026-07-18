@@ -32,6 +32,12 @@ node -v
 yarn install
 ```
 
+<sub># 環境変数ファイル（dev用）をコピーするコマンド</sub>
+
+```bash
+cp .env.development .env
+```
+
 <sub># アプリを起動するコマンド</sub>
 
 ```bash
