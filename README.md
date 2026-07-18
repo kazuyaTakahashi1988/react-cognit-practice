@@ -105,7 +105,7 @@ npx cdk deploy
 
 ↓↓↓↓
 
-<sub># ルートに戻り .env.development ファイルを編集する（cognito環境変数を設定する）</sub>
+<sub># ルートに戻り .env ファイルを編集する（cognito環境変数を設定する）</sub>
 
 ```bash
 VITE_APP_AWS_COGNITO_REGION='ap-northeast-1'
