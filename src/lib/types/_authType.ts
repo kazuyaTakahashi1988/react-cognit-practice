@@ -2,7 +2,10 @@
     ▽ 型定義 (Auth編) ▽
 ---------------------------------------------------------- */
 // AuthProvider
-export type TypeAuthContext = { isSignedIn: boolean; refreshAuthState: () => void };
+export type TypeAuthContext = {
+  isSignedIn: boolean;
+  refreshAuthState: () => void;
+};
 
 // SignIn
 export type TypeSignInValues = { email: string; password: string };
@@ -17,7 +20,11 @@ export type TypeSignUpResult = {
   isSignUpComplete?: boolean;
   nextStep?: {
     signUpStep?: string;
-    codeDeliveryDetails?: { attributeName?: string; deliveryMedium?: string; destination?: string };
+    codeDeliveryDetails?: {
+      attributeName?: string;
+      deliveryMedium?: string;
+      destination?: string;
+    };
   };
 };
 

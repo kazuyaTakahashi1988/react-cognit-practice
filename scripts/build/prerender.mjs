@@ -35,7 +35,8 @@ const upsertMeta = (html, key, value, content) => {
 
 const upsertCanonical = (html, href) => {
   const escapedHref = href.replaceAll('"', "&quot;");
-  const linkPattern = /<link\s+rel=["']canonical["']\s+href=["'][^"']*["']\s*\/?>/i;
+  const linkPattern =
+    /<link\s+rel=["']canonical["']\s+href=["'][^"']*["']\s*\/?>/i;
   const newLink = `<link rel="canonical" href="${escapedHref}" />`;
 
   if (linkPattern.test(html)) {
@@ -63,7 +64,10 @@ const withMeta = (template, route, pageMeta) => {
     ? pageMeta.title
     : `${pageMeta.title} | ${SITE_NAME}`;
 
-  let nextHtml = template.replace(/<title>.*<\/title>/i, `<title>${pageTitle}</title>`);
+  let nextHtml = template.replace(
+    /<title>.*<\/title>/i,
+    `<title>${pageTitle}</title>`,
+  );
 
   const ogImageUrl = pageMeta.ogImage
     ? pageMeta.ogImage.startsWith("http")
@@ -73,15 +77,35 @@ const withMeta = (template, route, pageMeta) => {
 
   nextHtml = upsertMeta(nextHtml, "name", "description", pageMeta.description);
   nextHtml = upsertMeta(nextHtml, "property", "og:title", pageTitle);
-  nextHtml = upsertMeta(nextHtml, "property", "og:description", pageMeta.description);
-  nextHtml = upsertMeta(nextHtml, "property", "og:type", pageMeta.ogType ?? "website");
+  nextHtml = upsertMeta(
+    nextHtml,
+    "property",
+    "og:description",
+    pageMeta.description,
+  );
+  nextHtml = upsertMeta(
+    nextHtml,
+    "property",
+    "og:type",
+    pageMeta.ogType ?? "website",
+  );
   nextHtml = upsertMeta(nextHtml, "property", "og:url", canonicalUrl);
   nextHtml = upsertMeta(nextHtml, "property", "og:site_name", SITE_NAME);
   nextHtml = upsertMeta(nextHtml, "property", "og:locale", LOCALE);
   nextHtml = upsertMeta(nextHtml, "property", "og:image", ogImageUrl);
-  nextHtml = upsertMeta(nextHtml, "name", "twitter:card", "summary_large_image");
+  nextHtml = upsertMeta(
+    nextHtml,
+    "name",
+    "twitter:card",
+    "summary_large_image",
+  );
   nextHtml = upsertMeta(nextHtml, "name", "twitter:title", pageTitle);
-  nextHtml = upsertMeta(nextHtml, "name", "twitter:description", pageMeta.description);
+  nextHtml = upsertMeta(
+    nextHtml,
+    "name",
+    "twitter:description",
+    pageMeta.description,
+  );
   nextHtml = upsertMeta(nextHtml, "name", "twitter:image", ogImageUrl);
   nextHtml = upsertMeta(
     nextHtml,

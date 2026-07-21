@@ -54,9 +54,21 @@ const ColorAssetList = () => {
               }}
             ></div>
 
-            <div style={{ padding: "5px 10px", borderTop: "1px solid #e5e7eb" }}>
-              <div style={{ fontSize: "16px", fontWeight: "bold", color: "#2196f3" }}>{name}</div>
-              <div style={{ fontSize: "13px", fontWeight: 400 }}>{colorParam}</div>
+            <div
+              style={{ padding: "5px 10px", borderTop: "1px solid #e5e7eb" }}
+            >
+              <div
+                style={{
+                  fontSize: "16px",
+                  fontWeight: "bold",
+                  color: "#2196f3",
+                }}
+              >
+                {name}
+              </div>
+              <div style={{ fontSize: "13px", fontWeight: 400 }}>
+                {colorParam}
+              </div>
             </div>
           </div>
         );

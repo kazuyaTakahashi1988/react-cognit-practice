@@ -33,6 +33,9 @@ export const usePVTracking = () => {
     }
 
     // PVをGA4に送信
-    ReactGA.send({ hitType: "pageview", page: location.pathname + location.search });
+    ReactGA.send({
+      hitType: "pageview",
+      page: location.pathname + location.search,
+    });
   }, [location]);
 };

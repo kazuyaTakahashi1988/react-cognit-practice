@@ -16,10 +16,12 @@ const isObject = (value: unknown): value is Record<string, unknown> =>
   typeof value === "object" && value !== null;
 
 const isSignInResponse = (value: unknown): value is TypeSignInResult =>
-  isObject(value) && ("isSignedIn" in value || "nextStep" in value || "userId" in value);
+  isObject(value) &&
+  ("isSignedIn" in value || "nextStep" in value || "userId" in value);
 
 const isSignUpResponse = (value: unknown): value is TypeSignUpResult =>
-  isObject(value) && ("isSignUpComplete" in value || "nextStep" in value || "userId" in value);
+  isObject(value) &&
+  ("isSignUpComplete" in value || "nextStep" in value || "userId" in value);
 
 /* -----------------------------------------------
  * Amplify および Cognito Auth 処理
@@ -33,7 +35,8 @@ Amplify.configure({
     Cognito: {
       userPoolId: import.meta.env.VITE_APP_AWS_COGNITO_USER_POOL_ID ?? "",
       userPoolClientId: import.meta.env.VITE_APP_AWS_COGNITO_CLIENT_ID ?? "",
-      identityPoolId: import.meta.env.VITE_APP_AWS_COGNITO_IDENTITY_POOL_ID ?? "",
+      identityPoolId:
+        import.meta.env.VITE_APP_AWS_COGNITO_IDENTITY_POOL_ID ?? "",
     },
   },
 });
@@ -52,8 +55,13 @@ export const useAuth = () => {
 /*
  * サインイン 処理
  */
-export const signInHelper = async (data: TypeSignInValues): Promise<TypeSignInResult> => {
-  const result: unknown = await signIn({ username: data.email, password: data.password });
+export const signInHelper = async (
+  data: TypeSignInValues,
+): Promise<TypeSignInResult> => {
+  const result: unknown = await signIn({
+    username: data.email,
+    password: data.password,
+  });
 
   if (!isSignInResponse(result)) {
     throw new Error("Unexpected sign in response");
@@ -65,7 +73,9 @@ export const signInHelper = async (data: TypeSignInValues): Promise<TypeSignInRe
 /*
  * サインアップ 処理
  */
-export const signUpHelper = async (data: TypeSignUpValues): Promise<TypeSignUpResult> => {
+export const signUpHelper = async (
+  data: TypeSignUpValues,
+): Promise<TypeSignUpResult> => {
   const result: unknown = await signUp({
     username: data.email,
     password: data.password,
@@ -83,7 +93,10 @@ export const signUpHelper = async (data: TypeSignUpValues): Promise<TypeSignUpRe
  * ベリファイ 処理
  */
 export const verifyHelper = async (data: TypeVerifyValues): Promise<void> => {
-  await confirmSignUp({ username: data.email, confirmationCode: data.verificationCode });
+  await confirmSignUp({
+    username: data.email,
+    confirmationCode: data.verificationCode,
+  });
 };
 
 /*

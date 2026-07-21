@@ -8,6 +8,8 @@ import type React from "react";
  * Store管理（Redux）プロバイダー
  * ----------------------------------------------- */
 
-export const StoreProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
+export const StoreProvider: React.FC<{ children: React.ReactNode }> = ({
+  children,
+}) => {
   return <Provider store={store}>{children}</Provider>;
 };

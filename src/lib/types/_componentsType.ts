@@ -18,7 +18,11 @@ export type TypePageMeta = {
 export type TypeHeader = { type?: string };
 
 // Layout
-export type TypeLayout = { type?: string; pageMeta: TypePageMeta; children?: React.ReactNode };
+export type TypeLayout = {
+  type?: string;
+  pageMeta: TypePageMeta;
+  children?: React.ReactNode;
+};
 
 // Label
 export type TypeLabel = { label?: { text?: string; required?: boolean } };
@@ -27,7 +31,10 @@ export type TypeLabel = { label?: { text?: string; required?: boolean } };
 export type TypeErrorMessage = { errorMessage?: string };
 
 // Input
-export type TypeInput = { label?: { text: string; required?: boolean }; errorMessage?: string };
+export type TypeInput = {
+  label?: { text: string; required?: boolean };
+  errorMessage?: string;
+};
 
 // TodoItems
 export type TypeTodoItems = {
@@ -35,7 +42,9 @@ export type TypeTodoItems = {
   onAppend?: (event: React.MouseEvent<HTMLElement, MouseEvent>) => void;
   onRemove?: (event: React.MouseEvent<HTMLElement, MouseEvent>) => void;
   fields: Array<object & { id: string }>;
-  register: UseFormRegister<{ [x: string]: { [x: string]: boolean | string }[] }>;
+  register: UseFormRegister<{
+    [x: string]: { [x: string]: boolean | string }[];
+  }>;
   errors?: object;
 };
 
@@ -56,7 +65,12 @@ export type TypeRadioButton = {
 // SwitchButton
 export type TypeSwitchButton = {
   label?: { text: string; required?: boolean };
-  options: Array<{ value: string; label: string; labelActived?: string; disabled?: boolean }>;
+  options: Array<{
+    value: string;
+    label: string;
+    labelActived?: string;
+    disabled?: boolean;
+  }>;
   errorMessage?: string;
 };
 
@@ -76,7 +90,10 @@ export type TypeSelectCustom = {
 };
 
 // TextArea
-export type TypeTextArea = { label?: { text: string; required?: boolean }; errorMessage?: string };
+export type TypeTextArea = {
+  label?: { text: string; required?: boolean };
+  errorMessage?: string;
+};
 
 // Button
 export type TypeButton = { children?: React.ReactNode };
@@ -85,13 +102,23 @@ export type TypeButton = { children?: React.ReactNode };
 export type TypeModal = {
   title: string;
   visible: boolean;
-  onEvent?: { text: string; onClick: (event: React.MouseEvent<HTMLElement, MouseEvent>) => void };
-  onClose: { text?: string; onClick: (event: React.MouseEvent<HTMLElement, MouseEvent>) => void };
+  onEvent?: {
+    text: string;
+    onClick: (event: React.MouseEvent<HTMLElement, MouseEvent>) => void;
+  };
+  onClose: {
+    text?: string;
+    onClick: (event: React.MouseEvent<HTMLElement, MouseEvent>) => void;
+  };
   children?: React.ReactNode;
 };
 
 // Accordion
-export type TypeAccordion = { title: string; children?: React.ReactNode; visible?: boolean };
+export type TypeAccordion = {
+  title: string;
+  children?: React.ReactNode;
+  visible?: boolean;
+};
 
 // DropdownMenu
 export type TypeDropdownMenu = {

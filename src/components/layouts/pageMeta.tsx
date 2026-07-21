@@ -34,7 +34,11 @@ const PageMeta: React.FC<TypePageMeta> = ({
     noindex: boolean,
   ) => {
     // メタタグの生成・更新 処理
-    const upsertMeta = (key: "name" | "property", value: string, content: string) => {
+    const upsertMeta = (
+      key: "name" | "property",
+      value: string,
+      content: string,
+    ) => {
       let tag = document.head.querySelector(`meta[${key}="${value}"]`);
 
       if (!tag) {
@@ -59,8 +63,16 @@ const PageMeta: React.FC<TypePageMeta> = ({
     upsertMeta("name", "twitter:title", fullTitle);
     upsertMeta("name", "twitter:description", normalizedDescription);
     upsertMeta("name", "twitter:image", ogImageUrl);
-    upsertMeta("name", "robots", noindex ? "noindex, nofollow" : "index, follow");
-    upsertMeta("name", "googlebot", noindex ? "noindex, nofollow" : "index, follow");
+    upsertMeta(
+      "name",
+      "robots",
+      noindex ? "noindex, nofollow" : "index, follow",
+    );
+    upsertMeta(
+      "name",
+      "googlebot",
+      noindex ? "noindex, nofollow" : "index, follow",
+    );
   };
 
   /*
@@ -104,7 +116,9 @@ const PageMeta: React.FC<TypePageMeta> = ({
       },
     };
 
-    let structuredDataTag = document.head.querySelector('script[id="structured-data"]');
+    let structuredDataTag = document.head.querySelector(
+      'script[id="structured-data"]',
+    );
 
     if (!structuredDataTag) {
       structuredDataTag = document.createElement("script");
@@ -128,7 +142,9 @@ const PageMeta: React.FC<TypePageMeta> = ({
     const normalizedDescription = description?.trim() ?? DEFAULT_DESCRIPTION;
     const normalizedOgImage = ogImage?.trim() ?? DEFAULT_OG_IMAGE;
     const fullTitle =
-      normalizedTitle === DEFAULT_TITLE ? DEFAULT_TITLE : `${normalizedTitle} | ${SITE_NAME}`;
+      normalizedTitle === DEFAULT_TITLE
+        ? DEFAULT_TITLE
+        : `${normalizedTitle} | ${SITE_NAME}`;
     const currentUrl = new URL(globalThis.location.href);
     const canonicalUrl = `${currentUrl.origin}${currentUrl.pathname}`;
     const ogImageUrl = String(normalizedOgImage).startsWith("http")
@@ -140,7 +156,14 @@ const PageMeta: React.FC<TypePageMeta> = ({
     document.documentElement.lang = LOCALE.split("_")[0] ?? "ja";
 
     // メタタグの動的生成・更新
-    generateMetaTags(normalizedDescription, fullTitle, ogType, canonicalUrl, ogImageUrl, noindex);
+    generateMetaTags(
+      normalizedDescription,
+      fullTitle,
+      ogType,
+      canonicalUrl,
+      ogImageUrl,
+      noindex,
+    );
 
     // カノニカルタグの動的生成・更新
     generateCanonicalTag(canonicalUrl);

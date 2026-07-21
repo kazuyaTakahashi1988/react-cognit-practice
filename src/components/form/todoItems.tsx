@@ -15,11 +15,12 @@ type Props = Omit<React.InputHTMLAttributes<HTMLInputElement>, "name"> &
  * TODO項目
  * ----------------------------------------------- */
 
-export const TodoItemsField: React.ForwardRefRenderFunction<HTMLInputElement, Props> = (
-  props,
-  ref,
-) => {
-  const { itemsName, onAppend, onRemove, fields, register, errors, ...rest } = props;
+export const TodoItemsField: React.ForwardRefRenderFunction<
+  HTMLInputElement,
+  Props
+> = (props, ref) => {
+  const { itemsName, onAppend, onRemove, fields, register, errors, ...rest } =
+    props;
 
   const name = rest.name;
   const { checkBoxName, inputName } = itemsName;

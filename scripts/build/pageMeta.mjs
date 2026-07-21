@@ -18,7 +18,11 @@ const findPageMetaNode = (sourceFile) => {
     if (!hasExport) continue;
 
     for (const declaration of statement.declarationList.declarations) {
-      if (!ts.isIdentifier(declaration.name) || declaration.name.text !== "pageMeta") continue;
+      if (
+        !ts.isIdentifier(declaration.name) ||
+        declaration.name.text !== "pageMeta"
+      )
+        continue;
       if (!declaration.initializer) continue;
       return declaration.initializer;
     }
@@ -62,7 +66,9 @@ const extractPageConfig = async (pagePath) => {
     throw new Error(`pageMeta export not found in ${pagePath}`);
   }
 
-  const pageMetaSource = sourceFile.text.slice(pageMetaNode.pos, pageMetaNode.end).trim();
+  const pageMetaSource = sourceFile.text
+    .slice(pageMetaNode.pos, pageMetaNode.end)
+    .trim();
   const pageMeta = new Function(`"use strict"; return (${pageMetaSource});`)();
 
   if (!pageMeta) {
@@ -77,7 +83,9 @@ const extractPageConfig = async (pagePath) => {
 };
 
 export const collectPageConfigs = async () => {
-  const pageModules = await findPageModules(path.resolve(process.cwd(), "src/features"));
+  const pageModules = await findPageModules(
+    path.resolve(process.cwd(), "src/features"),
+  );
 
   // 静的ページの pageMeta 情報を抽出・一覧化
   const staticPageConfigs = await Promise.all(

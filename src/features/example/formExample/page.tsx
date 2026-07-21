@@ -24,7 +24,8 @@ import type React from "react";
 // メタ情報
 export const pageMeta = {
   title: "Form Example",
-  description: "react-hook-form を使った入力フォームコンポーネントのサンプルページです。",
+  description:
+    "react-hook-form を使った入力フォームコンポーネントのサンプルページです。",
   sharePath: "/example/form_example",
   // ogImage: "/xxxx/xxxx.jpg",
   // ogType: "website" or "article",
@@ -114,7 +115,9 @@ const FormExample: React.FC = () => {
             { label: "SMS", value: "sms" },
             { label: "アプリ通知", value: "push" },
           ]}
-          {...form.register("inquiry", { required: { value: true, message: "必須項目だよ。" } })}
+          {...form.register("inquiry", {
+            required: { value: true, message: "必須項目だよ。" },
+          })}
         />
 
         {/* スイッチボタン項目 */}
@@ -128,7 +131,9 @@ const FormExample: React.FC = () => {
             { label: "電子マネー", value: "wallet" },
           ]}
           type="radio" // or "checkbox"
-          {...form.register("payment", { required: { value: true, message: "必須項目だよ。" } })}
+          {...form.register("payment", {
+            required: { value: true, message: "必須項目だよ。" },
+          })}
         />
 
         {/* セレクトボックス項目 */}
@@ -142,7 +147,9 @@ const FormExample: React.FC = () => {
             { label: "イエロー", value: "yellow" },
           ]}
           placeholder="選択してください。"
-          {...form.register("theme", { required: { value: true, message: "必須項目だよ。" } })}
+          {...form.register("theme", {
+            required: { value: true, message: "必須項目だよ。" },
+          })}
         />
 
         {/* セレクトカスタムボックス項目 */}
@@ -161,7 +168,9 @@ const FormExample: React.FC = () => {
             { label: "静岡県", value: "shizuoka" },
           ]}
           placeholder="選択してください。"
-          {...form.register("address", { required: { value: true, message: "必須項目だよ。" } })}
+          {...form.register("address", {
+            required: { value: true, message: "必須項目だよ。" },
+          })}
         />
 
         {/* テキストエリア項目 */}

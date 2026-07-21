@@ -7,7 +7,11 @@ import ErrorMessage from "../../../components/form/errorMessage";
 import Input from "../../../components/form/input";
 import Layout from "../../../components/layouts/layout";
 import { signInHelper, useAuth } from "../../../utils/authHelper";
-import { loadingFlagDown, loadingFlagUp, store } from "../../../utils/storeHelper";
+import {
+  loadingFlagDown,
+  loadingFlagUp,
+  store,
+} from "../../../utils/storeHelper";
 
 import type { TypeSignInResult, TypeSignInValues } from "../../../lib/types";
 import type React from "react";
@@ -33,7 +37,9 @@ const SignIn: React.FC = () => {
   /*
    * RHForm 使用設定
    */
-  const signInForm = useForm<TypeSignInValues>({ defaultValues: { email: "", password: "" } });
+  const signInForm = useForm<TypeSignInValues>({
+    defaultValues: { email: "", password: "" },
+  });
 
   /*
    * 「リセット」ボタン 処理
@@ -60,7 +66,8 @@ const SignIn: React.FC = () => {
         }
       })
       .catch((err: unknown) => {
-        const message = err instanceof Error ? err.message : "Sign In に失敗したよ...";
+        const message =
+          err instanceof Error ? err.message : "Sign In に失敗したよ...";
         setErrorMessage(message);
       })
       .finally(() => {

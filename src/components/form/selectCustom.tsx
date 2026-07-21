@@ -17,17 +17,20 @@ const DISABLED_CLASS = "is-disabled";
  * セレクトカスタムボックス項目
  * ----------------------------------------------- */
 
-export const SelectCustomField: React.ForwardRefRenderFunction<HTMLInputElement, Props> = (
-  props,
-  ref,
-) => {
+export const SelectCustomField: React.ForwardRefRenderFunction<
+  HTMLInputElement,
+  Props
+> = (props, ref) => {
   const { label, options, errorMessage, ...rest } = props;
   const isDisabled = rest.disabled || false;
 
   const [isOpen, setIsOpen] = useState(false);
   const selectRef = useRef<HTMLDivElement>(null);
   const handleOutsideClick = (e: Event) => {
-    if (e.target instanceof HTMLElement && !selectRef?.current?.contains(e.target)) {
+    if (
+      e.target instanceof HTMLElement &&
+      !selectRef?.current?.contains(e.target)
+    ) {
       setIsOpen(false);
     }
   };
@@ -67,7 +70,11 @@ export const SelectCustomField: React.ForwardRefRenderFunction<HTMLInputElement,
             `${isDisabled ? DISABLED_CLASS : ""}`,
           ].join(" ")}
         >
-          <button className="placeholder" onClick={() => onOpenToggle(null)} type="button">
+          <button
+            className="placeholder"
+            onClick={() => onOpenToggle(null)}
+            type="button"
+          >
             {rest.placeholder ? rest.placeholder : ""}
           </button>
           {options.map((option, index) => (
@@ -87,9 +94,10 @@ export const SelectCustomField: React.ForwardRefRenderFunction<HTMLInputElement,
                 value={option.value}
               />
               <button
-                className={["selected__label", `${option.disabled ? DISABLED_CLASS : ""}`].join(
-                  " ",
-                )}
+                className={[
+                  "selected__label",
+                  `${option.disabled ? DISABLED_CLASS : ""}`,
+                ].join(" ")}
                 disabled={option.disabled || isDisabled}
                 onClick={() => {
                   if (option.disabled || isDisabled) return;

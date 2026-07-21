@@ -13,7 +13,8 @@ import type React from "react";
 // メタ情報
 export const pageMeta = {
   title: "Accordion Example",
-  description: "アコーディオンコンポーネントの利用例を確認できるサンプルページです。",
+  description:
+    "アコーディオンコンポーネントの利用例を確認できるサンプルページです。",
   sharePath: "/example/accordion_example",
   // ogImage: "/xxxx/xxxx.jpg",
   // ogType: "website" or "article",

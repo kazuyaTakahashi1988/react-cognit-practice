@@ -16,8 +16,16 @@ export const Default: Story = {
   args: {
     label: { text: "Default：SwitchButtonラベルテキスト" },
     options: [
-      { value: "Switch_Value_A", label: "noActive_A", labelActived: "Actived_A" },
-      { value: "Switch_Value_B", label: "noActive_B", labelActived: "Actived_B" },
+      {
+        value: "Switch_Value_A",
+        label: "noActive_A",
+        labelActived: "Actived_A",
+      },
+      {
+        value: "Switch_Value_B",
+        label: "noActive_B",
+        labelActived: "Actived_B",
+      },
       { value: "Switch_Value_C", label: "----------" },
     ],
   },
@@ -27,8 +35,16 @@ export const Required: Story = {
   args: {
     label: { text: "Required：SwitchButtonラベルテキスト", required: true },
     options: [
-      { value: "Switch_Value_A", label: "noActive_A", labelActived: "Actived_A" },
-      { value: "Switch_Value_B", label: "noActive_B", labelActived: "Actived_B" },
+      {
+        value: "Switch_Value_A",
+        label: "noActive_A",
+        labelActived: "Actived_A",
+      },
+      {
+        value: "Switch_Value_B",
+        label: "noActive_B",
+        labelActived: "Actived_B",
+      },
       { value: "Switch_Value_C", label: "-----------" },
     ],
   },
@@ -39,8 +55,16 @@ export const Disabled: Story = {
     label: { text: "Disabled：SwitchButtonラベルテキスト" },
     disabled: true,
     options: [
-      { value: "Switch_Value_A", label: "noActive_A", labelActived: "Actived_A" },
-      { value: "Switch_Value_B", label: "noActive_B", labelActived: "Actived_B" },
+      {
+        value: "Switch_Value_A",
+        label: "noActive_A",
+        labelActived: "Actived_A",
+      },
+      {
+        value: "Switch_Value_B",
+        label: "noActive_B",
+        labelActived: "Actived_B",
+      },
       { value: "Switch_Value_C", label: "------------" },
     ],
   },
@@ -50,8 +74,16 @@ export const ErrorText: Story = {
   args: {
     label: { text: "Error：SwitchButtonラベルテキスト", required: true },
     options: [
-      { value: "Switch_Value_A", label: "noActive_A", labelActived: "Actived_A" },
-      { value: "Switch_Value_B", label: "noActive_B", labelActived: "Actived_B" },
+      {
+        value: "Switch_Value_A",
+        label: "noActive_A",
+        labelActived: "Actived_A",
+      },
+      {
+        value: "Switch_Value_B",
+        label: "noActive_B",
+        labelActived: "Actived_B",
+      },
       { value: "Switch_Value_C", label: "------------" },
     ],
     errorMessage: "必須項目だよ。",

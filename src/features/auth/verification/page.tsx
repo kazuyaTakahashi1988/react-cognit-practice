@@ -8,7 +8,11 @@ import Input from "../../../components/form/input";
 import Layout from "../../../components/layouts/layout";
 import { color } from "../../../lib/style";
 import { verifyHelper } from "../../../utils/authHelper";
-import { loadingFlagDown, loadingFlagUp, store } from "../../../utils/storeHelper";
+import {
+  loadingFlagDown,
+  loadingFlagUp,
+  store,
+} from "../../../utils/storeHelper";
 
 import type { TypeVerifyValues } from "../../../lib/types";
 import type React from "react";
@@ -60,7 +64,8 @@ const Verification: React.FC = () => {
         setSuccessMessage("Verify 完了、Sign In できるよ！");
       })
       .catch((err: unknown) => {
-        const message = err instanceof Error ? err.message : "Verify に失敗したよ...";
+        const message =
+          err instanceof Error ? err.message : "Verify に失敗したよ...";
         setErrorMessage(message);
       })
       .finally(() => {
@@ -77,7 +82,9 @@ const Verification: React.FC = () => {
         <ErrorMessage className="mt-30" errorMessage={errorMessage} />
 
         {/* 成功メッセージ */}
-        {successMessage ? <p className="mt-30 success">{successMessage}</p> : null}
+        {successMessage ? (
+          <p className="mt-30 success">{successMessage}</p>
+        ) : null}
 
         {/* インプット項目 - password（verificationCode） */}
         <Input
@@ -86,7 +93,9 @@ const Verification: React.FC = () => {
           label={{ text: "verificationCodeを入力してください", required: true }}
           placeholder="○○○○○○○○"
           type="password"
-          {...verifyForm.register("verificationCode", { required: "必須項目だよ。" })}
+          {...verifyForm.register("verificationCode", {
+            required: "必須項目だよ。",
+          })}
         />
 
         {/* インプット項目 - E-mail */}

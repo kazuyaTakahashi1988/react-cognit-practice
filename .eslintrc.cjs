@@ -63,7 +63,10 @@ module.exports = {
         /* 型が"any"や"unknown"の値に対して、プロパティアクセスやメソッド呼び出しを行うと警告 */
         "@typescript-eslint/no-unsafe-member-access": "warn",
         /* 型(type)だけをimportする場合は "import type ~~~" を使うことを強制 */
-        "@typescript-eslint/consistent-type-imports": ["error", { prefer: "type-imports" }],
+        "@typescript-eslint/consistent-type-imports": [
+          "error",
+          { prefer: "type-imports" },
+        ],
 
         /* -------------------------------------------------------
           import並び順、自動補正
@@ -168,7 +171,8 @@ module.exports = {
             patterns: [
               {
                 group: ["**/features/**"],
-                message: "src/features 配下の実装は src/router 配下でのみ import 可能です。",
+                message:
+                  "src/features 配下の実装は src/router 配下でのみ import 可能です。",
               },
               {
                 group: ["**/_*", "!./_*"],

@@ -5,7 +5,11 @@ import Input from "../../../components/form/input";
 import SwitchButton from "../../../components/form/switchButton";
 import Layout from "../../../components/layouts/layout";
 import { color, media } from "../../../lib/style";
-import { exampleFlagSet, exampleStringSet, store } from "../../../utils/storeHelper";
+import {
+  exampleFlagSet,
+  exampleStringSet,
+  store,
+} from "../../../utils/storeHelper";
 
 import type { TypeSelectorState } from "../../../lib/types";
 import type React from "react";
@@ -26,8 +30,12 @@ export const pageMeta = {
 
 const StoreExample: React.FC = () => {
   // ストアの値を取得
-  const currentExampleString = useSelector((state: TypeSelectorState) => state.exampleString);
-  const currentExampleFlag = useSelector((state: TypeSelectorState) => state.exampleFlag);
+  const currentExampleString = useSelector(
+    (state: TypeSelectorState) => state.exampleString,
+  );
+  const currentExampleFlag = useSelector(
+    (state: TypeSelectorState) => state.exampleFlag,
+  );
 
   return (
     <Layout pageMeta={pageMeta} type="example">

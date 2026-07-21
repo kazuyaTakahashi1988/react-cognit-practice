@@ -111,27 +111,35 @@ export const Header: React.FC<TypeHeader> = (props) => {
                 menuList={[
                   {
                     text: "Form",
-                    onClick: () => navigate("/example/form_example", { replace: true }),
+                    onClick: () =>
+                      navigate("/example/form_example", { replace: true }),
                   },
                   {
                     text: "Todo",
-                    onClick: () => navigate("/example/todo_example", { replace: true }),
+                    onClick: () =>
+                      navigate("/example/todo_example", { replace: true }),
                   },
                   {
                     text: "Modal",
-                    onClick: () => navigate("/example/modal_example", { replace: true }),
+                    onClick: () =>
+                      navigate("/example/modal_example", { replace: true }),
                   },
                   {
                     text: "Accordion",
-                    onClick: () => navigate("/example/accordion_example", { replace: true }),
+                    onClick: () =>
+                      navigate("/example/accordion_example", { replace: true }),
                   },
                   {
                     text: "DropdownMenu",
-                    onClick: () => navigate("/example/dropdownmenu_example", { replace: true }),
+                    onClick: () =>
+                      navigate("/example/dropdownmenu_example", {
+                        replace: true,
+                      }),
                   },
                   {
                     text: "Store",
-                    onClick: () => navigate("/example/store_example", { replace: true }),
+                    onClick: () =>
+                      navigate("/example/store_example", { replace: true }),
                   },
                 ]}
               >
@@ -152,22 +160,26 @@ export const Header: React.FC<TypeHeader> = (props) => {
                         /* 未サインイン時 */
                         {
                           text: "SighIn",
-                          onClick: () => navigate("/auth/signin", { replace: true }),
+                          onClick: () =>
+                            navigate("/auth/signin", { replace: true }),
                         },
                         {
                           text: "SighUp",
-                          onClick: () => navigate("/auth/signup", { replace: true }),
+                          onClick: () =>
+                            navigate("/auth/signup", { replace: true }),
                         },
                         {
                           text: "Verification",
-                          onClick: () => navigate("/auth/verification", { replace: true }),
+                          onClick: () =>
+                            navigate("/auth/verification", { replace: true }),
                         },
                       ]
                     : [
                         /* サインイン時 */
                         {
                           text: "SignOut",
-                          onClick: () => navigate("/auth/signout", { replace: true }),
+                          onClick: () =>
+                            navigate("/auth/signout", { replace: true }),
                         },
                       ]
                 }
