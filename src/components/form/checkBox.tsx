@@ -14,10 +14,10 @@ type Props = React.InputHTMLAttributes<HTMLInputElement> & TypeCheckBox;
  * チェックボックス項目
  * ----------------------------------------------- */
 
-export const CheckBoxField: React.ForwardRefRenderFunction<HTMLInputElement, Props> = (
-  props,
-  ref,
-) => {
+export const CheckBoxField: React.ForwardRefRenderFunction<
+  HTMLInputElement,
+  Props
+> = (props, ref) => {
   const { label, options, errorMessage, ...rest } = props;
 
   return (

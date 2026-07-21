@@ -2,7 +2,11 @@ import axios from "axios";
 
 import { loadingFlagDown, loadingFlagUp, store } from "../storeHelper";
 
-import type { TypeApiError, TypeFormExampleValues, TypeOptions } from "../../lib/types";
+import type {
+  TypeApiError,
+  TypeFormExampleValues,
+  TypeOptions,
+} from "../../lib/types";
 import type { AxiosRequestConfig, AxiosResponse, Method } from "axios";
 
 /* -----------------------------------------------

@@ -14,10 +14,10 @@ type Props = React.SelectHTMLAttributes<HTMLSelectElement> & TypeSelect;
  * セレクトボックス項目
  * ----------------------------------------------- */
 
-export const SelectField: React.ForwardRefRenderFunction<HTMLSelectElement, Props> = (
-  props,
-  ref,
-) => {
+export const SelectField: React.ForwardRefRenderFunction<
+  HTMLSelectElement,
+  Props
+> = (props, ref) => {
   const { label, options, errorMessage, ...rest } = props;
 
   return (

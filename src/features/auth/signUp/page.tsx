@@ -8,7 +8,11 @@ import Input from "../../../components/form/input";
 import Layout from "../../../components/layouts/layout";
 import { color } from "../../../lib/style";
 import { signUpHelper } from "../../../utils/authHelper";
-import { loadingFlagDown, loadingFlagUp, store } from "../../../utils/storeHelper";
+import {
+  loadingFlagDown,
+  loadingFlagUp,
+  store,
+} from "../../../utils/storeHelper";
 
 import type { TypeSignUpResult, TypeSignUpValues } from "../../../lib/types";
 import type React from "react";
@@ -34,7 +38,9 @@ const SignUp: React.FC = () => {
   /*
    * RHForm 使用設定
    */
-  const signUpForm = useForm<TypeSignUpValues>({ defaultValues: { email: "", password: "" } });
+  const signUpForm = useForm<TypeSignUpValues>({
+    defaultValues: { email: "", password: "" },
+  });
 
   /*
    * 「リセット」ボタン 処理
@@ -62,7 +68,8 @@ const SignUp: React.FC = () => {
         setSuccessMessage(message);
       })
       .catch((err: unknown) => {
-        const message = err instanceof Error ? err.message : "Sign Up に失敗したよ...";
+        const message =
+          err instanceof Error ? err.message : "Sign Up に失敗したよ...";
         setErrorMessage(message);
       })
       .finally(() => {
@@ -79,7 +86,9 @@ const SignUp: React.FC = () => {
         <ErrorMessage className="mt-30" errorMessage={errorMessage} />
 
         {/* 成功メッセージ */}
-        {successMessage ? <p className="mt-30 success">{successMessage}</p> : null}
+        {successMessage ? (
+          <p className="mt-30 success">{successMessage}</p>
+        ) : null}
 
         {/* インプット項目 - E-mail */}
         <Input

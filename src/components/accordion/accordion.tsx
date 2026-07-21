@@ -12,10 +12,10 @@ type Props = React.HTMLAttributes<HTMLDivElement> & TypeAccordion;
  * アコーディオン
  * ----------------------------------------------- */
 
-export const AccordionField: React.ForwardRefRenderFunction<HTMLDivElement, Props> = (
-  props,
-  ref,
-) => {
+export const AccordionField: React.ForwardRefRenderFunction<
+  HTMLDivElement,
+  Props
+> = (props, ref) => {
   const { title, visible = false, children, ...rest } = props;
   const [isVisible, setIsVisible] = useState(visible);
   const contentId = useId();
@@ -26,7 +26,9 @@ export const AccordionField: React.ForwardRefRenderFunction<HTMLDivElement, Prop
 
   return (
     <Styled ref={ref} {...rest}>
-      <div className={["accordion", `${isVisible ? "is-visible" : ""}`].join(" ")}>
+      <div
+        className={["accordion", `${isVisible ? "is-visible" : ""}`].join(" ")}
+      >
         <button
           aria-controls={contentId}
           aria-expanded={isVisible}

@@ -20,7 +20,11 @@ export const Footer: React.FC = () => {
           <NavLink to="/auth">Auth</NavLink>
         </li>
         <li>
-          <a href="http://storybook.empty-service.com" rel="noreferrer" target="_blank">
+          <a
+            href="http://storybook.empty-service.com"
+            rel="noreferrer"
+            target="_blank"
+          >
             Storybook
           </a>
         </li>

@@ -5,7 +5,11 @@ import Button from "../../../components/button/button";
 import { ErrorMessage } from "../../../components/form/errorMessage";
 import Layout from "../../../components/layouts/layout";
 import { signOutHelper, useAuth } from "../../../utils/authHelper";
-import { loadingFlagDown, loadingFlagUp, store } from "../../../utils/storeHelper";
+import {
+  loadingFlagDown,
+  loadingFlagUp,
+  store,
+} from "../../../utils/storeHelper";
 
 import type React from "react";
 
@@ -40,7 +44,8 @@ const SignOut: React.FC = () => {
         refreshAuthState(); // Auth情報 取得・更新処理
       })
       .catch((err: unknown) => {
-        const message = err instanceof Error ? err.message : "Sign Out に失敗したよ...";
+        const message =
+          err instanceof Error ? err.message : "Sign Out に失敗したよ...";
         setErrorMessage(message);
       })
       .finally(() => {

@@ -6,7 +6,11 @@ import type { TypeState } from "../../lib/types";
  * Store管理（Redux）処理
  * ----------------------------------------------- */
 
-const initialState: TypeState = { loadingFlagCount: 0, exampleString: "", exampleFlag: false };
+const initialState: TypeState = {
+  loadingFlagCount: 0,
+  exampleString: "",
+  exampleFlag: false,
+};
 
 const appSlice = createSlice({
   name: "app",
@@ -27,7 +31,11 @@ const appSlice = createSlice({
   },
 });
 
-export const { loadingFlagUp, loadingFlagDown, exampleStringSet, exampleFlagSet } =
-  appSlice.actions;
+export const {
+  loadingFlagUp,
+  loadingFlagDown,
+  exampleStringSet,
+  exampleFlagSet,
+} = appSlice.actions;
 
 export const store = configureStore({ reducer: appSlice.reducer });

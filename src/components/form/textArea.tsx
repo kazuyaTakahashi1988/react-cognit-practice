@@ -14,10 +14,10 @@ type Props = React.TextareaHTMLAttributes<HTMLTextAreaElement> & TypeTextArea;
  * テキストエリア項目
  * ----------------------------------------------- */
 
-export const TextAreaField: React.ForwardRefRenderFunction<HTMLTextAreaElement, Props> = (
-  props,
-  ref,
-) => {
+export const TextAreaField: React.ForwardRefRenderFunction<
+  HTMLTextAreaElement,
+  Props
+> = (props, ref) => {
   const { label, errorMessage, ...rest } = props;
 
   return (

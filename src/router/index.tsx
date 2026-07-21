@@ -33,26 +33,41 @@ export function Router() {
       <Route element={<TodoExample />} path="/example/todo_example" />
       <Route element={<ModalExample />} path="/example/modal_example" />
       <Route element={<AccordionExample />} path="/example/accordion_example" />
-      <Route element={<DropdownMenuExample />} path="/example/dropdownmenu_example" />
+      <Route
+        element={<DropdownMenuExample />}
+        path="/example/dropdownmenu_example"
+      />
       <Route element={<StoreExample />} path="/example/store_example" />
 
       {/* ----------------------------------------
        * auth 各ルート設定
        * ----------------------------------------- */}
       <Route
-        element={!isSignedIn ? <SignIn /> : <Navigate replace to="/auth/signout" />}
+        element={
+          !isSignedIn ? <SignIn /> : <Navigate replace to="/auth/signout" />
+        }
         path="/auth/signin"
       />
       <Route
-        element={!isSignedIn ? <SignUp /> : <Navigate replace to="/auth/signout" />}
+        element={
+          !isSignedIn ? <SignUp /> : <Navigate replace to="/auth/signout" />
+        }
         path="/auth/signup"
       />
       <Route
-        element={!isSignedIn ? <Verification /> : <Navigate replace to="/auth/signout" />}
+        element={
+          !isSignedIn ? (
+            <Verification />
+          ) : (
+            <Navigate replace to="/auth/signout" />
+          )
+        }
         path="/auth/verification"
       />
       <Route
-        element={isSignedIn ? <SignOut /> : <Navigate replace to="/auth/signin" />}
+        element={
+          isSignedIn ? <SignOut /> : <Navigate replace to="/auth/signin" />
+        }
         path="/auth/signout"
       />
 
@@ -82,7 +97,12 @@ export function Router() {
       />
       <Route
         // auth ルート遷移時はサインイン状態に応じ SignOut/SignInページ へリダイレクト
-        element={<Navigate replace to={isSignedIn ? "/auth/signout" : "/auth/signin"} />}
+        element={
+          <Navigate
+            replace
+            to={isSignedIn ? "/auth/signout" : "/auth/signin"}
+          />
+        }
         path="/auth"
       />
     </Routes>

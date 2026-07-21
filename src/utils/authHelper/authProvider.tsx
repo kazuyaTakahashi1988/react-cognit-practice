@@ -19,7 +19,9 @@ const getCurrentSignInFlag = async () => {
   }
 };
 
-export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
+export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({
+  children,
+}) => {
   const [isSignedIn, setIsSignedIn] = useState<boolean>(false);
 
   const refreshAuthState = () => {

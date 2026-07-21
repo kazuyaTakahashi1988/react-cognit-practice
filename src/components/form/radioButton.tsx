@@ -14,10 +14,10 @@ type Props = React.InputHTMLAttributes<HTMLInputElement> & TypeRadioButton;
  * ラジオボタン項目
  * ----------------------------------------------- */
 
-export const RadioButtonField: React.ForwardRefRenderFunction<HTMLInputElement, Props> = (
-  props,
-  ref,
-) => {
+export const RadioButtonField: React.ForwardRefRenderFunction<
+  HTMLInputElement,
+  Props
+> = (props, ref) => {
   const { label, options, errorMessage, ...rest } = props;
 
   return (

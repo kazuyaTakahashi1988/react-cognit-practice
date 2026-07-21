@@ -33,7 +33,10 @@ const TodoExample: React.FC = () => {
   });
 
   // TODO項目 使用設定
-  const { fields, append, remove } = useFieldArray({ name: "taskList", control: todoForm.control });
+  const { fields, append, remove } = useFieldArray({
+    name: "taskList",
+    control: todoForm.control,
+  });
 
   // 「追加」ボタン 処理
   const onAppend = () => append({ isCompleted: false, task: "" });

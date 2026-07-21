@@ -23,7 +23,10 @@ export const pageMeta = {
 };
 
 const ModalExample: React.FC = () => {
-  const [isVisible, setIsVisible] = useState({ modal01: false, modal02: false });
+  const [isVisible, setIsVisible] = useState({
+    modal01: false,
+    modal02: false,
+  });
 
   /*
    * 「モーダルを開く」ボタン 処理
@@ -41,15 +44,25 @@ const ModalExample: React.FC = () => {
 
         {/* ボタン */}
         <div className="button-clm">
-          <Button onClick={() => toggleModal("modal01", true)}>モーダルを開く01</Button>
+          <Button onClick={() => toggleModal("modal01", true)}>
+            モーダルを開く01
+          </Button>
 
-          <Button onClick={() => toggleModal("modal02", true)}>モーダルを開く02</Button>
+          <Button onClick={() => toggleModal("modal02", true)}>
+            モーダルを開く02
+          </Button>
         </div>
 
         {/* モダール - 01 */}
         <Modal
-          onClose={{ text: "閉じる", onClick: () => toggleModal("modal01", false) }}
-          onEvent={{ text: "イベント01", onClick: () => alert("01 onEvent !!") }}
+          onClose={{
+            text: "閉じる",
+            onClick: () => toggleModal("modal01", false),
+          }}
+          onEvent={{
+            text: "イベント01",
+            onClick: () => alert("01 onEvent !!"),
+          }}
           title="タイトル01"
           visible={isVisible.modal01}
         >
@@ -58,8 +71,14 @@ const ModalExample: React.FC = () => {
 
         {/* モダール - 02 */}
         <Modal
-          onClose={{ text: "閉じる", onClick: () => toggleModal("modal02", false) }}
-          onEvent={{ text: "イベント02", onClick: () => alert("02 onEvent !!") }}
+          onClose={{
+            text: "閉じる",
+            onClick: () => toggleModal("modal02", false),
+          }}
+          onEvent={{
+            text: "イベント02",
+            onClick: () => alert("02 onEvent !!"),
+          }}
           title="タイトル02"
           visible={isVisible.modal02}
         >

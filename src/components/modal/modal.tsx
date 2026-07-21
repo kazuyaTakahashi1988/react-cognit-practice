@@ -13,11 +13,16 @@ type Props = React.HTMLAttributes<HTMLDivElement> & TypeModal;
  * モーダル
  * ----------------------------------------------- */
 
-export const ModalField: React.ForwardRefRenderFunction<HTMLDivElement, Props> = (props, ref) => {
+export const ModalField: React.ForwardRefRenderFunction<
+  HTMLDivElement,
+  Props
+> = (props, ref) => {
   const { children, title, visible = false, onEvent, onClose, ...rest } = props;
   if (!visible) return null;
 
-  const handleOverlayClick: React.MouseEventHandler<HTMLDivElement> = (event) => {
+  const handleOverlayClick: React.MouseEventHandler<HTMLDivElement> = (
+    event,
+  ) => {
     if (event.target === event.currentTarget) {
       onClose?.onClick?.(event);
     }
@@ -48,7 +53,9 @@ export const ModalField: React.ForwardRefRenderFunction<HTMLDivElement, Props> =
                 {onClose.text}
               </Button>
             )}
-            {onEvent && <Button onClick={onEvent.onClick}>{onEvent.text}</Button>}
+            {onEvent && (
+              <Button onClick={onEvent.onClick}>{onEvent.text}</Button>
+            )}
           </div>
         )}
       </div>

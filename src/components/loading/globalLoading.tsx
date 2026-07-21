@@ -14,7 +14,9 @@ export const GlobalLoading: React.FC = () => {
   /*
    * ローディングフラグ
    */
-  const loadingFlagCount = useSelector((state: TypeSelectorState) => state.loadingFlagCount);
+  const loadingFlagCount = useSelector(
+    (state: TypeSelectorState) => state.loadingFlagCount,
+  );
   const visible = loadingFlagCount > 0;
 
   if (!visible) {
@@ -50,7 +52,8 @@ const Styled = styled.div`
     border-radius: 50%;
     background: ${color.primary};
     z-index: 9999999;
-    --_m: conic-gradient(#0000 10%, #000), linear-gradient(#000 0 0) content-box;
+    --_m:
+      conic-gradient(#0000 10%, #000), linear-gradient(#000 0 0) content-box;
     -webkit-mask: var(--_m);
     mask: var(--_m);
     -webkit-mask-composite: source-out;

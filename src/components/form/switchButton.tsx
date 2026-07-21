@@ -14,10 +14,10 @@ type Props = React.InputHTMLAttributes<HTMLInputElement> & TypeSwitchButton;
  * スイッチボタン項目
  * ----------------------------------------------- */
 
-export const SwitchButtonField: React.ForwardRefRenderFunction<HTMLInputElement, Props> = (
-  props,
-  ref,
-) => {
+export const SwitchButtonField: React.ForwardRefRenderFunction<
+  HTMLInputElement,
+  Props
+> = (props, ref) => {
   const { label, options, errorMessage, ...rest } = props;
 
   return (

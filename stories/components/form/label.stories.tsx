@@ -12,6 +12,10 @@ const meta = {
 export default meta;
 type Story = StoryObj<typeof meta>;
 
-export const Default: Story = { args: { label: { text: "ラベルテキスト", required: false } } };
+export const Default: Story = {
+  args: { label: { text: "ラベルテキスト", required: false } },
+};
 
-export const Required: Story = { args: { label: { text: "ラベルテキスト", required: true } } };
+export const Required: Story = {
+  args: { label: { text: "ラベルテキスト", required: true } },
+};
