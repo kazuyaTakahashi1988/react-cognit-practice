@@ -21,7 +21,7 @@ export const Footer: React.FC = () => {
         </li>
         <li>
           <a
-            href="http://storybook.empty-service.com"
+            href="https://storybook.empty-service.com"
             rel="noreferrer"
             target="_blank"
           >
