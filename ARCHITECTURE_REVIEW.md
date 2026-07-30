@@ -1,921 +1,639 @@
-# Architecture Review by Codex - 2026/6/29
+# Architecture Review by Codex - 2026/7/30
 
-このコードベースは、**React + Vite + TypeScript + React Router + Redux Toolkit + AWS Amplify/Cognito + styled-components + Storybook** を組み合わせた、学習・検証・小〜中規模アプリの土台としてはかなり整理された構成です。
+## 結論
 
-特に、`src/components`・`src/features`・`src/lib`・`src/utils`・`src/router` に責務を分ける方針が README に明示されており、画面単位の実装を `features` に集約する意図も読み取れます。
+現時点の評価は次のとおりです。
 
-一方で、現状のまま **大規模プロジェクトに拡張するには、いくつかの設計上の限界が早めに出そう** です。主な理由は、ルーティング・API・状態管理・型定義・認証・ページ実装が、まだ「アプリ全体で一枚岩に近い共有層」に寄っているためです。
+| 規模   | 実用性 | 評価                                                       |
+| ------ | ------ | ---------------------------------------------------------- |
+| 小規模 | 高い   | そのまま実用可能                                           |
+| 中規模 | 中〜高 | チームルール・テスト・データ取得設計を補えば実用可能       |
+| 大規模 | 低〜中 | 現状の延長では厳しく、ドメイン境界と依存方向の再設計が必要 |
 
-私の評価を一言でまとめると：
+一言でまとめると、**学習用サンプルの域はある程度超えており、小規模な業務 SPA の土台として十分使えます。中規模でも改善を前提に実用可能ですが、大規模開発では「共通層への集中」「テスト不足」「状態管理と通信層の密結合」がボトルネックになります。**
 
-> **小規模には十分実用的。中規模はルールを追加すれば実用可能。大規模は現状のままだと厳しく、ドメイン分割・API層分割・ルート分割・状態管理方針の再設計が必要。**
+以前のレビュー後に、ルート定義のデータ化・遅延ロード・Guard 分離・API クライアントと API モジュールの分離・Redux slice 分割が導入されています。そのため、現在の構成は以前より明確に中規模寄りへ改善されています。
 
 ---
 
-## 現在のアーキテクチャ概要
+## 1. 現在のアーキテクチャ
 
-### 技術スタック
+主要な技術構成は以下です。
 
-`package.json` から見ると、フロントエンド本体は以下の構成です。
-
-- React 19
-- Vite
-- TypeScript
+- React 19 / TypeScript / Vite
 - React Router
 - Redux Toolkit / React Redux
 - AWS Amplify / Cognito
 - Axios
-- react-hook-form
+- React Hook Form
 - styled-components
 - Storybook
+- AWS CDK
 - ESLint / Prettier / Husky
+- 静的プリレンダリング / サイトマップ生成
 
-また、`build`・`lint`・`checker`・Storybook 関連の npm scripts も整備されています。
+ソースコードは概ね次の責務に分けられています。
+
+```text
+src/
+├── components/   # 再利用 UI・レイアウト
+├── features/     # 画面・ユースケース単位
+├── lib/          # 型・スタイルなど静的な共通要素
+├── router/       # ルート定義・Guard
+├── utils/        # API、認証、Redux、GA など
+├── App.tsx
+└── main.tsx
+```
+
+README にも `page.tsx`、`component.tsx`、`hooks.ts`、`type.ts`、API モジュール、Guard、Redux slice の配置ルールが明文化されています。
 
 ---
 
-## 良い点
+## 2. アーキテクチャ的に良い点
 
-### 1. ディレクトリ構成が直感的で、学習・開発の入口として分かりやすい
+### 2.1 `features` を中心に画面をコロケーションしている
 
-README では、`components`・`features`・`lib`・`router`・`utils` の責務が明示されています。これは小規模〜中規模プロジェクトにおいて、メンバーが迷いにくい構成です。
+画面固有の実装を、例えば次のようにまとめています。
 
-特に良いのは、画面単位の実装を `features` 配下に置く方針です。たとえば以下のように、認証系・example 系・error 系が分かれています。
-
-- `src/features/auth/signIn`
-- `src/features/auth/signUp`
-- `src/features/example/formExample`
-- `src/features/error/404`
-
-この形は、画面数が少ないうちは非常に扱いやすいです。
-
-### 2. アプリルートの責務分離ができている
-
-`App.tsx` は、以下のようにアプリ全体の Provider、Router、GlobalStyle、GlobalLoading を組み立てる役割に集中しています。
-
-```tsx
-<AppRootProvider>
-  <BrowserRouter>
-    <GlobalStyle />
-    <GlobalLoading />
-    <Router />
-  </BrowserRouter>
-</AppRootProvider>
+```text
+features/auth/signIn/
+├── page.tsx
+├── component.tsx
+├── type.ts
+└── util.ts
 ```
 
-この構成は良いです。
+この方式は、ページ数が増えたときに関連ファイルを追いやすく、認証画面の型や処理が共通フォルダへ無秩序に散らばる問題を抑えられます。共有 UI は `components`、画面固有の実装は `features` という境界も理解しやすいです。
 
-理由は、アプリ全体に必要な横断的関心事が、トップレベルにまとまっているためです。
+- 小規模: 非常に適切
+- 中規模: 十分適切
+- 大規模: `domains/auth`、`application/auth` など、さらに明確なドメイン境界が必要になる可能性がある
 
-- Provider 集約
-- ルーティング
-- グローバルスタイル
-- グローバルローディング
-- GA 初期化
+### 2.2 App ルートがシンプルで見通しがよい
 
-また、`AppRootProvider` が `StoreProvider` と `AuthProvider` をまとめている点も、アプリルートを見通しやすくしています。
+`App.tsx` は、アプリ全体の Provider、BrowserRouter、GlobalStyle、GlobalLoading、Router、GA 初期化に集中しています。横断的関心事がアプリルートに集約され、ページ固有のロジックが混ざっていません。
 
-### 3. 認証状態を Context として切り出している
+さらに `AppRootProvider` が Redux と認証の Provider をまとめているため、Provider が増えても `App.tsx` が深いネストで埋まりにくい構成です。
 
-`AuthProvider` は Cognito の現在ユーザー取得処理を使い、`isSignedIn` と `refreshAuthState` を Context として提供しています。
+今後 Provider 間の依存が増える場合は、Provider の順序が必要な理由をコメントまたはテストで明示すると安全です。
 
-これは良い設計です。
+### 2.3 ルートが設定データとして分離されている
 
-ページコンポーネントが Cognito の詳細を直接知りすぎず、`useAuth()` 経由で認証状態を扱えるためです。 `useAuth` も Provider 外で呼ばれた場合に明示的なエラーを投げるようになっています。
+URL、アクセス種別、ページコンポーネントが `routeConfig` にまとまっています。全ページが `lazy()` で読み込まれ、Router 側は設定を map して Guard 適用を共通化しています。
 
-### 4. Amplify/Cognito のラッパー関数が用意されている
+利点は次のとおりです。
 
-`signInHelper`・`signUpHelper`・`verifyHelper`・`signOutHelper` が用意され、Cognito の処理が `utils/authHelper` にまとまっています。
+- ページ単位でコード分割される
+- ルート追加の作業場所が明確になる
+- 認証要否を `access` で宣言できる
+- Route JSX の重複を抑えられる
+- 将来 title、breadcrumb、role などのメタデータを追加しやすい
 
-これは、画面側から直接 `aws-amplify/auth` を呼び出すよりも良いです。
+現在のページ数だけでなく、20〜30 ページ程度まで十分扱いやすい構成です。
 
-例えば、将来 Cognito 以外に変更する場合でも、呼び出し側の影響範囲をある程度抑えられます。
+### 2.4 認証 Guard が分離されている
 
-### 5. グローバルローディングを API 処理と連動させている
+`AuthGuard` と `GuestGuard` が分かれており、未認証ユーザーと認証済みユーザーの遷移制御が個々のページへ埋め込まれていません。認証状態の確認中も共通表示されます。
 
-API ヘルパーでは、リクエスト前に `loadingFlagUp()`、finally で `loadingFlagDown()` を dispatch しています。
+現在の `public / guest / auth` の三分類は現状の要件には十分です。ただし、管理画面や複数権限が必要になると role や permission を表せるモデルへ拡張する必要があります。
 
-また、Redux 側では `loadingFlagCount` をカウント方式で管理しており、複数リクエストが並行しても 0 未満にならないようにしています。
+```ts
+type RouteAccess =
+  | { kind: "public" }
+  | { kind: "guestOnly" }
+  | { kind: "authenticated" }
+  | { kind: "role"; roles: UserRole[] }
+  | { kind: "permission"; permissions: Permission[] };
+```
 
-これは良い実装です。
+必要になる前の導入は過剰設計なので、現在の三分類を維持する判断は妥当です。
 
-単純な boolean ローディングだと、複数 API が同時に走ったときに「片方が終わっただけでローディングが消える」問題が起きがちです。カウント方式はその点を避けられます。
+### 2.5 認証ライブラリの詳細をラップしている
 
-### 6. SEO / OGP / canonical / 構造化データを SPA 内で更新している
+認証ページが Amplify API を直接呼ぶのではなく、`signInHelper`、`signUpHelper`、`verifyHelper`、`signOutHelper` を通しています。Amplify から返る値も最低限の型ガードで検証しています。
 
-`PageMeta` は、ページごとに title、description、OGP、Twitter Card、robots、canonical、JSON-LD を更新する実装になっています。
+認証状態は Context に隔離され、画面側は `useAuth()` を利用します。Provider 外で利用された場合には明示的なエラーを投げ、AuthProvider は認証確認中と認証済み状態を分けています。
 
-SPA でここまでメタ情報を管理しているのは良い点です。
+これにより、次の利点があります。
 
-特に、以下を動的に upsert している点は丁寧です。
+- Cognito の実装詳細が画面全体へ漏れにくい
+- 認証状態確認中の画面のちらつきを Guard で防げる
+- 将来、モック認証や別プロバイダーへ置き換えやすい
+- トークンを独自に Web Storage へ保存していない
 
-- description
-- og:title
-- og:description
-- og:type
-- og:url
-- og:image
-- twitter 系 meta
-- robots / googlebot
-- canonical
-- structured data
+### 2.6 API クライアントとエンドポイントが分離されている
 
-### 7. ESLint ルールがかなり強めに整備されている
+HTTP 共通処理は `client.ts`、個別 API 関数は `modules` に分かれています。API クライアントは base URL、Cognito セッションからのアクセストークン取得、Authorization ヘッダー、Axios 呼び出し、エラー正規化、グローバルローディングを一箇所で処理します。
 
-`.eslintrc.cjs` では、React、TypeScript、jsx-a11y、import、react-hooks、sonarjs、total-functions などが入っています。
+個別 API は薄い関数として定義され、barrel ファイルから公開されているため、呼び出し側が内部配置を知る必要もありません。この構成は小〜中規模で扱いやすいです。
 
-さらに、以下のようなルールも設定されています。
+### 2.7 API 結果が判別可能な型になっている
 
-- button type 強制
-- console 制限
-- type import 強制
-- import 順序
-- JSX props ソート
-- cognitive complexity 上限
-- complexity 上限
-- max-depth
-- no-else-return
-- `features` の import 制限
+成功と失敗を例外だけに頼らず、`ok` で判定できる設計です。
 
-これはアーキテクチャ的にも良いです。
+この方式には次の利点があります。
 
-単に「人間が気をつける」ではなく、Lint で構造を守ろうとしているため、プロジェクトが大きくなったときの崩壊をある程度防げます。
+- API の 4xx / 5xx を想定内の結果として扱える
+- TypeScript の narrowing を利用できる
+- 画面のエラー処理が明示的になる
+- どの例外を catch すべきかが曖昧になりにくい
 
-### 8. `features` 配下の依存方向を制限しようとしている
+Axios 以外の例外は再 throw するため、「通信エラーは結果、想定外エラーは例外」と区別する意図も読み取れます。
 
-`.eslintrc.cjs` では、`src/features` 配下の実装を `src/router` 配下でのみ import 可能にする制限が入っています。
+### 2.8 グローバルローディングがカウンター方式
 
-これはかなり良い考え方です。
+ローディング状態を boolean ではなくカウンターで持ち、リクエスト開始で `+1`、終了で `-1`、0 未満にはしない実装です。
 
-`features` 同士が相互に import し始めると、中規模以降で依存関係が複雑になります。この制限は「feature は画面単位で独立させる」という方針を守る助けになります。
+並行リクエスト時に、片方が終了しただけでローディングが消える問題を避けられます。小さな実装ですが、実務的に重要です。
 
-### 9. Storybook がある
+### 2.9 Redux が slice 単位に分割されている
 
-Storybook 関連の依存と scripts があり、`stories` 配下に各 UI コンポーネントの stories も存在します。
+Store は機能ごとの Reducer を集約する比較的薄い実装です。`AppDispatch` と `RootState` も Store から導出され、型を手動同期する必要がありません。Redux Toolkit の基本的な使い方として適切です。
 
-UI コンポーネントを独立して確認できるのは、小規模だけでなく中規模以上でも有効です。
+### 2.10 UI コンポーネントの API が React 標準属性と親和的
+
+Input は `React.InputHTMLAttributes<HTMLInputElement>` を継承し、`forwardRef` に対応しています。そのため React Hook Form の `register()` から返る ref やイベント属性を渡しやすく、独自 UI がフォームライブラリへ過度に密結合していません。
+
+### 2.11 静的解析の品質ゲートが強い
+
+`checker` は Prettier、ESLint、TypeScript をまとめて実行します。ESLint には次のようなルールがあります。
+
+- React Hooks
+- jsx-a11y
+- TypeScript
+- import 整合性と順序
+- SonarJS
+- cognitive complexity
+- cyclomatic complexity
+- ネスト上限
+- unsafe assertion 禁止
+- type-only import
+- feature 依存制限
+
+特に `features` を router 以外から import できないよう制限している点は、依存方向を人間の注意だけでなくツールで守ろうとしており評価できます。
+
+### 2.12 Storybook が UI カタログとして機能する
+
+フォーム部品、ボタン、モーダル、アコーディオン、ドロップダウンなどの Story があり、グローバルスタイルも Storybook へ適用されています。小規模では便利であり、中規模以上ではデザイン仕様と UI 回帰確認の基盤になります。
 
 ---
 
-## 改善できる点・アーキテクチャ上の懸念
+## 3. 悪い点・改善できる余地
 
-### 1. ルーティングが一箇所に集中しており、規模が大きくなると肥大化しやすい
+### 3.1 最大の問題は自動テストがほぼ存在しないこと
 
-現在、`src/router/index.tsx` がすべてのページを直接 import し、すべての Route を定義しています。
+ルートの `package.json` にはフロントエンド用のテストスクリプトや Vitest などのテストランナーがありません。存在するテストファイルは CDK のサンプル 1 件ですが、実体となる assertion はコメントアウトされています。
 
-現状はページ数が少ないので問題ありません。
+したがって、現在の `1 test passed` はアプリや CDK 構成の正しさを保証していません。
 
-ただし、ページが 30、50、100 と増えていくと、このファイルは以下の問題を抱えやすいです。
+最低限、次のテストが必要です。
 
-- import が大量になる
-- 認証制御が Route ごとに散らばる
-- lazy loading しづらい
-- route meta、breadcrumb、権限、layout などを紐づけにくい
-- feature 単位でルートを追加しにくい
+#### 単体テスト
 
-現状でも、認証ページでは `isSignedIn` による分岐が各 Route に直接書かれています。
+- API エラー正規化
+- AuthProvider の状態遷移
+- Guard のリダイレクト
+- Redux loading count
+- フォームバリデーション
+- メタタグ更新
 
-#### 改善案
+#### コンポーネントテスト
 
-中規模以上では、以下のようにするとよいです。
+- Input と React Hook Form の接続
+- モーダルのフォーカス制御
+- ドロップダウンのキーボード操作
+- 認証中・認証済み・未認証表示
 
-```txt
-src/router/
-  index.tsx
-  routes.tsx
-  guards/
-    AuthGuard.tsx
-    GuestGuard.tsx
-  routeConfig.ts
+#### E2E
+
+- サインアップ
+- 検証コード
+- サインイン
+- サインアウト
+- 認証必須ページ
+- API 失敗時の 500 遷移
+
+小規模な検証アプリなら許容できますが、小規模な業務アプリでも改善が必要です。中規模以上では重大な不足であり、大規模プロジェクトでは現状のまま採用することは困難です。
+
+### 3.2 API 層が Redux Store へ直接依存している
+
+`client.ts` が `store` と loading action を直接 import し、API リクエストの中で dispatch しています。
+
+```text
+API infrastructure
+    ↓
+Redux application state
+    ↓
+UI loading
 ```
 
-または feature 側に route 定義を持たせます。
+API クライアントが UI 都合を知る構成で、次の問題があります。
 
-```txt
-src/features/auth/routes.tsx
-src/features/example/routes.tsx
-src/features/error/routes.tsx
-```
+- API クライアントを React 外で再利用しづらい
+- 単体テストでグローバル Store が必要になる
+- Redux を交換しづらい
+- バックグラウンド更新まで GlobalLoading が表示される可能性がある
+- ボタン、画面、部分単位の loading へ発展させにくい
+- リクエストキャンセルやキャッシュとの統合が難しい
 
-ただし、現在の ESLint 制約では `features` の import を router に限定しているため、router が feature route を集約する形とは相性が良いです。
-
-### 2. API 層が単一ファイルに集約されており、大規模化すると破綻しやすい
-
-`src/utils/apiHelper/index.ts` は、axios request の共通処理と個別 API 関数が同じファイルに入っています。
-
-現状は `testGetArticleApi` と `testPostApi` 程度なので問題ありません。
-
-しかし、実 API が増えると、以下が問題になります。
-
-- すべての endpoint が 1 ファイルに集まる
-- 型定義も肥大化する
-- auth API、user API、article API、admin API などの境界が曖昧になる
-- API ごとのエラー処理や response 変換を置く場所がなくなる
-- OpenAPI / Swagger 由来の自動生成コードとの統合がしづらい
-
-#### 改善案
-
-中規模以上なら、最低限以下のように分けたいです。
-
-```txt
-src/api/
-  client.ts
-  errors.ts
-  types.ts
-  modules/
-    authApi.ts
-    userApi.ts
-    articleApi.ts
-```
-
-または feature ごとに API を colocate します。
-
-```txt
-src/features/articles/api.ts
-src/features/articles/types.ts
-src/features/articles/hooks.ts
-```
-
-大規模なら OpenAPI Generator / Orval / aspida / TanStack Query などを検討した方がよいです。
-
-### 3. API ヘルパーが Redux store を直接 import している
-
-`apiHelper` は `store` を直接 import し、API 実行時に loading action を dispatch しています。
-
-これは小規模では便利ですが、中規模以上では結合度が高くなります。
-
-問題は、API 層が Redux の存在を知っていることです。
-
-その結果、以下のような課題が出ます。
-
-- API クライアントを React 外、テスト、Node script などで再利用しにくい
-- 状態管理を Redux から TanStack Query や Zustand に変えにくい
-- API の責務と UI ローディングの責務が混ざる
-- リクエスト単位のローディング、画面単位のローディング、グローバルローディングを分けにくい
-
-#### 改善案
-
-API クライアントは pure にして、ローディング制御は呼び出し側、または middleware/interceptor、あるいは data fetching library に寄せるのが望ましいです。
-
-例：
-
-```txt
-src/api/client.ts       // axios instance only
-src/api/interceptors.ts // auth token, error normalize
-src/store/appSlice.ts   // global UI state
-src/features/.../hooks.ts // loading/error management
-```
-
-### 4. Redux store が単一 slice で、今後の拡張に弱い
-
-現在の store は `appSlice` 1 つで、state も `loadingFlagCount` のみです。
-
-小規模では問題ありません。
-
-ただし、今後以下のような状態が増えると、単一 slice はすぐに限界が来ます。
-
-- user profile
-- notification
-- modal state
-- permissions
-- feature-specific filters
-- cached entities
-- form draft
-- websocket state
-
-#### 改善案
-
-中規模なら slice 分割を早めに行うとよいです。
-
-```txt
-src/store/
-  index.ts
-  hooks.ts
-  slices/
-    appSlice.ts
-    authSlice.ts
-    notificationSlice.ts
-```
-
-さらに Redux を使うなら typed hooks もほしいです。
+中規模なら API クライアントを純化し、loading は呼び出し側の hook や mutation が持つ形を推奨します。
 
 ```ts
-useAppDispatch();
-useAppSelector();
+const { mutate, isPending } = useCreateArticle();
 ```
 
-現在は `useSelector` に `TypeSelectorState` を直接渡しています。
+TanStack Query などを導入すれば、server state の cache、retry、invalidation、deduplication、stale time、query / mutation status を委譲できます。Redux はクライアント状態、Query ライブラリはサーバー状態という分離が適しています。
 
-### 5. 認証状態の初期ロード中を表現できていない
+### 3.3 認証処理でも Redux Store を直接操作している
 
-`AuthProvider` は `isSignedIn` の初期値を `false` にし、マウント後に `getCurrentUser()` を呼んで状態を更新しています。
+サインインページは認証処理の前後で直接 Store へ dispatch しています。この方式では各認証ページに loading 開始、Promise 処理、エラー変換、loading 終了、auth state refresh が重複しやすくなります。
 
-これにより、初回ロード時に以下の問題が起きる可能性があります。
-
-- 実際はログイン済みなのに、一瞬未ログイン扱いになる
-- `/auth/signout` のような認証必須ページで一瞬 `/auth/signin` に redirect される可能性がある
-- 認証確認中の loading UI を出せない
-
-#### 改善案
-
-`isSignedIn: boolean` だけでなく、`isAuthChecking` や `status` を持つとよいです。
+`useSignIn()` のような application hook へまとめ、ページは表示とイベント接続だけにするのが望ましいです。
 
 ```ts
-type AuthStatus = "checking" | "signedIn" | "signedOut";
+const { signIn, isPending, error } = useSignIn();
+const onSubmit = form.handleSubmit(signIn);
 ```
 
-そして router 側では checking 中に redirect 判定しないようにします。
+中規模化に向けて効果の大きい改善です。
 
-### 6. 認証 helper の型ガードが少し緩い
+### 3.4 `page.tsx` の責務が多い
 
-`isSignInResponse` は、オブジェクトであり、`isSignedIn`・`nextStep`・`userId` のいずれかを持っていれば `TypeSignInResult` と見なします。
+サインインページはメタ情報、フォーム初期化、バリデーション、認証ユースケース、Redux loading、エラー変換、JSX、styled-components を一つのファイルで担当しています。フォーム例ではさらに多数のフィールドと送信処理も同居します。
 
-小規模では実害が出にくいですが、型安全性としてはやや緩いです。
+一方、同じ feature 内の `component.tsx` と `util.ts` は空であり、構造上は分割先があっても実装上は分割されていません。
 
-例えば `isSignedIn` が boolean かどうかまでは確認していません。
+全ページを機械的に分割する必要はありません。複雑なページだけ段階的に次のように分けるとよいです。
 
-#### 改善案
+```text
+signIn/
+├── page.tsx             # Layout と画面組み立て
+├── SignInForm.tsx       # UI
+├── useSignInForm.ts     # フォーム・submit
+├── schema.ts            # validation
+├── types.ts
+└── constants.ts
+```
+
+`component.tsx` のような抽象的な名前より、`SignInForm.tsx` のように責務が分かる名前を推奨します。
+
+### 3.5 `utils` が「何でも置き場」になり始めている
+
+現在 `utils` には API、認証、Redux Store、App Provider、GA が入っています。これらは単純な utility 関数ではなく、アプリケーションの主要サブシステムです。
+
+`utils` という名前は依存方向や責務を表さないため、規模が増えると何でも追加される傾向があります。
+
+中規模なら、例えば次の方が境界を明確にできます。
+
+```text
+src/
+├── app/
+│   ├── providers/
+│   ├── router/
+│   └── store/
+├── infrastructure/
+│   ├── api/
+│   ├── auth/
+│   └── analytics/
+├── components/
+├── features/
+└── shared/
+```
+
+ただし、現在の規模で全面移行すると差分の割に価値が少ない可能性があります。次に機能を追加するときから新しい責務を `utils` に増やさない方針が現実的です。
+
+### 3.6 feature の境界が画面境界であり、業務境界ではない
+
+現在の feature は `auth/signIn`、`auth/signUp`、`auth/signOut`、`auth/verification` のようなページ単位です。小規模では分かりやすい一方、業務が複雑になると認証エラー変換、email validation、password policy、Cognito nextStep の解釈、verification 状態などが重複しやすくなります。
+
+中〜大規模では、共通の認証ルールを domain 側、画面ユースケースを feature 側に置く構造が候補になります。
+
+```text
+domains/auth/
+├── model/
+├── api/
+└── types/
+
+features/auth/
+├── sign-in/
+├── sign-up/
+└── verify/
+```
+
+ただし、認証関連の重複が実際に増え始めた時点で導入すべきであり、現時点で直ちに必要な変更ではありません。
+
+### 3.7 API 型がまだ弱い
+
+サンプル API は GET のレスポンス型が未指定で、POST もリクエストだけがジェネリックです。そのため、呼び出し側でドメイン固有の型安全性を十分得られません。
 
 ```ts
-const isSignInResponse = (value: unknown): value is TypeSignInResult =>
-  isObject(value) && typeof value.isSignedIn === "boolean";
+export const getArticles = () =>
+  request<ArticleResponse[], never>("GET", "/articles");
+
+export const createArticle = (requestData: CreateArticleRequest) =>
+  request<ArticleResponse, CreateArticleRequest>("POST", "/articles", {
+    requestData,
+  });
 ```
 
-ただし Amplify のレスポンス仕様に合わせて、`nextStep` も含めてより正確に定義するのが望ましいです。
+中規模以降では OpenAPI から型とクライアントを生成し、API 仕様と実装の不一致や DTO の手書きを減らすことが望ましいです。
 
-### 7. `localStorage.clear()` は影響範囲が大きい
+### 3.8 エラー処理が画面ごとに不統一になりやすい
 
-`signOutHelper` では `signOut()` 後に `localStorage.clear()` を呼んでいます。
+API クライアントは Axios エラーを正規化していますが、認証エラーは画面側で `Error.message` をそのまま表示しています。このままでは次の問題が起こり得ます。
 
-これは危険になり得ます。
+- Cognito や Axios の内部メッセージが利用者へ露出する
+- 日本語化が困難になる
+- 同じエラーコードでも画面ごとに文言が異なる
+- ログへ送るエラーと表示エラーが混ざる
+- 401、403、404、409、422、500 の扱いが統一されない
 
-理由は、アプリが使うすべての localStorage だけでなく、同一 origin 上の他用途の localStorage も消す可能性があるためです。
-
-#### 改善案
-
-消すキーを限定した方が安全です。
+インフラ層で共通の `AppError` に変換し、UI 層で表示文言へ変換する方法を推奨します。
 
 ```ts
-localStorage.removeItem("xxx");
-sessionStorage.removeItem("access_token");
+type AppError =
+  | { kind: "validation"; fields: FieldErrors }
+  | { kind: "unauthorized" }
+  | { kind: "forbidden" }
+  | { kind: "conflict"; code: string }
+  | { kind: "network" }
+  | { kind: "unexpected"; cause: unknown };
 ```
 
-また、Amplify が管理する認証情報との整合性も確認した方がよいです。
+### 3.9 認証状態の更新契機が限定的
 
-### 8. `sessionStorage` の `access_token` と Cognito 認証情報の関係が曖昧
+AuthProvider はマウント時に `getCurrentUser()` を呼び、画面が明示的に `refreshAuthState()` を呼ぶ方式です。小規模では問題ありませんが、別タブでのサインアウト、セッション失効、Amplify Hub の認証イベント、API の 401、パスワード変更、MFA などへの追従が弱くなります。
 
-API ヘルパーでは `accessToken` 引数がなければ `sessionStorage.getItem("access_token")` を Authorization header に使います。
+中規模なら Amplify Hub の auth event を AuthProvider で購読し、認証状態を同期する方法を検討できます。また、boolean の組み合わせではなく状態機械で表すと拡張しやすくなります。
 
-しかし、Cognito の signInHelper 側では sessionStorage に `access_token` を保存している実装は見当たりません。
-
-つまり、現在の構造だと以下が曖昧です。
-
-- API 用 token はどこで取得するのか
-- Cognito token と `access_token` の関係は何か
-- token refresh はどうするのか
-- 期限切れ時の再認証はどうするのか
-
-#### 改善案
-
-認証 token の取得・更新・注入は、API client の interceptor または auth service に閉じ込めるのがよいです。
-
-Amplify を使うなら、`fetchAuthSession()` などを使って token を取得し、axios interceptor で付与する設計が候補です。
-
-### 9. ページコンポーネントが UI・フォーム・API・画面ロジックを抱えやすい
-
-`FormExample` は、フォーム初期値、validation、UI、API 呼び出し、エラーハンドリング、スタイルを 1 ファイルで持っています。
-
-これは小規模では非常に分かりやすいです。
-
-しかし、中規模以上ではページファイルが肥大化しやすいです。
-
-#### 改善案
-
-feature 配下を以下のように分けると拡張しやすくなります。
-
-```txt
-src/features/example/formExample/
-  page.tsx
-  FormExampleView.tsx
-  useFormExample.ts
-  schema.ts
-  api.ts
-  types.ts
-  constants.ts
+```ts
+type AuthState =
+  | { status: "checking" }
+  | { status: "anonymous" }
+  | { status: "authenticated"; user: AuthUser }
+  | { status: "error"; error: AppError };
 ```
 
-現在すでに `page.tsx`・`component.tsx`・`util.ts`・`type.ts` の雛形はありますが、実際には `page.tsx` に寄っている箇所があります。ファイル分割方針を明確化するとよいです。
+### 3.10 認証設定の検証がない
 
-### 10. `component.tsx` / `util.ts` / `type.ts` が空の feature が多く、運用ルールが曖昧に見える
+Amplify 設定では、環境変数がない場合に空文字を設定しています。その場合、アプリ起動時ではなく認証操作時に分かりにくいエラーになる可能性があります。
 
-いくつかの feature では `component.tsx`・`util.ts`・`type.ts` が存在しますが、空コメントのみのファイルがあります。
+起動時に環境変数を検証し、設定不足を fail fast で発見できるようにすることを推奨します。
 
-雛形としては分かりやすいですが、実運用では以下の問題が出ます。
+### 3.11 SEO は改善されているが、本質的には SPA
 
-- 何をどこに書くべきか迷う
-- 空ファイルが増える
-- 「page.tsx に全部書く」流れになりやすい
-- component と util の責務が曖昧になる
+現在のルーティングはクライアントサイドルーティングです。ビルドスクリプトには sitemap と prerender があり、静的サイトとしての SEO を補う良い工夫です。
 
-#### 改善案
+ただし、動的コンテンツが大量、数千〜数万ページ、ユーザーごとにメタ情報が異なる、ISR / SSR / サーバー側認証が必要、といった要件では限界があります。その場合は SPA 構成を延長するだけでなく、Next.js、Remix、React Router framework mode などを比較した方がよいです。
 
-以下のような命名にすると意図が明確になります。
+### 3.12 CI が push-to-main 中心で、PR 品質ゲートが弱い
 
-```txt
-page.tsx         // route component
-view.tsx         // presentational component
-hooks.ts         // feature-specific hooks
-schema.ts        // validation schema
-api.ts           // feature-specific API wrapper
-types.ts         // feature-local types
-constants.ts     // feature constants
+Workflow は main ブランチへの push を中心としており、pull request trigger がありません。Lint、build、Storybook build はありますが、アプリテスト、E2E、CDK synth、dependency audit、bundle size check、preview deployment などもありません。
+
+また、GitHub Actions の Checkout と Setup Node は古い major versionです。
+
+PR 時に最低限、次のチェックを行いたいです。
+
+```text
+yarn install --immutable
+yarn checker
+yarn build
+yarn build-storybook
+npm test --prefix cdk
+npm run build --prefix cdk
+npx cdk synth
 ```
 
-### 11. `lib/types` に型が集まりすぎる可能性がある
+### 3.13 CDK 構成は本番運用向けではない
 
-現在、`src/lib/types/index.ts` が `_apiType`・`_authType`・`_componentsType`・`_storeType` を再 export しています。
+CDK の User Pool はパスワード最小長が 6 で、大文字・小文字・記号を要求せず、`RemovalPolicy.DESTROY` です。また独自属性として `isAdmin` を持ち、Cognito 標準メール送信を利用しています。
 
-小規模では便利です。
+主な懸念は次のとおりです。
 
-ただし、中規模以上では `lib/types` が「なんでも型置き場」になりやすいです。
+- 本番で Stack を削除するとユーザー情報を失う
+- `isAdmin` のような権限属性の扱いには慎重さが必要
+- 環境ごとの差分が明確でない
+- セキュリティ監視・ログ・WAF などは対象外
+- CDK の実質的な assertion test がない
 
-すでに `TypeFormExampleValues` が `_apiType.ts` に入っていますが、これは API 型というより form example の form values に近いです。
+本番では少なくとも `RemovalPolicy.RETAIN` とし、要件に応じて MFA、Advanced Security、SES、監査ログなどを検討すべきです。
 
-#### 改善案
+### 3.14 依存バージョンの整合性を見直す余地がある
 
-型は基本的に利用箇所の近くに置き、複数 feature で共有するものだけ `shared` や `lib` に上げるとよいです。
+React 本体は 19 系ですが、`@types/react` と `@types/react-dom` は 18 系です。現在のビルドは成功していますが、将来 React 19 固有 API や型定義を利用すると不整合が表面化する可能性があります。
 
-```txt
-src/features/example/formExample/types.ts
-src/features/auth/types.ts
-src/components/form/types.ts
-src/api/types.ts
-src/store/types.ts
-```
+また Storybook 本体は runtime dependencies にあります。通常 Storybook は開発・ドキュメント用途なので、devDependencies 側に揃える方が依存の意味が明確です。
 
-### 12. `PageMeta` は丁寧だが、SPA の SEO としては限界がある
+### 3.15 Node バージョンがフロントと CDK で異なる
 
-`PageMeta` は client side で meta tag を更新しています。
+ルートは Node 24 系に限定されていますが、README では CDK に Node 20 を要求しています。開発者が環境を切り替える必要があり、CI、ローカルセットアップ、monorepo 的な一括コマンドが複雑になります。
 
-これは UI としては良いですが、SEO を重視するサイトでは限界があります。
-
-検索エンジンや SNS クローラーによっては、初期 HTML の meta を重視するため、client side で後から更新した OGP が期待通り読まれない場合があります。
-
-#### 改善案
-
-本当に SEO / OGP が重要なら、以下の選択肢があります。
-
-- Next.js / Remix など SSR 対応 framework に寄せる
-- Vite SSR
-- prerender script の精度向上
-- route ごとの静的 HTML 生成
-
-なお、README には `build:scripts` として sitemap / prerender が含まれているため、静的生成を意識している点は良いです。
-
-### 13. React 19 と `@types/react` 18 の組み合わせが気になる
-
-`dependencies` では React が `^19.2.4` ですが、`devDependencies` の `@types/react` は `^18.3.12`、`@types/react-dom` は `^18.3.1` です。
-
-React 19 は型定義の前提が React 18 と異なる可能性があるため、長期的にはズレが問題になる可能性があります。
-
-#### 改善案
-
-React 19 を使うなら、型定義も React 19 対応に揃える方が安全です。
-
-### 14. Node バージョン要件がかなり狭い
-
-`engines` が `node >=24 <25` になっています。
-
-これは環境を固定できるメリットがありますが、チーム開発や CI ではやや厳しい制約です。
-
-一方で、README の CDK 手順では CDK 側は node 20.x と書かれており、フロントと CDK で Node バージョンが分かれています。
-
-#### 改善案
-
-フロントと CDK で必要 Node バージョンが違う場合は、`.nvmrc`・`.node-version`・Volta・mise などで明示すると運用しやすいです。
-
-### 15. テスト戦略がまだ薄く見える
-
-Storybook はありますが、アプリロジック・hooks・API helper・認証 helper の unit test / integration test は見当たりませんでした。
-
-小規模では許容できますが、中規模以上では以下がほしくなります。
-
-- Vitest
-- React Testing Library
-- MSW
-- Playwright
-- Storybook interaction test
-- API helper の unit test
-- auth guard の test
-
-特に認証・ルーティング・API error handling は、回帰バグが起きやすい箇所です。
+可能であれば CDK 依存を更新して Node バージョンを統一し、Volta、mise、asdf、`.nvmrc` などでバージョンを明示するとよいです。
 
 ---
 
-## 小規模・中規模・大規模での実用性
+## 4. 規模別の実用性
 
-## 小規模プロジェクトでの評価
+### 4.1 小規模プロジェクト
 
-### 実用性
+#### 想定
 
-**かなり実用的です。**
+- 開発者 1〜3 人
+- 画面数 5〜20
+- API 数 10〜30
+- Cognito による基本認証
+- 複雑な権限なし
+- SPA で問題なし
+- 数年単位の継続開発でも変更頻度は低〜中
 
-画面数でいうと、目安として以下くらいまでは十分扱いやすいと思います。
+#### 評価: 十分実用的
 
-- 5〜15画面程度
-- API endpoint 10〜30個程度
-- 開発者 1〜3人程度
-- 認証ありの管理画面、LP、フォームサイト、社内ツール、小さめの SPA
+現在の構成は小規模プロジェクトにかなり適しています。
 
-### 理由
-
-- ディレクトリ構成がシンプル
-- Provider・Router・Component・Feature の位置が分かりやすい
-- ESLint がしっかりしている
+- ディレクトリ構成が直感的
+- 共通 UI が分離されている
 - Storybook がある
-- Cognito 認証の基本がある
-- グローバルローディングがある
-- styled-components による UI 実装が完結している
+- 認証がラップされている
+- API 共通処理がある
+- Redux Toolkit を適切に利用している
+- strict TypeScript と強い Lint がある
+- ページ単位の lazy loading がある
+- Guard が分離されている
+- ビルドと静的配信が簡単
 
-### 小規模で特に良い点
+小規模でも業務リリース前には次を推奨します。
 
-小規模では、抽象化しすぎないことも重要です。
+1. Vitest + Testing Library 導入
+2. 認証フローの E2E を最低 1 本追加
+3. Cognito 環境変数の起動時検証
+4. 本番 CDK の `RemovalPolicy.RETAIN`
+5. PR で checker / build を実行
+6. 空の `component.tsx`、`util.ts` を機械的に作らない
 
-このコードベースは、API・Auth・Store・Router が素直に読めるため、学習コストが低いです。現在の `Router` も、画面数が少ないうちは一覧性が高く、むしろ分かりやすいです。
+これらを対応すれば、社内ツール、管理画面、会員制の小規模 SPA などには十分利用できます。
 
-## 中規模プロジェクトでの評価
+### 4.2 中規模プロジェクト
 
-### 実用性
+#### 想定
 
-**改善を入れれば実用的です。**
+- 開発者 4〜10 人
+- 画面数 20〜80
+- 複数の業務領域
+- API 数 30〜150
+- 複数権限
+- 数年間の継続開発
+- CI/CD と回帰テストが必要
 
-目安としては以下くらいです。
+#### 評価: 改善を前提に実用可能
 
-- 15〜50画面程度
-- API endpoint 30〜100個程度
-- 開発者 3〜8人程度
-- 認証・権限・ユーザー設定・複数ドメインを持つ業務アプリ
+ルートの設定化、lazy loading、Guard 分離、API module 分割、Redux slice 分割がすでにあるため、中規模の入口には到達しています。
 
-ただし、現状のまま拡大すると少しずつ苦しくなります。
+ただし、次を追加しないまま規模だけを増やすと保守性が急激に低下します。
 
-### 中規模化で最初に改善すべき点
+1. 単体・component・integration・E2E のテスト戦略
+2. TanStack Query などによる server state 管理
+3. OpenAPI ベースの API 型生成
+4. AppError と表示文言の分離
+5. feature ごとの application hook
+6. role / permission モデル
+7. エラー追跡、Web Vitals、API 失敗率などの監視
+8. PR test、CDK synth、bundle budget を含む CI
 
-優先度順に挙げると以下です。
+現在の設計を大きく変えずに改善する場合の現実的な目安は、画面数 30〜50、開発者 5〜8 人、ドメイン 2〜5 領域程度です。ただし、単純な CRUD ならより大きくでき、複雑な権限、リアルタイム、オフライン対応などがある場合はより早く限界が来ます。
 
-#### 優先度 A
+### 4.3 大規模プロジェクト
 
-1. API 層を module 分割する
-2. router を route config / guard / lazy loading に分ける
-3. auth に `checking` 状態を追加する
-4. store を slice 分割できる構成に変える
-5. feature 内の `page`・`view`・`hooks`・`types` の責務を明文化する
+#### 想定
 
-#### 優先度 B
-
-6. 型定義を feature local に寄せる
-7. API error の型と正常 response の型を明確に分ける
-8. token 管理を Cognito / Amplify に合わせて整理する
-9. テスト基盤を追加する
-10. path alias を導入する
-
-### 中規模での懸念ポイント
-
-一番の懸念は、`utils` が便利置き場になりやすいことです。
-
-現在、`utils` には以下が入っています。
-
-- apiHelper
-- appRootHelper
-- authHelper
-- gaHelper
-- storeHelper
-
-これ自体は悪くありませんが、機能が増えると `utils` が肥大化し、責務が曖昧になります。
-
-中規模では、以下のように責務名で分けた方がよいです。
-
-```txt
-src/app/
-src/router/
-src/store/
-src/api/
-src/auth/
-src/shared/
-src/features/
-```
-
-## 大規模プロジェクトでの評価
-
-### 実用性
-
-**現状のままでは厳しいです。**
-
-大規模の目安は以下です。
-
-- 50画面以上
-- API endpoint 100個以上
-- 開発者 10人以上
+- 開発者 10〜30 人以上
 - 複数チーム
-- 複数ドメイン
-- 権限管理が複雑
-- 長期保守
-- CI/CD・E2E・監視・feature flag が必要
+- 画面数 100 以上
+- 複数バックエンド
+- 複雑な認可
+- 長期運用
+- 一部独立リリース
+- SLA、監査、セキュリティ要件あり
 
-### 大規模で厳しい理由
+#### 評価: 現状のままでは厳しい
 
-#### 1. ドメイン境界がまだ弱い
+問題は React や Vite ではなく、境界と所有権が不足していることです。現在は全アプリが `components`、`lib`、`utils`、単一 Store、単一 Router、単一 AuthProvider、単一 API client という共有領域を参照します。この形で規模を増やすと、共有層が巨大な依存ハブになります。
 
-`features` はありますが、ビジネスドメインというより「画面」単位に近い構成です。
+大規模向けには、例えば次のような再設計が必要です。
 
-大規模では、例えば以下のような境界が必要になります。
-
-```txt
-features/
-  users/
-  organizations/
-  billing/
-  reports/
-  settings/
-  auth/
+```text
+src/
+├── app/
+│   ├── bootstrap/
+│   ├── providers/
+│   └── routing/
+├── domains/
+│   ├── identity/
+│   ├── account/
+│   ├── billing/
+│   └── content/
+├── features/
+│   ├── sign-in/
+│   ├── edit-profile/
+│   └── publish-article/
+├── infrastructure/
+│   ├── auth/
+│   ├── http/
+│   ├── analytics/
+│   └── monitoring/
+└── shared/
+    ├── ui/
+    ├── hooks/
+    └── types/
 ```
 
-さらに、それぞれに以下が必要です。
+さらに、次が必要になります。
 
-```txt
-api.ts
-components/
-hooks/
-model/
-schemas/
-types.ts
-routes.tsx
-```
+- workspace / monorepo
+- package 単位の public API
+- dependency boundary lint
+- CODEOWNERS
+- ADR
+- contract test
+- design system package
+- API generated client
+- feature flags
+- observability
+- release strategy
+- role / permission model
+- security review
+- bundle budget
+- 必要に応じた SSR / BFF
 
-#### 2. shared / domain / app の層が未整理
-
-現状は `components`・`lib`・`utils` が共有層になっています。
-
-大規模では、共有層の粒度が重要です。
-
-例えば以下の分離が必要になります。
-
-```txt
-src/app/       // アプリ初期化、Provider、store、router
-src/shared/    // 汎用 UI、汎用 hooks、汎用 utils
-src/entities/  // User, Article などのドメインモデル
-src/features/  // ユースケース単位
-src/pages/     // route に紐づくページ
-```
-
-これは Feature-Sliced Design に近い考え方です。
-
-#### 3. API と状態管理の設計が大規模向けではない
-
-API helper が Redux store を直接操作しているため、API 層・UI 層・状態管理層が結合しています。
-
-大規模では、server state と client state を分けるのが重要です。
-
-おすすめは以下です。
-
-- server state: TanStack Query / SWR / RTK Query
-- client state: Redux Toolkit / Zustand / Jotai
-- form state: react-hook-form
-- auth/session state: dedicated auth provider
-
-現在は、server state 管理の仕組みはまだ薄く、API request 関数を直接呼ぶ形です。これは小規模にはシンプルですが、大規模では cache、retry、dedupe、pagination、invalidation がつらくなります。
-
-#### 4. 権限・認可モデルがない
-
-現在の router は `isSignedIn` だけで認証済み / 未認証を切り替えています。
-
-大規模アプリでは、以下が必要になりやすいです。
-
-- role
-- permission
-- tenant
-- organization
-- plan
-- feature flag
-- route-level access control
-- component-level access control
-
-その場合、`isSignedIn` だけでは足りません。
-
-#### 5. テスト・CI 品質ゲートが不足しそう
-
-ESLint は強いですが、大規模では以下も必要です。
-
-- unit test
-- integration test
-- E2E test
-- visual regression test
-- accessibility test
-- dependency audit
-- bundle size check
-- type coverage
-- circular dependency check
-
-現状の scripts では `checker` が Prettier + lint を実行する構成です。
-
-これは良い出発点ですが、大規模では品質ゲートとしてはまだ不足します。
+大規模ではフォルダを増やすだけでは足りません。各チームが独立して変更できるように、依存方向、公開 API、所有者、テスト境界を制度化する必要があります。
 
 ---
 
-## 改善優先度つき提案
+## 5. 改善優先順位
 
-## 優先度 1: 認証状態に `checking` を追加する
+### P0: 業務利用前に対応
 
-現在は `isSignedIn` の初期値が `false` です。
+1. フロントエンド自動テストを導入
+2. CDK の実質的なテストを追加
+3. 本番 User Pool を `RETAIN` にする
+4. 環境変数を起動時に検証
+5. PR 時に checker / build / test を必須化
+6. 認証エラーを利用者向けメッセージへ変換
 
-これを以下のように変えると、初回ロード時の誤 redirect を防げます。
+### P1: 中規模化する前に対応
 
-```ts
-type AuthStatus = "checking" | "signedIn" | "signedOut";
-```
+1. API クライアントから Redux 依存を外す
+2. server state ライブラリを導入
+3. OpenAPI 型生成を導入
+4. 認証ユースケースを hook へ分離
+5. 権限モデルを role / permission へ拡張
+6. feature 内ファイルを具体的な名前にする
+7. 監視・エラートラッキングを追加
 
-router 側では `checking` 中は loading を出し、redirect 判定しないようにします。
+### P2: 大規模化を判断した時点で対応
 
-## 優先度 2: API client と loading 管理を分離する
-
-現在の API helper は request 実行と loading dispatch が密結合です。
-
-中規模以上では、以下のように分離するのがおすすめです。
-
-```txt
-src/api/client.ts
-src/api/request.ts
-src/api/errors.ts
-src/store/slices/loadingSlice.ts
-```
-
-さらに、API 単位の loading は TanStack Query に任せ、グローバル loading は本当に全画面ブロックが必要な処理だけに限定するとよいです。
-
-## 優先度 3: router を guard と route config に分ける
-
-現状は route 定義と guard 条件が同じファイルにあります。
-
-以下のように分けると拡張しやすくなります。
-
-```txt
-src/router/
-  index.tsx
-  routeConfig.tsx
-  guards/
-    AuthGuard.tsx
-    GuestGuard.tsx
-```
-
-認証制御は以下のように抽象化できます。
-
-```tsx
-<Route element={<GuestGuard />}>
-  <Route path="/auth/signin" element={<SignIn />} />
-</Route>
-
-<Route element={<AuthGuard />}>
-  <Route path="/auth/signout" element={<SignOut />} />
-</Route>
-```
-
-## 優先度 4: feature の内部構造を標準化する
-
-現在は `page.tsx`・`component.tsx`・`util.ts`・`type.ts` の雛形がありますが、実装は `page.tsx` に寄りやすい構造です。
-
-おすすめは以下です。
-
-```txt
-featureName/
-  page.tsx
-  view.tsx
-  hooks.ts
-  api.ts
-  types.ts
-  constants.ts
-  schema.ts
-```
-
-このルールを README または ARCHITECTURE.md に明記すると、中規模以上でもブレにくくなります。
-
-## 優先度 5: 型定義を近くに置く
-
-`lib/types` にすべて寄せると、規模が大きくなるほど依存が集中します。
-
-共有型だけ `lib` / `shared` に置き、feature 固有型は feature に置くのがよいです。
-
-## 優先度 6: store を将来の slice 分割前提にする
-
-現在は単一 reducer です。
-
-早めに以下の構成へ移行するとよいです。
-
-```txt
-src/store/
-  index.ts
-  hooks.ts
-  slices/
-    appSlice.ts
-```
-
-今は slice が 1 つでも、将来の増加に備えられます。
-
-## 優先度 7: token 管理方針を明確化する
-
-API helper は `sessionStorage.access_token` を見ていますが、Cognito helper はそこに token を保存していません。
-
-以下を決めるべきです。
-
-- Cognito token を API Authorization に使うのか
-- token は毎回 Amplify から取るのか
-- sessionStorage に保存するのか
-- refresh は誰が担当するのか
-- 401 の扱いはどうするのか
-
-このあたりは中規模以上でかなり重要です。
-
-## 優先度 8: テスト基盤を追加する
-
-おすすめは以下です。
-
-```txt
-Vitest
-React Testing Library
-MSW
-Playwright
-```
-
-特にテストしたい箇所は以下です。
-
-- API helper の success/error
-- loading count の増減
-- AuthProvider の checking / signedIn / signedOut
-- AuthGuard / GuestGuard
-- form validation
-- PageMeta の meta 更新
+1. domain 単位の境界へ再編
+2. `utils` を廃止または縮小
+3. package / workspace 分割
+4. CODEOWNERS と公開 API 境界を導入
+5. ADR を導入
+6. SSR / BFF の必要性を再評価
+7. チーム単位の独立リリース戦略を検討
 
 ---
 
-## 現状の実用レベルまとめ
+## 6. 総合スコア
 
-| 規模   | 実用性 | 評価                                                           |
-| ------ | -----: | -------------------------------------------------------------- |
-| 小規模 |      ◎ | そのまま十分実用的                                             |
-| 中規模 |      ○ | API・router・auth・store を整理すれば実用的                    |
-| 大規模 |      △ | 現状のままでは厳しい。ドメイン分割と状態管理設計の再構築が必要 |
+| 観点             | 評価 | コメント                                                   |
+| ---------------- | ---- | ---------------------------------------------------------- |
+| ディレクトリ構成 | 8/10 | 小〜中規模で理解しやすい                                   |
+| 依存方向         | 7/10 | ESLint 制約は良いが、API から Redux への依存が強い         |
+| ルーティング     | 8/10 | 設定化・lazy・Guard 分離済み                               |
+| 認証             | 7/10 | ラップと Context は良い。イベント同期・エラー体系は不足    |
+| API 設計         | 7/10 | client / modules 分離済み。型生成・server state 管理は不足 |
+| 状態管理         | 7/10 | slice 分割は良いが、用途の境界が曖昧                       |
+| UI 再利用性      | 8/10 | 標準属性・forwardRef・Storybook が良い                     |
+| テスト           | 2/10 | 最大の弱点                                                 |
+| CI/CD            | 5/10 | ビルド・デプロイはあるが PR 品質ゲートが弱い               |
+| インフラ         | 4/10 | 学習用としては十分、本番設定には危険がある                 |
+| 大規模拡張性     | 4/10 | ドメイン境界・所有権・package 境界が不足                   |
 
----
+規模別の総合評価は次のとおりです。
 
-## 私ならこう育てます
+- **小規模: 8/10**
+- **中規模: 6.5/10**
+- **大規模: 4/10**
 
-### Phase 1: 現状を保ちつつ安全性を上げる
+特に高く評価できるのは、ルート設定の分離、ページ単位 lazy loading、認証 Guard、API client / module 分離、Redux slice 分離、配置ルールの README 明文化がすでに行われていることです。
 
-- AuthProvider に `checking` を追加
-- typed Redux hooks を追加
-- `localStorage.clear()` を限定削除に変更
-- API error 型を整理
-- React 19 と型定義のバージョン整合性確認
-
-### Phase 2: 中規模対応
-
-- router guard 導入
-- API module 分割
-- store slice 分割
-- feature 内構成ルール策定
-- tests 追加
-- path alias 導入
-
-### Phase 3: 大規模対応
-
-- server state に TanStack Query / RTK Query 導入
-- OpenAPI 由来の API client 自動生成
-- permission / role / tenant 設計
-- feature / domain / shared / app の層分け
-- E2E / visual regression / accessibility CI
-- route lazy loading / code splitting
+最大の課題は、設計パターンそのものよりも、それを守るテストと CI 品質ゲートが不足していることです。次の投資先は大規模なフォルダ再編ではなく、まずテスト、エラー体系、server state、CI を推奨します。
 
 ---
 
-## 最終評価
+## 7. 調査時の検証結果
 
-このコードベースは、**React + Cognito の練習用・テンプレート用・小規模 SPA の出発点としてはかなり良い** です。
+- `yarn checker`: 成功
+- `yarn build`: 成功
+- `npm test -- --runInBand`（`cdk`）: コマンドは成功。ただし assertion がコメントアウトされているため品質保証としては不十分
+- `yarn build-storybook`: 成功。ただし Storybook 依存内の direct `eval` と 500 kB 超の chunk 警告あり
 
-特に良いのは以下です。
-
-- 責務別ディレクトリ構成がある
-- feature 単位の意識がある
-- ESLint による構造制約がある
-- Cognito 認証が helper 化されている
-- グローバルローディングが実装されている
-- PageMeta が丁寧
-- Storybook がある
-
-一方で、中規模以上を本格的に目指すなら、最初に直すべきは以下です。
-
-- router の肥大化対策
-- API 層の分割
-- API と Redux store の密結合解消
-- auth checking 状態の導入
-- token 管理方針の明確化
-- feature 内の責務分割
-- テスト戦略の追加
-
-結論としては、**「小規模は即戦力、中規模は少し整理すれば十分、大規模は再設計が必要」** という評価です。
+以上から、現状は静的解析とビルドが通る健全な状態ですが、自動テストによる振る舞いの保証が最大の不足点です。
