@@ -104,7 +104,6 @@ export const verifyHelper = async (data: VerifyValues): Promise<void> => {
 /*
  * サインアウト 処理
  */
-
 export const signOutHelper = async (): Promise<void> => {
   await signOut();
 };

@@ -1,7 +1,7 @@
 import { request } from "../client";
 
 /* -----------------------------------------------
- * 各 APIリクエスト例
+ * 各 APIリクエスト
  * （並べくswaggerの順序と揃える）
  * ----------------------------------------------- */
 
@@ -17,12 +17,12 @@ export const testPostApi = <TRequest>(data: TRequest) => {
 /*
  * export const postXXXXApi = (params, baseURL, headers, requestData, accessToken, isLoading) => {
  *  const options = {
- *    params, // クエリパラム
- *    baseURL, // DEFAULT_BASE_URL を使わない際のベースURL
- *    headers, // 追加ヘッダー情報を付与
- *    requestData, // リクエストデータ（リクエストボディ）
- *    accessToken, // アクセストークン
- *    isLoading, // ローディングフラグ制御
+ *    accessToken?, // アクセストークン
+ *    baseURL?, // DEFAULT_BASE_URL を使わない際のベースURL
+ *    headers?, // 追加ヘッダー情報を付与
+ *    isLoading?, // ローディングフラグ制御
+ *    params?, // クエリパラム
+ *    requestData?, // リクエストデータ（リクエストボディ）
  *  };
  *  return request('POST', '/xxxx/xxxx', options);
  * };

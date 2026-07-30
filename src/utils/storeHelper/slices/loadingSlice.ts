@@ -1,7 +1,7 @@
 import { createSlice } from "@reduxjs/toolkit";
 
 /* -----------------------------------------------
- * Loading（表示/非表示フラグ）用のStore設定
+ * Loading（表示/非表示フラグ）用の Store
  * ----------------------------------------------- */
 
 const loadingSlice = createSlice({

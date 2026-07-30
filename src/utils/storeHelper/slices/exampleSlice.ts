@@ -1,7 +1,7 @@
 import { createSlice } from "@reduxjs/toolkit";
 
 /* -----------------------------------------------
- * StoreExample ページ用のStore設定
+ * StoreExample ページ用のサンプル Store
  * ----------------------------------------------- */
 
 const exampleSlice = createSlice({
