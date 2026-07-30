@@ -11,7 +11,7 @@ import {
   store,
 } from "../../../utils/storeHelper";
 
-import type { TypeSelectorState } from "../../../lib/types";
+import type { RootState } from "../../../utils/storeHelper";
 import type React from "react";
 
 /* -----------------------------------------------
@@ -31,10 +31,10 @@ export const pageMeta = {
 const StoreExample: React.FC = () => {
   // ストアの値を取得
   const currentExampleString = useSelector(
-    (state: TypeSelectorState) => state.exampleString,
+    (state: RootState) => state.example.exampleString,
   );
   const currentExampleFlag = useSelector(
-    (state: TypeSelectorState) => state.exampleFlag,
+    (state: RootState) => state.example.exampleFlag,
   );
 
   return (

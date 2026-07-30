@@ -1,14 +1,14 @@
 import { getCurrentUser } from "aws-amplify/auth";
 import { createContext, useEffect, useMemo, useState } from "react";
 
-import type { TypeAuthContext } from "../../lib/types";
+import type { AuthContextValue } from "./types";
 import type React from "react";
 
 /* -----------------------------------------------
  * Auth プロバイダー
  * ----------------------------------------------- */
 
-export const AuthContext = createContext<TypeAuthContext | null>(null);
+export const AuthContext = createContext<AuthContextValue | null>(null);
 
 const getCurrentSignInFlag = async () => {
   try {
@@ -23,18 +23,23 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({
   children,
 }) => {
   const [isSignedIn, setIsSignedIn] = useState<boolean>(false);
+  const [isChecking, setIsChecking] = useState<boolean>(true);
 
   const refreshAuthState = () => {
-    void getCurrentSignInFlag().then((flag) => {
-      setIsSignedIn(flag);
-    });
+    setIsChecking(true);
+    void getCurrentSignInFlag()
+      .then(setIsSignedIn)
+      .finally(() => setIsChecking(false));
   };
 
   useEffect(() => {
     refreshAuthState();
   }, []);
 
-  const value = useMemo(() => ({ isSignedIn, refreshAuthState }), [isSignedIn]);
+  const value = useMemo(
+    () => ({ isChecking, isSignedIn, refreshAuthState }),
+    [isChecking, isSignedIn],
+  );
 
   return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>;
 };

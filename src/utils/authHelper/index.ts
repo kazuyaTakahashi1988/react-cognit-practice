@@ -5,21 +5,23 @@ import { useContext } from "react";
 import { AuthContext } from "./authProvider";
 
 import type {
-  TypeSignInResult,
-  TypeSignInValues,
-  TypeSignUpResult,
-  TypeSignUpValues,
-  TypeVerifyValues,
-} from "../../lib/types";
+  SignInResult,
+  SignInValues,
+  SignUpResult,
+  SignUpValues,
+  VerifyValues,
+} from "./types";
+
+export type * from "./types";
 
 const isObject = (value: unknown): value is Record<string, unknown> =>
   typeof value === "object" && value !== null;
 
-const isSignInResponse = (value: unknown): value is TypeSignInResult =>
+const isSignInResponse = (value: unknown): value is SignInResult =>
   isObject(value) &&
   ("isSignedIn" in value || "nextStep" in value || "userId" in value);
 
-const isSignUpResponse = (value: unknown): value is TypeSignUpResult =>
+const isSignUpResponse = (value: unknown): value is SignUpResult =>
   isObject(value) &&
   ("isSignUpComplete" in value || "nextStep" in value || "userId" in value);
 
@@ -56,8 +58,8 @@ export const useAuth = () => {
  * サインイン 処理
  */
 export const signInHelper = async (
-  data: TypeSignInValues,
-): Promise<TypeSignInResult> => {
+  data: SignInValues,
+): Promise<SignInResult> => {
   const result: unknown = await signIn({
     username: data.email,
     password: data.password,
@@ -74,8 +76,8 @@ export const signInHelper = async (
  * サインアップ 処理
  */
 export const signUpHelper = async (
-  data: TypeSignUpValues,
-): Promise<TypeSignUpResult> => {
+  data: SignUpValues,
+): Promise<SignUpResult> => {
   const result: unknown = await signUp({
     username: data.email,
     password: data.password,
@@ -92,7 +94,7 @@ export const signUpHelper = async (
 /*
  * ベリファイ 処理
  */
-export const verifyHelper = async (data: TypeVerifyValues): Promise<void> => {
+export const verifyHelper = async (data: VerifyValues): Promise<void> => {
   await confirmSignUp({
     username: data.email,
     confirmationCode: data.verificationCode,
@@ -105,5 +107,4 @@ export const verifyHelper = async (data: TypeVerifyValues): Promise<void> => {
 
 export const signOutHelper = async (): Promise<void> => {
   await signOut();
-  localStorage.clear();
 };

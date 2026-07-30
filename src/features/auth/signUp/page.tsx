@@ -14,7 +14,7 @@ import {
   store,
 } from "../../../utils/storeHelper";
 
-import type { TypeSignUpResult, TypeSignUpValues } from "../../../lib/types";
+import type { SignUpResult, SignUpValues } from "./type";
 import type React from "react";
 
 /* -----------------------------------------------
@@ -38,7 +38,7 @@ const SignUp: React.FC = () => {
   /*
    * RHForm 使用設定
    */
-  const signUpForm = useForm<TypeSignUpValues>({
+  const signUpForm = useForm<SignUpValues>({
     defaultValues: { email: "", password: "" },
   });
 
@@ -59,7 +59,7 @@ const SignUp: React.FC = () => {
 
     /* Sign Up 処理 */
     signUpHelper(data)
-      .then((res: TypeSignUpResult) => {
+      .then((res: SignUpResult) => {
         const noVerify = res.isSignUpComplete === true; // verifyの手順必要かフラグ
         const message = noVerify
           ? "Sign Up 成功! Sign In しよう！" // verify 不要時

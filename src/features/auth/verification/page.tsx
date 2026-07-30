@@ -14,7 +14,7 @@ import {
   store,
 } from "../../../utils/storeHelper";
 
-import type { TypeVerifyValues } from "../../../lib/types";
+import type { VerifyValues } from "./type";
 import type React from "react";
 
 /* -----------------------------------------------
@@ -38,7 +38,7 @@ const Verification: React.FC = () => {
   /*
    * RHForm 使用設定
    */
-  const verifyForm = useForm<TypeVerifyValues>({
+  const verifyForm = useForm<VerifyValues>({
     defaultValues: { verificationCode: "", email: "" },
   });
 
