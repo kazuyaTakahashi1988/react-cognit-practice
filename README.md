@@ -159,3 +159,17 @@ react-cognit-practice/
 ├── ...
 └── README.md        # This file
 ```
+
+## 実装ルール（中規模までの拡張方針）
+
+元のシンプルな構成を保つため、機能追加時は以下のルールを目安にします。
+
+- 新しい画面は `src/features/<分類>/<画面名>/page.tsx` に追加する
+- その画面だけで使う処理・型・部品は、同じディレクトリの `util.ts`・`type.ts`・`component.tsx` に置く
+- 複数画面で再利用する UI だけを `src/components` に移す
+- 外部 API の呼び出しは画面へ直接書かず、`src/utils/apiHelper` を経由する
+- アプリ全体で共有する状態だけを Redux Store に置き、フォーム入力など画面内で完結する状態は `useState` / `react-hook-form` を使う
+- 認証が必要な画面は `src/router/routeGuard.tsx` を使い、各ページにリダイレクト条件を書かない
+- 画面は `src/router/index.tsx` で `lazy` 読み込みし、初期バンドルの肥大化を防ぐ
+
+認証状態は `loading`・`authenticated`・`unauthenticated` の3状態です。Cognito の初期確認中はルート判定を待つため、ログイン済みユーザーへ一瞬サインイン画面を表示することはありません。

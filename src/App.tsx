@@ -1,6 +1,7 @@
 import { useEffect } from "react";
 import { BrowserRouter } from "react-router-dom";
 
+import AppErrorBoundary from "./components/error/appErrorBoundary";
 import GlobalLoading from "./components/loading/globalLoading";
 import { GlobalStyle } from "./lib/style";
 import { Router } from "./router";
@@ -21,7 +22,9 @@ const App = () => {
       <BrowserRouter>
         <GlobalStyle />
         <GlobalLoading />
-        <Router />
+        <AppErrorBoundary>
+          <Router />
+        </AppErrorBoundary>
       </BrowserRouter>
     </AppRootProvider>
   );

@@ -1,110 +1,121 @@
+import { lazy, Suspense } from "react";
 import { Navigate, Route, Routes } from "react-router-dom";
 
-import SignIn from "../features/auth/signIn/page";
-import SignOut from "../features/auth/signOut/page";
-import SignUp from "../features/auth/signUp/page";
-import Verification from "../features/auth/verification/page";
-import Error404 from "../features/error/404/page";
-import Error500 from "../features/error/500/page";
-import AccordionExample from "../features/example/accordionExample/page";
-import DropdownMenuExample from "../features/example/dropdownMenuExample/page";
-import FormExample from "../features/example/formExample/page";
-import ModalExample from "../features/example/modalExample/page";
-import StoreExample from "../features/example/storeExample/page";
-import TodoExample from "../features/example/todoExample/page";
+import { RouteGuard } from "./routeGuard";
+import PageLoading from "../components/loading/pageLoading";
 import { useAuth } from "../utils/authHelper";
 import { usePVTracking } from "../utils/gaHelper";
 
 /* -----------------------------------------------
  * ルーティング設定
+ * ページ単位で遅延読み込みし、初期バンドルを小さく保つ
  * ----------------------------------------------- */
 
+const SignIn = lazy(() => import("../features/auth/signIn/page"));
+const SignOut = lazy(() => import("../features/auth/signOut/page"));
+const SignUp = lazy(() => import("../features/auth/signUp/page"));
+const Verification = lazy(() => import("../features/auth/verification/page"));
+const Error404 = lazy(() => import("../features/error/404/page"));
+const Error500 = lazy(() => import("../features/error/500/page"));
+const AccordionExample = lazy(
+  () => import("../features/example/accordionExample/page"),
+);
+const DropdownMenuExample = lazy(
+  () => import("../features/example/dropdownMenuExample/page"),
+);
+const FormExample = lazy(() => import("../features/example/formExample/page"));
+const ModalExample = lazy(
+  () => import("../features/example/modalExample/page"),
+);
+const StoreExample = lazy(
+  () => import("../features/example/storeExample/page"),
+);
+const TodoExample = lazy(() => import("../features/example/todoExample/page"));
+
 export function Router() {
-  const { isSignedIn } = useAuth(); // サインインフラグ
+  const { authStatus, isSignedIn } = useAuth();
 
   usePVTracking(); // GA4 PV計測処理
 
+  if (authStatus === "loading") return <PageLoading />;
+
   return (
-    <Routes>
-      {/* ----------------------------------------
-       * example 各ルート設定
-       * ----------------------------------------- */}
-      <Route element={<FormExample />} path="/example/form_example" />
-      <Route element={<TodoExample />} path="/example/todo_example" />
-      <Route element={<ModalExample />} path="/example/modal_example" />
-      <Route element={<AccordionExample />} path="/example/accordion_example" />
-      <Route
-        element={<DropdownMenuExample />}
-        path="/example/dropdownmenu_example"
-      />
-      <Route element={<StoreExample />} path="/example/store_example" />
+    <Suspense fallback={<PageLoading />}>
+      <Routes>
+        {/* example 各ルート設定 */}
+        <Route element={<FormExample />} path="/example/form_example" />
+        <Route element={<TodoExample />} path="/example/todo_example" />
+        <Route element={<ModalExample />} path="/example/modal_example" />
+        <Route
+          element={<AccordionExample />}
+          path="/example/accordion_example"
+        />
+        <Route
+          element={<DropdownMenuExample />}
+          path="/example/dropdownmenu_example"
+        />
+        <Route element={<StoreExample />} path="/example/store_example" />
 
-      {/* ----------------------------------------
-       * auth 各ルート設定
-       * ----------------------------------------- */}
-      <Route
-        element={
-          !isSignedIn ? <SignIn /> : <Navigate replace to="/auth/signout" />
-        }
-        path="/auth/signin"
-      />
-      <Route
-        element={
-          !isSignedIn ? <SignUp /> : <Navigate replace to="/auth/signout" />
-        }
-        path="/auth/signup"
-      />
-      <Route
-        element={
-          !isSignedIn ? (
-            <Verification />
-          ) : (
-            <Navigate replace to="/auth/signout" />
-          )
-        }
-        path="/auth/verification"
-      />
-      <Route
-        element={
-          isSignedIn ? <SignOut /> : <Navigate replace to="/auth/signin" />
-        }
-        path="/auth/signout"
-      />
+        {/* 未認証ユーザー向けルート */}
+        <Route
+          element={
+            <RouteGuard requireAuth={false}>
+              <SignIn />
+            </RouteGuard>
+          }
+          path="/auth/signin"
+        />
+        <Route
+          element={
+            <RouteGuard requireAuth={false}>
+              <SignUp />
+            </RouteGuard>
+          }
+          path="/auth/signup"
+        />
+        <Route
+          element={
+            <RouteGuard requireAuth={false}>
+              <Verification />
+            </RouteGuard>
+          }
+          path="/auth/verification"
+        />
 
-      {/* ----------------------------------------
-       * error 各ルート設定
-       * ----------------------------------------- */}
-      <Route element={<Error404 />} path="/error/404" />
-      <Route element={<Error500 />} path="/error/500" />
+        {/* 認証済みユーザー向けルート */}
+        <Route
+          element={
+            <RouteGuard requireAuth>
+              <SignOut />
+            </RouteGuard>
+          }
+          path="/auth/signout"
+        />
 
-      {/* ----------------------------------------
-       * リダイレクト設定
-       * ----------------------------------------- */}
-      <Route
-        // 存在しないパス遷移時は404ページへリダイレクト
-        element={<Navigate replace to="/error/404" />}
-        path="/*"
-      />
-      <Route
-        // ルート遷移時は FormExampleページ へリダイレクト
-        element={<Navigate replace to="/example/form_example" />}
-        path="/"
-      />
-      <Route
-        // example ルート遷移時は FormExampleページ へリダイレクト
-        element={<Navigate replace to="/example/form_example" />}
-        path="/example"
-      />
-      <Route
-        // auth ルート遷移時はサインイン状態に応じ SignOut/SignInページ へリダイレクト
-        element={
-          <Navigate
-            replace
-            to={isSignedIn ? "/auth/signout" : "/auth/signin"}
-          />
-        }
-        path="/auth"
-      />
-    </Routes>
+        {/* error 各ルート設定 */}
+        <Route element={<Error404 />} path="/error/404" />
+        <Route element={<Error500 />} path="/error/500" />
+
+        {/* リダイレクト設定 */}
+        <Route element={<Navigate replace to="/error/404" />} path="/*" />
+        <Route
+          element={<Navigate replace to="/example/form_example" />}
+          path="/"
+        />
+        <Route
+          element={<Navigate replace to="/example/form_example" />}
+          path="/example"
+        />
+        <Route
+          element={
+            <Navigate
+              replace
+              to={isSignedIn ? "/auth/signout" : "/auth/signin"}
+            />
+          }
+          path="/auth"
+        />
+      </Routes>
+    </Suspense>
   );
 }

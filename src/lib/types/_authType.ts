@@ -2,9 +2,12 @@
     ▽ 型定義 (Auth編) ▽
 ---------------------------------------------------------- */
 // AuthProvider
+export type TypeAuthStatus = "loading" | "authenticated" | "unauthenticated";
+
 export type TypeAuthContext = {
+  authStatus: TypeAuthStatus;
   isSignedIn: boolean;
-  refreshAuthState: () => void;
+  refreshAuthState: () => Promise<void>;
 };
 
 // SignIn
