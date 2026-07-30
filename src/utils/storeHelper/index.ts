@@ -5,10 +5,18 @@ import { loadingReducer } from "./slices/loadingSlice";
 
 export { exampleFlagSet, exampleStringSet } from "./slices/exampleSlice";
 export { loadingFlagDown, loadingFlagUp } from "./slices/loadingSlice";
+// export { xxxxFlagSet, xxxxStringSet } from "./slices/xxxxSlice";
 
-// 機能が増えたら reducer を1つ追加するだけで slice 分割できます。
+/* -----------------------------------------------
+ * Redux Store 設定
+ * ----------------------------------------------- */
+
 export const store = configureStore({
-  reducer: { example: exampleReducer, loading: loadingReducer },
+  reducer: {
+    example: exampleReducer,
+    loading: loadingReducer,
+    // xxxx: xxxxReducer
+  },
 });
 
 export type AppDispatch = typeof store.dispatch;

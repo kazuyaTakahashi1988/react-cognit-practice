@@ -8,6 +8,7 @@ type GuardProps = { children: React.ReactNode };
 
 const AuthChecking = () => <p>認証状態を確認しています...</p>;
 
+// 認証済みユーザーのみアクセス可能なルート
 export const AuthGuard: React.FC<GuardProps> = ({ children }) => {
   const { isChecking, isSignedIn } = useAuth();
 
@@ -15,6 +16,7 @@ export const AuthGuard: React.FC<GuardProps> = ({ children }) => {
   return isSignedIn ? children : <Navigate replace to="/auth/signin" />;
 };
 
+// 未認証ユーザーのみアクセス可能なルート
 export const GuestGuard: React.FC<GuardProps> = ({ children }) => {
   const { isChecking, isSignedIn } = useAuth();
 

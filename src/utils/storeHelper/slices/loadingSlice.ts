@@ -1,5 +1,9 @@
 import { createSlice } from "@reduxjs/toolkit";
 
+/* -----------------------------------------------
+ * Loading（表示/非表示フラグ）用のStore設定
+ * ----------------------------------------------- */
+
 const loadingSlice = createSlice({
   initialState: { count: 0 },
   name: "loading",

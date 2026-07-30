@@ -1,5 +1,9 @@
 import { createSlice } from "@reduxjs/toolkit";
 
+/* -----------------------------------------------
+ * StoreExample ページ用のStore設定
+ * ----------------------------------------------- */
+
 const exampleSlice = createSlice({
   initialState: { exampleFlag: false, exampleString: "" },
   name: "example",

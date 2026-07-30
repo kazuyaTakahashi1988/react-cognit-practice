@@ -7,8 +7,13 @@ export type AppRoute = {
   path: string;
 };
 
-// ページ追加時はこの配列に1行足します。実体はアクセス時にだけ読み込まれます。
+/* -----------------------------------------------
+ * 各ルート一覧およびページ追加箇所
+ * ----------------------------------------------- */
 export const routeConfig: AppRoute[] = [
+  /* ---------------------------------------------
+   * ▽▽▽ example 各ルート設定 ▽▽▽
+   * --------------------------------------------- */
   {
     access: "public",
     component: lazy(() => import("../features/example/formExample/page")),
@@ -41,6 +46,9 @@ export const routeConfig: AppRoute[] = [
     component: lazy(() => import("../features/example/storeExample/page")),
     path: "/example/store_example",
   },
+  /* ---------------------------------------------
+   * ▽▽▽ auth 各ルート設定 ▽▽▽
+   * --------------------------------------------- */
   {
     access: "guest",
     component: lazy(() => import("../features/auth/signIn/page")),
@@ -61,6 +69,9 @@ export const routeConfig: AppRoute[] = [
     component: lazy(() => import("../features/auth/signOut/page")),
     path: "/auth/signout",
   },
+  /* ---------------------------------------------
+   * ▽▽▽ error 各ルート設定 ▽▽▽
+   * --------------------------------------------- */
   {
     access: "public",
     component: lazy(() => import("../features/error/404/page")),
