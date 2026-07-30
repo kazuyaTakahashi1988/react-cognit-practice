@@ -14,7 +14,7 @@ import Layout from "../../../components/layouts/layout";
 import { color, media } from "../../../lib/style";
 import { testPostApi } from "../../../utils/apiHelper";
 
-import type { TypeFormExampleValues } from "../../../lib/types";
+import type { FormExampleValues } from "./type";
 import type React from "react";
 
 /* -----------------------------------------------
@@ -38,7 +38,7 @@ const FormExample: React.FC = () => {
   /*
    * RHForm 使用設定
    */
-  const form = useForm<TypeFormExampleValues>({
+  const form = useForm<FormExampleValues>({
     mode: "onSubmit", // 'onChange' or 'onBlur' or 'onSubmit' or 'onTouched' or 'all'
     reValidateMode: "onChange", // 'onChange' or 'onBlur' or 'onSubmit'
     criteriaMode: "all", // 'firstError' or 'all'
@@ -58,7 +58,7 @@ const FormExample: React.FC = () => {
    */
   const onSubmit = form.handleSubmit(async (data) => {
     const responsePost = await testPostApi(data); // テストポストAPI（てきとーなやつ）処理
-    if (responsePost.status !== 200) {
+    if (!responsePost.ok || responsePost.response.status !== 200) {
       navigate("/error/500", { replace: true });
     }
   });

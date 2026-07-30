@@ -159,3 +159,17 @@ react-cognit-practice/
 ├── ...
 └── README.md        # This file
 ```
+
+### 中規模開発での配置ルール
+
+元の `components / features / lib / router / utils` という分け方を保ちつつ、次の基準でファイルを配置します。
+
+- `features/**/page.tsx`: URL に対応する入口です。レイアウト、データ取得結果、画面遷移を組み立てます。
+- `features/**/component.tsx`: その画面固有の表示だけを担当します。別 feature からは import しません。
+- `features/**/hooks.ts`: 複数コンポーネントで共有する画面固有の状態や副作用が生じた場合に追加します。単純な処理のために無理に作りません。
+- `features/**/type.ts`: フォーム値など、その feature でしか使わない型を置きます。複数 feature で共有する型だけを共通層へ移します。
+- `utils/apiHelper/client.ts`: HTTP の共通処理、`modules/*.ts`: API の業務領域ごとの関数を置きます。正常時は `ok: true`、API エラー時は `ok: false` で判定します。
+- `router/routeConfig.tsx`: URL と page、`guards.tsx`: 認証制御、`index.tsx`: ルートの組み立てだけを担当します。
+- `utils/storeHelper/slices`: 機能単位の Redux slice を置き、`storeHelper/index.ts` で結合します。
+
+認証トークンは独自に Web Storage へ保存せず、Amplify が管理するセッションを `fetchAuthSession` から取得します。これにより Cognito の更新処理も Amplify に任せられます。

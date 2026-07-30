@@ -3,7 +3,7 @@ import styled from "styled-components";
 
 import { color } from "../../lib/style";
 
-import type { TypeSelectorState } from "../../lib/types";
+import type { RootState } from "../../utils/storeHelper";
 import type React from "react";
 
 /* -----------------------------------------------
@@ -15,7 +15,7 @@ export const GlobalLoading: React.FC = () => {
    * ローディングフラグ
    */
   const loadingFlagCount = useSelector(
-    (state: TypeSelectorState) => state.loadingFlagCount,
+    (state: RootState) => state.loading.count,
   );
   const visible = loadingFlagCount > 0;
 

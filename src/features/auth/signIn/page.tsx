@@ -13,7 +13,7 @@ import {
   store,
 } from "../../../utils/storeHelper";
 
-import type { TypeSignInResult, TypeSignInValues } from "../../../lib/types";
+import type { SignInResult, SignInValues } from "./type";
 import type React from "react";
 
 /* -----------------------------------------------
@@ -37,7 +37,7 @@ const SignIn: React.FC = () => {
   /*
    * RHForm 使用設定
    */
-  const signInForm = useForm<TypeSignInValues>({
+  const signInForm = useForm<SignInValues>({
     defaultValues: { email: "", password: "" },
   });
 
@@ -57,7 +57,7 @@ const SignIn: React.FC = () => {
 
     /* Sign In 処理 */
     signInHelper(data)
-      .then((res: TypeSignInResult) => {
+      .then((res: SignInResult) => {
         if (res.isSignedIn) {
           refreshAuthState(); // 認証状態を更新する処理
         } else {

@@ -1,41 +1,15 @@
-import { configureStore, createSlice } from "@reduxjs/toolkit";
+import { configureStore } from "@reduxjs/toolkit";
 
-import type { TypeState } from "../../lib/types";
+import { exampleReducer } from "./slices/exampleSlice";
+import { loadingReducer } from "./slices/loadingSlice";
 
-/* -----------------------------------------------
- * Store管理（Redux）処理
- * ----------------------------------------------- */
+export { exampleFlagSet, exampleStringSet } from "./slices/exampleSlice";
+export { loadingFlagDown, loadingFlagUp } from "./slices/loadingSlice";
 
-const initialState: TypeState = {
-  loadingFlagCount: 0,
-  exampleString: "",
-  exampleFlag: false,
-};
-
-const appSlice = createSlice({
-  name: "app",
-  initialState,
-  reducers: {
-    loadingFlagUp: (state: TypeState) => {
-      state.loadingFlagCount += 1;
-    },
-    loadingFlagDown: (state: TypeState) => {
-      state.loadingFlagCount = Math.max(0, state.loadingFlagCount - 1);
-    },
-    exampleStringSet: (state: TypeState, action: { payload: string }) => {
-      state.exampleString = action.payload;
-    },
-    exampleFlagSet: (state: TypeState, action: { payload: boolean }) => {
-      state.exampleFlag = action.payload;
-    },
-  },
+// 機能が増えたら reducer を1つ追加するだけで slice 分割できます。
+export const store = configureStore({
+  reducer: { example: exampleReducer, loading: loadingReducer },
 });
 
-export const {
-  loadingFlagUp,
-  loadingFlagDown,
-  exampleStringSet,
-  exampleFlagSet,
-} = appSlice.actions;
-
-export const store = configureStore({ reducer: appSlice.reducer });
+export type AppDispatch = typeof store.dispatch;
+export type RootState = ReturnType<typeof store.getState>;
