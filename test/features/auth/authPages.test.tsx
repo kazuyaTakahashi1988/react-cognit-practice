@@ -44,7 +44,10 @@ describe("authentication pages", () => {
 
     expect(screen.getByRole("heading", { name: "SignIn" })).toBeVisible();
     await user.type(screen.getByPlaceholderText(EMAIL_PLACEHOLDER), EMAIL);
-    await user.type(screen.getByPlaceholderText(PASSWORD_PLACEHOLDER), "password");
+    await user.type(
+      screen.getByPlaceholderText(PASSWORD_PLACEHOLDER),
+      "password",
+    );
     await user.click(screen.getByRole("button", { name: "送信する" }));
 
     await waitFor(() =>
@@ -65,7 +68,10 @@ describe("authentication pages", () => {
       screen.getByPlaceholderText(EMAIL_PLACEHOLDER),
       "new@example.com",
     );
-    await user.type(screen.getByPlaceholderText(PASSWORD_PLACEHOLDER), "password");
+    await user.type(
+      screen.getByPlaceholderText(PASSWORD_PLACEHOLDER),
+      "password",
+    );
     await user.click(screen.getByRole("button", { name: "送信する" }));
 
     expect(await screen.findByText(/Verify用のコード/)).toBeVisible();
@@ -80,7 +86,10 @@ describe("authentication pages", () => {
     renderPage(<Verification />);
 
     expect(screen.getByRole("heading", { name: "Verification" })).toBeVisible();
-    await user.type(screen.getByPlaceholderText(PASSWORD_PLACEHOLDER), "123456");
+    await user.type(
+      screen.getByPlaceholderText(PASSWORD_PLACEHOLDER),
+      "123456",
+    );
     await user.type(screen.getByPlaceholderText(EMAIL_PLACEHOLDER), EMAIL);
     await user.click(screen.getByRole("button", { name: "送信する" }));
 
