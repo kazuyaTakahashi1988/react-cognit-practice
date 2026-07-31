@@ -20,7 +20,7 @@ jobs:
           cache: yarn
 
       - name: Install dependencies
-        run: yarn install --immutable
+        run: yarn install --immutable --ignore-scripts
 
       - name: Prettier-eslint Checker
         run: yarn checker
@@ -42,7 +42,7 @@ jobs:
           cache: yarn
 
       - name: Install dependencies
-        run: yarn install --immutable
+        run: yarn install --immutable --ignore-scripts
 
       - name: Vitest Run
         run: yarn test
@@ -63,7 +63,7 @@ jobs:
           cache: yarn
 
       - name: Install dependencies
-        run: yarn install --immutable
+        run: yarn install --immutable --ignore-scripts
 
       - name: React-static Building
         run: yarn build:scripts
@@ -86,7 +86,7 @@ jobs:
           cache: yarn
 
       - name: Install dependencies
-        run: yarn install --immutable
+        run: yarn install --immutable --ignore-scripts
 
       - name: Storybook-static Building
         run: yarn build-storybook
@@ -108,7 +108,7 @@ jobs:
           cache: yarn
 
       - name: Install dependencies
-        run: yarn install --immutable
+        run: yarn install --immutable --ignore-scripts
 
       - name: React-static Building
         run: yarn build:scripts
@@ -139,7 +139,7 @@ jobs:
           cache: yarn
 
       - name: Install dependencies
-        run: yarn install --immutable
+        run: yarn install --immutable --ignore-scripts
 
       - name: Storybook-static Building
         run: yarn build-storybook
