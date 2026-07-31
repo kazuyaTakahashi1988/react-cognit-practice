@@ -16,6 +16,8 @@ const authMocks = vi.hoisted(() => ({
   verify: vi.fn(),
 }));
 const EMAIL = "user@example.com";
+const EMAIL_PLACEHOLDER = "○○○○＠○○○○.com";
+const PASSWORD_PLACEHOLDER = "○○○○○○○○";
 
 vi.mock("../../../src/utils/authHelper", () => ({
   signInHelper: authMocks.signIn,
@@ -41,8 +43,8 @@ describe("authentication pages", () => {
     renderPage(<SignIn />);
 
     expect(screen.getByRole("heading", { name: "SignIn" })).toBeVisible();
-    await user.type(screen.getByLabelText(/emailを入力/), EMAIL);
-    await user.type(screen.getByLabelText(/passwordを入力/), "password");
+    await user.type(screen.getByPlaceholderText(EMAIL_PLACEHOLDER), EMAIL);
+    await user.type(screen.getByPlaceholderText(PASSWORD_PLACEHOLDER), "password");
     await user.click(screen.getByRole("button", { name: "送信する" }));
 
     await waitFor(() =>
@@ -59,8 +61,11 @@ describe("authentication pages", () => {
     renderPage(<SignUp />);
 
     expect(screen.getByRole("heading", { name: "SignUp" })).toBeVisible();
-    await user.type(screen.getByLabelText(/emailを入力/), "new@example.com");
-    await user.type(screen.getByLabelText(/passwordを入力/), "password");
+    await user.type(
+      screen.getByPlaceholderText(EMAIL_PLACEHOLDER),
+      "new@example.com",
+    );
+    await user.type(screen.getByPlaceholderText(PASSWORD_PLACEHOLDER), "password");
     await user.click(screen.getByRole("button", { name: "送信する" }));
 
     expect(await screen.findByText(/Verify用のコード/)).toBeVisible();
@@ -75,8 +80,8 @@ describe("authentication pages", () => {
     renderPage(<Verification />);
 
     expect(screen.getByRole("heading", { name: "Verification" })).toBeVisible();
-    await user.type(screen.getByLabelText(/verificationCodeを入力/), "123456");
-    await user.type(screen.getByLabelText(/emailを入力/), EMAIL);
+    await user.type(screen.getByPlaceholderText(PASSWORD_PLACEHOLDER), "123456");
+    await user.type(screen.getByPlaceholderText(EMAIL_PLACEHOLDER), EMAIL);
     await user.click(screen.getByRole("button", { name: "送信する" }));
 
     expect(await screen.findByText(/Verify 完了/)).toBeVisible();
