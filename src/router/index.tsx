@@ -1,36 +1,16 @@
 import { Suspense } from "react";
 import { Navigate, Route, Routes } from "react-router-dom";
 
-import { AuthGuard, GuestGuard } from "./guards";
+import { routeElement } from "./guards";
 import { routeConfig } from "./routeConfig";
 import { PageLoading } from "../components/loading/pageLoading";
 import { useAuth } from "../utils/authHelper";
 import { usePVTracking } from "../utils/gaHelper";
 
-import type { AppRoute } from "./routeConfig";
-
-// 認証状態に応じてルーティングを切り替える処理
-const routeElement = ({ access, component: Page }: AppRoute) => {
-  // auth: 認証済みユーザーのみアクセス可能
-  if (access === "auth")
-    return (
-      <AuthGuard>
-        <Page />
-      </AuthGuard>
-    );
-  // guest: 未認証ユーザーのみアクセス可能
-  if (access === "guest")
-    return (
-      <GuestGuard>
-        <Page />
-      </GuestGuard>
-    );
-  return <Page />;
-};
-
 /* -----------------------------------------------
  * ルーティング設定
  * ----------------------------------------------- */
+
 export function Router() {
   const { isChecking, isSignedIn } = useAuth();
   usePVTracking();
@@ -39,7 +19,7 @@ export function Router() {
     <Suspense fallback={<PageLoading />}>
       <Routes>
         {/* ----------------------------------------
-         * 各ルート設定（ページ追加時 routeConfig に追加）
+         * 各ルート設定（ルート追加は routeConfig を編集）
          * ----------------------------------------- */}
         {routeConfig.map((route) => (
           <Route

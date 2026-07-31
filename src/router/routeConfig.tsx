@@ -8,14 +8,14 @@ export type AppRoute = {
 };
 
 /* -----------------------------------------------
- * 各ルート一覧およびページ追加箇所
+ * 各ルート一覧
  * ----------------------------------------------- */
 export const routeConfig: AppRoute[] = [
   /* ---------------------------------------------
    * ▽▽▽ example 各ルート設定 ▽▽▽
    * --------------------------------------------- */
   {
-    access: "public",
+    access: "public", // 未認証 or 認証済みユーザーどちらもアクセス可の設定値
     component: lazy(() => import("../features/example/formExample/page")),
     path: "/example/form_example",
   },
@@ -50,7 +50,7 @@ export const routeConfig: AppRoute[] = [
    * ▽▽▽ auth 各ルート設定 ▽▽▽
    * --------------------------------------------- */
   {
-    access: "guest",
+    access: "guest", // 未認証ユーザーのみアクセス可の設定値
     component: lazy(() => import("../features/auth/signIn/page")),
     path: "/auth/signin",
   },
@@ -65,7 +65,7 @@ export const routeConfig: AppRoute[] = [
     path: "/auth/verification",
   },
   {
-    access: "auth",
+    access: "auth", // 認証済みユーザーのみアクセス可の設定値
     component: lazy(() => import("../features/auth/signOut/page")),
     path: "/auth/signout",
   },
