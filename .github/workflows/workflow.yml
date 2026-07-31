@@ -47,12 +47,10 @@ jobs:
       - name: Vitest Run
         run: yarn test
 
-  deploy-react-static:
-    if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+  build-scripts:
+    if: github.event_name == 'pull_request'
     runs-on: ubuntu-latest
     timeout-minutes: 10
-    env:
-      NODE_ENV: production
 
     steps:
       - name: Checkout
@@ -69,22 +67,13 @@ jobs:
 
       - name: React-static Building
         run: yarn build:scripts
+        env:
+          NODE_ENV: production
 
-      - name: FTP-Deploy-Action
-        uses: SamKirkland/FTP-Deploy-Action@v4.3.6
-        with:
-          server: ${{ secrets.FTP_SERVER }}
-          username: ${{ secrets.FTP_USERNAME }}
-          password: ${{ secrets.FTP_PASSWORD }}
-          local-dir: ./dist/
-          server-dir: /react-cognito/
-
-  deploy-storybook-static:
-    if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+  build-storybook:
+    if: github.event_name == 'pull_request'
     runs-on: ubuntu-latest
     timeout-minutes: 10
-    env:
-      NODE_ENV: production
 
     steps:
       - name: Checkout
@@ -101,6 +90,61 @@ jobs:
 
       - name: Storybook-static Building
         run: yarn build-storybook
+        env:
+          NODE_ENV: production
+
+  deploy-react-static:
+    if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 24.x
+          cache: yarn
+
+      - name: Install dependencies
+        run: yarn install --immutable
+
+      - name: React-static Building
+        run: yarn build:scripts
+        env:
+          NODE_ENV: production
+
+      - name: FTP-Deploy-Action
+        uses: SamKirkland/FTP-Deploy-Action@v4.3.6
+        with:
+          server: ${{ secrets.FTP_SERVER }}
+          username: ${{ secrets.FTP_USERNAME }}
+          password: ${{ secrets.FTP_PASSWORD }}
+          local-dir: ./dist/
+          server-dir: /react-cognito/
+
+  deploy-storybook-static:
+    if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 24.x
+          cache: yarn
+
+      - name: Install dependencies
+        run: yarn install --immutable
+
+      - name: Storybook-static Building
+        run: yarn build-storybook
+        env:
+          NODE_ENV: production
 
       - name: FTP-Deploy-Action
         uses: SamKirkland/FTP-Deploy-Action@v4.3.6
