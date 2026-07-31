@@ -1,16 +1,16 @@
-# Architecture Review by Codex - 2026/7/30
+# Architecture Review by Codex - 2026/7/31
 
 ## 結論
 
 現時点の評価は次のとおりです。
 
-| 規模   | 実用性 | 評価                                                       |
-| ------ | ------ | ---------------------------------------------------------- |
-| 小規模 | 高い   | そのまま実用可能                                           |
-| 中規模 | 中〜高 | チームルール・テスト・データ取得設計を補えば実用可能       |
-| 大規模 | 低〜中 | 現状の延長では厳しく、ドメイン境界と依存方向の再設計が必要 |
+| 規模   | 実用性 | 評価                                                            |
+| ------ | ------ | --------------------------------------------------------------- |
+| 小規模 | 高い   | そのまま実用可能。業務利用前に境界テストと設定検証を推奨        |
+| 中規模 | 中〜高 | テストと PR CI は整備済み。通信・状態管理の分離を補えば実用可能 |
+| 大規模 | 低〜中 | 現状の延長では厳しく、ドメイン境界と依存方向の再設計が必要      |
 
-一言でまとめると、**学習用サンプルの域はある程度超えており、小規模な業務 SPA の土台として十分使えます。中規模でも改善を前提に実用可能ですが、大規模開発では「共通層への集中」「テスト不足」「状態管理と通信層の密結合」がボトルネックになります。**
+一言でまとめると、**学習用サンプルの域はある程度超えており、小規模な業務 SPA の土台として十分使えます。フロントエンドのページテストと PR 品質ゲートも導入済みのため、中規模の入口にも到達しています。一方、大規模開発では「共通層への集中」「重要な境界のテスト不足」「状態管理と通信層の密結合」がボトルネックになります。**
 
 以前のレビュー後に、ルート定義のデータ化・遅延ロード・Guard 分離・API クライアントと API モジュールの分離・Redux slice 分割が導入されています。そのため、現在の構成は以前より明確に中規模寄りへ改善されています。
 
@@ -28,7 +28,7 @@
 - React Hook Form
 - styled-components
 - Storybook
-- AWS CDK
+- AWS CDK / Cognito 構成は別ブランチで管理
 - ESLint / Prettier / Husky
 - 静的プリレンダリング / サイトマップ生成
 
@@ -45,7 +45,7 @@ src/
 └── main.tsx
 ```
 
-README にも `page.tsx`、`component.tsx`、`hooks.ts`、`type.ts`、API モジュール、Guard、Redux slice の配置ルールが明文化されています。
+README にも `components`、`features`、`lib`、`router`、`utils` という大分類は明文化されています。一方、feature 内の hook、API、UI の分割基準や共通化の判断基準は、中規模化の際に追記する余地があります。
 
 ---
 
@@ -180,24 +180,23 @@ Input は `React.InputHTMLAttributes<HTMLInputElement>` を継承し、`forwardR
 
 ## 3. 悪い点・改善できる余地
 
-### 3.1 最大の問題は自動テストがほぼ存在しないこと
+### 3.1 自動テストは導入済みだが、重要な境界のテストが不足している
 
-ルートの `package.json` にはフロントエンド用のテストスクリプトや Vitest などのテストランナーがありません。存在するテストファイルは CDK のサンプル 1 件ですが、実体となる assertion はコメントアウトされています。
+Vitest、Testing Library、user-event、jest-dom、jsdom が導入され、`test` / `test:watch` スクリプトも定義されています。認証、エラー、Example の各ページには、表示と利用者操作を確認するテストがあります。認証テストではサインイン、サインアップ、検証コード、サインアウトと helper 呼び出しまで検証しており、「自動テストが存在しない」状態ではありません。
 
-したがって、現在の `1 test passed` はアプリや CDK 構成の正しさを保証していません。
+一方、現在のテストはページの代表的な正常系が中心です。アーキテクチャ上の重要な境界である次の振る舞いは、引き続き拡充が必要です。
 
-最低限、次のテストが必要です。
+#### 単体・統合テスト
 
-#### 単体テスト
+- API エラー正規化、Authorization header、loading の後始末
+- AuthProvider の初期化、失敗、連続 refresh
+- AuthGuard / GuestGuard のリダイレクト
+- Redux loading count の並行リクエスト
+- フォームの異常系とバリデーション
+- メタタグ、canonical、構造化データの更新
+- sitemap / prerender の生成結果
 
-- API エラー正規化
-- AuthProvider の状態遷移
-- Guard のリダイレクト
-- Redux loading count
-- フォームバリデーション
-- メタタグ更新
-
-#### コンポーネントテスト
+#### コンポーネント・アクセシビリティテスト
 
 - Input と React Hook Form の接続
 - モーダルのフォーカス制御
@@ -206,14 +205,12 @@ Input は `React.InputHTMLAttributes<HTMLInputElement>` を継承し、`forwardR
 
 #### E2E
 
-- サインアップ
-- 検証コード
-- サインイン
-- サインアウト
+- サインアップから検証、サインイン、サインアウトまで
 - 認証必須ページ
-- API 失敗時の 500 遷移
+- セッション失効や API 失敗時の表示
+- 静的配信環境での直リンクと 404
 
-小規模な検証アプリなら許容できますが、小規模な業務アプリでも改善が必要です。中規模以上では重大な不足であり、大規模プロジェクトでは現状のまま採用することは困難です。
+小規模アプリの回帰防止基盤としては実用的な水準へ改善されています。中規模化に向けては、ページ数に比例してテストを増やすよりも、API、認証、Router、ビルド成果物という変更影響の大きい境界を優先して保証するのが効果的です。
 
 ### 3.2 API 層が Redux Store へ直接依存している
 
@@ -386,37 +383,44 @@ Amplify 設定では、環境変数がない場合に空文字を設定してい
 
 ただし、動的コンテンツが大量、数千〜数万ページ、ユーザーごとにメタ情報が異なる、ISR / SSR / サーバー側認証が必要、といった要件では限界があります。その場合は SPA 構成を延長するだけでなく、Next.js、Remix、React Router framework mode などを比較した方がよいです。
 
-### 3.12 CI が push-to-main 中心で、PR 品質ゲートが弱い
+### 3.12 PR 品質ゲートは整備済みだが、運用品質の検査は拡張余地がある
 
-Workflow は main ブランチへの push を中心としており、pull request trigger がありません。Lint、build、Storybook build はありますが、アプリテスト、E2E、CDK synth、dependency audit、bundle size check、preview deployment などもありません。
+Workflow は `push` と `pull_request` の両方を契機とし、Checkout / Setup Node v4 と Node 24 を使用しています。PR では次の独立ジョブが実行されます。
 
-また、GitHub Actions の Checkout と Setup Node は古い major versionです。
+- Prettier / ESLint / TypeScript
+- Vitest
+- アプリビルド、sitemap、prerender
+- Storybook build
 
-PR 時に最低限、次のチェックを行いたいです。
+したがって、基本的な PR 品質ゲートはすでに存在します。ジョブを分割しているため失敗箇所が分かりやすく、並列化しやすい点も良い設計です。
 
-```text
-yarn install --immutable
-yarn checker
-yarn build
-yarn build-storybook
-npm test --prefix cdk
-npm run build --prefix cdk
-npx cdk synth
-```
+今後、中〜大規模の運用品質へ引き上げる場合は次を検討できます。
 
-### 3.13 CDK 構成は本番運用向けではない
+- E2E と accessibility test
+- test coverage threshold
+- dependency audit / SAST
+- bundle size budget と Web Vitals
+- Visual Regression
+- preview deployment と成果物の smoke test
+- Renovate / Dependabot
+- branch protection での必須チェック化
 
-CDK の User Pool はパスワード最小長が 6 で、大文字・小文字・記号を要求せず、`RemovalPolicy.DESTROY` です。また独自属性として `isAdmin` を持ち、Cognito 標準メール送信を利用しています。
+なお、ローカルと CI の再現性を高めるため、`packageManager` で Yarn のバージョンを固定し、lockfile と Yarn 設定を整合させることを推奨します。
 
-主な懸念は次のとおりです。
+### 3.13 CDK / Cognito インフラは現ブランチの評価対象外
 
-- 本番で Stack を削除するとユーザー情報を失う
-- `isAdmin` のような権限属性の扱いには慎重さが必要
-- 環境ごとの差分が明確でない
-- セキュリティ監視・ログ・WAF などは対象外
-- CDK の実質的な assertion test がない
+README では AWS CDK 用コードを `for-aws-cdk` ブランチとして案内しており、現在のブランチには `cdk` ディレクトリがありません。そのため、User Pool の削除ポリシー、パスワードポリシー、MFA、監査ログ、CDK assertion test などの本番適合性は、このコードベースだけでは評価できません。
 
-本番では少なくとも `RemovalPolicy.RETAIN` とし、要件に応じて MFA、Advanced Security、SES、監査ログなどを検討すべきです。
+本番利用時は別ブランチを独立してレビューし、少なくとも次を確認する必要があります。
+
+- User Pool と利用者データの RemovalPolicy
+- MFA、password policy、account recovery
+- 権限属性と認可の信頼境界
+- 環境ごとの設定分離
+- SES、監査ログ、脅威検知
+- CDK synth と assertion / snapshot test
+
+フロントエンドの実用性評価と、Cognito インフラの安全性評価は分離して扱うのが適切です。
 
 ### 3.14 依存バージョンの整合性を見直す余地がある
 
@@ -463,12 +467,13 @@ React 本体は 19 系ですが、`@types/react` と `@types/react-dom` は 18 �
 
 小規模でも業務リリース前には次を推奨します。
 
-1. Vitest + Testing Library 導入
+1. API client、AuthProvider、Guard の境界テストを追加
 2. 認証フローの E2E を最低 1 本追加
 3. Cognito 環境変数の起動時検証
-4. 本番 CDK の `RemovalPolicy.RETAIN`
-5. PR で checker / build を実行
-6. 空の `component.tsx`、`util.ts` を機械的に作らない
+4. Root / Route Error Boundary を追加
+5. 別ブランチの本番 Cognito / CDK 設定をレビュー
+6. Yarn バージョンと lockfile の再現性を確保
+7. 空の `component.tsx`、`util.ts` を機械的に作らない
 
 これらを対応すれば、社内ツール、管理画面、会員制の小規模 SPA などには十分利用できます。
 
@@ -486,20 +491,20 @@ React 本体は 19 系ですが、`@types/react` と `@types/react-dom` は 18 �
 
 #### 評価: 改善を前提に実用可能
 
-ルートの設定化、lazy loading、Guard 分離、API module 分割、Redux slice 分割がすでにあるため、中規模の入口には到達しています。
+ルートの設定化、lazy loading、Guard 分離、API module 分割、Redux slice 分割に加え、ページテストと PR CI も整備されているため、中規模の入口には到達しています。
 
 ただし、次を追加しないまま規模だけを増やすと保守性が急激に低下します。
 
-1. 単体・component・integration・E2E のテスト戦略
+1. API・認証・Router を中心とした単体・integration・E2E のテスト戦略
 2. TanStack Query などによる server state 管理
 3. OpenAPI ベースの API 型生成
 4. AppError と表示文言の分離
 5. feature ごとの application hook
 6. role / permission モデル
 7. エラー追跡、Web Vitals、API 失敗率などの監視
-8. PR test、CDK synth、bundle budget を含む CI
+8. coverage、E2E、dependency audit、bundle budget を含む CI
 
-現在の設計を大きく変えずに改善する場合の現実的な目安は、画面数 30〜50、開発者 5〜8 人、ドメイン 2〜5 領域程度です。ただし、単純な CRUD ならより大きくでき、複雑な権限、リアルタイム、オフライン対応などがある場合はより早く限界が来ます。
+現在のアーキテクチャを全面的に再設計せず、必要な部分を段階的に改善しながら運用した場合の目安は、画面数 30〜50、開発者 5〜8 人、ドメイン 2〜5 領域程度です。ただし、単純な CRUD ならより大きくでき、複雑な権限、リアルタイム、オフライン対応などがある場合はより早く限界が来ます。
 
 ### 4.3 大規模プロジェクト
 
@@ -572,12 +577,13 @@ src/
 
 ### P0: 業務利用前に対応
 
-1. フロントエンド自動テストを導入
-2. CDK の実質的なテストを追加
-3. 本番 User Pool を `RETAIN` にする
+1. Yarn バージョンと lockfile の再現性を確保
+2. API client、AuthProvider、Guard の境界テストを追加
+3. 認証フローの E2E を追加
 4. 環境変数を起動時に検証
-5. PR 時に checker / build / test を必須化
+5. Root / Route Error Boundary を追加
 6. 認証エラーを利用者向けメッセージへ変換
+7. 別ブランチの Cognito / CDK 本番設定をレビュー
 
 ### P1: 中規模化する前に対応
 
@@ -603,37 +609,38 @@ src/
 
 ## 6. 総合スコア
 
-| 観点             | 評価 | コメント                                                   |
-| ---------------- | ---- | ---------------------------------------------------------- |
-| ディレクトリ構成 | 8/10 | 小〜中規模で理解しやすい                                   |
-| 依存方向         | 7/10 | ESLint 制約は良いが、API から Redux への依存が強い         |
-| ルーティング     | 8/10 | 設定化・lazy・Guard 分離済み                               |
-| 認証             | 7/10 | ラップと Context は良い。イベント同期・エラー体系は不足    |
-| API 設計         | 7/10 | client / modules 分離済み。型生成・server state 管理は不足 |
-| 状態管理         | 7/10 | slice 分割は良いが、用途の境界が曖昧                       |
-| UI 再利用性      | 8/10 | 標準属性・forwardRef・Storybook が良い                     |
-| テスト           | 2/10 | 最大の弱点                                                 |
-| CI/CD            | 5/10 | ビルド・デプロイはあるが PR 品質ゲートが弱い               |
-| インフラ         | 4/10 | 学習用としては十分、本番設定には危険がある                 |
-| 大規模拡張性     | 4/10 | ドメイン境界・所有権・package 境界が不足                   |
+| 観点             | 評価   | コメント                                                   |
+| ---------------- | ------ | ---------------------------------------------------------- |
+| ディレクトリ構成 | 8/10   | 小〜中規模で理解しやすい                                   |
+| 依存方向         | 7/10   | ESLint 制約は良いが、API から Redux への依存が強い         |
+| ルーティング     | 8/10   | 設定化・lazy・Guard 分離済み                               |
+| 認証             | 7/10   | ラップと Context は良い。イベント同期・エラー体系は不足    |
+| API 設計         | 7/10   | client / modules 分離済み。型生成・server state 管理は不足 |
+| 状態管理         | 7/10   | slice 分割は良いが、用途の境界が曖昧                       |
+| UI 再利用性      | 8/10   | 標準属性・forwardRef・Storybook が良い                     |
+| テスト           | 5/10   | ページテストは整備済み。API・認証・Router・E2E は拡充余地  |
+| CI/CD            | 7/10   | PR で checker・test・build・Storybook build を実行         |
+| インフラ         | 対象外 | CDK は別ブランチのため、このブランチだけでは評価不能       |
+| 大規模拡張性     | 4/10   | ドメイン境界・所有権・package 境界が不足                   |
 
 規模別の総合評価は次のとおりです。
 
-- **小規模: 8/10**
-- **中規模: 6.5/10**
+- **小規模: 8〜8.5/10**
+- **中規模: 7/10**
 - **大規模: 4/10**
 
 特に高く評価できるのは、ルート設定の分離、ページ単位 lazy loading、認証 Guard、API client / module 分離、Redux slice 分離、配置ルールの README 明文化がすでに行われていることです。
 
-最大の課題は、設計パターンそのものよりも、それを守るテストと CI 品質ゲートが不足していることです。次の投資先は大規模なフォルダ再編ではなく、まずテスト、エラー体系、server state、CI を推奨します。
+現在の最大の課題は、API・認証・UI 状態管理の密結合、画面境界に留まる feature、そして API・認証・Router など重要な境界のテスト不足です。次の投資先は大規模なフォルダ再編ではなく、API client の純化、server state、エラー体系、境界テストを推奨します。
 
 ---
 
 ## 7. 調査時の検証結果
 
-- `yarn checker`: 成功
-- `yarn build`: 成功
-- `npm test -- --runInBand`（`cdk`）: コマンドは成功。ただし assertion がコメントアウトされているため品質保証としては不十分
-- `yarn build-storybook`: 成功。ただし Storybook 依存内の direct `eval` と 500 kB 超の chunk 警告あり
+- 現在の `package.json` には Vitest / Testing Library と test script が存在する
+- 認証、エラー、Example ページを対象とするフロントエンドテストが存在する
+- GitHub Actions は `push` と `pull_request` の両方を契機とし、checker、test、アプリ build、Storybook build を実行する
+- CDK は現在のブランチには存在せず、README から別ブランチへ案内されている
+- 調査環境では Yarn 4 と既存 lockfile / 未追跡 Yarn 設定が整合せず、`yarn test`、`yarn checker`、`yarn build:scripts` は起動前に失敗した
 
-以上から、現状は静的解析とビルドが通る健全な状態ですが、自動テストによる振る舞いの保証が最大の不足点です。
+したがって、コード上はテストと PR 品質ゲートが整備されていますが、パッケージマネージャーのバージョン固定と lockfile の整合性を確保し、ローカルと CI の再現性を高める余地があります。また、テスト投資はページ正常系から API、認証、Router、ビルド成果物などの境界へ広げることを推奨します。
