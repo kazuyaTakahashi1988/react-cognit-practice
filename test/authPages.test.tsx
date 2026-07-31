@@ -2,11 +2,11 @@ import { screen, waitFor } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import { beforeEach, describe, expect, it, vi } from "vitest";
 
-import SignIn from "./signIn/page";
-import SignOut from "./signOut/page";
-import SignUp from "./signUp/page";
-import Verification from "./verification/page";
-import { renderPage } from "../../test/pageTestUtils";
+import { renderPage } from "./pageTestUtils";
+import SignIn from "../src/features/auth/signIn/page";
+import SignOut from "../src/features/auth/signOut/page";
+import SignUp from "../src/features/auth/signUp/page";
+import Verification from "../src/features/auth/verification/page";
 
 const authMocks = vi.hoisted(() => ({
   refreshAuthState: vi.fn(),
@@ -17,7 +17,7 @@ const authMocks = vi.hoisted(() => ({
 }));
 const EMAIL = "user@example.com";
 
-vi.mock("../../../utils/authHelper", () => ({
+vi.mock("../src/utils/authHelper", () => ({
   signInHelper: authMocks.signIn,
   signOutHelper: authMocks.signOut,
   signUpHelper: authMocks.signUp,

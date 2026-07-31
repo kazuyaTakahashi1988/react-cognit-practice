@@ -2,20 +2,20 @@ import { screen, waitFor } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import { beforeEach, describe, expect, it, vi } from "vitest";
 
-import AccordionExample from "./accordionExample/page";
-import DropdownMenuExample from "./dropdownMenuExample/page";
-import FormExample from "./formExample/page";
-import ModalExample from "./modalExample/page";
-import StoreExample from "./storeExample/page";
-import TodoExample from "./todoExample/page";
-import { renderPage } from "../../test/pageTestUtils";
-import { store } from "../../utils/storeHelper";
+import { renderPage } from "./pageTestUtils";
+import AccordionExample from "../src/features/example/accordionExample/page";
+import DropdownMenuExample from "../src/features/example/dropdownMenuExample/page";
+import FormExample from "../src/features/example/formExample/page";
+import ModalExample from "../src/features/example/modalExample/page";
+import StoreExample from "../src/features/example/storeExample/page";
+import TodoExample from "../src/features/example/todoExample/page";
+import { store } from "../src/utils/storeHelper";
 
 const apiMocks = vi.hoisted(() => ({ post: vi.fn() }));
 const TODO_PLACEHOLDER = "タスクを入力してください。";
 
-vi.mock("../../utils/apiHelper", () => ({ testPostApi: apiMocks.post }));
-vi.mock("../../utils/authHelper", () => ({
+vi.mock("../src/utils/apiHelper", () => ({ testPostApi: apiMocks.post }));
+vi.mock("../src/utils/authHelper", () => ({
   useAuth: () => ({ isSignedIn: false, refreshAuthState: vi.fn() }),
 }));
 

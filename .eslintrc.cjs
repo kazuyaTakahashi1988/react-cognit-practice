@@ -41,7 +41,11 @@ module.exports = {
   ],
   overrides: [
     {
-      files: ["stories/**/*.{ts,tsx}", "src/**/*.{ts,tsx}"], // eclintルールが適用される対象ファイル群
+      files: [
+        "stories/**/*.{ts,tsx}",
+        "src/**/*.{ts,tsx}",
+        "test/**/*.{ts,tsx}",
+      ], // eclintルールが適用される対象ファイル群
       rules: {
         /* buttonタグにtype指定することを強制 */
         "react/button-has-type": "error",

@@ -1,9 +1,9 @@
 import { screen } from "@testing-library/react";
 import { describe, expect, it } from "vitest";
 
-import Error404 from "./404/page";
-import Error500 from "./500/page";
-import { renderPage } from "../../test/pageTestUtils";
+import { renderPage } from "./pageTestUtils";
+import Error404 from "../src/features/error/404/page";
+import Error500 from "../src/features/error/500/page";
 
 describe("error pages", () => {
   it("explains that a missing page was not found", () => {
