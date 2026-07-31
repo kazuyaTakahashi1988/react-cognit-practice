@@ -78,7 +78,7 @@ describe("example pages", () => {
       "updated",
     );
     expect(screen.getByText(/\[updated\]/)).toBeVisible();
-    await user.click(screen.getByRole("checkbox"));
+    await user.click(screen.getByText("noActive"));
     expect(screen.getByText(/\[true\]/)).toBeVisible();
   });
 
