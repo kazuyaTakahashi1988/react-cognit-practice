@@ -1,4 +1,1 @@
-export type {
-  SignUpResult,
-  SignUpValues,
-} from "../../../utils/authHelper/types";
+export type { SignUpResult, SignUpValues } from "../../../lib/types";

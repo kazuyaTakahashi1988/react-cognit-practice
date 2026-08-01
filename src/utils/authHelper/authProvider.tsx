@@ -1,7 +1,7 @@
 import { getCurrentUser } from "aws-amplify/auth";
 import { createContext, useEffect, useMemo, useState } from "react";
 
-import type { AuthContextValue } from "./types";
+import type { AuthContextValue } from "../../lib/types";
 import type React from "react";
 
 /* -----------------------------------------------
