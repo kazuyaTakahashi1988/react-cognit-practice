@@ -19,13 +19,12 @@ const setHeaders = async (
   accessToken?: string,
   headers?: Record<string, string>,
 ) => {
-  // Bearerトークン
+  // Bearerトークン 生成・取得
   const getBearerToken = async () => {
     if (accessToken != null) return accessToken;
     const session = await fetchAuthSession();
     return session.tokens?.accessToken.toString();
   };
-
   const bearerToken = await getBearerToken();
 
   // リクエストヘッダー内容
