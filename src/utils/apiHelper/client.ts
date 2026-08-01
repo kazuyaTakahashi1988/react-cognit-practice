@@ -65,7 +65,8 @@ const execute = async <TResponse, TRequest>(
       url: `${baseURL}${apiPath}`,
     };
 
-    const response = await axios.request<TResponse>(requestConfig); // リクエスト
+    // リクエストを実行
+    const response = await axios.request<TResponse>(requestConfig);
     return { ok: true, response };
   } catch (error) {
     if (axios.isAxiosError(error)) {
