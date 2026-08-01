@@ -20,19 +20,19 @@ const setHeaders = async (
   headers?: Record<string, string>,
 ) => {
   // Bearerトークン
-  const bearerToken = async () => {
+  const getBearerToken = async () => {
     if (accessToken != null) return accessToken;
     const session = await fetchAuthSession();
     return session.tokens?.accessToken.toString();
   };
 
+  const bearerToken = await getBearerToken();
+
   // リクエストヘッダー内容
   return {
     Accept: "application/json",
     "Content-Type": "application/json",
-    ...((await bearerToken())
-      ? { Authorization: `Bearer ${await bearerToken()}` }
-      : {}),
+    ...(bearerToken ? { Authorization: `Bearer ${bearerToken}` } : {}),
     ...headers,
   };
 };

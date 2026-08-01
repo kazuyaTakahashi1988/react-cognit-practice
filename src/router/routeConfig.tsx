@@ -1,18 +1,5 @@
 import { lazy } from "react";
 
-import SignIn from "../features/auth/signIn/page";
-import SignOut from "../features/auth/signOut/page";
-import SignUp from "../features/auth/signUp/page";
-import Verification from "../features/auth/verification/page";
-import Error404 from "../features/error/404/page";
-import Error500 from "../features/error/500/page";
-import AccordionExample from "../features/example/accordionExample/page";
-import DropdownMenuExample from "../features/example/dropdownMenuExample/page";
-import FormExample from "../features/example/formExample/page";
-import ModalExample from "../features/example/modalExample/page";
-import StoreExample from "../features/example/storeExample/page";
-import TodoExample from "../features/example/todoExample/page";
-
 import type { AppRoute } from "../lib/types";
 
 /* -----------------------------------------------
@@ -20,72 +7,74 @@ import type { AppRoute } from "../lib/types";
  * ----------------------------------------------- */
 export const routeConfig: AppRoute[] = [
   /* ---------------------------------------------
-   * ▽▽▽ example 各ルート ▽▽▽
+   * ▽▽▽ example 各ルート設定 ▽▽▽
    * --------------------------------------------- */
   {
-    access: "public", // ← 未認証 or 認証済みユーザーどちらもアクセス可の設定値
-    component: lazy(() => Promise.resolve({ default: FormExample })),
+    access: "public", // 未認証 or 認証済みユーザーどちらもアクセス可の設定値
+    component: lazy(() => import("../features/example/formExample/page")),
     path: "/example/form_example",
   },
   {
     access: "public",
-    component: lazy(() => Promise.resolve({ default: TodoExample })),
+    component: lazy(() => import("../features/example/todoExample/page")),
     path: "/example/todo_example",
   },
   {
     access: "public",
-    component: lazy(() => Promise.resolve({ default: ModalExample })),
+    component: lazy(() => import("../features/example/modalExample/page")),
     path: "/example/modal_example",
   },
   {
     access: "public",
-    component: lazy(() => Promise.resolve({ default: AccordionExample })),
+    component: lazy(() => import("../features/example/accordionExample/page")),
     path: "/example/accordion_example",
   },
   {
     access: "public",
-    component: lazy(() => Promise.resolve({ default: DropdownMenuExample })),
+    component: lazy(
+      () => import("../features/example/dropdownMenuExample/page"),
+    ),
     path: "/example/dropdownmenu_example",
   },
   {
     access: "public",
-    component: lazy(() => Promise.resolve({ default: StoreExample })),
+    component: lazy(() => import("../features/example/storeExample/page")),
     path: "/example/store_example",
   },
   /* ---------------------------------------------
-   * ▽▽▽ auth 各ルート ▽▽▽
+   * ▽▽▽ auth 各ルート設定 ▽▽▽
    * --------------------------------------------- */
   {
-    access: "guest", // ← 未認証ユーザーのみアクセス可の設定値
-    component: lazy(() => Promise.resolve({ default: SignIn })),
+    access: "guest", // 未認証ユーザーのみアクセス可の設定値
+    component: lazy(() => import("../features/auth/signIn/page")),
     path: "/auth/signin",
   },
   {
     access: "guest",
-    component: lazy(() => Promise.resolve({ default: SignUp })),
+    component: lazy(() => import("../features/auth/signUp/page")),
     path: "/auth/signup",
   },
   {
     access: "guest",
-    component: lazy(() => Promise.resolve({ default: Verification })),
+    component: lazy(() => import("../features/auth/verification/page")),
     path: "/auth/verification",
   },
   {
-    access: "auth", // ← 認証済みユーザーのみアクセス可の設定値
-    component: lazy(() => Promise.resolve({ default: SignOut })),
+    access: "auth", // 認証済みユーザーのみアクセス可の設定値
+    component: lazy(() => import("../features/auth/signOut/page")),
     path: "/auth/signout",
   },
   /* ---------------------------------------------
-   * ▽▽▽ error 各ルート ▽▽▽
+   * ▽▽▽ error 各ルート設定 ▽▽▽
    * --------------------------------------------- */
   {
     access: "public",
-    component: lazy(() => Promise.resolve({ default: Error404 })),
+    component: lazy(() => import("../features/error/404/page")),
     path: "/error/404",
   },
   {
     access: "public",
-    component: lazy(() => Promise.resolve({ default: Error500 })),
+    component: lazy(() => import("../features/error/500/page")),
     path: "/error/500",
   },
 ];
