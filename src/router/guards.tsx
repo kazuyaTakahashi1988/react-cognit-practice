@@ -2,14 +2,14 @@ import { Navigate } from "react-router-dom";
 
 import { useAuth } from "../utils/authHelper";
 
-import type { AppRoute } from "./routeConfig";
+import type { AppRoute } from "../lib/types";
 import type React from "react";
 
 type GuardProps = { children: React.ReactNode };
 
 const AuthChecking = () => <p>認証状態を確認しています...</p>;
 
-// 認証済みユーザーのみアクセス可なルート
+// 認証済みユーザーのみアクセス可とするガード処理
 const AuthGuard: React.FC<GuardProps> = ({ children }) => {
   const { isChecking, isSignedIn } = useAuth();
 
@@ -17,7 +17,7 @@ const AuthGuard: React.FC<GuardProps> = ({ children }) => {
   return isSignedIn ? children : <Navigate replace to="/auth/signin" />;
 };
 
-// 未認証ユーザーのみアクセス可なルート
+// 未認証ユーザーのみアクセス可とするガード処理
 const GuestGuard: React.FC<GuardProps> = ({ children }) => {
   const { isChecking, isSignedIn } = useAuth();
 

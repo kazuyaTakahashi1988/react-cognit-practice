@@ -8,25 +8,38 @@ import type { AxiosRequestConfig, Method } from "axios";
 
 const DEFAULT_BASE_URL = import.meta.env.VITE_APP_PUBLIC_API_BASE_URL ?? "";
 
-const getAccessToken = async (override?: string) => {
-  if (override != null) return override;
-  const session = await fetchAuthSession();
-  return session.tokens?.accessToken.toString();
-};
+/* -----------------------------------------------
+ * APIリクエスト処理
+ * ----------------------------------------------- */
 
+/*
+ * リクエストヘッダー生成 処理
+ */
 const setHeaders = async (
   accessToken?: string,
   headers?: Record<string, string>,
 ) => {
-  const bearerToken = await getAccessToken(accessToken);
+  // Bearerトークン
+  const bearerToken = async () => {
+    if (accessToken != null) return accessToken;
+    const session = await fetchAuthSession();
+    return session.tokens?.accessToken.toString();
+  };
+
+  // リクエストヘッダー内容
   return {
     Accept: "application/json",
     "Content-Type": "application/json",
-    ...(bearerToken != null ? { Authorization: `Bearer ${bearerToken}` } : {}),
+    ...((await bearerToken())
+      ? { Authorization: `Bearer ${await bearerToken()}` }
+      : {}),
     ...headers,
   };
 };
 
+/*
+ * リクエスト実行 処理
+ */
 const execute = async <TResponse, TRequest>(
   options: RequestOptions<TRequest>,
 ): Promise<ApiResult<TResponse>> => {
@@ -40,20 +53,24 @@ const execute = async <TResponse, TRequest>(
     params,
     requestData,
   } = options;
-  if (isLoading) store.dispatch(loadingFlagUp());
+
+  if (isLoading) store.dispatch(loadingFlagUp()); // ローディングフラグを上げる
 
   try {
+    // リクエスト内容
     const requestConfig: AxiosRequestConfig = {
       data: requestData,
-      headers: await setHeaders(accessToken, headers),
+      headers: await setHeaders(accessToken, headers), // リクエストヘッダー生成
       method,
       params,
       url: `${baseURL}${apiPath}`,
     };
-    const response = await axios.request<TResponse>(requestConfig);
+
+    const response = await axios.request<TResponse>(requestConfig); // リクエスト
     return { ok: true, response };
   } catch (error) {
     if (axios.isAxiosError(error)) {
+      // エラー内容
       return {
         error: {
           data: error.response?.data,
@@ -65,12 +82,15 @@ const execute = async <TResponse, TRequest>(
     }
     throw error;
   } finally {
-    if (isLoading) store.dispatch(loadingFlagDown());
+    if (isLoading) store.dispatch(loadingFlagDown()); // ローディングフラグを下げる
   }
 };
 
+/*
+ * リクエスト 処理
+ */
 export const request = <TResponse = unknown, TRequest = unknown>(
   method: Method,
   apiPath: string,
   options: Omit<RequestOptions<TRequest>, "apiPath" | "method"> = {},
-) => execute<TResponse, TRequest>({ ...options, apiPath, method });
+) => execute<TResponse, TRequest>({ ...options, apiPath, method }); // リクエスト実行

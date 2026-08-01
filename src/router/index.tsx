@@ -19,14 +19,12 @@ export function Router() {
     <Suspense fallback={<PageLoading />}>
       <Routes>
         {/* ----------------------------------------
-         * 各ルート設定（ルート追加は routeConfig を編集）
+         * 各ルート設定
+         * （ルート追加は routeConfig.tsx を編集）
          * ----------------------------------------- */}
         {routeConfig.map((route) => (
           <Route
-            element={
-              // 認証状態に応じてルーティングを切り替える処理
-              routeElement(route)
-            }
+            element={routeElement(route)}
             key={route.path}
             path={route.path}
           />
