@@ -12,8 +12,9 @@ import { usePVTracking } from "../utils/gaHelper";
  * ----------------------------------------------- */
 
 export function Router() {
-  const { isChecking, isSignedIn } = useAuth();
-  usePVTracking();
+  const { isChecking, isSignedIn } = useAuth(); // サインインフラグ
+
+  usePVTracking(); // GA4 PV計測処理
 
   return (
     <Suspense fallback={<PageLoading />}>

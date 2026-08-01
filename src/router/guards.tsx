@@ -11,7 +11,7 @@ const AuthChecking = () => <p>認証状態を確認しています...</p>;
 
 // 認証済みユーザーのみアクセス可とするガード処理
 const AuthGuard: React.FC<GuardProps> = ({ children }) => {
-  const { isChecking, isSignedIn } = useAuth();
+  const { isChecking, isSignedIn } = useAuth(); // サインインフラグ
 
   if (isChecking) return <AuthChecking />;
   return isSignedIn ? children : <Navigate replace to="/auth/signin" />;
@@ -19,7 +19,7 @@ const AuthGuard: React.FC<GuardProps> = ({ children }) => {
 
 // 未認証ユーザーのみアクセス可とするガード処理
 const GuestGuard: React.FC<GuardProps> = ({ children }) => {
-  const { isChecking, isSignedIn } = useAuth();
+  const { isChecking, isSignedIn } = useAuth(); // サインインフラグ
 
   if (isChecking) return <AuthChecking />;
   return isSignedIn ? <Navigate replace to="/auth/signout" /> : children;

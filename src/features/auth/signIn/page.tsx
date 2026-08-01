@@ -32,7 +32,7 @@ export const pageMeta = {
 
 const SignIn: React.FC = () => {
   const [errorMessage, setErrorMessage] = useState("");
-  const { refreshAuthState } = useAuth();
+  const { refreshAuthState } = useAuth(); // 認証状態を更新するための関数
 
   /*
    * RHForm 使用設定

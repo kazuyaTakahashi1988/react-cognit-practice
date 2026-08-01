@@ -29,7 +29,7 @@ export const pageMeta = {
 
 const SignOut: React.FC = () => {
   const [errorMessage, setErrorMessage] = useState("");
-  const { refreshAuthState } = useAuth();
+  const { refreshAuthState } = useAuth(); // 認証状態を更新するための関数
 
   /*
    * 「Sign Out」ボタン 処理
