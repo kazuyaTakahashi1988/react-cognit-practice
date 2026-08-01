@@ -3,8 +3,7 @@ import axios from "axios";
 
 import { loadingFlagDown, loadingFlagUp, store } from "../storeHelper";
 
-import type { ApiResult } from "./errors";
-import type { RequestOptions } from "./types";
+import type { ApiResult, RequestOptions } from "../../lib/types";
 import type { AxiosRequestConfig, Method } from "axios";
 
 const DEFAULT_BASE_URL = import.meta.env.VITE_APP_PUBLIC_API_BASE_URL ?? "";

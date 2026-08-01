@@ -1,1 +1,1 @@
-export type { VerifyValues } from "../../../utils/authHelper/types";
+export type { VerifyValues } from "../../../lib/types";

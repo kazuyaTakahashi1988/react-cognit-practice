@@ -1,5 +1,10 @@
 export * from "./modules/exampleApi";
-export type * from "./errors";
+export type {
+  ApiError,
+  ApiResult,
+  ApiSuccess,
+  RequestOptions,
+} from "../../lib/types";
 
 /* -----------------------------------------------
  * 各 APIリクエストは ./modules/ に配置
