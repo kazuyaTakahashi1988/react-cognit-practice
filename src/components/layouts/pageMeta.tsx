@@ -146,7 +146,11 @@ const PageMeta: React.FC<TypePageMeta> = ({
         ? DEFAULT_TITLE
         : `${normalizedTitle} | ${SITE_NAME}`;
     const currentUrl = new URL(globalThis.location.href);
-    const canonicalUrl = `${currentUrl.origin}${currentUrl.pathname}`;
+    const normalizedPathname =
+      currentUrl.pathname === "/"
+        ? currentUrl.pathname
+        : currentUrl.pathname.replace(/\/+$/, "");
+    const canonicalUrl = `${currentUrl.origin}${normalizedPathname}`;
     const ogImageUrl = String(normalizedOgImage).startsWith("http")
       ? normalizedOgImage
       : `${normalizedBaseUrl}${normalizedOgImage}`;
