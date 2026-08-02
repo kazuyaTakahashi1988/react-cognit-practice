@@ -18,16 +18,6 @@ import type React from "react";
  * StoreExample ページ
  * ----------------------------------------------- */
 
-// メタ情報
-export const pageMeta = {
-  title: "Store Example",
-  description: "ストアの更新と取得・表示の操作を確認できるサンプルページです。",
-  sharePath: "/example/store_example",
-  // ogImage: "/xxxx/xxxx.jpg",
-  // ogType: "website" or "article",
-  // noindex: boolean,
-};
-
 const StoreExample: React.FC = () => {
   // ストアの値を取得
   const currentExampleString = useSelector(
@@ -38,7 +28,7 @@ const StoreExample: React.FC = () => {
   );
 
   return (
-    <Layout pageMeta={pageMeta} type="example">
+    <Layout type="example">
       <Styled>
         <h1>
           <span>

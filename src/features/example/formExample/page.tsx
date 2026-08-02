@@ -21,17 +21,6 @@ import type React from "react";
  * FormExample ページ
  * ----------------------------------------------- */
 
-// メタ情報
-export const pageMeta = {
-  title: "Form Example",
-  description:
-    "react-hook-form を使った入力フォームコンポーネントのサンプルページです。",
-  sharePath: "/example/form_example",
-  // ogImage: "/xxxx/xxxx.jpg",
-  // ogType: "website" or "article",
-  // noindex: boolean,
-};
-
 const FormExample: React.FC = () => {
   const navigate = useNavigate();
 
@@ -64,7 +53,7 @@ const FormExample: React.FC = () => {
   });
 
   return (
-    <Layout pageMeta={pageMeta} type="example">
+    <Layout type="example">
       <Styled>
         <h1>
           <span>

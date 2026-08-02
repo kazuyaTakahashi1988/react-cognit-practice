@@ -17,16 +17,6 @@ import type React from "react";
  * SignOut ページ
  * ----------------------------------------------- */
 
-// メタ情報
-export const pageMeta = {
-  title: "Sign Out",
-  description: "現在のセッションからサインアウトするページです。",
-  sharePath: "/auth/signout",
-  noindex: true, // SEO評価が無用なため noindex を指定
-  // ogImage: "/xxxx/xxxx.jpg",
-  // ogType: "website" or "article",
-};
-
 const SignOut: React.FC = () => {
   const [errorMessage, setErrorMessage] = useState("");
   const { refreshAuthState } = useAuth(); // 認証状態を更新するための関数
@@ -54,7 +44,7 @@ const SignOut: React.FC = () => {
   };
 
   return (
-    <Layout pageMeta={pageMeta} type="auth">
+    <Layout type="auth">
       <Styled>
         <h1>サインアウト</h1>
 

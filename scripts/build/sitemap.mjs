@@ -24,14 +24,11 @@ const buildSitemapXml = (routes) => {
   const today = new Date().toISOString().slice(0, 10);
   const urlRows = routes
     .map((route) => {
-      let routeWithTrailingSlash = route;
-      if (route !== "/" && !route.endsWith("/")) {
-        routeWithTrailingSlash = `${route}/`;
-      }
+      const normalizedRoute = route === "/" ? route : route.replace(/\/+$/, "");
 
       return [
         "  <url>",
-        `    <loc>${siteUrl}${routeWithTrailingSlash}</loc>`,
+        `    <loc>${siteUrl}${normalizedRoute}</loc>`,
         `    <lastmod>${today}</lastmod>`,
         "  </url>",
       ].join("\n");

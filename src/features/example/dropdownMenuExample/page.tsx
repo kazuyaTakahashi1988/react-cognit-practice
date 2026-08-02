@@ -10,20 +10,9 @@ import type React from "react";
  * DropdownMenuExample ページ
  * ----------------------------------------------- */
 
-// メタ情報
-export const pageMeta = {
-  title: "Dropdown Menu Example",
-  description:
-    "ドロップダウンメニューの表示パターンを確認できるサンプルページです。",
-  sharePath: "/example/dropdownmenu_example",
-  // ogImage: "/xxxx/xxxx.jpg",
-  // ogType: "website" or "article",
-  // noindex: boolean,
-};
-
 const DropdownMenuExample: React.FC = () => {
   return (
-    <Layout pageMeta={pageMeta} type="example">
+    <Layout type="example">
       <Styled>
         <h1>
           <span>DropdownMenuExample</span>

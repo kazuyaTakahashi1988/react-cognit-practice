@@ -21,16 +21,6 @@ import type React from "react";
  * SignUp ページ
  * ----------------------------------------------- */
 
-// メタ情報
-export const pageMeta = {
-  title: "Sign Up",
-  description: "メールアドレスとパスワードでアカウントを作成するページです。",
-  sharePath: "/auth/signup",
-  noindex: true, // SEO評価が無用なため noindex を指定
-  // ogImage: "/xxxx/xxxx.jpg",
-  // ogType: "website" or "article",
-};
-
 const SignUp: React.FC = () => {
   const [errorMessage, setErrorMessage] = useState("");
   const [successMessage, setSuccessMessage] = useState("");
@@ -78,7 +68,7 @@ const SignUp: React.FC = () => {
   });
 
   return (
-    <Layout pageMeta={pageMeta} type="auth">
+    <Layout type="auth">
       <Styled>
         <h1>SignUp</h1>
 

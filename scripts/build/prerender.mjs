@@ -14,7 +14,8 @@ const mode = process.env.VITE_ENV_MODE ?? process.env.NODE_ENV ?? "production";
 const viteEnv = loadEnv(mode, process.cwd(), "VITE_APP_");
 
 const SITE_NAME = viteEnv.VITE_APP_SITE_NAME ?? "";
-const SITE_URL = viteEnv.VITE_APP_BASE_URL ?? "";
+const siteUrlRaw = viteEnv.VITE_APP_BASE_URL ?? "";
+const SITE_URL = siteUrlRaw.replace(/\/+$/, "");
 const LOCALE = "ja_JP";
 const DEFAULT_OG_IMAGE = `${SITE_URL}${viteEnv.VITE_APP_DEFAULT_OG_IMAGE ?? ""}`;
 
@@ -59,7 +60,8 @@ const upsertStructuredData = (html, content) => {
 };
 
 const withMeta = (template, route, pageMeta) => {
-  const canonicalUrl = `${SITE_URL}${route}`;
+  const normalizedRoute = route === "/" ? route : route.replace(/\/+$/, "");
+  const canonicalUrl = `${SITE_URL}${normalizedRoute}`;
   const pageTitle = pageMeta.title.includes(SITE_NAME)
     ? pageMeta.title
     : `${pageMeta.title} | ${SITE_NAME}`;

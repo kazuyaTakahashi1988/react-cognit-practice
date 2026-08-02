@@ -1,5 +1,6 @@
 import { Navigate } from "react-router-dom";
 
+import PageMeta from "../components/layouts/pageMeta";
 import { useAuth } from "../utils/authHelper";
 
 import type { AppRoute } from "../lib/types";
@@ -28,20 +29,21 @@ const GuestGuard: React.FC<GuardProps> = ({ children }) => {
 /*
  * ルート要素生成 処理
  */
-export const routeElement = ({ access, component: Page }: AppRoute) => {
+export const routeElement = ({
+  access,
+  component: Page,
+  pageMeta,
+}: AppRoute) => {
+  const routedPage = (
+    <>
+      <PageMeta {...pageMeta} />
+      <Page />
+    </>
+  );
+
   // auth: 認証済みユーザーのみアクセス可
-  if (access === "auth")
-    return (
-      <AuthGuard>
-        <Page />
-      </AuthGuard>
-    );
+  if (access === "auth") return <AuthGuard>{routedPage}</AuthGuard>;
   // guest: 未認証ユーザーのみアクセス可
-  if (access === "guest")
-    return (
-      <GuestGuard>
-        <Page />
-      </GuestGuard>
-    );
-  return <Page />;
+  if (access === "guest") return <GuestGuard>{routedPage}</GuestGuard>;
+  return routedPage;
 };
