@@ -20,16 +20,6 @@ import type React from "react";
  * SignIn ページ
  * ----------------------------------------------- */
 
-// メタ情報
-export const pageMeta = {
-  title: "Sign In",
-  description: "メールアドレスとパスワードでログインするページです。",
-  sharePath: "/auth/signin",
-  // ogImage: "/xxxx/xxxx.jpg",
-  // ogType: "website" or "article",
-  // noindex: boolean,
-};
-
 const SignIn: React.FC = () => {
   const [errorMessage, setErrorMessage] = useState("");
   const { refreshAuthState } = useAuth(); // 認証状態を更新するための関数
@@ -76,7 +66,7 @@ const SignIn: React.FC = () => {
   });
 
   return (
-    <Layout pageMeta={pageMeta} type="auth">
+    <Layout type="auth">
       <Styled>
         <h1>SignIn</h1>
 

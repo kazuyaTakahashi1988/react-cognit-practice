@@ -21,16 +21,6 @@ import type React from "react";
  * Verification ページ
  * ----------------------------------------------- */
 
-// メタ情報
-export const pageMeta = {
-  title: "Verification",
-  description: "確認コードを入力してアカウント認証を完了するページです。",
-  sharePath: "/auth/verification",
-  noindex: true, // SEO評価が無用なため noindex を指定
-  // ogImage: "/xxxx/xxxx.jpg",
-  // ogType: "website" or "article",
-};
-
 const Verification: React.FC = () => {
   const [errorMessage, setErrorMessage] = useState("");
   const [successMessage, setSuccessMessage] = useState("");
@@ -74,7 +64,7 @@ const Verification: React.FC = () => {
   });
 
   return (
-    <Layout pageMeta={pageMeta} type="auth">
+    <Layout type="auth">
       <Styled>
         <h1>Verification</h1>
 

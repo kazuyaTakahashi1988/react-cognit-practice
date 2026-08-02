@@ -8,19 +8,9 @@ import type React from "react";
  * 404 ページ
  * ----------------------------------------------- */
 
-// メタ情報
-export const pageMeta = {
-  title: "404 Not Found",
-  description: "お探しのページは見つかりませんでした。",
-  sharePath: "/error/404",
-  noindex: true, // SEO評価が無用なため noindex を指定
-  // ogImage: "/xxxx/xxxx.jpg",
-  // ogType: "website" or "article",
-};
-
 const Error404: React.FC = () => {
   return (
-    <Layout pageMeta={pageMeta}>
+    <Layout>
       <Styled>
         <h1>404 Not Found</h1>
         <p className="mt-30">お探しのページは見つかりませんでした。</p>

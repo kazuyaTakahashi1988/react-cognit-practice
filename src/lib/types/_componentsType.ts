@@ -8,7 +8,6 @@ import type { UseFormRegister } from "react-hook-form";
 export type TypePageMeta = {
   title: string;
   description: string;
-  sharePath: string;
   noindex?: boolean;
   ogImage?: string;
   ogType?: "website" | "article";
@@ -20,7 +19,6 @@ export type TypeHeader = { type?: string };
 // Layout
 export type TypeLayout = {
   type?: string;
-  pageMeta: TypePageMeta;
   children?: React.ReactNode;
 };
 
