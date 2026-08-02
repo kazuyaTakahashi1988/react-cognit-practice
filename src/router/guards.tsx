@@ -26,7 +26,7 @@ const GuestGuard: React.FC<GuardProps> = ({ children }) => {
 };
 
 /*
- * 認証状態に応じてルーティングを切り替える処理
+ * ルート要素生成 処理
  */
 export const routeElement = ({ access, component: Page }: AppRoute) => {
   // auth: 認証済みユーザーのみアクセス可
