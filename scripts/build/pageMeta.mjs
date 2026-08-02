@@ -45,9 +45,65 @@ const findPropertyNode = (routeNode, propertyName) => {
   return null;
 };
 
-const evaluateLiteral = (sourceFile, node) => {
-  const source = sourceFile.text.slice(node.pos, node.end).trim();
-  return new Function(`"use strict"; return (${source});`)();
+const getPropertyName = (name) => {
+  if (ts.isIdentifier(name) || ts.isStringLiteral(name)) {
+    return name.text;
+  }
+
+  throw new Error("pageMeta property names must be static");
+};
+
+const readPrefixUnaryValue = (node) => {
+  const value = readStaticValue(node.operand);
+  if (typeof value !== "number") {
+    throw new Error("Unary operators are only supported for numbers");
+  }
+  if (node.operator === ts.SyntaxKind.PlusToken) return value;
+  if (node.operator === ts.SyntaxKind.MinusToken) return -value;
+
+  throw new Error(
+    `Unsupported unary operator: ${ts.SyntaxKind[node.operator]}`,
+  );
+};
+
+const readObjectValue = (node) =>
+  Object.fromEntries(
+    node.properties.map((property) => {
+      if (!ts.isPropertyAssignment(property)) {
+        throw new Error("pageMeta must contain only static properties");
+      }
+
+      return [
+        getPropertyName(property.name),
+        readStaticValue(property.initializer),
+      ];
+    }),
+  );
+
+const readStaticValue = (node) => {
+  if (ts.isStringLiteral(node) || ts.isNoSubstitutionTemplateLiteral(node)) {
+    return node.text;
+  }
+  if (ts.isNumericLiteral(node)) {
+    return Number(node.text);
+  }
+  if (node.kind === ts.SyntaxKind.TrueKeyword) return true;
+  if (node.kind === ts.SyntaxKind.FalseKeyword) return false;
+  if (node.kind === ts.SyntaxKind.NullKeyword) return null;
+
+  if (ts.isPrefixUnaryExpression(node)) {
+    return readPrefixUnaryValue(node);
+  }
+
+  if (ts.isArrayLiteralExpression(node)) {
+    return node.elements.map(readStaticValue);
+  }
+
+  if (ts.isObjectLiteralExpression(node)) {
+    return readObjectValue(node);
+  }
+
+  throw new Error(`Unsupported non-static value: ${ts.SyntaxKind[node.kind]}`);
 };
 
 const extractPageConfig = (sourceFile, routeNode, index) => {
@@ -65,8 +121,8 @@ const extractPageConfig = (sourceFile, routeNode, index) => {
     throw new Error(`pageMeta missing in routeConfig[${index}]`);
   }
 
-  const route = evaluateLiteral(sourceFile, pathNode);
-  const pageMeta = evaluateLiteral(sourceFile, pageMetaNode);
+  const route = readStaticValue(pathNode);
+  const pageMeta = readStaticValue(pageMetaNode);
   return { route, pageMeta };
 };
 
