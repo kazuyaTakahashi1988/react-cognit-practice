@@ -12,9 +12,7 @@ const DEFAULT_BASE_URL = import.meta.env.VITE_APP_PUBLIC_API_BASE_URL ?? "";
  * APIリクエスト処理
  * ----------------------------------------------- */
 
-/*
- * リクエストヘッダー生成 処理
- */
+// リクエストヘッダー生成 処理
 const setHeaders = async (
   accessToken?: string,
   headers?: Record<string, string>,

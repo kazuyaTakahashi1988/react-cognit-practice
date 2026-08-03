@@ -34,16 +34,23 @@ export function Router() {
         {/* ----------------------------------------
          * リダイレクト設定
          * ----------------------------------------- */}
-        <Route element={<Navigate replace to="/error/404" />} path="/*" />
         <Route
+          // 存在しないパス遷移時は404ページへリダイレクト
+          element={<Navigate replace to="/error/404" />}
+          path="/*"
+        />
+        <Route
+          // ルート遷移時は FormExampleページ へリダイレクト
           element={<Navigate replace to="/example/form_example" />}
           path="/"
         />
         <Route
+          // ルート/example 遷移時は FormExampleページ へリダイレクト
           element={<Navigate replace to="/example/form_example" />}
           path="/example"
         />
         <Route
+          // ルート/auth 遷移時はサインイン状態に応じ SignOut/SignInページ へリダイレクト
           element={
             isChecking ? (
               <p>認証状態を確認しています...</p>
