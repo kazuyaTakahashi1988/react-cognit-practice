@@ -1,21 +1,10 @@
 import { screen } from "@testing-library/react";
 import { describe, expect, it } from "vitest";
 
-import Error404 from "../../../src/features/error/404/page";
 import Error500 from "../../../src/features/error/500/page";
 import { renderPage } from "../pageTestUtils";
 
-describe("error pages", () => {
-  it("explains that a missing page was not found", () => {
-    renderPage(<Error404 />);
-    expect(
-      screen.getByRole("heading", { name: "404 Not Found" }),
-    ).toBeVisible();
-    expect(
-      screen.getByText("お探しのページは見つかりませんでした。"),
-    ).toBeVisible();
-  });
-
+describe("500 error page", () => {
   it("explains that an internal server error occurred", () => {
     renderPage(<Error500 />);
     expect(
