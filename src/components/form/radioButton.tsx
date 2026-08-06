@@ -1,8 +1,8 @@
 import { forwardRef } from "react";
 import styled from "styled-components";
 
-import { ErrorMessage } from "./errorMessage";
-import { Label } from "./label";
+import ErrorMessage from "./errorMessage";
+import Label from "./label";
 import { color } from "../../lib/style";
 
 import type { TypeRadioButton } from "../../lib/types";
@@ -14,7 +14,7 @@ type Props = React.InputHTMLAttributes<HTMLInputElement> & TypeRadioButton;
  * ラジオボタン項目
  * ----------------------------------------------- */
 
-export const RadioButtonField: React.ForwardRefRenderFunction<
+const RadioButtonField: React.ForwardRefRenderFunction<
   HTMLInputElement,
   Props
 > = (props, ref) => {
@@ -109,5 +109,5 @@ const Styled = styled.div`
   }
 `;
 
-export const RadioButton = forwardRef(RadioButtonField);
+const RadioButton = forwardRef(RadioButtonField);
 export default RadioButton;

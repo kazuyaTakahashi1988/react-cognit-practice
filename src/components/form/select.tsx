@@ -1,8 +1,8 @@
 import { forwardRef } from "react";
 import styled from "styled-components";
 
-import { ErrorMessage } from "./errorMessage";
-import { Label } from "./label";
+import ErrorMessage from "./errorMessage";
+import Label from "./label";
 import { color } from "../../lib/style";
 
 import type { TypeSelect } from "../../lib/types";
@@ -14,10 +14,10 @@ type Props = React.SelectHTMLAttributes<HTMLSelectElement> & TypeSelect;
  * セレクトボックス項目
  * ----------------------------------------------- */
 
-export const SelectField: React.ForwardRefRenderFunction<
-  HTMLSelectElement,
-  Props
-> = (props, ref) => {
+const SelectField: React.ForwardRefRenderFunction<HTMLSelectElement, Props> = (
+  props,
+  ref,
+) => {
   const { label, options, errorMessage, ...rest } = props;
 
   return (
@@ -90,5 +90,5 @@ const Styled = styled.div`
   }
 `;
 
-export const Select = forwardRef(SelectField);
+const Select = forwardRef(SelectField);
 export default Select;

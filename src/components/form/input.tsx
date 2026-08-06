@@ -1,8 +1,8 @@
 import { forwardRef } from "react";
 import styled from "styled-components";
 
-import { ErrorMessage } from "./errorMessage";
-import { Label } from "./label";
+import ErrorMessage from "./errorMessage";
+import Label from "./label";
 import { color } from "../../lib/style";
 
 import type { TypeInput } from "../../lib/types";
@@ -14,10 +14,10 @@ type Props = React.InputHTMLAttributes<HTMLInputElement> & TypeInput;
  * インプット項目
  * ----------------------------------------------- */
 
-export const InputField: React.ForwardRefRenderFunction<
-  HTMLInputElement,
-  Props
-> = (props, ref) => {
+const InputField: React.ForwardRefRenderFunction<HTMLInputElement, Props> = (
+  props,
+  ref,
+) => {
   const { label, errorMessage, ...rest } = props;
 
   return (
@@ -57,5 +57,5 @@ const Styled = styled.div`
   }
 `;
 
-export const Input = forwardRef(InputField);
+const Input = forwardRef(InputField);
 export default Input;

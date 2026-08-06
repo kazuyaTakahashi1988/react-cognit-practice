@@ -12,7 +12,7 @@ import type React from "react";
  * 共通ヘッダー
  * ----------------------------------------------- */
 
-export const Header: React.FC<TypeHeader> = (props) => {
+const Header: React.FC<TypeHeader> = (props) => {
   const { type } = props;
   const navigate = useNavigate();
   const { isSignedIn } = useAuth(); // サインインフラグ

@@ -2,8 +2,8 @@ import { Suspense } from "react";
 import { Navigate, Route, Routes } from "react-router-dom";
 
 import { routeElement } from "./guards";
-import { routeConfig } from "./routeConfig";
-import { PageLoading } from "../components/loading/pageLoading";
+import routeConfig from "./routeConfig";
+import PageLoading from "../components/loading/pageLoading";
 import { useAuth } from "../utils/authHelper";
 import { usePVTracking } from "../utils/gaHelper";
 

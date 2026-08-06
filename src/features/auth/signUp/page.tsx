@@ -3,7 +3,7 @@ import { useForm } from "react-hook-form";
 import styled from "styled-components";
 
 import Button from "../../../components/button/button";
-import { ErrorMessage } from "../../../components/form/errorMessage";
+import ErrorMessage from "../../../components/form/errorMessage";
 import Input from "../../../components/form/input";
 import Layout from "../../../components/layouts/layout";
 import { color } from "../../../lib/style";

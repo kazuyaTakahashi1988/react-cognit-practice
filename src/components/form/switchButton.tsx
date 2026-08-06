@@ -1,8 +1,8 @@
 import { forwardRef } from "react";
 import styled from "styled-components";
 
-import { ErrorMessage } from "./errorMessage";
-import { Label } from "./label";
+import ErrorMessage from "./errorMessage";
+import Label from "./label";
 import { color } from "../../lib/style";
 
 import type { TypeSwitchButton } from "../../lib/types";
@@ -14,7 +14,7 @@ type Props = React.InputHTMLAttributes<HTMLInputElement> & TypeSwitchButton;
  * スイッチボタン項目
  * ----------------------------------------------- */
 
-export const SwitchButtonField: React.ForwardRefRenderFunction<
+const SwitchButtonField: React.ForwardRefRenderFunction<
   HTMLInputElement,
   Props
 > = (props, ref) => {
@@ -143,5 +143,5 @@ const Styled = styled.div`
   }
 `;
 
-export const SwitchButton = forwardRef(SwitchButtonField);
+const SwitchButton = forwardRef(SwitchButtonField);
 export default SwitchButton;

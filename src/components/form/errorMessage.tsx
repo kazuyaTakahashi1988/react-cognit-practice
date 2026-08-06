@@ -12,7 +12,7 @@ type Props = React.LabelHTMLAttributes<HTMLLabelElement> & TypeErrorMessage;
  * エラーメッセージ
  * ----------------------------------------------- */
 
-export const ErrorMessageField: React.ForwardRefRenderFunction<
+const ErrorMessageField: React.ForwardRefRenderFunction<
   HTMLLabelElement,
   Props
 > = (props, ref) => {
@@ -40,5 +40,5 @@ const Styled = styled.div`
   }
 `;
 
-export const ErrorMessage = forwardRef(ErrorMessageField);
+const ErrorMessage = forwardRef(ErrorMessageField);
 export default ErrorMessage;

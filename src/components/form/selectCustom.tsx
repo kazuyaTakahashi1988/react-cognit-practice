@@ -1,8 +1,8 @@
 import { createRef, forwardRef, useEffect, useRef, useState } from "react";
 import styled from "styled-components";
 
-import { ErrorMessage } from "./errorMessage";
-import { Label } from "./label";
+import ErrorMessage from "./errorMessage";
+import Label from "./label";
 import { color } from "../../lib/style";
 
 import type { TypeSelectCustom } from "../../lib/types";
@@ -17,7 +17,7 @@ const DISABLED_CLASS = "is-disabled";
  * セレクトカスタムボックス項目
  * ----------------------------------------------- */
 
-export const SelectCustomField: React.ForwardRefRenderFunction<
+const SelectCustomField: React.ForwardRefRenderFunction<
   HTMLInputElement,
   Props
 > = (props, ref) => {
@@ -309,5 +309,5 @@ const Styled = styled.div`
   }
 `;
 
-export const SelectCustom = forwardRef(SelectCustomField);
+const SelectCustom = forwardRef(SelectCustomField);
 export default SelectCustom;

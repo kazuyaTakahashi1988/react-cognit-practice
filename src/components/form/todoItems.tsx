@@ -15,7 +15,7 @@ type Props = Omit<React.InputHTMLAttributes<HTMLInputElement>, "name"> &
  * TODO項目
  * ----------------------------------------------- */
 
-export const TodoItemsField: React.ForwardRefRenderFunction<
+const TodoItemsField: React.ForwardRefRenderFunction<
   HTMLInputElement,
   Props
 > = (props, ref) => {
@@ -114,5 +114,5 @@ const Styled = styled.div`
   }
 `;
 
-export const TodoItems = forwardRef(TodoItemsField);
+const TodoItems = forwardRef(TodoItemsField);
 export default TodoItems;

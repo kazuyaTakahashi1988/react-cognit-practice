@@ -1,8 +1,8 @@
 import { forwardRef } from "react";
 import styled from "styled-components";
 
-import { ErrorMessage } from "./errorMessage";
-import { Label } from "./label";
+import ErrorMessage from "./errorMessage";
+import Label from "./label";
 import { color } from "../../lib/style";
 
 import type { TypeTextArea } from "../../lib/types";
@@ -14,7 +14,7 @@ type Props = React.TextareaHTMLAttributes<HTMLTextAreaElement> & TypeTextArea;
  * テキストエリア項目
  * ----------------------------------------------- */
 
-export const TextAreaField: React.ForwardRefRenderFunction<
+const TextAreaField: React.ForwardRefRenderFunction<
   HTMLTextAreaElement,
   Props
 > = (props, ref) => {
@@ -59,5 +59,5 @@ const Styled = styled.div`
   }
 `;
 
-export const TextArea = forwardRef(TextAreaField);
+const TextArea = forwardRef(TextAreaField);
 export default TextArea;
