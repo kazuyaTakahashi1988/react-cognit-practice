@@ -1,7 +1,7 @@
 import styled from "styled-components";
 
-import { Footer } from "./footer";
-import { Header } from "./header";
+import Footer from "./footer";
+import Header from "./header";
 
 import type { TypeLayout } from "../../lib/types";
 import type React from "react";
@@ -10,7 +10,7 @@ import type React from "react";
  * 共通レイアウト
  * ----------------------------------------------- */
 
-export const Layout: React.FC<TypeLayout> = (props) => {
+const Layout: React.FC<TypeLayout> = (props) => {
   const { type, children } = props;
 
   return (

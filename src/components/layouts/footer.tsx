@@ -9,7 +9,7 @@ import type React from "react";
  * 共通フッター
  * ----------------------------------------------- */
 
-export const Footer: React.FC = () => {
+const Footer: React.FC = () => {
   return (
     <Styled>
       <ul className="nav">

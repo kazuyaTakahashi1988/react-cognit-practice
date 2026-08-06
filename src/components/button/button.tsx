@@ -12,10 +12,10 @@ type Props = React.ButtonHTMLAttributes<HTMLButtonElement> & TypeButton;
  * ボタン
  * ----------------------------------------------- */
 
-export const ButtonField: React.ForwardRefRenderFunction<
-  HTMLButtonElement,
-  Props
-> = (props, ref) => {
+const ButtonField: React.ForwardRefRenderFunction<HTMLButtonElement, Props> = (
+  props,
+  ref,
+) => {
   const { children, ...rest } = props;
 
   return (
@@ -58,5 +58,5 @@ const Styled = styled.button`
   }
 `;
 
-export const Button = forwardRef(ButtonField);
+const Button = forwardRef(ButtonField);
 export default Button;

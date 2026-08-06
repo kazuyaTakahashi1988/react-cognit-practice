@@ -2,7 +2,7 @@ import { useState } from "react";
 import styled from "styled-components";
 
 import Button from "../../../components/button/button";
-import { ErrorMessage } from "../../../components/form/errorMessage";
+import ErrorMessage from "../../../components/form/errorMessage";
 import Layout from "../../../components/layouts/layout";
 import { signOutHelper, useAuth } from "../../../utils/authHelper";
 import {

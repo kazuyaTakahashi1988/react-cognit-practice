@@ -12,7 +12,7 @@ type Props = React.HTMLAttributes<HTMLSpanElement> & TypeDropdownMenu;
  * ドロップダウンメニュー
  * ----------------------------------------------- */
 
-export const DropdownMenuField: React.ForwardRefRenderFunction<
+const DropdownMenuField: React.ForwardRefRenderFunction<
   HTMLSpanElement,
   Props
 > = (props, ref) => {
@@ -186,5 +186,5 @@ const Styled = styled.span`
   }
 `;
 
-export const DropdownMenu = forwardRef(DropdownMenuField);
+const DropdownMenu = forwardRef(DropdownMenuField);
 export default DropdownMenu;

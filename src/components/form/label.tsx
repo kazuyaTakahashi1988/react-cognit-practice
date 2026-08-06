@@ -12,10 +12,10 @@ type Props = React.LabelHTMLAttributes<HTMLLabelElement> & TypeLabel;
  * ラベル
  * ----------------------------------------------- */
 
-export const LabelField: React.ForwardRefRenderFunction<
-  HTMLLabelElement,
-  Props
-> = (props, ref) => {
+const LabelField: React.ForwardRefRenderFunction<HTMLLabelElement, Props> = (
+  props,
+  ref,
+) => {
   const { label, ...rest } = props;
   if (!label) {
     return null;
@@ -46,5 +46,5 @@ const Styled = styled.div`
   }
 `;
 
-export const Label = forwardRef(LabelField);
+const Label = forwardRef(LabelField);
 export default Label;

@@ -5,7 +5,7 @@ import type { AppRoute } from "../lib/types";
 /* -----------------------------------------------
  * 各ルート一覧
  * ----------------------------------------------- */
-export const routeConfig: AppRoute[] = [
+const routeConfig: AppRoute[] = [
   /* ---------------------------------------------
    * ▽▽▽ example 各ルート設定 ▽▽▽
    * --------------------------------------------- */
@@ -140,3 +140,5 @@ export const routeConfig: AppRoute[] = [
     },
   },
 ];
+
+export default routeConfig;

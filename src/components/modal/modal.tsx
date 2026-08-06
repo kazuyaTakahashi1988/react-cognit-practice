@@ -13,10 +13,10 @@ type Props = React.HTMLAttributes<HTMLDivElement> & TypeModal;
  * モーダル
  * ----------------------------------------------- */
 
-export const ModalField: React.ForwardRefRenderFunction<
-  HTMLDivElement,
-  Props
-> = (props, ref) => {
+const ModalField: React.ForwardRefRenderFunction<HTMLDivElement, Props> = (
+  props,
+  ref,
+) => {
   const { children, title, visible = false, onEvent, onClose, ...rest } = props;
   if (!visible) return null;
 
@@ -194,5 +194,5 @@ const Styled = styled.div`
   }
 `;
 
-export const Modal = forwardRef(ModalField);
+const Modal = forwardRef(ModalField);
 export default Modal;

@@ -10,7 +10,7 @@ import type React from "react";
  * グローバルローディング
  * ----------------------------------------------- */
 
-export const GlobalLoading: React.FC = () => {
+const GlobalLoading: React.FC = () => {
   /*
    * ローディングフラグ
    */

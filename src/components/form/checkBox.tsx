@@ -1,8 +1,8 @@
 import { forwardRef } from "react";
 import styled from "styled-components";
 
-import { ErrorMessage } from "./errorMessage";
-import { Label } from "./label";
+import ErrorMessage from "./errorMessage";
+import Label from "./label";
 import { color } from "../../lib/style";
 
 import type { TypeCheckBox } from "../../lib/types";
@@ -14,10 +14,10 @@ type Props = React.InputHTMLAttributes<HTMLInputElement> & TypeCheckBox;
  * チェックボックス項目
  * ----------------------------------------------- */
 
-export const CheckBoxField: React.ForwardRefRenderFunction<
-  HTMLInputElement,
-  Props
-> = (props, ref) => {
+const CheckBoxField: React.ForwardRefRenderFunction<HTMLInputElement, Props> = (
+  props,
+  ref,
+) => {
   const { label, options, errorMessage, ...rest } = props;
 
   return (
@@ -121,5 +121,5 @@ const Styled = styled.div`
   }
 `;
 
-export const CheckBox = forwardRef(CheckBoxField);
+const CheckBox = forwardRef(CheckBoxField);
 export default CheckBox;

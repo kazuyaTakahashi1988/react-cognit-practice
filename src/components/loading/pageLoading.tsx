@@ -6,7 +6,7 @@ import { color } from "../../lib/style";
  * 画面の遅延読み込み中に表示するローディング
  * ----------------------------------------------- */
 
-export const PageLoading = () => (
+const PageLoading = () => (
   <Styled aria-live="polite" role="status">
     読み込み中...
   </Styled>

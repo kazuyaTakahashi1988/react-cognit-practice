@@ -12,10 +12,10 @@ type Props = React.HTMLAttributes<HTMLDivElement> & TypeAccordion;
  * アコーディオン
  * ----------------------------------------------- */
 
-export const AccordionField: React.ForwardRefRenderFunction<
-  HTMLDivElement,
-  Props
-> = (props, ref) => {
+const AccordionField: React.ForwardRefRenderFunction<HTMLDivElement, Props> = (
+  props,
+  ref,
+) => {
   const { title, visible = false, children, ...rest } = props;
   const [isVisible, setIsVisible] = useState(visible);
   const contentId = useId();
@@ -121,5 +121,5 @@ const Styled = styled.div`
   }
 `;
 
-export const Accordion = forwardRef(AccordionField);
+const Accordion = forwardRef(AccordionField);
 export default Accordion;
