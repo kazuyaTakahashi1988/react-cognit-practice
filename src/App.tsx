@@ -1,6 +1,7 @@
 import { useEffect } from "react";
 import { BrowserRouter } from "react-router-dom";
 
+import { ErrorBoundary } from "./components/errorBoundary/errorBoundary";
 import GlobalLoading from "./components/loading/globalLoading";
 import { GlobalStyle } from "./lib/style";
 import { Router } from "./router";
@@ -17,13 +18,15 @@ const App = () => {
   }, []);
 
   return (
-    <AppRootProvider>
-      <BrowserRouter>
-        <GlobalStyle />
-        <GlobalLoading />
-        <Router />
-      </BrowserRouter>
-    </AppRootProvider>
+    <ErrorBoundary>
+      <AppRootProvider>
+        <BrowserRouter>
+          <GlobalStyle />
+          <GlobalLoading />
+          <Router />
+        </BrowserRouter>
+      </AppRootProvider>
+    </ErrorBoundary>
   );
 };
 
