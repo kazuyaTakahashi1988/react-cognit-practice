@@ -15,12 +15,11 @@ export const testPostApi = <TRequest>(data: TRequest) => {
 };
 
 /*
- * export const postXXXXApi = (params, baseURL, headers, requestData, accessToken, isLoading) => {
+ * export const postXXXXApi = (params, baseURL, headers, requestData, accessToken) => {
  *  const options = {
  *    accessToken?, // アクセストークン
  *    baseURL?, // DEFAULT_BASE_URL を使わない際のベースURL
  *    headers?, // 追加ヘッダー情報を付与
- *    isLoading?, // ローディングフラグ制御
  *    params?, // クエリパラム
  *    requestData?, // リクエストデータ（リクエストボディ）
  *  };

@@ -2,17 +2,12 @@ import { useState } from "react";
 import { useForm } from "react-hook-form";
 import styled from "styled-components";
 
+import { useVerification } from "./util";
 import Button from "../../../components/button/button";
 import ErrorMessage from "../../../components/form/errorMessage";
 import Input from "../../../components/form/input";
 import Layout from "../../../components/layouts/layout";
 import { color } from "../../../lib/style";
-import { verifyHelper } from "../../../utils/authHelper";
-import {
-  loadingFlagDown,
-  loadingFlagUp,
-  store,
-} from "../../../utils/storeHelper";
 
 import type { VerifyValues } from "./type";
 import type React from "react";
@@ -24,6 +19,7 @@ import type React from "react";
 const Verification: React.FC = () => {
   const [errorMessage, setErrorMessage] = useState("");
   const [successMessage, setSuccessMessage] = useState("");
+  const { verify } = useVerification();
 
   /*
    * RHForm 使用設定
@@ -44,23 +40,16 @@ const Verification: React.FC = () => {
   /*
    * 「送信する」ボタン 処理
    */
-  const onSubmit = verifyForm.handleSubmit((data) => {
-    store.dispatch(loadingFlagUp()); // ローディングフラグを上げる
-
-    /* Verify 処理 */
-    verifyHelper(data)
-      .then(() => {
-        onReset();
-        setSuccessMessage("Verify 完了、Sign In できるよ！");
-      })
-      .catch((err: unknown) => {
-        const message =
-          err instanceof Error ? err.message : "Verify に失敗したよ...";
-        setErrorMessage(message);
-      })
-      .finally(() => {
-        store.dispatch(loadingFlagDown()); // ローディングフラグを下げる
-      });
+  const onSubmit = verifyForm.handleSubmit(async (data) => {
+    try {
+      await verify(data);
+      onReset();
+      setSuccessMessage("Verify 完了、Sign In できるよ！");
+    } catch (err: unknown) {
+      const message =
+        err instanceof Error ? err.message : "Verify に失敗したよ...";
+      setErrorMessage(message);
+    }
   });
 
   return (

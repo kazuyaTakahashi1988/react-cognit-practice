@@ -2,18 +2,13 @@ import { useState } from "react";
 import { useForm } from "react-hook-form";
 import styled from "styled-components";
 
+import { useSignIn } from "./util";
 import Button from "../../../components/button/button";
 import ErrorMessage from "../../../components/form/errorMessage";
 import Input from "../../../components/form/input";
 import Layout from "../../../components/layouts/layout";
-import { signInHelper, useAuth } from "../../../utils/authHelper";
-import {
-  loadingFlagDown,
-  loadingFlagUp,
-  store,
-} from "../../../utils/storeHelper";
 
-import type { SignInResult, SignInValues } from "./type";
+import type { SignInValues } from "./type";
 import type React from "react";
 
 /* -----------------------------------------------
@@ -22,7 +17,7 @@ import type React from "react";
 
 const SignIn: React.FC = () => {
   const [errorMessage, setErrorMessage] = useState("");
-  const { refreshAuthState } = useAuth(); // 認証状態を更新するための関数
+  const { signIn } = useSignIn();
 
   /*
    * RHForm 使用設定
@@ -42,27 +37,18 @@ const SignIn: React.FC = () => {
   /*
    * 「送信する」ボタン 処理
    */
-  const onSubmit = signInForm.handleSubmit((data) => {
-    store.dispatch(loadingFlagUp()); // ローディングフラグを上げる
-
-    /* Sign In 処理 */
-    signInHelper(data)
-      .then((res: SignInResult) => {
-        if (res.isSignedIn) {
-          refreshAuthState(); // 認証状態を更新する処理
-        } else {
-          onReset();
-          setErrorMessage("Sign In にはまだ追加手順（Verify）が必要だよ！");
-        }
-      })
-      .catch((err: unknown) => {
-        const message =
-          err instanceof Error ? err.message : "Sign In に失敗したよ...";
-        setErrorMessage(message);
-      })
-      .finally(() => {
-        store.dispatch(loadingFlagDown()); // ローディングフラグを下げる
-      });
+  const onSubmit = signInForm.handleSubmit(async (data) => {
+    try {
+      const result = await signIn(data);
+      if (!result.isSignedIn) {
+        onReset();
+        setErrorMessage("Sign In にはまだ追加手順（Verify）が必要だよ！");
+      }
+    } catch (err: unknown) {
+      const message =
+        err instanceof Error ? err.message : "Sign In に失敗したよ...";
+      setErrorMessage(message);
+    }
   });
 
   return (

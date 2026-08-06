@@ -2,17 +2,12 @@ import { useState } from "react";
 import { useForm } from "react-hook-form";
 import styled from "styled-components";
 
+import { useSignUp } from "./util";
 import Button from "../../../components/button/button";
 import ErrorMessage from "../../../components/form/errorMessage";
 import Input from "../../../components/form/input";
 import Layout from "../../../components/layouts/layout";
 import { color } from "../../../lib/style";
-import { signUpHelper } from "../../../utils/authHelper";
-import {
-  loadingFlagDown,
-  loadingFlagUp,
-  store,
-} from "../../../utils/storeHelper";
 
 import type { SignUpResult, SignUpValues } from "./type";
 import type React from "react";
@@ -24,6 +19,7 @@ import type React from "react";
 const SignUp: React.FC = () => {
   const [errorMessage, setErrorMessage] = useState("");
   const [successMessage, setSuccessMessage] = useState("");
+  const { signUp } = useSignUp();
 
   /*
    * RHForm 使用設定
@@ -44,27 +40,20 @@ const SignUp: React.FC = () => {
   /*
    * 「送信する」ボタン 処理
    */
-  const onSubmit = signUpForm.handleSubmit((data) => {
-    store.dispatch(loadingFlagUp()); // ローディングフラグを上げる
-
-    /* Sign Up 処理 */
-    signUpHelper(data)
-      .then((res: SignUpResult) => {
-        const noVerify = res.isSignUpComplete === true; // verifyの手順必要かフラグ
-        const message = noVerify
-          ? "Sign Up 成功! Sign In しよう！" // verify 不要時
-          : "OK！ Verify用のコードをメールで送ったから確認してね！"; // verify 必要時
-        onReset();
-        setSuccessMessage(message);
-      })
-      .catch((err: unknown) => {
-        const message =
-          err instanceof Error ? err.message : "Sign Up に失敗したよ...";
-        setErrorMessage(message);
-      })
-      .finally(() => {
-        store.dispatch(loadingFlagDown()); // ローディングフラグを下げる
-      });
+  const onSubmit = signUpForm.handleSubmit(async (data) => {
+    try {
+      const result: SignUpResult = await signUp(data);
+      const noVerify = result.isSignUpComplete === true; // verifyの手順必要かフラグ
+      const message = noVerify
+        ? "Sign Up 成功! Sign In しよう！" // verify 不要時
+        : "OK！ Verify用のコードをメールで送ったから確認してね！"; // verify 必要時
+      onReset();
+      setSuccessMessage(message);
+    } catch (err: unknown) {
+      const message =
+        err instanceof Error ? err.message : "Sign Up に失敗したよ...";
+      setErrorMessage(message);
+    }
   });
 
   return (
