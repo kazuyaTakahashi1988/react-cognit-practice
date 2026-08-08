@@ -113,6 +113,7 @@ react-cognit-practice/
 │   ├── App.tsx          # アプリルートファイル
 │   └── main.tsx         # アプリメインファイル
 ├── stories          # ストーリーブック
+├── tests            # テスト
 ├── ...
 ├── ...
 └── README.md        # This file
