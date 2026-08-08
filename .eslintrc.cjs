@@ -44,7 +44,7 @@ module.exports = {
       files: [
         "stories/**/*.{ts,tsx}",
         "src/**/*.{ts,tsx}",
-        "test/**/*.{ts,tsx}",
+        "tests/**/*.{ts,tsx}",
       ], // eclintルールが適用される対象ファイル群
       rules: {
         /* buttonタグにtype指定することを強制 */
