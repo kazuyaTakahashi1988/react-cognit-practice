@@ -19,6 +19,14 @@ const mockedIsAxiosError = vi.mocked(axios.isAxiosError);
 const baseURL = "https://example.com";
 const jsonContentType = "application/json";
 
+const createDeferred = <T>() => {
+  let resolve!: (value: T) => void;
+  const promise = new Promise<T>((promiseResolve) => {
+    resolve = promiseResolve;
+  });
+  return { promise, resolve };
+};
+
 describe("api client", () => {
   beforeEach(() => {
     mockedFetchAuthSession.mockResolvedValue({ tokens: undefined });
@@ -108,6 +116,57 @@ describe("api client", () => {
     await expect(request("GET", "/articles", { baseURL })).rejects.toThrow(
       "unexpected error",
     );
+    expect(store.getState().loading.count).toBe(0);
+  });
+
+  it("401レスポンスをステータスとレスポンスデータを含むApiErrorに変換する", async () => {
+    const error = {
+      message: "Request failed with status code 401",
+      response: { data: { message: "Unauthorized" }, status: 401 },
+    };
+    mockedAxiosRequest.mockRejectedValue(error);
+    mockedIsAxiosError.mockReturnValue(true);
+
+    await expect(request("GET", "/profile", { baseURL })).resolves.toEqual({
+      error: {
+        data: { message: "Unauthorized" },
+        message: "Request failed with status code 401",
+        status: 401,
+      },
+      ok: false,
+    });
+    expect(store.getState().loading.count).toBe(0);
+  });
+
+  it("認証セッションの取得失敗を再送出しローディングを解除する", async () => {
+    mockedFetchAuthSession.mockRejectedValue(new Error("session unavailable"));
+    mockedIsAxiosError.mockReturnValue(false);
+
+    await expect(request("GET", "/profile", { baseURL })).rejects.toThrow(
+      "session unavailable",
+    );
+    expect(mockedAxiosRequest).not.toHaveBeenCalled();
+    expect(store.getState().loading.count).toBe(0);
+  });
+
+  it("同時リクエストが完了するたびにloading countを減らす", async () => {
+    const firstResponse = createDeferred<{ data: string }>();
+    const secondResponse = createDeferred<{ data: string }>();
+    mockedAxiosRequest
+      .mockImplementationOnce(() => firstResponse.promise)
+      .mockImplementationOnce(() => secondResponse.promise);
+
+    const firstRequest = request("GET", "/first", { baseURL });
+    const secondRequest = request("GET", "/second", { baseURL });
+
+    expect(store.getState().loading.count).toBe(2);
+
+    firstResponse.resolve({ data: "first" });
+    await firstRequest;
+    expect(store.getState().loading.count).toBe(1);
+
+    secondResponse.resolve({ data: "second" });
+    await secondRequest;
     expect(store.getState().loading.count).toBe(0);
   });
 });
