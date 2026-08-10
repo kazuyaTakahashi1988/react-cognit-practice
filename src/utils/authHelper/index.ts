@@ -12,15 +12,6 @@ import type {
   VerifyValues,
 } from "../../lib/types";
 
-export type {
-  AuthContextValue,
-  SignInResult,
-  SignInValues,
-  SignUpResult,
-  SignUpValues,
-  VerifyValues,
-} from "../../lib/types";
-
 const isObject = (value: unknown): value is Record<string, unknown> =>
   typeof value === "object" && value !== null;
 

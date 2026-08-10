@@ -1,3 +1,6 @@
+/* -----------------------------------------------
+ * ページ固有のタイプ
+ * ----------------------------------------------- */
 export type FormExampleValues = {
   address: string;
   description: string;

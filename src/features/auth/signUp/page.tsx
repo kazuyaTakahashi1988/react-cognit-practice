@@ -14,7 +14,7 @@ import {
   store,
 } from "../../../utils/storeHelper";
 
-import type { SignUpResult, SignUpValues } from "./type";
+import type { SignUpResult, SignUpValues } from "../../../lib/types";
 import type React from "react";
 
 /* -----------------------------------------------

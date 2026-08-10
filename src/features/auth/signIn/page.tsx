@@ -13,7 +13,7 @@ import {
   store,
 } from "../../../utils/storeHelper";
 
-import type { SignInResult, SignInValues } from "./type";
+import type { SignInResult, SignInValues } from "../../../lib/types";
 import type React from "react";
 
 /* -----------------------------------------------

@@ -14,7 +14,7 @@ import {
   store,
 } from "../../../utils/storeHelper";
 
-import type { VerifyValues } from "./type";
+import type { VerifyValues } from "../../../lib/types";
 import type React from "react";
 
 /* -----------------------------------------------
