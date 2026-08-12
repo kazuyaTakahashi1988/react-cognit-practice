@@ -40,7 +40,7 @@ const SelectCustomField: React.ForwardRefRenderFunction<
   }, []);
 
   const [selectedIndex, setSelectedIndex] = useState<number | null>(null);
-  const labelRefs = useRef<RefObject<HTMLLabelElement>[]>([]);
+  const labelRefs = useRef<RefObject<HTMLLabelElement | null>[]>([]);
   options.forEach((_, index) => {
     labelRefs.current[index] = createRef<HTMLLabelElement>();
   });
