@@ -16,11 +16,7 @@ const AuthState = () => {
   const auth = useContext(AuthContext);
   if (!auth) throw new Error("AuthContext is not available");
 
-  return (
-    <p>
-      {auth.isChecking ? "checking" : auth.isSignedIn ? "signed-in" : "guest"}
-    </p>
-  );
+  return <p>{auth.authState.status}</p>;
 };
 
 describe("AuthProvider", () => {
@@ -51,7 +47,7 @@ describe("AuthProvider", () => {
       </AuthProvider>,
     );
 
-    expect(await screen.findByText("signed-in")).toBeVisible();
+    expect(await screen.findByText("authenticated")).toBeVisible();
     expect(mockedGetCurrentUser).toHaveBeenCalledOnce();
   });
 
@@ -66,10 +62,10 @@ describe("AuthProvider", () => {
       </AuthProvider>,
     );
 
-    expect(await screen.findByText("guest")).toBeVisible();
+    expect(await screen.findByText("anonymous")).toBeVisible();
   });
 
-  it("認証状態の確認に失敗しても初期化を完了してguest状態にする", async () => {
+  it("認証状態の確認障害を未認証と区別して公開する", async () => {
     mockedGetCurrentUser.mockRejectedValue(new Error("network failure"));
 
     render(
@@ -79,6 +75,6 @@ describe("AuthProvider", () => {
     );
 
     await waitFor(() => expect(screen.queryByText("checking")).toBeNull());
-    expect(screen.getByText("guest")).toBeVisible();
+    expect(screen.getByText("error")).toBeVisible();
   });
 });

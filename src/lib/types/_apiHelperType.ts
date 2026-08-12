@@ -16,8 +16,9 @@ export type RequestOptions<TRequest> = {
   apiPath: string;
   baseURL?: string;
   headers?: Record<string, string>;
-  isLoading?: boolean;
   method: Method;
   params?: Record<string, unknown>;
   requestData?: TRequest;
+  signal?: AbortSignal;
+  timeout?: number;
 };

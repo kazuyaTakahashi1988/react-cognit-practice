@@ -3,7 +3,6 @@ import axios from "axios";
 import { beforeEach, describe, expect, it, vi } from "vitest";
 
 import { request } from "../../src/utils/apiHelper/client";
-import { store } from "../../src/utils/storeHelper";
 
 vi.mock("aws-amplify/auth", () => ({ fetchAuthSession: vi.fn() }));
 vi.mock("axios", () => ({
@@ -18,14 +17,6 @@ const mockedAxiosRequest = vi.mocked(axios.request);
 const mockedIsAxiosError = vi.mocked(axios.isAxiosError);
 const baseURL = "https://example.com";
 const jsonContentType = "application/json";
-
-const createDeferred = <T>() => {
-  let resolve!: (value: T) => void;
-  const promise = new Promise<T>((promiseResolve) => {
-    resolve = promiseResolve;
-  });
-  return { promise, resolve };
-};
 
 describe("api client", () => {
   beforeEach(() => {
@@ -59,10 +50,11 @@ describe("api client", () => {
       },
       method: "POST",
       params: { preview: true },
+      signal: undefined,
+      timeout: 10_000,
       url: "https://example.com/articles",
     });
     expect(result).toEqual({ ok: true, response });
-    expect(store.getState().loading.count).toBe(0);
   });
 
   it("トークン未指定時は認証セッションを確認する", async () => {
@@ -70,7 +62,6 @@ describe("api client", () => {
 
     await request("GET", "/profile", {
       baseURL,
-      isLoading: false,
     });
 
     expect(mockedFetchAuthSession).toHaveBeenCalledOnce();
@@ -82,10 +73,9 @@ describe("api client", () => {
         },
       }),
     );
-    expect(store.getState().loading.count).toBe(0);
   });
 
-  it("AxiosエラーをApiErrorに変換しローディングを解除する", async () => {
+  it("AxiosエラーをApiErrorに変換する", async () => {
     const error = {
       message: "Request failed with status code 422",
       response: { data: { reason: "invalid" }, status: 422 },
@@ -105,10 +95,9 @@ describe("api client", () => {
       },
       ok: false,
     });
-    expect(store.getState().loading.count).toBe(0);
   });
 
-  it("Axios以外のエラーは再送出しローディングを解除する", async () => {
+  it("Axios以外のエラーは再送出する", async () => {
     const error = new Error("unexpected error");
     mockedAxiosRequest.mockRejectedValue(error);
     mockedIsAxiosError.mockReturnValue(false);
@@ -116,7 +105,6 @@ describe("api client", () => {
     await expect(request("GET", "/articles", { baseURL })).rejects.toThrow(
       "unexpected error",
     );
-    expect(store.getState().loading.count).toBe(0);
   });
 
   it("401レスポンスをステータスとレスポンスデータを含むApiErrorに変換する", async () => {
@@ -135,10 +123,9 @@ describe("api client", () => {
       },
       ok: false,
     });
-    expect(store.getState().loading.count).toBe(0);
   });
 
-  it("認証セッションの取得失敗を再送出しローディングを解除する", async () => {
+  it("認証セッションの取得失敗を再送出する", async () => {
     mockedFetchAuthSession.mockRejectedValue(new Error("session unavailable"));
     mockedIsAxiosError.mockReturnValue(false);
 
@@ -146,27 +133,21 @@ describe("api client", () => {
       "session unavailable",
     );
     expect(mockedAxiosRequest).not.toHaveBeenCalled();
-    expect(store.getState().loading.count).toBe(0);
   });
 
-  it("同時リクエストが完了するたびにloading countを減らす", async () => {
-    const firstResponse = createDeferred<{ data: string }>();
-    const secondResponse = createDeferred<{ data: string }>();
-    mockedAxiosRequest
-      .mockImplementationOnce(() => firstResponse.promise)
-      .mockImplementationOnce(() => secondResponse.promise);
+  it("タイムアウトとキャンセルシグナルをHTTP層へ渡す", async () => {
+    const controller = new AbortController();
+    mockedAxiosRequest.mockResolvedValue({ data: null });
 
-    const firstRequest = request("GET", "/first", { baseURL });
-    const secondRequest = request("GET", "/second", { baseURL });
+    await request("GET", "/slow", {
+      accessToken: "token",
+      baseURL,
+      signal: controller.signal,
+      timeout: 2_000,
+    });
 
-    expect(store.getState().loading.count).toBe(2);
-
-    firstResponse.resolve({ data: "first" });
-    await firstRequest;
-    expect(store.getState().loading.count).toBe(1);
-
-    secondResponse.resolve({ data: "second" });
-    await secondRequest;
-    expect(store.getState().loading.count).toBe(0);
+    expect(mockedAxiosRequest).toHaveBeenCalledWith(
+      expect.objectContaining({ signal: controller.signal, timeout: 2_000 }),
+    );
   });
 });

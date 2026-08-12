@@ -12,6 +12,7 @@ export const renderPage = (page: ReactElement) =>
     <Provider store={store}>
       <AuthContext.Provider
         value={{
+          authState: { status: "anonymous" },
           isChecking: false,
           isSignedIn: false,
           refreshAuthState: () => undefined,

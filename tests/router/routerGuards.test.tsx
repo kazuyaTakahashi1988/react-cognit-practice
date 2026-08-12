@@ -21,11 +21,16 @@ const createRoute = (access: AppRoute["access"]): AppRoute => ({
 
 const renderGuard = (
   access: AppRoute["access"],
-  authState: Pick<AuthContextValue, "isChecking" | "isSignedIn">,
+  authState: AuthContextValue["authState"],
 ) =>
   render(
     <AuthContext.Provider
-      value={{ ...authState, refreshAuthState: () => undefined }}
+      value={{
+        authState,
+        isChecking: authState.status === "checking",
+        isSignedIn: authState.status === "authenticated",
+        refreshAuthState: () => undefined,
+      }}
     >
       <MemoryRouter initialEntries={["/target"]}>
         <Location />
@@ -42,21 +47,21 @@ const renderGuard = (
 
 describe("router guards", () => {
   it("未認証でauthページへアクセスするとサインインへリダイレクトする", async () => {
-    renderGuard("auth", { isChecking: false, isSignedIn: false });
+    renderGuard("auth", { status: "anonymous" });
 
     expect(await screen.findByText("Sign in destination")).toBeVisible();
     expect(screen.getByTestId("location")).toHaveTextContent("/auth/signin");
   });
 
   it("認証済みでguestページへアクセスするとサインアウトへリダイレクトする", async () => {
-    renderGuard("guest", { isChecking: false, isSignedIn: true });
+    renderGuard("guest", { status: "authenticated" });
 
     expect(await screen.findByText("Sign out destination")).toBeVisible();
     expect(screen.getByTestId("location")).toHaveTextContent("/auth/signout");
   });
 
   it("認証状態のchecking中はページやリダイレクト先を表示しない", () => {
-    renderGuard("auth", { isChecking: true, isSignedIn: false });
+    renderGuard("auth", { status: "checking" });
 
     expect(screen.getByText("認証状態を確認しています...")).toBeVisible();
     expect(screen.queryByText("Protected content")).toBeNull();
@@ -64,7 +69,7 @@ describe("router guards", () => {
   });
 
   it("ガード条件を満たす場合はリダイレクトせず対象ページを表示する", async () => {
-    renderGuard("auth", { isChecking: false, isSignedIn: true });
+    renderGuard("auth", { status: "authenticated" });
 
     expect(
       await screen.findByRole("heading", { name: "Protected content" }),

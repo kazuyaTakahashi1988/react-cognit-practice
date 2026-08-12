@@ -10,20 +10,41 @@ type GuardProps = { children: React.ReactNode };
 
 const AuthChecking = () => <p>認証状態を確認しています...</p>;
 
+const AuthError: React.FC<{ onRetry: () => void }> = ({ onRetry }) => (
+  <div role="alert">
+    <p>認証状態を確認できませんでした。通信環境を確認してください。</p>
+    <button onClick={onRetry} type="button">
+      再試行
+    </button>
+  </div>
+);
+
 // 認証済みユーザーのみアクセス可とするガード処理
 const AuthGuard: React.FC<GuardProps> = ({ children }) => {
-  const { isChecking, isSignedIn } = useAuth(); // サインインフラグ
+  const { authState, refreshAuthState } = useAuth();
 
-  if (isChecking) return <AuthChecking />;
-  return isSignedIn ? children : <Navigate replace to="/auth/signin" />;
+  if (authState.status === "checking") return <AuthChecking />;
+  if (authState.status === "error")
+    return <AuthError onRetry={refreshAuthState} />;
+  return authState.status === "authenticated" ? (
+    children
+  ) : (
+    <Navigate replace to="/auth/signin" />
+  );
 };
 
 // 未認証ユーザーのみアクセス可とするガード処理
 const GuestGuard: React.FC<GuardProps> = ({ children }) => {
-  const { isChecking, isSignedIn } = useAuth(); // サインインフラグ
+  const { authState, refreshAuthState } = useAuth();
 
-  if (isChecking) return <AuthChecking />;
-  return isSignedIn ? <Navigate replace to="/auth/signout" /> : children;
+  if (authState.status === "checking") return <AuthChecking />;
+  if (authState.status === "error")
+    return <AuthError onRetry={refreshAuthState} />;
+  return authState.status === "authenticated" ? (
+    <Navigate replace to="/auth/signout" />
+  ) : (
+    children
+  );
 };
 
 /*

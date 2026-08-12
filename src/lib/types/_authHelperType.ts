@@ -1,5 +1,19 @@
+export type AuthInitializationError = {
+  message: string;
+  name: string;
+};
+
+export type AuthState =
+  | { status: "anonymous" }
+  | { error: AuthInitializationError; status: "error" }
+  | { status: "authenticated" }
+  | { status: "checking" };
+
 export type AuthContextValue = {
+  authState: AuthState;
+  /** @deprecated Prefer authState.status. */
   isChecking: boolean;
+  /** @deprecated Prefer authState.status. */
   isSignedIn: boolean;
   refreshAuthState: () => void;
 };

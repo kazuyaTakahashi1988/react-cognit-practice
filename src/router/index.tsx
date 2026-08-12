@@ -12,7 +12,7 @@ import { usePVTracking } from "../utils/gaHelper";
  * ----------------------------------------------- */
 
 export function Router() {
-  const { isChecking, isSignedIn } = useAuth(); // サインインフラグ
+  const { authState } = useAuth();
 
   usePVTracking(); // GA4 PV計測処理
 
@@ -52,12 +52,16 @@ export function Router() {
         <Route
           // ルート/auth 遷移時はサインイン状態に応じ SignOut/SignInページ へリダイレクト
           element={
-            isChecking ? (
+            authState.status === "checking" || authState.status === "error" ? (
               <p>認証状態を確認しています...</p>
             ) : (
               <Navigate
                 replace
-                to={isSignedIn ? "/auth/signout" : "/auth/signin"}
+                to={
+                  authState.status === "authenticated"
+                    ? "/auth/signout"
+                    : "/auth/signin"
+                }
               />
             )
           }

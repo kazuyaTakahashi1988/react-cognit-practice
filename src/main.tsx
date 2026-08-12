@@ -2,10 +2,13 @@ import React from "react";
 import { createRoot } from "react-dom/client";
 
 import App from "./App.tsx";
+import { validateEnvironment } from "./config/env";
 
 /* -----------------------------------------------
  * main ファイル
  * ----------------------------------------------- */
+
+validateEnvironment(import.meta.env);
 
 const container = document.getElementById("root");
 
