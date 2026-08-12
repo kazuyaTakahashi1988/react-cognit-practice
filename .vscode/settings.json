@@ -11,10 +11,11 @@
     "editor.insertSpaces": true,
     "editor.defaultFormatter": "esbenp.prettier-vscode"
   },
-  "editor.codeActionsOnSave": { "source.fixAll.eslint": "always" },
+  "editor.codeActionsOnSave": { "source.fixAll.eslint": "never" },
   "[javascript]": { "editor.defaultFormatter": "esbenp.prettier-vscode" },
   "[typescriptreact]": { "editor.defaultFormatter": "esbenp.prettier-vscode" },
   "[javascriptreact]": { "editor.defaultFormatter": "esbenp.prettier-vscode" },
+  "prettier.prettierPath": "./node_modules/prettier/index.cjs",
   "prettier.requireConfig": true,
   "js/ts.tsdk.path": "node_modules/typescript/lib"
 }
