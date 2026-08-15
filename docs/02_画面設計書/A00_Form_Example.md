@@ -1,6 +1,6 @@
 # Form Example 画面設計書
 
-Form Example の画面設計書です
+Form Example の画面設計書です。
 
 <br />
 
