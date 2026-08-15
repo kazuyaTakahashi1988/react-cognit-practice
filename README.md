@@ -102,7 +102,7 @@ react-cognit-practice/
 ├── .husky
 ├── .storybook
 ├── .vscode
-├── docs
+├── docs             # 各ドキュメント（各設計書の雛形.etc）
 ├── public
 ├── scripts          # 各scripts（yarnコマンド用途）
 ├── src/             # アプリ本体
