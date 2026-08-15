@@ -1,6 +1,6 @@
 # Todo Example 画面設計書
 
-Todo Example の画面設計書です
+Todo Example の画面設計書です。
 
 <br />
 

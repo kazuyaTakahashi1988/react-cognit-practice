@@ -1,6 +1,6 @@
 # Todo Example 詳細設計書
 
-Todo Example の詳細設計書です
+Todo Example の詳細設計書です。
 
 <br />
 
