@@ -1,12 +1,11 @@
-import { AuthProvider } from "../authHelper/authProvider";
-import { StoreProvider } from "../storeHelper/storeProvider";
+import { AuthProvider } from "../utils/authHelper/authProvider";
+import { StoreProvider } from "../utils/storeHelper/storeProvider";
 
 import type React from "react";
 
 /* -----------------------------------------------
- * AppRoot（App.tsx）用のプロバイダーまとめ
+ * アプリ全体の Provider 構成
  * ----------------------------------------------- */
-
 const AppRootProvider: React.FC<React.PropsWithChildren> = ({ children }) => (
   <StoreProvider>
     <AuthProvider>{children}</AuthProvider>

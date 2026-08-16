@@ -106,6 +106,7 @@ react-cognit-practice/
 ├── public
 ├── scripts          # 各scripts（yarnコマンド用途）
 ├── src/             # アプリ本体
+│   ├── app              # アプリ全体の起動・Provider・エラー境界
 │   ├── components       # 各コンポーネント
 │   ├── features         # 各画面（コロケーション）
 │   ├── lib              # 静的な値・処理

@@ -1,11 +1,12 @@
 import { useEffect } from "react";
 import { BrowserRouter } from "react-router-dom";
 
+import AppErrorBoundary from "./app/errorBoundary";
+import { AppRootEvent } from "./app/rootEvent";
+import AppRootProvider from "./app/rootProvider";
 import GlobalLoading from "./components/loading/globalLoading";
 import { GlobalStyle } from "./lib/style";
 import { Router } from "./router";
-import { AppRootEvent } from "./utils/appRootHelper/appRootEvent";
-import AppRootProvider from "./utils/appRootHelper/appRootProvider";
 
 /* -----------------------------------------------
  * AppRoot
@@ -17,13 +18,15 @@ const App = () => {
   }, []);
 
   return (
-    <AppRootProvider>
-      <BrowserRouter>
-        <GlobalStyle />
-        <GlobalLoading />
-        <Router />
-      </BrowserRouter>
-    </AppRootProvider>
+    <AppErrorBoundary>
+      <AppRootProvider>
+        <BrowserRouter>
+          <GlobalStyle />
+          <GlobalLoading />
+          <Router />
+        </BrowserRouter>
+      </AppRootProvider>
+    </AppErrorBoundary>
   );
 };
 
