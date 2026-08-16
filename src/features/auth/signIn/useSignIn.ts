@@ -1,6 +1,7 @@
 import { useState } from "react";
 
 import { signInHelper, useAuth } from "../../../utils/authHelper";
+import { useGlobalLoading } from "../../../utils/storeHelper";
 
 import type { SignInValues } from "../../../lib/types";
 
@@ -10,6 +11,7 @@ export const useSignIn = (onAdditionalStep: () => void) => {
   const [errorMessage, setErrorMessage] = useState("");
   const [isSubmitting, setIsSubmitting] = useState(false);
   const { refreshAuthState } = useAuth();
+  const { runWithGlobalLoading } = useGlobalLoading();
 
   const resetMessage = () => setErrorMessage("");
 
@@ -18,7 +20,7 @@ export const useSignIn = (onAdditionalStep: () => void) => {
     setIsSubmitting(true);
 
     try {
-      const result = await signInHelper(data);
+      const result = await runWithGlobalLoading(() => signInHelper(data));
 
       if (result.isSignedIn) {
         refreshAuthState();

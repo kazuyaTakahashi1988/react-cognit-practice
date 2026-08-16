@@ -1,6 +1,7 @@
 import { useState } from "react";
 
 import { verifyHelper } from "../../../utils/authHelper";
+import { useGlobalLoading } from "../../../utils/storeHelper";
 
 import type { VerifyValues } from "../../../lib/types";
 
@@ -10,6 +11,7 @@ export const useVerification = (onSuccess: () => void) => {
   const [errorMessage, setErrorMessage] = useState("");
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [successMessage, setSuccessMessage] = useState("");
+  const { runWithGlobalLoading } = useGlobalLoading();
 
   const resetMessages = () => {
     setErrorMessage("");
@@ -21,7 +23,7 @@ export const useVerification = (onSuccess: () => void) => {
     setIsSubmitting(true);
 
     try {
-      await verifyHelper(data);
+      await runWithGlobalLoading(() => verifyHelper(data));
       onSuccess();
       setSuccessMessage("Verify 完了、Sign In できるよ！");
     } catch (error) {

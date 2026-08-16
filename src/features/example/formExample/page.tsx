@@ -1,7 +1,7 @@
 import { useForm } from "react-hook-form";
-import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 
+import { useFormExample } from "./useFormExample";
 import Button from "../../../components/button/button";
 import CheckBox from "../../../components/form/checkBox";
 import Input from "../../../components/form/input";
@@ -12,7 +12,6 @@ import SwitchButton from "../../../components/form/switchButton";
 import TextArea from "../../../components/form/textArea";
 import Layout from "../../../components/layouts/layout";
 import { color, media } from "../../../lib/style";
-import { testPostApi } from "../../../utils/apiHelper";
 
 import type { FormExampleValues } from "./type";
 import type React from "react";
@@ -22,7 +21,7 @@ import type React from "react";
  * ----------------------------------------------- */
 
 const FormExample: React.FC = () => {
-  const navigate = useNavigate();
+  const { submit } = useFormExample();
 
   /*
    * RHForm 使用設定
@@ -45,12 +44,7 @@ const FormExample: React.FC = () => {
   /*
    * 「送信する」ボタン 処理
    */
-  const onSubmit = form.handleSubmit(async (data) => {
-    const responsePost = await testPostApi(data); // テストポストAPI（てきとーなやつ）処理
-    if (!responsePost.ok || responsePost.response.status !== 200) {
-      navigate("/error/500", { replace: true });
-    }
-  });
+  const onSubmit = form.handleSubmit(submit);
 
   return (
     <Layout type="example">

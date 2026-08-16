@@ -19,6 +19,7 @@ export const store = configureStore({
 
 export { exampleFlagSet, exampleStringSet } from "./slices/exampleSlice";
 export { loadingFlagDown, loadingFlagUp } from "./slices/loadingSlice";
+export { useGlobalLoading } from "./useGlobalLoading";
 // export { xxxxFlagSet, xxxxStringSet } from "./slices/xxxxSlice";
 
 export type AppDispatch = typeof store.dispatch;
