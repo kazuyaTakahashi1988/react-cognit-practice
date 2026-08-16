@@ -1,18 +1,12 @@
-import { useState } from "react";
 import { useForm } from "react-hook-form";
 import styled from "styled-components";
 
+import { useVerification } from "./useVerification";
 import Button from "../../../components/button/button";
 import ErrorMessage from "../../../components/form/errorMessage";
 import Input from "../../../components/form/input";
 import Layout from "../../../components/layouts/layout";
 import { color } from "../../../lib/style";
-import { verifyHelper } from "../../../utils/authHelper";
-import {
-  loadingFlagDown,
-  loadingFlagUp,
-  store,
-} from "../../../utils/storeHelper";
 
 import type { VerifyValues } from "../../../lib/types";
 import type React from "react";
@@ -22,61 +16,29 @@ import type React from "react";
  * ----------------------------------------------- */
 
 const Verification: React.FC = () => {
-  const [errorMessage, setErrorMessage] = useState("");
-  const [successMessage, setSuccessMessage] = useState("");
-
-  /*
-   * RHForm 使用設定
-   */
   const verifyForm = useForm<VerifyValues>({
     defaultValues: { verificationCode: "", email: "" },
   });
+  const { errorMessage, isSubmitting, resetMessages, submit, successMessage } =
+    useVerification(() => verifyForm.reset());
 
-  /*
-   * 「リセット」ボタン 処理
-   */
   const onReset = () => {
     verifyForm.reset();
-    setErrorMessage("");
-    setSuccessMessage("");
+    resetMessages();
   };
-
-  /*
-   * 「送信する」ボタン 処理
-   */
-  const onSubmit = verifyForm.handleSubmit((data) => {
-    store.dispatch(loadingFlagUp()); // ローディングフラグを上げる
-
-    /* Verify 処理 */
-    verifyHelper(data)
-      .then(() => {
-        onReset();
-        setSuccessMessage("Verify 完了、Sign In できるよ！");
-      })
-      .catch((err: unknown) => {
-        const message =
-          err instanceof Error ? err.message : "Verify に失敗したよ...";
-        setErrorMessage(message);
-      })
-      .finally(() => {
-        store.dispatch(loadingFlagDown()); // ローディングフラグを下げる
-      });
-  });
+  const onSubmit = verifyForm.handleSubmit(submit);
 
   return (
     <Layout type="auth">
       <Styled>
         <h1>Verification</h1>
 
-        {/* エラーメッセージ */}
         <ErrorMessage className="mt-30" errorMessage={errorMessage} />
 
-        {/* 成功メッセージ */}
         {successMessage ? (
           <p className="mt-30 success">{successMessage}</p>
         ) : null}
 
-        {/* インプット項目 - password（verificationCode） */}
         <Input
           className="mt-30"
           errorMessage={verifyForm.formState.errors.verificationCode?.message}
@@ -88,7 +50,6 @@ const Verification: React.FC = () => {
           })}
         />
 
-        {/* インプット項目 - E-mail */}
         <Input
           className="mt-30"
           errorMessage={verifyForm.formState.errors.email?.message}
@@ -98,12 +59,17 @@ const Verification: React.FC = () => {
           {...verifyForm.register("email", { required: "必須項目だよ。" })}
         />
 
-        {/* ボタン */}
         <div className="mt-30 button-clm">
-          <Button className="secondary" onClick={() => onReset()}>
+          <Button
+            className="secondary"
+            disabled={isSubmitting}
+            onClick={onReset}
+          >
             リセット
           </Button>
-          <Button onClick={() => onSubmit()}>送信する</Button>
+          <Button disabled={isSubmitting} onClick={() => onSubmit()}>
+            送信する
+          </Button>
         </div>
       </Styled>
     </Layout>

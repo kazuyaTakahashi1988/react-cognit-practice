@@ -1,8 +1,6 @@
 import { fetchAuthSession } from "aws-amplify/auth";
 import axios from "axios";
 
-import { loadingFlagDown, loadingFlagUp, store } from "../storeHelper";
-
 import type { ApiResult, RequestOptions } from "../../lib/types";
 import type { AxiosRequestConfig, Method } from "axios";
 
@@ -46,12 +44,9 @@ export const request = async <TResponse = unknown, TRequest = unknown>(
     accessToken,
     baseURL = DEFAULT_BASE_URL,
     headers,
-    isLoading = true,
     params,
     requestData,
   } = options;
-
-  if (isLoading) store.dispatch(loadingFlagUp()); // ローディングフラグを上げる
 
   try {
     // リクエスト内容
@@ -79,7 +74,5 @@ export const request = async <TResponse = unknown, TRequest = unknown>(
       };
     }
     throw error;
-  } finally {
-    if (isLoading) store.dispatch(loadingFlagDown()); // ローディングフラグを下げる
   }
 };
