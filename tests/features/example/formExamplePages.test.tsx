@@ -16,7 +16,10 @@ vi.mock("../../../src/utils/authHelper", () => ({
 
 describe("FormExample page", () => {
   beforeEach(() => {
-    apiMocks.post.mockResolvedValue({ ok: true, response: { status: 200 } });
+    apiMocks.post.mockResolvedValue({
+      success: true,
+      response: { status: 200 },
+    });
   });
 
   it("renders and validates required fields", async () => {

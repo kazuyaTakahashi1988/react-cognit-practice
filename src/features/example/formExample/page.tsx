@@ -46,8 +46,8 @@ const FormExample: React.FC = () => {
    * 「送信する」ボタン 処理
    */
   const onSubmit = form.handleSubmit(async (data) => {
-    const responsePost = await testPostApi(data); // テストポストAPI（てきとーなやつ）処理
-    if (!responsePost.ok || responsePost.response.status !== 200) {
+    const result = await testPostApi(data); // テストポストAPI（てきとーなやつ）処理
+    if (!result.success || result.response.status !== 200) {
       navigate("/error/500", { replace: true });
     }
   });

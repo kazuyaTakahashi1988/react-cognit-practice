@@ -61,7 +61,7 @@ describe("api client", () => {
       params: { preview: true },
       url: "https://example.com/articles",
     });
-    expect(result).toEqual({ ok: true, response });
+    expect(result).toEqual({ success: true, response });
     expect(store.getState().loading.count).toBe(0);
   });
 
@@ -103,7 +103,7 @@ describe("api client", () => {
         message: "Request failed with status code 422",
         status: 422,
       },
-      ok: false,
+      success: false,
     });
     expect(store.getState().loading.count).toBe(0);
   });
@@ -133,7 +133,7 @@ describe("api client", () => {
         message: "Request failed with status code 401",
         status: 401,
       },
-      ok: false,
+      success: false,
     });
     expect(store.getState().loading.count).toBe(0);
   });

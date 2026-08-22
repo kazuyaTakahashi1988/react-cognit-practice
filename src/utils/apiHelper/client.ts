@@ -65,7 +65,7 @@ export const request = async <TResponse = unknown, TRequest = unknown>(
 
     // リクエスト実行
     const response = await axios.request<TResponse>(requestConfig);
-    return { ok: true, response };
+    return { success: true, response };
   } catch (error) {
     if (axios.isAxiosError(error)) {
       // エラー内容
@@ -75,7 +75,7 @@ export const request = async <TResponse = unknown, TRequest = unknown>(
           message: error.message || "API request failed",
           status: error.response?.status,
         },
-        ok: false,
+        success: false,
       };
     }
     throw error;
