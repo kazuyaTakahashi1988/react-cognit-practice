@@ -70,12 +70,12 @@ export const request = async <TResponse = unknown, TRequest = unknown>(
     if (axios.isAxiosError(error)) {
       // エラー内容
       return {
+        success: false,
         error: {
           data: error.response?.data,
           message: error.message || "API request failed",
           status: error.response?.status,
         },
-        success: false,
       };
     }
     throw error;
