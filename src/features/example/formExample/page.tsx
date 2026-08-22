@@ -1,3 +1,4 @@
+import { useCallback } from "react";
 import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
@@ -43,6 +44,14 @@ const FormExample: React.FC = () => {
   });
 
   /*
+   * エラーテキスト取得処理
+   */
+  const getErrorText = useCallback(
+    (name: keyof FormExampleValues) => form.formState.errors[name]?.message,
+    [form.formState.errors],
+  );
+
+  /*
    * 「送信する」ボタン 処理
    */
   const onSubmit = form.handleSubmit(async (data) => {
@@ -66,7 +75,7 @@ const FormExample: React.FC = () => {
         {/* インプット項目 */}
         <Input
           className="mt-30"
-          errorMessage={form.formState.errors.name?.message}
+          errorMessage={getErrorText("name")}
           label={{ text: "お名前", required: true }}
           placeholder="プレイスホルダー テキスト"
           {...form.register("name", {
@@ -79,7 +88,7 @@ const FormExample: React.FC = () => {
         {/* チェックボックス項目 */}
         <CheckBox
           className="mt-30"
-          errorMessage={form.formState.errors.genres?.message}
+          errorMessage={getErrorText("genres")}
           label={{ text: "よく視聴するジャンル", required: true }}
           options={[
             { label: "アクション", value: "action" },
@@ -97,7 +106,7 @@ const FormExample: React.FC = () => {
         {/* ラジオボタン項目 */}
         <RadioButton
           className="mt-30"
-          errorMessage={form.formState.errors.inquiry?.message}
+          errorMessage={getErrorText("inquiry")}
           label={{ text: "お問い合わせ方法", required: true }}
           options={[
             { label: "メール", value: "email" },
@@ -112,7 +121,7 @@ const FormExample: React.FC = () => {
         {/* スイッチボタン項目 */}
         <SwitchButton
           className="mt-30"
-          errorMessage={form.formState.errors.payment?.message}
+          errorMessage={getErrorText("payment")}
           label={{ text: "お支払い方法", required: true }}
           options={[
             { label: "クレジットカード", value: "card" },
@@ -128,7 +137,7 @@ const FormExample: React.FC = () => {
         {/* セレクトボックス項目 */}
         <Select
           className="mt-30"
-          errorMessage={form.formState.errors.theme?.message}
+          errorMessage={getErrorText("theme")}
           label={{ text: "テーマ色の選択", required: true }}
           options={[
             { label: "シアン", value: "cyan" },
@@ -144,7 +153,7 @@ const FormExample: React.FC = () => {
         {/* セレクトカスタムボックス項目 */}
         <SelectCustom
           className="mt-30"
-          errorMessage={form.formState.errors.address?.message}
+          errorMessage={getErrorText("address")}
           label={{ text: "都道府県", required: true }}
           options={[
             { label: "東京都", value: "tokyo" },
@@ -165,7 +174,7 @@ const FormExample: React.FC = () => {
         {/* テキストエリア項目 */}
         <TextArea
           className="mt-30"
-          errorMessage={form.formState.errors.description?.message}
+          errorMessage={getErrorText("description")}
           label={{ text: "ご相談の内容", required: true }}
           placeholder="入力をお願いします。"
           {...form.register("description", {
