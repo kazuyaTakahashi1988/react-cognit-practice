@@ -79,6 +79,21 @@ const PageMeta: React.FC<TypePageMeta> = ({
    * カノニカルタグの動的生成・更新 処理
    */
   const generateCanonicalTag = (canonicalUrl: string) => {
+    let validatedUrl: URL;
+    try {
+      validatedUrl = new URL(canonicalUrl);
+    } catch {
+      return;
+    }
+
+    // URL 属性には HTTP(S) の絶対 URL のみを設定する。
+    if (
+      validatedUrl.protocol !== "https:" &&
+      validatedUrl.protocol !== "http:"
+    ) {
+      return;
+    }
+
     let canonicalTag = document.head.querySelector('link[rel="canonical"]');
 
     if (!canonicalTag) {
@@ -87,7 +102,7 @@ const PageMeta: React.FC<TypePageMeta> = ({
       document.head.appendChild(canonicalTag);
     }
 
-    canonicalTag.setAttribute("href", canonicalUrl);
+    canonicalTag.setAttribute("href", validatedUrl.href);
   };
 
   /*
