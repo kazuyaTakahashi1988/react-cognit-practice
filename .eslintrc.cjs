@@ -1,3 +1,5 @@
+const htmlReact = require("@html-eslint/eslint-plugin-react");
+
 module.exports = {
   root: true,
   env: { browser: true, es2020: true, node: true },
@@ -20,6 +22,7 @@ module.exports = {
   },
   plugins: [
     "@typescript-eslint",
+    "@html-eslint/react",
     "react",
     "react-hooks",
     "jsx-a11y",
@@ -40,6 +43,10 @@ module.exports = {
     "prettier",
   ],
   overrides: [
+    {
+      files: ["**/*.{jsx,tsx}"],
+      rules: { ...htmlReact.configs.recommended.rules },
+    },
     {
       files: [
         "stories/**/*.{ts,tsx}",
