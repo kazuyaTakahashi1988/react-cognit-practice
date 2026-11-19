@@ -1,8 +1,10 @@
 import { configureStore } from "@reduxjs/toolkit";
 
-import { exampleReducer } from "./slices/exampleSlice";
-import { loadingReducer } from "./slices/loadingSlice";
-// import { xxxxReducer } from "./slices/xxxxSlice";
+import {
+  exampleReducer,
+  loadingReducer,
+  // xxxxReducer
+} from "./_slices";
 
 /* -----------------------------------------------
  * Redux Store 設定
@@ -17,9 +19,14 @@ export const store = configureStore({
   },
 });
 
-export { exampleFlagSet, exampleStringSet } from "./slices/exampleSlice";
-export { loadingFlagDown, loadingFlagUp } from "./slices/loadingSlice";
-// export { xxxxFlagSet, xxxxStringSet } from "./slices/xxxxSlice";
+export {
+  exampleFlagSet,
+  exampleStringSet,
+  loadingFlagDown,
+  loadingFlagUp,
+  // xxxxFlagSet,
+  // xxxxStringSet
+} from "./_slices";
 
 export type AppDispatch = typeof store.dispatch;
 export type RootState = ReturnType<typeof store.getState>;

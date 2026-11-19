@@ -6,8 +6,10 @@ import {
   loadingFlagDown,
   loadingFlagUp,
 } from "../../src/utils/storeHelper";
-import { exampleReducer } from "../../src/utils/storeHelper/slices/exampleSlice";
-import { loadingReducer } from "../../src/utils/storeHelper/slices/loadingSlice";
+import {
+  exampleReducer,
+  loadingReducer,
+} from "../../src/utils/storeHelper/_slices";
 
 describe("example slice", () => {
   it("初期状態を返す", () => {
